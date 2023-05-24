@@ -1,0 +1,76 @@
+﻿<Window x:Class="GraphApplication.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GraphApplication.View"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25">
+            </RowDefinition>
+            <RowDefinition>
+            </RowDefinition>
+        </Grid.RowDefinitions>
+
+        <!--Graph Menu strip-->
+        <Menu>
+            <MenuItem Header="File">
+                <MenuItem Header="New.." Command="{Binding CreateGraphCommand}">
+                </MenuItem>
+                <MenuItem Header="Open.."></MenuItem>
+                <MenuItem Header="Save"></MenuItem>
+                <MenuItem Header="Save as.."></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Edit">
+                <MenuItem Header="Undo"></MenuItem>
+                <MenuItem Header="Cope"></MenuItem>
+                <MenuItem Header="Paste"></MenuItem>
+                <MenuItem Header="Duplicate"></MenuItem>
+            </MenuItem>
+        </Menu>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100">
+                </ColumnDefinition>
+                <ColumnDefinition Width="5">
+                </ColumnDefinition>
+                <ColumnDefinition>
+                </ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <WrapPanel Orientation="Horizontal" >
+                <WrapPanel.Background>
+                    <SolidColorBrush Color="white"></SolidColorBrush>
+                </WrapPanel.Background>
+                <RadioButton Style="{StaticResource ToolButtonPrefab}" IsChecked="True">Select</RadioButton>
+                <RadioButton Style="{StaticResource ToolButtonPrefab}">Move</RadioButton>
+                <RadioButton Style="{StaticResource ToolButtonPrefab}">Node</RadioButton>
+                <RadioButton Style="{StaticResource ToolButtonPrefab}">Arrow</RadioButton>
+                <RadioButton Style="{StaticResource ToolButtonPrefab}" >Grid</RadioButton>
+            </WrapPanel>
+            
+            <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch"></GridSplitter>
+            <TabControl Grid.Column="2" ItemsSource="{Binding GraphViews}">
+                <TabControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}"/>
+                    </DataTemplate>
+                </TabControl.ItemTemplate>
+                <!--<TabItem Header="graph1.xml" IsSelected="True">
+                    <Grid>
+                        <local:GraphView x:Name="GraphEditor" Grid.Column="1"></local:GraphView>
+
+                    </Grid>
+                </TabItem>
+                <TabItem Header="graph2.xml">
+                    <Grid>
+                        <local:GraphView x:Name="GraphEditor2" Grid.Column="1"></local:GraphView>
+                    </Grid>
+                </TabItem>-->
+            </TabControl>
+        </Grid>
+    </Grid>
+</Window>
