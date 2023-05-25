@@ -25,7 +25,5 @@ namespace GraphApplication.View
         {
             InitializeComponent();
         }
-
-
     }
 }

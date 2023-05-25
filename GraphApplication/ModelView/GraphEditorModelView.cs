@@ -1,11 +1,16 @@
 ﻿using GraphApplication.Model;
+using GraphApplication.ModelView.Extensions;
+using GraphApplication.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace GraphApplication.ModelView
 {
@@ -20,6 +25,17 @@ namespace GraphApplication.ModelView
             {
                 _model.VertexObjects = value;
                 OnPropertyChanged(nameof(_model.VertexObjects));
+            }
+        }
+
+        private ObservableCollection<VertexModelView> _vertexModelViews;
+        public ObservableCollection<VertexModelView> VertexModelViews
+        {
+            get { return _vertexModelViews; }
+            set
+            {
+                _vertexModelViews = value;
+                OnPropertyChanged(nameof(_vertexModelViews));
             }
         }
 
@@ -43,10 +59,43 @@ namespace GraphApplication.ModelView
             }
         }
 
+
+        private GraphEditorMode _currentEditorMode;
+
+        public GraphEditorMode CurrentEditorMode
+        {
+            get { return _currentEditorMode; }
+            set
+            {
+                _currentEditorMode = value;
+                OnPropertyChanged(nameof(_currentEditorMode));
+            }
+        }
+
+
         public GraphEditorModelView(GraphEditorModel model)
         {
             _model = model;
+
+            CurrentEditorMode = new GraphEditorMovingMode(this);
+
+            //create all modelViews for elements
+            VertexModelViews = new ObservableCollection<VertexModelView>(
+                _model.VertexObjects.Select(vertexModel => new VertexModelView(vertexModel, this)));
+
+            //subsribe
+            foreach (var vertexModelView in VertexModelViews)
+                VertexModelViewSubsribe(vertexModelView);
+
         }
+
+        public void VertexModelViewSubsribe(VertexModelView vertexModelView)
+        {
+            vertexModelView.MouseDown += (sender, e) => CurrentEditorMode.MouseDown(sender as VertexView, e);
+            vertexModelView.MouseMove += (sender, e) => CurrentEditorMode.MouseMove(sender as VertexView, e);
+            vertexModelView.MouseUp += (sender, e) => CurrentEditorMode.MouseUp(sender as VertexView, e);
+        }
+
 
     }
 }

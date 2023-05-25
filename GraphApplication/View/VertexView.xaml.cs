@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GraphApplication.Model;
+using GraphApplication.ModelView;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,23 @@ namespace GraphApplication.View
         public VertexView()
         {
             InitializeComponent();
+        }
+
+
+        private void Ellipse_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            (DataContext as VertexModelView)?.MouseDown?.Invoke(this, e);
+        }
+
+        private void Ellipse_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            (DataContext as VertexModelView)?.MouseUp?.Invoke(this, e);
+
+        }
+
+        private void Ellipse_MouseMove(object sender, MouseEventArgs e)
+        {
+            (DataContext as VertexModelView)?.MouseMove?.Invoke(this, e);
         }
     }
 }

@@ -29,7 +29,7 @@ namespace GraphApplication.ModelView
                          try
                          {
                              // we can load our graph model
-                             GraphEditorModel graphModel = new GraphEditorModel("graph1", new List<GraphObjectModel> { new VertexModel(), new VertexModel() , new VertexModel() });
+                             GraphEditorModel graphModel = new GraphEditorModel("graph1", new List<GraphObjectModel> { new VertexModel(0, 0, "Node 1"), new VertexModel(100, 100, "Node 2") , new VertexModel(250, 250, "Node 3") });
 
                              GraphEditorModelView modelView = new GraphEditorModelView(graphModel);
 
