@@ -42,10 +42,11 @@
             </Grid.ColumnDefinitions>
 
             <WrapPanel Orientation="Horizontal" >
-                <WrapPanel.Background>
+                <WrapPanel.Background>  
                     <SolidColorBrush Color="white"></SolidColorBrush>
                 </WrapPanel.Background>
-                <RadioButton Style="{StaticResource ToolButtonPrefab}" IsChecked="True">Select</RadioButton>
+                <RadioButton Style="{StaticResource ToolButtonPrefab}" IsChecked="True" Background="Gray">
+                </RadioButton>
                 <RadioButton Style="{StaticResource ToolButtonPrefab}">Move</RadioButton>
                 <RadioButton Style="{StaticResource ToolButtonPrefab}">Node</RadioButton>
                 <RadioButton Style="{StaticResource ToolButtonPrefab}">Arrow</RadioButton>
@@ -53,23 +54,30 @@
             </WrapPanel>
             
             <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch"></GridSplitter>
-            <TabControl Grid.Column="2" ItemsSource="{Binding GraphViews}">
+            <TabControl Grid.Column="2" ItemsSource="{Binding GraphEditorViews}" SelectedItem="{Binding SelectedView}">
                 <TabControl.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding Name}"/>
+                        <StackPanel Orientation="Horizontal">
+
+                            <TextBlock Text="{Binding Name}"/>
+                            
+                            <Button Command="{Binding DataContext.RemoveGraphCommand, 
+                                RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}"
+                                    CommandParameter="{Binding}"
+                                >rem</Button>
+
+                            <!--<StackPanel.Triggers>
+                                <Trigger Property="{Binding IsSaved}" Value="True">
+                                </Trigger>   
+                            </StackPanel.Triggers>-->
+                        </StackPanel>
                     </DataTemplate>
                 </TabControl.ItemTemplate>
-                <!--<TabItem Header="graph1.xml" IsSelected="True">
-                    <Grid>
-                        <local:GraphView x:Name="GraphEditor" Grid.Column="1"></local:GraphView>
-
-                    </Grid>
-                </TabItem>
-                <TabItem Header="graph2.xml">
-                    <Grid>
-                        <local:GraphView x:Name="GraphEditor2" Grid.Column="1"></local:GraphView>
-                    </Grid>
-                </TabItem>-->
+                <TabControl.ContentTemplate>
+                    <DataTemplate>
+                        <local:GraphEditorView DataContext="{Binding}"></local:GraphEditorView>
+                    </DataTemplate>
+                </TabControl.ContentTemplate>
             </TabControl>
         </Grid>
     </Grid>

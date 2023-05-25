@@ -13,13 +13,12 @@
                               Margin="5,5,5,5"
                               Width="40"
                               Height="40">
-                            <TextBlock Text="{TemplateBinding Content}"
-                                       HorizontalAlignment="Center"
-                                       VerticalAlignment="Center">
-                            </TextBlock>
+                            <StackPanel>
+                                <Image Source="../ArtWork/cursor-96.png" Width="20" Height="20" />
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </StackPanel>
                         </Grid>
                     </ControlTemplate>
-                    
                 </Setter.Value>
             </Setter>
         </Style.Setters>

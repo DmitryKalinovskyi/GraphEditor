@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="100" >
     <Grid>
-        <WrapPanel Orientation="Horizontal" >
+        <WrapPanel Orientation="Vertical" >
             <WrapPanel.Background>
                 <SolidColorBrush Color="Red"></SolidColorBrush>
             </WrapPanel.Background>

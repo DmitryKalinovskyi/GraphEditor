@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="GraphApplication.View.VertexView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GraphApplication.View"
+             mc:Ignorable="d"
+             DataContext="x:Type VertexModelView">
+    <Grid>
+            <Grid.RenderTransform>
+                <TranslateTransform X="-50" Y="-20"/>
+            </Grid.RenderTransform>
+
+            <Ellipse Panel.ZIndex="5" Width="40" Height="40" Stroke="Black" Fill="White" Canvas.Left="180" Canvas.Top="48">
+                <Ellipse.Effect>
+                    <DropShadowEffect ShadowDepth="1" Color="CadetBlue"/>
+                </Ellipse.Effect>
+            </Ellipse>
+            <Label IsHitTestVisible="False" Width="100" Panel.ZIndex="6" HorizontalContentAlignment="Center" Content="{Binding DataContext.Caption}"></Label>
+    </Grid>
+</UserControl>

@@ -1,4 +1,5 @@
 ﻿using GraphApplication.Model;
+using GraphApplication.Services;
 using GraphApplication.Services.Commands;
 using GraphApplication.View;
 using System;
@@ -14,6 +15,8 @@ namespace GraphApplication.ModelView
 {
     public class MainWindowModelView: NotifyModelView
     {
+        private IFileService<GraphEditorModel> _fileService;
+
         private RelayCommand _createGraphCommand;
         
         public RelayCommand CreateGraphCommand
@@ -25,7 +28,16 @@ namespace GraphApplication.ModelView
                      {
                          try
                          {
-                             GraphViews.Add(new GraphModel("graph1"));   
+                             // we can load our graph model
+                             GraphEditorModel graphModel = new GraphEditorModel("graph1", new List<GraphObjectModel> { new VertexModel(), new VertexModel() , new VertexModel() });
+
+                             GraphEditorModelView modelView = new GraphEditorModelView(graphModel);
+
+                             SelectedView = modelView;
+                             GraphEditorViews.Add(modelView);
+                             
+
+
                          }
                          catch (Exception ex)
                          {
@@ -40,14 +52,14 @@ namespace GraphApplication.ModelView
         {
             get
             {
-                return _createGraphCommand ??
-                     (_createGraphCommand = new RelayCommand(obj =>
+                return _removeGraphCommand ??
+                     (_removeGraphCommand = new RelayCommand(obj =>
                      {
                          try
                          {
-                             if(obj is GraphModel) 
-                             { 
-
+                             if(obj is GraphEditorModelView modelView) 
+                             {
+                                 GraphEditorViews.Remove(modelView);  
                              }
                          }
                          catch (Exception ex)
@@ -57,21 +69,34 @@ namespace GraphApplication.ModelView
             }
         }
 
-        private ObservableCollection<GraphModel> _graphViews;
+        private ObservableCollection<GraphEditorModelView> _graphEditorViews;
 
-        public ObservableCollection<GraphModel> GraphViews
+        public ObservableCollection<GraphEditorModelView> GraphEditorViews
         {
-            get { return _graphViews; }
+            get { return _graphEditorViews; }
             set
             {
-                _graphViews = value;
-                OnPropertyChanged(nameof(GraphViews));
+                _graphEditorViews = value;
+                OnPropertyChanged(nameof(GraphEditorViews));
             }
         }
 
-        public MainWindowModelView(ObservableCollection<GraphModel>  graphViews)
+        private GraphEditorModelView? _selectedView;
+
+        public GraphEditorModelView? SelectedView
         {
-            GraphViews = graphViews;
+            get { return _selectedView;  }
+            set
+            {
+                _selectedView = value;
+                OnPropertyChanged(nameof(SelectedView));
+            }
+        }
+
+        public MainWindowModelView(ObservableCollection<GraphEditorModelView>  graphViews, IFileService<GraphEditorModel> fileService)
+        {
+            GraphEditorViews = graphViews;
+            _fileService = fileService;
         }
     }
 }

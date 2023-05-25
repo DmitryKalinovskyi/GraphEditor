@@ -1,7 +1,4 @@
-﻿using GraphApplication.Model;
-using GraphApplication.ModelView;
-using GraphApplication.Services;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,17 +16,13 @@ using System.Windows.Shapes;
 namespace GraphApplication.View
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for VertexView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class VertexView : UserControl
     {
-        public MainWindow()
+        public VertexView()
         {
             InitializeComponent();
-            DataContext = new MainWindowModelView(
-                new System.Collections.ObjectModel.ObservableCollection<GraphEditorModelView> { },
-                new XMLFIleService<GraphEditorModel>()
-            );
         }
     }
 }
