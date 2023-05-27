@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="GraphApplication.View.ToolButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GraphApplication.View"
+             mc:Ignorable="d" 
+             Margin="5,5,5,5">
+    <UserControl.Resources>
+    </UserControl.Resources>
+        <Border>
+            <Border.Style>
+                <Style TargetType="Border">
+                    <Setter Property="BorderThickness" Value="1"></Setter>
+                <Setter Property="Background" Value="Black"></Setter>
+                <Setter Property="Padding" Value="5,5,5,5"></Setter>
+                <Setter Property="CornerRadius" Value="6"></Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="BorderBrush" Value="Black"></Setter>
+                    </Trigger>
+                </Style.Triggers>
+                </Style>
+                    
+            </Border.Style>
+            <StackPanel >
+                <StackPanel.Style>
+                    <Style TargetType="StackPanel">
+                        <Setter Property="Height" Value="25"></Setter>
+                    <Setter Property="Width" Value="25"></Setter>
+                    </Style>
+                </StackPanel.Style>
+                <Image Source="{Binding UriImage}">
+                </Image>
+                <TextBlock Text="{Binding Caption}" Foreground="White"></TextBlock>
+            </StackPanel>
+       
+
+        <!--<Image Width="40" Height="40" Source="../Artwork/cursor-96.png">
+        </Image>-->    
+               
+        </Border>
+</UserControl>

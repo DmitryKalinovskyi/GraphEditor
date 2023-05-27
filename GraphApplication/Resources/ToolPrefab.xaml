@@ -7,17 +7,30 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="RadioButton" >
-                        <Grid VerticalAlignment="Center"
+                        <Border CornerRadius="10">
+                            <StackPanel
+                              VerticalAlignment="Center"
                               HorizontalAlignment="Center"
                               Background="{TemplateBinding Background}"
                               Margin="5,5,5,5"
                               Width="40"
                               Height="40">
-                            <StackPanel>
                                 <Image Source="../ArtWork/cursor-96.png" Width="20" Height="20" />
                                 <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </StackPanel>
-                        </Grid>
+
+                            <Border.Style>
+                                <Style TargetType="{x:Type Border}">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="BorderBrush" Value="Green"></Setter>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            
+                        </Border>
+                        
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>

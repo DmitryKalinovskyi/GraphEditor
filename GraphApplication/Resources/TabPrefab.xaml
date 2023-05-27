@@ -1,7 +1,10 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <Style x:Key="ToolTest" TargetType="{x:Type Button}">
+    <Style BasedOn="{StaticResource {x:Type TabControl}}"
+           TargetType="{x:Type TabControl}"
+           x:Key="EditorTabControl">
+            
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate>
@@ -9,6 +12,6 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        
     </Style>
+    
 </ResourceDictionary>

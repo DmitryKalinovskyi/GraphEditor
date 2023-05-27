@@ -41,16 +41,40 @@
                 </ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <WrapPanel Orientation="Horizontal" >
-                <WrapPanel.Background>  
+            <!--<WrapPanel Orientation="Horizontal" >
+                <WrapPanel.Background>
                     <SolidColorBrush Color="white"></SolidColorBrush>
                 </WrapPanel.Background>
-                <RadioButton Style="{StaticResource ToolButtonPrefab}" IsChecked="True" Background="Gray">
-                </RadioButton>
-                <RadioButton Style="{StaticResource ToolButtonPrefab}">Move</RadioButton>
-                <RadioButton Style="{StaticResource ToolButtonPrefab}">Node</RadioButton>
-                <RadioButton Style="{StaticResource ToolButtonPrefab}">Arrow</RadioButton>
-                <RadioButton Style="{StaticResource ToolButtonPrefab}" >Grid</RadioButton>
+                <RadioButton Style="{StaticResource ToolButtonPrefab}"
+                             Command="{Binding ChangeEditorModeCommand}"
+                             CommandParameter="MovingMode">Move</RadioButton>
+                <RadioButton Style="{StaticResource ToolButtonPrefab}"
+                             Command="{Binding ChangeEditorModeCommand}"
+                             CommandParameter="VertexCreationMode"
+                             >Node</RadioButton>
+                <RadioButton Style="{StaticResource ToolButtonPrefab}"
+                             Command="{Binding ChangeEditorModeCommand}"
+                             CommandParameter="EdgeCreationMode">
+                               Arrow</RadioButton>
+                <RadioButton Style="{StaticResource ToolButtonPrefab}"
+                             Command="{Binding ChangeEditorModeCommand}"
+                             CommandParameter="MovingMode">
+                    Grid</RadioButton>
+            </WrapPanel>-->
+            <WrapPanel Orientation="Vertical">
+                <WrapPanel.Background>
+                    <SolidColorBrush Color="white"></SolidColorBrush>
+                </WrapPanel.Background>
+
+                <WrapPanel Orientation="Horizontal">
+                    <local:ToolButton UriImage="../ArtWork/cursor-96.png"></local:ToolButton>
+                    <local:ToolButton UriImage="../ArtWork/hand-96.png"></local:ToolButton>
+                    <local:ToolButton UriImage="../ArtWork/square-96.png"></local:ToolButton>
+                </WrapPanel>
+                <WrapPanel Orientation="Horizontal">
+                    <local:ToolButton UriImage="../ArtWork/circled-5-100.png"></local:ToolButton>
+                </WrapPanel>
+                
             </WrapPanel>
             
             <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch"></GridSplitter>

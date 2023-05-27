@@ -7,4 +7,54 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="ArtWork\circled-5-100.png" />
+    <None Remove="ArtWork\circled-5-50.png" />
+    <None Remove="ArtWork\cursor-24.png" />
+    <None Remove="ArtWork\cursor-48.png" />
+    <None Remove="ArtWork\cursor-96.png" />
+    <None Remove="ArtWork\hand-32.png" />
+    <None Remove="ArtWork\hand-64.png" />
+    <None Remove="ArtWork\hand-96.png" />
+    <None Remove="ArtWork\square-24.png" />
+    <None Remove="ArtWork\square-48.png" />
+    <None Remove="ArtWork\square-96.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="ArtWork\circled-5-100.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ArtWork\circled-5-50.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ArtWork\cursor-24.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ArtWork\cursor-48.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ArtWork\cursor-96.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ArtWork\hand-32.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ArtWork\hand-64.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ArtWork\hand-96.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ArtWork\square-24.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ArtWork\square-48.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ArtWork\square-96.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
 </Project>

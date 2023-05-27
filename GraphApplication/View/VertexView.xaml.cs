@@ -36,7 +36,6 @@ namespace GraphApplication.View
         private void Ellipse_MouseUp(object sender, MouseButtonEventArgs e)
         {
             (DataContext as VertexModelView)?.MouseUp?.Invoke(this, e);
-
         }
 
         private void Ellipse_MouseMove(object sender, MouseEventArgs e)

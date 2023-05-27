@@ -1,4 +1,5 @@
 ﻿using GraphApplication.Model;
+using GraphApplication.ModelView.GraphEditorExtensions;
 using GraphApplication.Services;
 using GraphApplication.Services.Commands;
 using GraphApplication.View;
@@ -6,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,10 +17,10 @@ namespace GraphApplication.ModelView
 {
     public class MainWindowModelView: NotifyModelView
     {
-        private IFileService<GraphEditorModel> _fileService;
+        #region Commands
+
 
         private RelayCommand _createGraphCommand;
-        
         public RelayCommand CreateGraphCommand
         {
             get 
@@ -46,8 +48,9 @@ namespace GraphApplication.ModelView
                      }));
             }
         }
-        private RelayCommand _removeGraphCommand;
 
+
+        private RelayCommand _removeGraphCommand;
         public RelayCommand RemoveGraphCommand
         {
             get
@@ -68,6 +71,61 @@ namespace GraphApplication.ModelView
                      }));
             }
         }
+
+        private RelayCommand _loadGraphCommand;
+        public RelayCommand LoadGraphCommand
+        {
+            get
+            {
+                return _loadGraphCommand ??
+                     (_loadGraphCommand = new RelayCommand(obj =>
+                     {
+                         try
+                         {
+                         }
+                         catch (Exception ex)
+                         {
+                         }
+                     }));
+            }
+        }
+
+        private RelayCommand _changeEditorModeCommand;
+
+        public RelayCommand ChangeEditorModeCommand
+        {
+            get
+            {
+                return _changeEditorModeCommand ??
+                    (_changeEditorModeCommand = new RelayCommand(obj =>
+                    {
+                        try
+                        {
+                            if (SelectedView == null)
+                                return;
+
+                            string typename = obj as string;
+
+                            if (typename == null)
+                                throw new Exception("Argument to change editor mode was empty");
+
+                            //convert selected mode from obj
+                            SelectedView.CurrentEditorMode = EditorModeConverter.Convert(typename, SelectedView);
+
+                        }
+                        catch(Exception ex)
+                        {
+                            Trace.WriteLine(ex);
+                        }
+                    }));
+            }
+        }
+
+        #endregion
+
+
+
+        private IFileService<GraphEditorModel> _fileService;
 
         private ObservableCollection<GraphEditorModelView> _graphEditorViews;
 
@@ -92,6 +150,9 @@ namespace GraphApplication.ModelView
                 OnPropertyChanged(nameof(SelectedView));
             }
         }
+
+
+
 
         public MainWindowModelView(ObservableCollection<GraphEditorModelView>  graphViews, IFileService<GraphEditorModel> fileService)
         {

@@ -25,10 +25,14 @@
         <Label x:Name="debugLabel" Content="Info"  Canvas.Left="602" Canvas.Top="414"  HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="188" Background="White" Foreground="Black" Margin="0,0,10,10"/>
         <Label x:Name="selectLabel" Content="" Canvas.Left="602" Canvas.Top="414"  HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="188" Background="White" Foreground="Black" Margin="10,0,0,10"/>-->
             
-            <ItemsControl ItemsSource="{Binding VertexModelViews}">
+            <ItemsControl ItemsSource="{Binding VertexModelViews}"
+>
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <Canvas>
+                        <Canvas ClipToBounds="True"
+                                MouseDown="Canvas_MouseDown"
+                                MouseUp="Canvas_MouseUp"
+                                MouseMove="Canvas_MouseMove">
                             
                     <Canvas.Background>
                         <LinearGradientBrush>
@@ -49,15 +53,14 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <local:VertexView DataContext="{Binding}">
-                            
                             <local:VertexView.Triggers>
-                                <EventTrigger RoutedEvent="MouseLeave">
+                                <!--<EventTrigger RoutedEvent="MouseLeave">
                                     <BeginStoryboard>
                                         <Storyboard>
                                             <DoubleAnimation Duration="0:0:0.800" Storyboard.TargetProperty="FontSize" To="18" />
                                         </Storyboard>
                                     </BeginStoryboard>
-                                </EventTrigger>
+                                </EventTrigger>-->
                             </local:VertexView.Triggers>
                         </local:VertexView>
                     </DataTemplate>

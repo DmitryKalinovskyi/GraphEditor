@@ -9,7 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace GraphApplication.ModelView.Extensions
+namespace GraphApplication.ModelView.GraphEditorExtensions
 {
     public class GraphEditorMovingMode : GraphEditorMode
     {
@@ -30,7 +30,10 @@ namespace GraphApplication.ModelView.Extensions
         {
             isDragging = true;
             Trace.WriteLine("Started dragging");
+
+
             dragPoint = e.GetPosition((UIElement)e.Source);
+            (vertexView.DataContext as VertexModelView).IsSelected = true;
 
             ((UIElement)e.Source).CaptureMouse();
         }
@@ -49,6 +52,8 @@ namespace GraphApplication.ModelView.Extensions
 
         public override void MouseUp(VertexView vertexView, MouseEventArgs e)
         {
+            if(isDragging == false) return;
+
             Point p = e.GetPosition((UIElement)e.Source);
             double dx = p.X - dragPoint.X;
             double dy = p.Y - dragPoint.Y;
@@ -58,6 +63,9 @@ namespace GraphApplication.ModelView.Extensions
             Trace.WriteLine("Ended dragging");
 
             isDragging = false;
+
+            (vertexView.DataContext as VertexModelView).IsSelected = false;
+
 
 
             ((UIElement)e.Source).ReleaseMouseCapture();

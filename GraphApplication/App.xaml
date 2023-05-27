@@ -5,9 +5,7 @@
              StartupUri="View/MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Resources/ToolPrefab.xaml"></ResourceDictionary>
-            </ResourceDictionary.MergedDictionaries>
+            
         </ResourceDictionary>
          
     </Application.Resources>

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
-namespace GraphApplication.ModelView.Extensions
+namespace GraphApplication.ModelView.GraphEditorExtensions
 {
     class GraphEditorSelectionMode : GraphEditorMode
     {

@@ -1,5 +1,6 @@
 ﻿using GraphApplication.Model;
-using GraphApplication.ModelView.Extensions;
+using GraphApplication.ModelView.GraphEditorExtensions;
+using GraphApplication.Services.Commands;
 using GraphApplication.View;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -16,6 +18,33 @@ namespace GraphApplication.ModelView
 {
     public class GraphEditorModelView: NotifyModelView
     {
+        #region Commands
+        private RelayCommand _createVertexCommand;
+
+        public RelayCommand CreateVertexCommand
+        {
+            get
+            {
+                return _createVertexCommand ??
+                     (_createVertexCommand = new RelayCommand(obj =>
+                     {
+                         try
+                         {
+                             //define args for our model
+                             VertexModel vertex = new VertexModel();
+
+                             VertexModelViews.Add(new VertexModelView(vertex, this));
+
+                         }
+                         catch (Exception ex)
+                         {
+                             MessageBox.Show("Відбулася помилка виконання команди: " + ex.Message, "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                         }
+                     }));
+            }
+        }
+        #endregion
+
         private GraphEditorModel _model;
 
         public IEnumerable<VertexModel> VertexObjects
@@ -60,6 +89,7 @@ namespace GraphApplication.ModelView
         }
 
 
+
         private GraphEditorMode _currentEditorMode;
 
         public GraphEditorMode CurrentEditorMode
@@ -68,7 +98,7 @@ namespace GraphApplication.ModelView
             set
             {
                 _currentEditorMode = value;
-                OnPropertyChanged(nameof(_currentEditorMode));
+                OnPropertyChanged(nameof(CurrentEditorMode));
             }
         }
 
@@ -77,16 +107,20 @@ namespace GraphApplication.ModelView
         {
             _model = model;
 
-            CurrentEditorMode = new GraphEditorMovingMode(this);
+            CurrentEditorMode = new GraphEditorVertexCreationMode(this);
 
             //create all modelViews for elements
             VertexModelViews = new ObservableCollection<VertexModelView>(
                 _model.VertexObjects.Select(vertexModel => new VertexModelView(vertexModel, this)));
 
-            //subsribe
-            foreach (var vertexModelView in VertexModelViews)
-                VertexModelViewSubsribe(vertexModelView);
+            GraphEditorInialization();
+        }
 
+        private void GraphEditorInialization()
+        {
+            this.MouseDown += (sender, e) => CurrentEditorMode.EditorDown(sender, e);
+            this.MouseUp += (sender, e) => CurrentEditorMode.EditorUp(sender, e);
+            this.MouseMove += (sender, e) => CurrentEditorMode.EditorMove(sender, e);
         }
 
         public void VertexModelViewSubsribe(VertexModelView vertexModelView)
@@ -96,6 +130,8 @@ namespace GraphApplication.ModelView
             vertexModelView.MouseUp += (sender, e) => CurrentEditorMode.MouseUp(sender as VertexView, e);
         }
 
+        public event EventHandler<MouseEventArgs> MouseEventHandler;
 
+        public MouseEventHandler MouseDown, MouseUp, MouseMove;
     }
 }

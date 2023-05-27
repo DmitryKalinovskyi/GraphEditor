@@ -43,11 +43,25 @@ namespace GraphApplication.ModelView
             }
         }
 
+        private bool _isSelected;
+
+        public bool IsSelected
+        {
+            get{ return _isSelected; }
+
+            set
+            {
+                _isSelected = value;
+                OnPropertyChanged(nameof(IsSelected));
+            }
+        }
 
         public VertexModelView(VertexModel model, GraphEditorModelView editorModelView)
         {
             _model = model;
             _editorModelView = editorModelView;
+
+            editorModelView.VertexModelViewSubsribe(this);
         }
 
         //events
