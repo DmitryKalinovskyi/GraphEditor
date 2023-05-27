@@ -6,38 +6,45 @@
              xmlns:local="clr-namespace:GraphApplication.View"
              mc:Ignorable="d" 
              Margin="5,5,5,5">
-    <UserControl.Resources>
-    </UserControl.Resources>
-        <Border>
-            <Border.Style>
-                <Style TargetType="Border">
-                    <Setter Property="BorderThickness" Value="1"></Setter>
-                <Setter Property="Background" Value="Black"></Setter>
+    <RadioButton GroupName="ToolButtons"> 
+        <RadioButton.Style>
+            <Style TargetType="RadioButton">
+                <Setter Property="Background" Value="{StaticResource col1}"></Setter>
+                <Setter Property="Width" Value="40"></Setter>
+                <Setter Property="Height" Value="40"></Setter>
+                <Setter Property="BorderThickness" Value="2"></Setter>
+                <Setter Property="BorderBrush" Value="Transparent"></Setter>
+                <Setter Property="Border.CornerRadius" Value="6"></Setter>
                 <Setter Property="Padding" Value="5,5,5,5"></Setter>
-                <Setter Property="CornerRadius" Value="6"></Setter>
+                <Setter Property="IsChecked" Value="{Binding IsChecked}"></Setter>                                            
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="RadioButton">
+                            <Border BorderThickness="{TemplateBinding BorderThickness}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    CornerRadius="{TemplateBinding Border.CornerRadius}"
+                                    Background="{TemplateBinding Background}"
+                                    Padding="{TemplateBinding Padding}">
+                                    
+                                <Image Source="{Binding UriImage}"></Image>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
                 <Style.Triggers>
+                    <Trigger Property="IsChecked" Value="True">
+                        <Setter Property="Background" Value="{StaticResource WidnowBg}"></Setter>
+                    </Trigger>
                     <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Background" Value="{StaticResource WiddowBg}"></Setter>
                         <Setter Property="BorderBrush" Value="Black"></Setter>
                     </Trigger>
                 </Style.Triggers>
-                </Style>
-                    
-            </Border.Style>
-            <StackPanel >
-                <StackPanel.Style>
-                    <Style TargetType="StackPanel">
-                        <Setter Property="Height" Value="25"></Setter>
-                    <Setter Property="Width" Value="25"></Setter>
-                    </Style>
-                </StackPanel.Style>
-                <Image Source="{Binding UriImage}">
-                </Image>
-                <TextBlock Text="{Binding Caption}" Foreground="White"></TextBlock>
-            </StackPanel>
-       
+            </Style>
 
-        <!--<Image Width="40" Height="40" Source="../Artwork/cursor-96.png">
-        </Image>-->    
-               
-        </Border>
+        </RadioButton.Style>
+    </RadioButton>
+
+
+
 </UserControl>

@@ -25,8 +25,7 @@
         <Label x:Name="debugLabel" Content="Info"  Canvas.Left="602" Canvas.Top="414"  HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="188" Background="White" Foreground="Black" Margin="0,0,10,10"/>
         <Label x:Name="selectLabel" Content="" Canvas.Left="602" Canvas.Top="414"  HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="188" Background="White" Foreground="Black" Margin="10,0,0,10"/>-->
             
-            <ItemsControl ItemsSource="{Binding VertexModelViews}"
->
+            <ItemsControl ItemsSource="{Binding VertexModelViews}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <Canvas ClipToBounds="True"
@@ -41,6 +40,9 @@
                             <GradientStop Color="White" Offset="1.0" />
                         </LinearGradientBrush>
                     </Canvas.Background>
+                        <Canvas.LayoutTransform>
+                            <ScaleTransform ScaleX="2" ScaleY="2"/>
+                        </Canvas.LayoutTransform>
                         </Canvas>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>

@@ -32,15 +32,16 @@ namespace GraphApplication.View
 
 
 
-        public string Caption
+        public bool IsChecked
         {
-            get { return (string)GetValue(CaptionProperty); }
-            set { SetValue(CaptionProperty, value); }
+            get { return (bool)GetValue(IsCheckedProperty); }
+            set { SetValue(IsCheckedProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for Caption.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty CaptionProperty =
-            DependencyProperty.Register("Caption", typeof(string), typeof(ToolButton), new PropertyMetadata(""));
+        // Using a DependencyProperty as the backing store for IsChecked.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty IsCheckedProperty =
+            DependencyProperty.Register("IsChecked", typeof(bool), typeof(ToolButton), new PropertyMetadata(false));
+
 
 
         public ToolButton()

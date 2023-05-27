@@ -10,7 +10,7 @@ namespace GraphApplication.ModelView.GraphEditorExtensions
     {
         public static GraphEditorMode Convert(string modeName, params object[] args)
         {
-            string fullName = $"GraphApplication.ModelView.GraphEditorExtensions.GraphEditor{modeName}";
+            string fullName = $"GraphApplication.ModelView.GraphEditorExtensions.{modeName}";
 
             Type type = Type.GetType(fullName);
 

@@ -1,0 +1,17 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <!--Colors-->
+    <Color x:Key="ToolBg">Green</Color>
+    <Color x:Key="ToolMouseOver">Green</Color>
+    <Color x:Key="ToolMouseSelected">Green</Color>
+    <Color x:Key="ToolBorder">Green</Color>
+    <Color x:Key="ToolBorderSelected">Green</Color>
+    <Color x:Key="ToolBorderMouseOver">Green</Color>
+    
+    <!--Brushes-->
+    <SolidColorBrush x:Key="col1">#0C134F</SolidColorBrush>
+    <SolidColorBrush x:Key="WinowBg">#1D267D</SolidColorBrush>
+    <SolidColorBrush x:Key="WidnowBg">#5C469C</SolidColorBrush>
+    <SolidColorBrush x:Key="WiddowBg">#D4ADFC</SolidColorBrush>
+</ResourceDictionary>

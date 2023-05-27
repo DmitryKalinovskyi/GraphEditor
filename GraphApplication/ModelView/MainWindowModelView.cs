@@ -15,7 +15,7 @@ using System.Windows;
 
 namespace GraphApplication.ModelView
 {
-    public class MainWindowModelView: NotifyModelView
+    public class MainWindowModelView : NotifyModelView
     {
         #region Commands
 
@@ -23,7 +23,7 @@ namespace GraphApplication.ModelView
         private RelayCommand _createGraphCommand;
         public RelayCommand CreateGraphCommand
         {
-            get 
+            get
             {
                 return _createGraphCommand ??
                      (_createGraphCommand = new RelayCommand(obj =>
@@ -31,13 +31,13 @@ namespace GraphApplication.ModelView
                          try
                          {
                              // we can load our graph model
-                             GraphEditorModel graphModel = new GraphEditorModel("graph1", new List<GraphObjectModel> { new VertexModel(0, 0, "Node 1"), new VertexModel(100, 100, "Node 2") , new VertexModel(250, 250, "Node 3") });
+                             GraphEditorModel graphModel = new GraphEditorModel("graph1", new List<GraphObjectModel> { new VertexModel(0, 0, "Node 1"), new VertexModel(100, 100, "Node 2"), new VertexModel(250, 250, "Node 3") });
 
                              GraphEditorModelView modelView = new GraphEditorModelView(graphModel);
 
                              SelectedView = modelView;
                              GraphEditorViews.Add(modelView);
-                             
+
 
 
                          }
@@ -60,9 +60,9 @@ namespace GraphApplication.ModelView
                      {
                          try
                          {
-                             if(obj is GraphEditorModelView modelView) 
+                             if (obj is GraphEditorModelView modelView)
                              {
-                                 GraphEditorViews.Remove(modelView);  
+                                 GraphEditorViews.Remove(modelView);
                              }
                          }
                          catch (Exception ex)
@@ -90,6 +90,16 @@ namespace GraphApplication.ModelView
             }
         }
 
+        public RelayCommand TracePrint
+        {
+            get
+            {
+                return new RelayCommand(obj =>
+                {
+                    Trace.WriteLine("Test command binding");
+                });
+            }
+        }
         private RelayCommand _changeEditorModeCommand;
 
         public RelayCommand ChangeEditorModeCommand
@@ -101,8 +111,13 @@ namespace GraphApplication.ModelView
                     {
                         try
                         {
+                            Trace.WriteLine("Command executed");
+
+
                             if (SelectedView == null)
                                 return;
+                            Trace.WriteLine("1");
+
 
                             string typename = obj as string;
 
@@ -110,10 +125,14 @@ namespace GraphApplication.ModelView
                                 throw new Exception("Argument to change editor mode was empty");
 
                             //convert selected mode from obj
-                            SelectedView.CurrentEditorMode = EditorModeConverter.Convert(typename, SelectedView);
+                            var mode = EditorModeConverter.Convert(typename, SelectedView);
+                            if (mode == null)
+                                throw new Exception("Failed to get new mode instance");
+
+                            ActiveMode = mode;
 
                         }
-                        catch(Exception ex)
+                        catch (Exception ex)
                         {
                             Trace.WriteLine(ex);
                         }
@@ -136,6 +155,7 @@ namespace GraphApplication.ModelView
             {
                 _graphEditorViews = value;
                 OnPropertyChanged(nameof(GraphEditorViews));
+                OnPropertyChanged(nameof(ToolBarEnabled));
             }
         }
 
@@ -143,21 +163,43 @@ namespace GraphApplication.ModelView
 
         public GraphEditorModelView? SelectedView
         {
-            get { return _selectedView;  }
+            get { return _selectedView; }
             set
             {
                 _selectedView = value;
                 OnPropertyChanged(nameof(SelectedView));
+                OnPropertyChanged(nameof(ActiveMode));
             }
         }
 
+        public GraphEditorMode? ActiveMode
+        {
+            get
+            {
+                if(SelectedView == null)
+                    return null;
 
+                return SelectedView.CurrentEditorMode;
+            }
+            set
+            {
+                if (SelectedView == null || value == null) 
+                    return;
 
+                SelectedView.CurrentEditorMode = value;
+                OnPropertyChanged(nameof(ActiveMode));
+            }
+        }
+
+        public bool ToolBarEnabled { get { return GraphEditorViews.Count() > 0; } }
 
         public MainWindowModelView(ObservableCollection<GraphEditorModelView>  graphViews, IFileService<GraphEditorModel> fileService)
         {
-            GraphEditorViews = graphViews;
             _fileService = fileService;
+            GraphEditorViews = graphViews;
+
+
+            GraphEditorViews.CollectionChanged += (sender, e) => OnPropertyChanged(nameof(ToolBarEnabled));
         }
     }
 }
