@@ -8,24 +8,17 @@ namespace GraphApplication.Model
 {
     public class GraphEditorModel
     {
-        public string Name { get; set; }
+        public List<VertexModel> VertexObjects { get; set; }
+        public List<EdgeModel> EdgeObjects { get; set; }
 
-        public IEnumerable<VertexModel> VertexObjects { get; set; }
-        public IEnumerable<EdgeModel> EdgeObjects { get; set; }
-
-        public bool IsSaved { get; set; } = false;
-
-        public GraphEditorModel(string name, IEnumerable<GraphObjectModel> graphObjects)
+        public GraphEditorModel(List<GraphObjectModel> graphObjects)
         {
-            Name = name;
-
             VertexObjects = graphObjects.Where(item => item is VertexModel).Cast<VertexModel>().ToList();
             EdgeObjects = graphObjects.Where(item => item is EdgeModel).Cast<EdgeModel>().ToList();
         }
 
-        public GraphEditorModel(string name)
+        public GraphEditorModel()
         {
-            Name = name;
             VertexObjects = new List<VertexModel>();
             EdgeObjects = new List<EdgeModel>();
         }

@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Markup;
 
 namespace GraphApplication.ModelView
 {
@@ -68,25 +69,25 @@ namespace GraphApplication.ModelView
         }
         #endregion
 
-        private GraphEditorModel _model;
+        public GraphEditorModel Model { get; private set; }
 
-        public IEnumerable<VertexModel> VertexObjects
+        public List<VertexModel> VertexObjects
         {
-            get { return _model.VertexObjects; }
+            get { return Model.VertexObjects; }
             set
             {
-                _model.VertexObjects = value;
-                OnPropertyChanged(nameof(_model.VertexObjects));
+                Model.VertexObjects = value;
+                OnPropertyChanged(nameof(Model.VertexObjects));
             }
         }
 
-        public IEnumerable<EdgeModel> EdgeObjects
+        public List<EdgeModel> EdgeObjects
         {
-            get { return _model.EdgeObjects; }
+            get { return Model.EdgeObjects; }
             set
             {
-                _model.EdgeObjects = value;
-                OnPropertyChanged(nameof(_model.EdgeObjects));
+                Model.EdgeObjects = value;
+                OnPropertyChanged(nameof(Model.EdgeObjects));
             }
         }
 
@@ -111,23 +112,35 @@ namespace GraphApplication.ModelView
             }
         }
 
+
+        private string _name;
+        private bool _isSaved;
         public string Name
         {
-            get { return _model.Name; }
+            get { return _name; }
             set
             {
-                _model.Name = value;
+                _name = value;
                 OnPropertyChanged(nameof(Name));
+                OnPropertyChanged(nameof(GraphNameFormat));
+            }
+        }
+        public bool IsSaved
+        {
+            get { return _isSaved; }
+            set
+            {
+                _isSaved = value;
+                OnPropertyChanged(nameof(IsSaved));
+                OnPropertyChanged(nameof(GraphNameFormat));
+
             }
         }
 
-        public bool IsSaved
+        public string GraphNameFormat
         {
-            get { return _model.IsSaved; }
-            set
-            {
-                _model.IsSaved = value;
-                OnPropertyChanged(nameof(IsSaved));
+            get{
+                return Name + (IsSaved ? "*" : "");
             }
         }
 
@@ -156,19 +169,39 @@ namespace GraphApplication.ModelView
         }
 
 
-        public GraphEditorModelView(GraphEditorModel model)
+        public GraphEditorModelView(GraphEditorModel model, string name, bool isSaved = false)
         {
-            _model = model;
+            Model = model;
+            Name = name;
+            IsSaved = isSaved;
 
             CurrentEditorMode = new GraphEditorVertexCreationMode(this);
 
             //create all modelViews for elements
             VertexModelViews = new ObservableCollection<VertexModelView>(
-                _model.VertexObjects.Select(vertexModel => new VertexModelView(vertexModel, this)));
+                Model.VertexObjects.Select(vertexModel => new VertexModelView(vertexModel, this)));
 
 
             EdgeModelViews = new ObservableCollection<EdgeModelView>();
 
+            VertexModelViews.CollectionChanged += (sender, e) =>
+            {
+                if (e.NewItems == null)
+                    return;
+
+                foreach (VertexModelView vertexModelView in e.NewItems)
+                    VertexObjects.Add(vertexModelView.Model);
+
+            };
+            EdgeModelViews.CollectionChanged += (sender, e) =>
+            {
+                if (e.NewItems == null)
+                    return;
+
+                foreach (EdgeModelView edgeModelView in e.NewItems)
+                    EdgeObjects.Add(edgeModelView.EdgeModel);
+
+            };
             //EdgeModelViews = new ObservableCollection<EdgeModelView>(
             //    _model.EdgeObjects.Select(edgeModel => new EdgeModelView(edgeModel)));
             InitializeEvents();

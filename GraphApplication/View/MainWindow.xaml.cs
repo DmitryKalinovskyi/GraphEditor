@@ -28,7 +28,7 @@ namespace GraphApplication.View
             InitializeComponent();
             DataContext = new MainWindowModelView(
                 new System.Collections.ObjectModel.ObservableCollection<GraphEditorModelView> { },
-                new XMLFIleService<GraphEditorModel>()
+                new XMLFileService<GraphEditorModel>()
             );
         }
     }

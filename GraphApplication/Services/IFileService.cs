@@ -8,8 +8,8 @@ namespace GraphApplication.Services
 {
     public interface IFileService<T> where T: class
     {
-        public T Open();
+        public T Open(string filePath);
 
-        public void Save(T data);
+        public void Save(string filePath, T data);
     }
 }

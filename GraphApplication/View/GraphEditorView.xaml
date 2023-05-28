@@ -75,6 +75,7 @@
                                 MouseUp="VertexButton_MouseUp"
                                 PreviewMouseUp="VertexButton_PreviewMouseUp"
                                 PreviewMouseDown="VertexButton_PreviewMouseDown"
+                                MouseDoubleClick="VertexButton_MouseDoubleClick"
                                 Panel.ZIndex="10">
                 </control:VertexButton>
                 </DataTemplate>

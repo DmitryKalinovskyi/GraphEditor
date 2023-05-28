@@ -11,6 +11,8 @@ namespace GraphApplication.Model
         public VertexModel Start { get; set; }
         public VertexModel End { get; set; }
 
+        public EdgeModel() { }
+
         public EdgeModel(VertexModel from, VertexModel to)
         {
             Start = from;

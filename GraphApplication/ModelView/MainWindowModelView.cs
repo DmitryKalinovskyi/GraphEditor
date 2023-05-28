@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,9 +33,9 @@ namespace GraphApplication.ModelView
                          try
                          {
                              // we can load our graph model
-                             GraphEditorModel graphModel = new GraphEditorModel("graph1", new List<GraphObjectModel> { new VertexModel(0, 0, "Node 1"), new VertexModel(100, 100, "Node 2"), new VertexModel(250, 250, "Node 3") });
+                             GraphEditorModel graphModel = new GraphEditorModel(new List<GraphObjectModel> { new VertexModel(0, 0, "Node 1"), new VertexModel(100, 100, "Node 2"), new VertexModel(250, 250, "Node 3") });
 
-                             GraphEditorModelView modelView = new GraphEditorModelView(graphModel);
+                             GraphEditorModelView modelView = new GraphEditorModelView(graphModel, "graph1");
 
                              SelectedView = modelView;
                              GraphEditorViews.Add(modelView);
@@ -47,6 +48,39 @@ namespace GraphApplication.ModelView
                              MessageBox.Show("Відбулася помилка виконання команди: " + ex.Message, "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
                          }
                      }));
+            }
+        }
+
+
+        private RelayCommand _saveGraphCommand;
+
+        public RelayCommand SaveGraphCommand
+        {
+            get
+            {
+                return _saveGraphCommand ??
+                    (_saveGraphCommand = new RelayCommand(obj =>
+                    {
+                        try
+                        {
+                            if (SelectedView == null)
+                                return;
+
+                            var saveFileDialog = new SaveFileDialog();
+                            saveFileDialog.Filter = "XML files (*.xml)|*.xml";
+
+                            if (saveFileDialog.ShowDialog() == true)
+                            {
+                                string path = saveFileDialog.FileName;
+
+                                _fileService.Save(path, _selectedView.Model);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Trace.WriteLine(ex);
+                        }
+                    }));
             }
         }
 
@@ -93,25 +127,30 @@ namespace GraphApplication.ModelView
                      {
                          try
                          {
-                             //
+                             //propmt load location
+                             var openFileDialog = new OpenFileDialog();
+                             openFileDialog.Filter = "XML files (*.xml)|*.xml";
+
+                             if (openFileDialog.ShowDialog() == true)
+                             {
+                                 string path = openFileDialog.FileName;
+                                 string name = Path.GetFileName(path);
+
+                                 GraphEditorModel modelView = _fileService.Open(path);
+                                 GraphEditorModelView graphEditorModelView = new GraphEditorModelView(modelView, name, true);
+
+                                 GraphEditorViews.Add(graphEditorModelView);
+                                 SelectedView = graphEditorModelView;
+                             }
                          }
                          catch (Exception ex)
                          {
+                             Trace.WriteLine(ex);
                          }
                      }));
             }
         }
 
-        public RelayCommand TracePrint
-        {
-            get
-            {
-                return new RelayCommand(obj =>
-                {
-                    Trace.WriteLine("Test command binding");
-                });
-            }
-        }
         private RelayCommand _changeEditorModeCommand;
 
         public RelayCommand ChangeEditorModeCommand
@@ -123,12 +162,8 @@ namespace GraphApplication.ModelView
                     {
                         try
                         {
-                            Trace.WriteLine("Command executed");
-
-
                             if (SelectedView == null)
                                 return;
-                            Trace.WriteLine("1");
 
 
                             string typename = obj as string;
@@ -155,6 +190,7 @@ namespace GraphApplication.ModelView
         #endregion
 
 
+        
 
         private IFileService<GraphEditorModel> _fileService;
 

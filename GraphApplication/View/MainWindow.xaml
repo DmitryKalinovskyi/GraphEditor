@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:GraphApplication.View"
         xmlns:myControl="clr-namespace:GraphApplication.CustomControls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <local:ToolButtonCheckConverter x:Key="ToolButtonCheckConverter"/>
     </Window.Resources>
@@ -54,9 +55,13 @@
                           Command="{Binding CreateGraphCommand}"
                           InputGestureText="Ctrl+N">
                 </MenuItem>
-                <MenuItem Header="Open.."></MenuItem>
-                <MenuItem Header="Save"></MenuItem>
-                <MenuItem Header="Save as.."></MenuItem>
+                <MenuItem Header="Open.."
+                          Command="{Binding LoadGraphCommand}"
+                          InputGestureText="Ctrl+O">
+                    </MenuItem>
+                <MenuItem Header="Save"
+                          Command="{Binding SaveGraphCommand}"
+                          InputGestureText="Ctrl+S"></MenuItem>
             </MenuItem>
             <MenuItem Header="Edit">
                 <MenuItem Header="Undo"></MenuItem>
@@ -166,7 +171,7 @@
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
 
-                            <TextBlock Text="{Binding Name}"/>
+                            <TextBlock Text="{Binding GraphNameFormat}"/>
                             
                             <Button Command="{Binding DataContext.RemoveGraphCommand, 
                                 RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}"

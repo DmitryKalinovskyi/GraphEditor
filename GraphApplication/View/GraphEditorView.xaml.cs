@@ -72,6 +72,11 @@ namespace GraphApplication.View
          //   (DataContext as GraphEditorModelView)?.OnVertexClicked(sender, e);
         }
 
+        private void VertexButton_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
         //якісь інші події
     }
 }
