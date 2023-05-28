@@ -3,6 +3,7 @@ using GraphApplication.ModelView.GraphEditorExtensions;
 using GraphApplication.Services;
 using GraphApplication.Services.Commands;
 using GraphApplication.View;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -63,6 +64,16 @@ namespace GraphApplication.ModelView
                              if (obj is GraphEditorModelView modelView)
                              {
                                  GraphEditorViews.Remove(modelView);
+
+                                 if(modelView.IsSaved == false)
+                                 {
+                                     SaveFileDialog saveFileDialog = new SaveFileDialog();
+                                     if (saveFileDialog.ShowDialog() == true)
+                                     {
+                                         string path = saveFileDialog.FileName;
+                                         Trace.WriteLine(path);
+                                     }
+                                 }
                              }
                          }
                          catch (Exception ex)
@@ -82,6 +93,7 @@ namespace GraphApplication.ModelView
                      {
                          try
                          {
+                             //
                          }
                          catch (Exception ex)
                          {

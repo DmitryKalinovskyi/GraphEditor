@@ -16,41 +16,21 @@ namespace GraphApplication.ModelView.GraphEditorExtensions
     {
         public GraphEditorVertexCreationMode(GraphEditorModelView modelView) : base(modelView)
         {
+
         }
 
-        //simulate click
-
-        bool isClicked = false;
-
-        public override void EditorDown(object sender, MouseEventArgs e)
+        public override void EditorMouseUp(object sender, MouseButtonEventArgs e)
         {
-            //we get editor
-            UIElement view = (UIElement)sender;
+            if (sender is IInputElement)
+            {
+                Point createPoint = Mouse.GetPosition((IInputElement)sender);
 
-            isClicked = true;
+                VertexModelView vertexModelView = new VertexModelView(new VertexModel(createPoint.X, createPoint.Y, "Created"), _modelView);
 
-            view.CaptureMouse();
-        }
+                _modelView.VertexModelViews.Add(vertexModelView);
 
-        public override void EditorUp(object sender, MouseEventArgs e)
-        {
-            if (isClicked == false) return;
-
-            isClicked = false;
-
-
-
-            //we get editor
-            UIElement view = (UIElement)sender;
-
-            Point p = e.GetPosition(view);
-
-            VertexModelView vertexModelView = new VertexModelView(new VertexModel(p.X, p.Y, "Created"), _modelView);
-
-            _modelView.VertexModelViews.Add(vertexModelView);
-
-            view.ReleaseMouseCapture();
-
+                Trace.WriteLine("Vertex created at point: " + createPoint.X + " " + createPoint.Y);
+            }
         }
     }
 }

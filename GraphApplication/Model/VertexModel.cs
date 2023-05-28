@@ -10,6 +10,10 @@ namespace GraphApplication.Model
     {
         public string Caption { get; set; }
 
+        public double Left { get; set; }
+
+        public double Top { get; set; }
+
         public VertexModel()
         {
             Caption = "";
@@ -20,9 +24,11 @@ namespace GraphApplication.Model
             Caption = caption;
         }
 
-        public VertexModel(double left, double top, string caption) : base(left, top)
+        public VertexModel(double left, double top, string caption) 
         {
             Caption = caption;
+            Left = left;
+            Top = top;
         }
 
     }

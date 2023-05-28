@@ -43,9 +43,9 @@
                 </Style>
             </Border.Style>
             <Ellipse x:Name="vertexShape" 
-                     MouseDown="Ellipse_MouseDown"
-                     MouseMove="Ellipse_MouseMove"
-                     MouseUp="Ellipse_MouseUp"
+                     MouseDown="{Binding MouseDown}"
+                     MouseMove="{Binding MouseMove}"
+                     MouseUp="{Binding MouseUp}"
                      >
                 <Ellipse.Effect>
                     <DropShadowEffect ShadowDepth="1" Color="CadetBlue"/>

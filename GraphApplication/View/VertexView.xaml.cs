@@ -28,19 +28,19 @@ namespace GraphApplication.View
         }
 
 
-        private void Ellipse_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            (DataContext as VertexModelView)?.MouseDown?.Invoke(this, e);
-        }
+        //private void Ellipse_MouseDown(object sender, MouseButtonEventArgs e)
+        //{
+        //    (DataContext as VertexModelView)?.MouseDown?.Invoke(this, e);
+        //}
 
-        private void Ellipse_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            (DataContext as VertexModelView)?.MouseUp?.Invoke(this, e);
-        }
+        //private void Ellipse_MouseUp(object sender, MouseButtonEventArgs e)
+        //{
+        //    (DataContext as VertexModelView)?.MouseUp?.Invoke(this, e);
+        //}
 
-        private void Ellipse_MouseMove(object sender, MouseEventArgs e)
-        {
-            (DataContext as VertexModelView)?.MouseMove?.Invoke(this, e);
-        }
+        //private void Ellipse_MouseMove(object sender, MouseEventArgs e)
+        //{
+        //    (DataContext as VertexModelView)?.MouseMove?.Invoke(this, e);
+        //}
     }
 }

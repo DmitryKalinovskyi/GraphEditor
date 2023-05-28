@@ -4,9 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:GraphApplication.View"
+             xmlns:control="clr-namespace:GraphApplication.CustomControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="20"></RowDefinition>
+        </Grid.RowDefinitions>
         <!--<Canvas x:Name="editorCanvas" ClipToBounds="True" >
             <Canvas.Background>
                 <SolidColorBrush Color="Gray"></SolidColorBrush>
@@ -24,49 +29,102 @@
         </Canvas>
         <Label x:Name="debugLabel" Content="Info"  Canvas.Left="602" Canvas.Top="414"  HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="188" Background="White" Foreground="Black" Margin="0,0,10,10"/>
         <Label x:Name="selectLabel" Content="" Canvas.Left="602" Canvas.Top="414"  HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="188" Background="White" Foreground="Black" Margin="10,0,0,10"/>-->
-            
-            <ItemsControl ItemsSource="{Binding VertexModelViews}">
-                <ItemsControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <Canvas ClipToBounds="True"
-                                MouseDown="Canvas_MouseDown"
-                                MouseUp="Canvas_MouseUp"
-                                MouseMove="Canvas_MouseMove">
-                            
-                    <Canvas.Background>
-                        <LinearGradientBrush>
-                            <GradientStop Color="Gray" Offset="0" />
+        <Canvas Panel.ZIndex="0"
+                MouseDown="Canvas_MouseDown"
+                MouseUp="Canvas_MouseUp"
+                MouseMove="Canvas_MouseMove">
+            <Canvas.LayoutTransform>
+                <ScaleTransform  ScaleX="{Binding ScaleValue}" ScaleY="{Binding ScaleValue}" />
+            </Canvas.LayoutTransform>
+            <Canvas.Background>
+                <LinearGradientBrush>
+                    <GradientStop Color="Gray" Offset="0" />
 
-                            <GradientStop Color="White" Offset="1.0" />
-                        </LinearGradientBrush>
-                    </Canvas.Background>
+                    <GradientStop Color="White" Offset="1.0" />
+                </LinearGradientBrush>
+            </Canvas.Background>
+        </Canvas>
+        
+        <ItemsControl ItemsSource="{Binding VertexModelViews}" Panel.ZIndex="2">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Canvas ClipToBounds="True"
+                            
+                            >
+
+                            
+                
+                    <Canvas.LayoutTransform>
+                        <ScaleTransform  ScaleX="{Binding ScaleValue}" ScaleY="{Binding ScaleValue}" />
+                    </Canvas.LayoutTransform>
+                </Canvas>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemContainerStyle>
+                <Style>
+                    <Setter Property="Canvas.Left" Value="{Binding Left, Mode=TwoWay}"/>
+                <Setter Property="Canvas.Top" Value="{Binding Top, Mode=TwoWay}"/>
+                </Style>
+            </ItemsControl.ItemContainerStyle>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                <control:VertexButton DataContext="{Binding}"
+                                Click="VertexButton_Click"
+                                MouseMove="VertexButton_MouseMove"
+                                MouseDown="VertexButton_MouseDown"
+                                MouseUp="VertexButton_MouseUp"
+                                PreviewMouseUp="VertexButton_PreviewMouseUp"
+                                PreviewMouseDown="VertexButton_PreviewMouseDown"
+                                Panel.ZIndex="10">
+                </control:VertexButton>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <ItemsControl ItemsSource="{Binding EdgeModelViews}" Panel.ZIndex="1">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Canvas ClipToBounds="True">
                         <Canvas.LayoutTransform>
-                            <ScaleTransform ScaleX="2" ScaleY="2"/>
+                            <ScaleTransform  ScaleX="{Binding ScaleValue}" ScaleY="{Binding ScaleValue}" />
                         </Canvas.LayoutTransform>
-                        </Canvas>
-                    </ItemsPanelTemplate>
-                </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemContainerStyle>
-                    <Style>
-                        <Setter Property="Canvas.Left" Value="{Binding Left}"/>
-                        <Setter Property="Canvas.Top" Value="{Binding Top}"/>
-                    </Style>
-                </ItemsControl.ItemContainerStyle>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <local:VertexView DataContext="{Binding}">
-                            <local:VertexView.Triggers>
-                                <!--<EventTrigger RoutedEvent="MouseLeave">
-                                    <BeginStoryboard>
-                                        <Storyboard>
-                                            <DoubleAnimation Duration="0:0:0.800" Storyboard.TargetProperty="FontSize" To="18" />
-                                        </Storyboard>
-                                    </BeginStoryboard>
-                                </EventTrigger>-->
-                            </local:VertexView.Triggers>
-                        </local:VertexView>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+                    </Canvas>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemContainerStyle>
+                <Style>
+                    <!-- Налаштуйте контейнери за потребою -->
+                </Style>
+            </ItemsControl.ItemContainerStyle>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Line  
+                        X1="{Binding Path=Start.Left}"
+                          Y1="{Binding Path=Start.Top}"
+                          X2="{Binding Path=End.Left}"
+                          Y2="{Binding Path=End.Top}"
+                          Style="{StaticResource Edge}"
+                        
+                          ></Line>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+
+        <Grid Grid.Row="1">
+            <Grid.Background>
+                <LinearGradientBrush>
+                    <GradientStop Color="Black" Offset="0"></GradientStop>
+                    <GradientStop Color="gray" Offset="1"></GradientStop>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <Slider x:Name="Slider"
+                    Width="200"
+                    Height="10" 
+                    Panel.ZIndex="6"
+                    Minimum="0.5" Maximum="3"
+                    HorizontalAlignment="Left"
+                    Value="{Binding ScaleValue, Mode=TwoWay}">
+            </Slider>
+        </Grid>
     </Grid>
 </UserControl>

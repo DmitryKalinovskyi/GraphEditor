@@ -11,6 +11,12 @@
         <local:ToolButtonCheckConverter x:Key="ToolButtonCheckConverter"/>
     </Window.Resources>
     <Window.InputBindings>
+        <!--Default commands-->
+        <KeyBinding Key="N"
+                    Command="{Binding CreateGraphCommand}"
+                    Modifiers="Ctrl"
+                    />
+        
         <KeyBinding Key="W"
                     Command="{Binding ChangeEditorModeCommand}"
                     CommandParameter="GraphEditorSelectionMode"
@@ -44,7 +50,9 @@
         <!--Graph Menu strip-->
         <Menu>
             <MenuItem Header="File">
-                <MenuItem Header="New.." Command="{Binding CreateGraphCommand}">
+                <MenuItem Header="New.." 
+                          Command="{Binding CreateGraphCommand}"
+                          InputGestureText="Ctrl+N">
                 </MenuItem>
                 <MenuItem Header="Open.."></MenuItem>
                 <MenuItem Header="Save"></MenuItem>
@@ -79,7 +87,8 @@
                 <WrapPanel.Background>
                     <SolidColorBrush Color="white"></SolidColorBrush>
                 </WrapPanel.Background>
-
+                 
+                <!--Object interaction-->
                 <WrapPanel Orientation="Horizontal">
                     <myControl:ToolButton Style="{StaticResource ToolButtonPrefab}"
                              UriImage="../ArtWork/cursor-96.png"

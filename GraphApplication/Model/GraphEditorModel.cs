@@ -11,7 +11,7 @@ namespace GraphApplication.Model
         public string Name { get; set; }
 
         public IEnumerable<VertexModel> VertexObjects { get; set; }
-       // public IEnumerable<VertexModel> VertexObjects { get; set; }
+        public IEnumerable<EdgeModel> EdgeObjects { get; set; }
 
         public bool IsSaved { get; set; } = false;
 
@@ -20,12 +20,14 @@ namespace GraphApplication.Model
             Name = name;
 
             VertexObjects = graphObjects.Where(item => item is VertexModel).Cast<VertexModel>().ToList();
+            EdgeObjects = graphObjects.Where(item => item is EdgeModel).Cast<EdgeModel>().ToList();
         }
 
         public GraphEditorModel(string name)
         {
             Name = name;
             VertexObjects = new List<VertexModel>();
+            EdgeObjects = new List<EdgeModel>();
         }
     }
 }

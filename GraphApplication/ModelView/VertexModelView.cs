@@ -10,36 +10,36 @@ namespace GraphApplication.ModelView
 {
     public class VertexModelView: NotifyModelView
     {
-        private readonly VertexModel _model;
+        public readonly VertexModel Model;
 
         private readonly GraphEditorModelView _editorModelView;
 
         public string Caption
         {
-            get { return _model.Caption; }
+            get { return Model.Caption; }
             set
             {
-                _model.Caption = value;
-                OnPropertyChanged(nameof(_model.Caption));
+                Model.Caption = value;
+                OnPropertyChanged(nameof(Model.Caption));
             }
         }
 
         public double Top
         {
-            get { return _model.Top; }
+            get { return Model.Top; }
             set
             {
-                _model.Top = value;
-                OnPropertyChanged(nameof(_model.Top));
+                Model.Top = value;
+                OnPropertyChanged(nameof(Model.Top));
             }
         }
         public double Left
         {
-            get { return _model.Left; }
+            get { return Model.Left; }
             set
             {
-                _model.Left = value;
-                OnPropertyChanged(nameof(_model.Left));
+                Model.Left = value;
+                OnPropertyChanged(nameof(Model.Left));
             }
         }
 
@@ -58,17 +58,8 @@ namespace GraphApplication.ModelView
 
         public VertexModelView(VertexModel model, GraphEditorModelView editorModelView)
         {
-            _model = model;
             _editorModelView = editorModelView;
-
-            editorModelView.VertexModelViewSubsribe(this);
+            Model = model;
         }
-
-        //events
-        public event EventHandler<MouseEventArgs> MouseEventHandler;
-
-        public MouseEventHandler MouseDown, MouseUp, MouseMove;
-
-
     }
 }

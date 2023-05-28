@@ -1,8 +1,10 @@
-﻿using GraphApplication.View;
+﻿using GraphApplication.CustomControls;
+using GraphApplication.View;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -21,56 +23,62 @@ namespace GraphApplication.ModelView.GraphEditorExtensions
         bool isDragging = false;
         Point dragPoint;
 
-        void UpdatePosition(Point d, VertexView view)
+        private void UpdatePosition(Point delta, VertexModelView modelView)
         {
-            (view.DataContext as VertexModelView).Top += d.Y;
-            (view.DataContext as VertexModelView).Left += d.X;
-        }
-        public override void MouseDown(VertexView vertexView, MouseEventArgs e)
-        {
-            isDragging = true;
-            Trace.WriteLine("Started dragging");
-
-
-            dragPoint = e.GetPosition((UIElement)e.Source);
-            (vertexView.DataContext as VertexModelView).IsSelected = true;
-
-            ((UIElement)e.Source).CaptureMouse();
+            modelView.Top += delta.Y;
+            modelView.Left += delta.X;
         }
 
-        public override void MouseMove(VertexView vertexView, MouseEventArgs e)
+
+        public override void VertexMouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+            Trace.WriteLine("Draggion start");
+            if(sender is VertexButton vertexView && vertexView.DataContext is VertexModelView vertexModelView)
+            {
+
+                isDragging = true;
+                vertexView.CaptureMouse();
+
+                dragPoint = e.GetPosition(vertexView);
+                vertexModelView.IsSelected = true;
+            }
+        }
+
+        public override void VertexMouseMove(object sender, MouseEventArgs e)
         {
             if (isDragging == false) return;
-            Trace.WriteLine("Moving");
 
-            Point p = e.GetPosition((UIElement)e.Source);
-            double dx = p.X - dragPoint.X;
-            double dy = p.Y - dragPoint.Y;
-            
-            UpdatePosition(new Point(dx, dy), vertexView);
+            if (sender is VertexButton vertexView && vertexView.DataContext is VertexModelView vertexModelView)
+            {
+                Point p = e.GetPosition(vertexView);
+
+                vertexModelView.IsSelected = true;
+                Point delta = new Point(p.X - dragPoint.X, p.Y - dragPoint.Y);
+
+                UpdatePosition(delta, vertexModelView);
+            }
         }
 
-        public override void MouseUp(VertexView vertexView, MouseEventArgs e)
+        public override void VertexMouseUp(object sender, MouseButtonEventArgs e)
         {
-            if(isDragging == false) return;
+            Trace.WriteLine("Draggion end");
+            if (isDragging == false) return;
 
-            Point p = e.GetPosition((UIElement)e.Source);
-            double dx = p.X - dragPoint.X;
-            double dy = p.Y - dragPoint.Y;
+            if (sender is VertexButton vertexView && vertexView.DataContext is VertexModelView vertexModelView)
+            {
+                Point p = e.GetPosition(vertexView);
 
-            UpdatePosition(new Point(dx, dy), vertexView);
+                vertexModelView.IsSelected = true;
+                Point delta = new Point(p.X - dragPoint.X, p.Y - dragPoint.Y);
 
-            Trace.WriteLine("Ended dragging");
-
-            isDragging = false;
-
-            (vertexView.DataContext as VertexModelView).IsSelected = false;
+                UpdatePosition(delta, vertexModelView);
 
 
-
-            ((UIElement)e.Source).ReleaseMouseCapture();
+                isDragging = false;
+                vertexModelView.IsSelected = false;
+                (vertexView).ReleaseMouseCapture();
+            }
         }
-
-
     }
 }

@@ -16,7 +16,7 @@ using System.Windows.Input;
 
 namespace GraphApplication.ModelView
 {
-    public class GraphEditorModelView: NotifyModelView
+    public partial class GraphEditorModelView: NotifyModelView
     {
         #region Commands
         private RelayCommand _createVertexCommand;
@@ -43,6 +43,29 @@ namespace GraphApplication.ModelView
                      }));
             }
         }
+        private RelayCommand _createEdgeCommand;
+
+        public RelayCommand CreateEdgeCommand
+        {
+            get
+            {
+                return _createEdgeCommand ??
+                     (_createEdgeCommand = new RelayCommand(obj =>
+                     {
+                         try
+                         {
+                             //define args for our model
+
+
+
+                         }
+                         catch (Exception ex)
+                         {
+                             MessageBox.Show("Відбулася помилка виконання команди: " + ex.Message, "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                         }
+                     }));
+            }
+        }
         #endregion
 
         private GraphEditorModel _model;
@@ -57,6 +80,16 @@ namespace GraphApplication.ModelView
             }
         }
 
+        public IEnumerable<EdgeModel> EdgeObjects
+        {
+            get { return _model.EdgeObjects; }
+            set
+            {
+                _model.EdgeObjects = value;
+                OnPropertyChanged(nameof(_model.EdgeObjects));
+            }
+        }
+
         private ObservableCollection<VertexModelView> _vertexModelViews;
         public ObservableCollection<VertexModelView> VertexModelViews
         {
@@ -65,6 +98,16 @@ namespace GraphApplication.ModelView
             {
                 _vertexModelViews = value;
                 OnPropertyChanged(nameof(_vertexModelViews));
+            }
+        }
+        private ObservableCollection<EdgeModelView> _edgeModelViews;
+        public ObservableCollection<EdgeModelView> EdgeModelViews
+        {
+            get { return _edgeModelViews; }
+            set
+            {
+                _edgeModelViews = value;
+                OnPropertyChanged(nameof(EdgeModelViews));
             }
         }
 
@@ -89,6 +132,16 @@ namespace GraphApplication.ModelView
         }
 
 
+        private double _scaleValue = 1;
+        public double ScaleValue 
+        {
+            get { return _scaleValue; }
+            set
+            {
+                _scaleValue = value;
+                OnPropertyChanged(nameof(ScaleValue));
+            }
+        }
 
         private GraphEditorMode _currentEditorMode;
 
@@ -113,25 +166,12 @@ namespace GraphApplication.ModelView
             VertexModelViews = new ObservableCollection<VertexModelView>(
                 _model.VertexObjects.Select(vertexModel => new VertexModelView(vertexModel, this)));
 
-            GraphEditorInialization();
+
+            EdgeModelViews = new ObservableCollection<EdgeModelView>();
+
+            //EdgeModelViews = new ObservableCollection<EdgeModelView>(
+            //    _model.EdgeObjects.Select(edgeModel => new EdgeModelView(edgeModel)));
+            InitializeEvents();
         }
-
-        private void GraphEditorInialization()
-        {
-            this.MouseDown += (sender, e) => CurrentEditorMode.EditorDown(sender, e);
-            this.MouseUp += (sender, e) => CurrentEditorMode.EditorUp(sender, e);
-            this.MouseMove += (sender, e) => CurrentEditorMode.EditorMove(sender, e);
-        }
-
-        public void VertexModelViewSubsribe(VertexModelView vertexModelView)
-        {
-            vertexModelView.MouseDown += (sender, e) => CurrentEditorMode.MouseDown(sender as VertexView, e);
-            vertexModelView.MouseMove += (sender, e) => CurrentEditorMode.MouseMove(sender as VertexView, e);
-            vertexModelView.MouseUp += (sender, e) => CurrentEditorMode.MouseUp(sender as VertexView, e);
-        }
-
-        public event EventHandler<MouseEventArgs> MouseEventHandler;
-
-        public MouseEventHandler MouseDown, MouseUp, MouseMove;
     }
 }
