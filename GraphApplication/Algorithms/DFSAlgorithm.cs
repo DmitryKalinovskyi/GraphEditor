@@ -30,7 +30,7 @@ namespace GraphApplication.Algorithms
 
                 foreach (VertexModel neighbor in graph.AdjancencyDictionary[topElement])
                 {
-                    if (visited.Contains(neighbor) == false)
+                    if (visited.Contains(neighbor) == false && neighbor.IsActive)
                     {
                         stack.Push(neighbor);
                         visited.Add(neighbor);

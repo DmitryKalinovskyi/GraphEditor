@@ -11,19 +11,19 @@ namespace GraphApplication.ModelView
     {
         public readonly EdgeModel Model;
 
-        private bool _mark;
+        private bool _isMarked;
 
-        public bool Mark
+        public bool IsMarked
         {
             get
             {
-                return _mark;
+                return _isMarked;
             }
 
             set
             {
-                _mark = value;
-                OnPropertyChanged(nameof(Mark));
+                _isMarked = value;
+                OnPropertyChanged(nameof(IsMarked));
             }
         }
 

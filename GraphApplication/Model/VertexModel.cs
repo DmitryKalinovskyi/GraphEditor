@@ -26,8 +26,6 @@ namespace GraphApplication.Model
         [DataMember]
         public bool IsActive { get; set; } = true;
 
-
-
         public VertexModel(int id)
         {
             Id = id;

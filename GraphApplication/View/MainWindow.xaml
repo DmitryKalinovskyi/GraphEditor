@@ -147,7 +147,7 @@
                             RelativeSource={RelativeSource AncestorType={x:Type WrapPanel}},
                             Converter={StaticResource ToolButtonCheckConverter},
                             ConverterParameter=GraphEditorMovingMode}">
-                        ></myControl:ToolButton>
+                        </myControl:ToolButton>
                     <myControl:ToolButton Style="{StaticResource ToolButtonPrefab}"
                              UriImage="../ArtWork/move-100.png"
                              Command="{Binding ChangeEditorModeCommand}"
@@ -157,7 +157,18 @@
                             RelativeSource={RelativeSource AncestorType={x:Type WrapPanel}},
                             Converter={StaticResource ToolButtonCheckConverter},
                             ConverterParameter=GraphEditorCanvasMovingMode}">
-                        ></myControl:ToolButton>
+                        </myControl:ToolButton>
+                    <myControl:ToolButton Style="{StaticResource ToolButtonPrefab}"
+                             UriImage="../ArtWork/eye-90.png"
+                                          
+                             Command="{Binding ChangeEditorModeCommand}"
+                             CommandParameter="GraphEditorHideMode"
+                             IsChecked="{Binding DataContext.ActiveMode,
+                            Mode=OneWay,
+                            RelativeSource={RelativeSource AncestorType={x:Type WrapPanel}},
+                            Converter={StaticResource ToolButtonCheckConverter},
+                            ConverterParameter=GraphEditorHideMode}">
+                    </myControl:ToolButton>
                     <!--<myControl:ToolButton Style="{StaticResource ToolButtonPrefab}"
                              UriImage="../ArtWork/square-96.png"
                              Command="{Binding ChangeEditorModeCommand}"
@@ -176,6 +187,7 @@
                 <!--Creation tools-->
                 <WrapPanel Orientation="Horizontal">
                     <myControl:ToolButton Style="{StaticResource ToolButtonPrefab}"
+                                          
                              UriImage="../ArtWork/circled-5-100.png"
                              Command="{Binding ChangeEditorModeCommand}"
                              CommandParameter="GraphEditorVertexCreationMode"
@@ -218,9 +230,12 @@
                 <!--Algorithm Mode-->
                 <WrapPanel Orientation="Horizontal">
                     <myControl:ToolButton Style="{StaticResource ToolButtonPrefab}"
-                             UriImage="png"
+                             Content="BFS"
+                             UriImage="None"
+                                          
                              Command="{Binding ChangeEditorModeCommand}"
                              CommandParameter="GraphEditorBFSMode"
+
                              IsChecked="{Binding DataContext.ActiveMode,
                             Mode=OneWay,
                             RelativeSource={RelativeSource AncestorType={x:Type WrapPanel}},
@@ -228,7 +243,9 @@
                             ConverterParameter=GraphEditorBFSMode}">
                     </myControl:ToolButton>
                     <myControl:ToolButton Style="{StaticResource ToolButtonPrefab}"
-                             UriImage="png"
+                             Content="DFS"   
+                             UriImage="None"
+                                          
                              Command="{Binding ChangeEditorModeCommand}"
                              CommandParameter="GraphEditorDFSMode"
                              IsChecked="{Binding DataContext.ActiveMode,

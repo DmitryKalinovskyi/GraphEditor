@@ -78,7 +78,7 @@ namespace GraphApplication.ModelView.GraphEditorExtensions.Displaying
             if (_edges.Count > 0)
                 foreach (var e in _edges)
                 {
-                    e.Mark = false;
+                    e.IsMarked = false;
                 }
         }
     }

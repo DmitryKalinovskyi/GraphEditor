@@ -18,6 +18,7 @@
     <None Remove="ArtWork\cursor-24.png" />
     <None Remove="ArtWork\cursor-48.png" />
     <None Remove="ArtWork\cursor-96.png" />
+    <None Remove="ArtWork\eye-90.png" />
     <None Remove="ArtWork\favicon.ico" />
     <None Remove="ArtWork\hand-32.png" />
     <None Remove="ArtWork\hand-64.png" />
@@ -67,6 +68,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="ArtWork\cursor-96.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ArtWork\eye-90.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="ArtWork\favicon.ico">

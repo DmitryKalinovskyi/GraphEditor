@@ -56,7 +56,7 @@ namespace GraphApplication.Algorithms
 
                     foreach (VertexModel neighbor in graph.AdjancencyDictionary[topElement])
                     {
-                        if (visited.Contains(neighbor) == false)
+                        if (visited.Contains(neighbor) == false && neighbor.IsActive)
                         {
                             queue.Enqueue(neighbor);
                             visited.Add(topElement);

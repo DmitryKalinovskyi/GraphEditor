@@ -23,6 +23,10 @@
 
                         <Grid>
                             <Image Source="{Binding UriImage, RelativeSource={RelativeSource TemplatedParent}}"></Image>
+                            <TextBlock Text="{TemplateBinding Content}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Foreground="White"></TextBlock>
                         </Grid>
                         
                     </Border>
@@ -65,6 +69,7 @@
                                         <MultiDataTrigger>
                                             <MultiDataTrigger.Conditions>
                                                 <Condition Binding="{Binding IsSelected}" Value="False"></Condition>
+                                                <Condition Binding="{Binding IsActive}" Value="True"></Condition>
                                                 <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True"></Condition>
                                             </MultiDataTrigger.Conditions>
 
@@ -73,9 +78,17 @@
                                         <MultiDataTrigger>
                                             <MultiDataTrigger.Conditions>
                                                 <Condition Binding="{Binding IsSelected}" Value="True"></Condition>
+                                                <Condition Binding="{Binding IsActive}" Value="True"></Condition>
                                             </MultiDataTrigger.Conditions>
 
                                             <Setter Property="BorderBrush" Value="Aqua"></Setter>
+                                        </MultiDataTrigger>
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding IsActive}" Value="False"/>
+                                            </MultiDataTrigger.Conditions>
+
+                                            <Setter Property="Opacity" Value="0.5"></Setter>
                                         </MultiDataTrigger>
                                     </Style.Triggers>
                                 </Style>
@@ -88,6 +101,14 @@
                                 <Ellipse.Style>
                                     <Style TargetType="Ellipse">
                                         <Setter Property="Fill" Value="White"></Setter>
+                                        <Style.Triggers>
+                                            <MultiDataTrigger>
+                                                <MultiDataTrigger.Conditions>
+                                                    <Condition Binding="{Binding IsActive}" Value="False"/>
+                                                </MultiDataTrigger.Conditions>
+                                                <Setter Property="Opacity" Value="0.5"></Setter>
+                                            </MultiDataTrigger>
+                                        </Style.Triggers>
                                     </Style>
                                 </Ellipse.Style>
                             </Ellipse>
@@ -120,10 +141,20 @@
            TargetType="{x:Type Line}">
         <Setter Property="StrokeThickness" Value="4"/>
         <Setter Property="Stroke" Value="Black"/>
+        <Setter Property="Opacity" Value="0.5"></Setter>
+
         <Style.Triggers>
-            <DataTrigger Binding="{Binding Mark}" Value="True">
+            <DataTrigger Binding="{Binding IsMarked}" Value="True">
                 <Setter Property="Stroke" Value="Red"></Setter>
             </DataTrigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Start.IsActive}" Value="True"></Condition>
+                    <Condition Binding="{Binding End.IsActive}" Value="True"></Condition>
+                </MultiDataTrigger.Conditions>
+                
+                <Setter Property="Opacity" Value="1"></Setter>
+            </MultiDataTrigger>
         </Style.Triggers>
     </Style>
 </ResourceDictionary>

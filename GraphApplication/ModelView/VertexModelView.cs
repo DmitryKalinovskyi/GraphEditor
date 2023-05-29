@@ -54,6 +54,17 @@ namespace GraphApplication.ModelView
             }
         }
 
+        public bool IsActive
+        {
+            get { return Model.IsActive; }
+
+            set
+            {
+                Model.IsActive = value;
+                OnPropertyChanged(nameof(Model.IsActive));
+            }
+        }
+
         public VertexModelView(VertexModel model)
         {
             Model = model;
