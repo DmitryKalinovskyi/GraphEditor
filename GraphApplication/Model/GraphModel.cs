@@ -18,25 +18,19 @@ namespace GraphApplication.Model
 
         public void AddVertex(VertexModel vertex)
         {
-            AdjancencyList[vertex] = new HashSet<VertexModel>();
+            AdjancencyDictionary[vertex] = new HashSet<VertexModel>();
             _verticles.Add(vertex);
-
-            Trace.WriteLine("Adjancency list updated!");
-
         }
 
         public void RemoveVertex(VertexModel vertex)
         {
-            foreach(var v in AdjancencyList[vertex])
+            foreach(var v in AdjancencyDictionary[vertex])
             {
-                AdjancencyList[v].Remove(vertex);
+                AdjancencyDictionary[v].Remove(vertex);
             }
             _verticles.Remove(vertex);
 
-
-            Trace.WriteLine("Adjancency list updated!");
-
-            AdjancencyList.Remove(vertex);
+            AdjancencyDictionary.Remove(vertex);
         }
 
 
@@ -49,28 +43,28 @@ namespace GraphApplication.Model
 
         public void AddEdge(EdgeModel edge)
         {
-            AdjancencyList[edge.Start].Add(edge.End);
-            AdjancencyList[edge.End].Add(edge.Start);
+            AdjancencyDictionary[edge.Start].Add(edge.End);
+            AdjancencyDictionary[edge.End].Add(edge.Start);
+
+            EdgeDictionary[(edge.Start, edge.End)] = edge;
+            EdgeDictionary[(edge.End, edge.Start)] = edge;
 
             _edges.Add(edge);
-
-            Trace.WriteLine("Adjancency list updated!");
-
         }
 
         public void RemoveEdge(EdgeModel edge)
         {
-            AdjancencyList[edge.Start].Remove(edge.End);
-            AdjancencyList[edge.End].Remove(edge.Start);
+            AdjancencyDictionary[edge.Start].Remove(edge.End);
+            AdjancencyDictionary[edge.End].Remove(edge.Start);
 
             _edges.Remove(edge);
-
-            Trace.WriteLine("Adjancency list updated!");
-
         }
 
         private Dictionary<VertexModel, HashSet<VertexModel>> _adjancencyList;
-        public Dictionary<VertexModel, HashSet<VertexModel>> AdjancencyList
+        private Dictionary<(VertexModel, VertexModel), EdgeModel> _edgeDictionary;
+
+
+        public Dictionary<VertexModel, HashSet<VertexModel>> AdjancencyDictionary
         {
             get
             {
@@ -82,6 +76,29 @@ namespace GraphApplication.Model
             private set
             {
                 _adjancencyList = value;
+            }
+        }
+
+        public Dictionary<(VertexModel, VertexModel), EdgeModel> EdgeDictionary
+        {
+            get
+            {
+                if(_edgeDictionary == null)
+                {
+                    _edgeDictionary = new();
+                    foreach(var edge in _edges)
+                    {
+                        EdgeDictionary[(edge.Start, edge.End)] = edge;
+                        EdgeDictionary[(edge.End, edge.Start)] = edge;
+                    }
+                }
+
+                return _edgeDictionary;
+            }
+
+            private set
+            {
+                _edgeDictionary = value;
             }
         }
 

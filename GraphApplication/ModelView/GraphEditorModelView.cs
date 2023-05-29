@@ -70,9 +70,12 @@ namespace GraphApplication.ModelView
         //}
         #endregion
 
+        
         public GraphEditorModel Model { get; private set; }
 
         public GraphModelView GraphModelView {get; private set;}
+
+        public GraphEditorSelectionManager SelectionManager { get; private set; }
 
         private string _name;
         private bool _isSaved;
@@ -159,8 +162,8 @@ namespace GraphApplication.ModelView
             IsSaved = isSaved;
 
             CurrentEditorMode = new GraphEditorSelectionMode(this);
-
             GraphModelView = new GraphModelView(Model.GraphModel);
+            SelectionManager = new();
             
             InitializeEvents();
         }

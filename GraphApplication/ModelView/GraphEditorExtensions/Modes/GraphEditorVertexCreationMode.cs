@@ -16,7 +16,7 @@ namespace GraphApplication.ModelView.GraphEditorExtensions.Modes
     {
         public GraphEditorVertexCreationMode(GraphEditorModelView modelView) : base(modelView)
         {
-
+            _modelView.SelectionManager.DiselectAll();
         }
 
         public override void EditorMouseDown(object sender, MouseButtonEventArgs e)

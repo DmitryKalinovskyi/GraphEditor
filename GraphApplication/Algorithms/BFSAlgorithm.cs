@@ -17,21 +17,21 @@ namespace GraphApplication.Algorithms
 
             List<VertexModel> ans = new List<VertexModel>();
 
-            Queue<VertexModel> stack = new Queue<VertexModel>();
+            Queue<VertexModel> queue = new Queue<VertexModel>();
 
-            stack.Enqueue(startPoint);
+            queue.Enqueue(startPoint);
 
-            while (stack.Count > 0)
+            while (queue.Count > 0)
             {
-                VertexModel topElement = stack.Dequeue();
+                VertexModel topElement = queue.Dequeue();
 
                 ans.Add(topElement);
 
-                foreach (VertexModel neighbor in graph.AdjancencyList[topElement])
+                foreach (VertexModel neighbor in graph.AdjancencyDictionary[topElement])
                 {
                     if (visited.Contains(neighbor) == false)
                     {
-                        stack.Enqueue(neighbor);
+                        queue.Enqueue(neighbor);
                         visited.Add(topElement);
                     }
                 }

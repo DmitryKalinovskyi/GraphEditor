@@ -15,7 +15,31 @@ namespace GraphApplication.ModelView
 
         private GraphModel _model;
 
-        Dictionary<VertexModel, VertexModelView> ModelViewAssociation = new Dictionary<VertexModel, VertexModelView>();
+        public int VertexCount { get { return VertexModelViews.Count(); } }
+        public int EdgeCount { get { return EdgeModelViews.Count(); } }
+
+        public Dictionary<VertexModel, VertexModelView> VertexModelViewAssociation { get; private set; }
+        public Dictionary<EdgeModel, EdgeModelView> EdgeModelViewAssociation { get; private set; } 
+
+        public List<VertexModelView> GetVertexModelViewsByModels(IEnumerable<VertexModel> models)
+        {
+            List<VertexModelView> vertexModelViews = new List<VertexModelView>();
+
+            foreach (VertexModel model in models)
+                vertexModelViews.Add(VertexModelViewAssociation[model]);
+
+            return vertexModelViews;
+        }
+
+        public List<EdgeModelView> GetEdgeModelViewsByModels(IEnumerable<EdgeModel> models)
+        {
+            List<EdgeModelView> edgeModelViews = new List<EdgeModelView>();
+
+            foreach (EdgeModel model in models)
+                edgeModelViews.Add(EdgeModelViewAssociation[model]);
+
+            return edgeModelViews;
+        }
 
         public GraphModel Model 
         {
@@ -26,28 +50,34 @@ namespace GraphApplication.ModelView
                 _model = value;
 
                 //create all modelViews elements 
-                ModelViewAssociation = new Dictionary<VertexModel, VertexModelView>();
+                VertexModelViewAssociation = new Dictionary<VertexModel, VertexModelView>();
+                EdgeModelViewAssociation = new Dictionary<EdgeModel, EdgeModelView>();
 
+                VertexModelViews = new ObservableCollection<VertexModelView>();
 
-                VertexModelViews = new ObservableCollection<VertexModelView>(
-                    Model.Verticles.Select(vertexModel => {
-                        VertexModelView modelView = new VertexModelView(vertexModel);
-                        ModelViewAssociation[vertexModel] = modelView;
+                Model.Verticles.ForEach(vertexModel => {
+                    VertexModelView modelView = new VertexModelView(vertexModel);
+                    VertexModelViewAssociation[vertexModel] = modelView;
 
-                        return modelView;
-                    }));
+                    VertexModelViews.Add(modelView);
+                });
 
-                EdgeModelViews = new ObservableCollection<EdgeModelView>(
-                    Model.Edges.Select(edge =>
-                    {
-                        return new EdgeModelView(ModelViewAssociation[edge.Start], ModelViewAssociation[edge.End]);
-                    }));
+                EdgeModelViews = new ObservableCollection<EdgeModelView>();
+
+                Model.Edges.ForEach(edge => {
+                    EdgeModelView modelView = new(edge, VertexModelViewAssociation[edge.Start], VertexModelViewAssociation[edge.End]);
+                    EdgeModelViewAssociation[modelView.Model] = modelView;
+
+                    EdgeModelViews.Add(modelView);
+                });
 
                 VertexModelViews.CollectionChanged += OnVertexCollectionChanged;
 
                 EdgeModelViews.CollectionChanged += OnEdgeCollectionChanged;
 
                 OnPropertyChanged(nameof(Model));
+                OnPropertyChanged(nameof(VertexCount));
+                OnPropertyChanged(nameof(EdgeCount));
             }
         }
 
@@ -55,11 +85,20 @@ namespace GraphApplication.ModelView
         {
             if (e.NewItems != null)
                 foreach (EdgeModelView edgeModelView in e.NewItems)
-                    Model.AddEdge(edgeModelView.EdgeModel);
+                {
+                    EdgeModelViewAssociation[edgeModelView.Model] = edgeModelView;
+                    Model.AddEdge(edgeModelView.Model);
+                }
 
             if (e.OldItems != null)
                 foreach (EdgeModelView edgeModelView in e.OldItems)
-                    Model.RemoveEdge(edgeModelView.EdgeModel);
+                {
+                    EdgeModelViewAssociation.Remove(edgeModelView.Model);
+                    Model.RemoveEdge(edgeModelView.Model);
+                }
+
+            OnPropertyChanged(nameof(EdgeCount));
+
         }
 
         private void OnVertexCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
@@ -68,8 +107,8 @@ namespace GraphApplication.ModelView
 
                 foreach (VertexModelView vertexModelView in e.NewItems)
                 {
+                    VertexModelViewAssociation[vertexModelView.Model] = vertexModelView;
                     Model.AddVertex(vertexModelView.Model);
-                    ModelViewAssociation[vertexModelView.Model] = vertexModelView;
                 }
 
             if (e.OldItems != null)
@@ -79,15 +118,18 @@ namespace GraphApplication.ModelView
                 {
                     old.Add(vertexModelView);
 
+                    VertexModelViewAssociation.Remove(vertexModelView.Model);
                     Model.RemoveVertex(vertexModelView.Model);
                 }
 
-                //remove edge that associated with this verticles
                 EdgeModelViews = new ObservableCollection<EdgeModelView>(
-                    EdgeModelViews.Where(edge => old.Contains(edge.Start) == false && old.Contains(edge.End) == false));
+                                EdgeModelViews.Where(edge => old.Contains(edge.Start) == false && old.Contains(edge.End) == false));
+
 
                 EdgeModelViews.CollectionChanged += OnEdgeCollectionChanged;
             }
+
+            OnPropertyChanged(nameof(VertexCount));
         }
 
         private ObservableCollection<VertexModelView> _vertexModelViews;
@@ -98,6 +140,8 @@ namespace GraphApplication.ModelView
             {
                 _vertexModelViews = value;
                 OnPropertyChanged(nameof(VertexModelViews));
+                OnPropertyChanged(nameof(VertexCount));
+
             }
         }
         private ObservableCollection<EdgeModelView> _edgeModelViews;
@@ -108,8 +152,11 @@ namespace GraphApplication.ModelView
             {
                 _edgeModelViews = value;
                 OnPropertyChanged(nameof(EdgeModelViews));
+                OnPropertyChanged(nameof(EdgeCount));
+
             }
         }
+
         public GraphModelView(GraphModel model)
         {
             Model = model;

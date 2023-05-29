@@ -9,7 +9,7 @@ namespace GraphApplication.Algorithms
 {
     public class DFSAlgorithm : IIterativeAlgorithm
     {
-        public IEnumerable<VertexModel> Implement(GraphModel graph, params object[] args)
+        public IEnumerable<VertexModel>? Implement(GraphModel graph, params object[] args)
         {
             VertexModel startPoint = args[0] as VertexModel ?? throw new ArgumentException("Початкова точка не вказана! ");
 
@@ -28,7 +28,7 @@ namespace GraphApplication.Algorithms
 
                 ans.Add(topElement);
 
-                foreach (VertexModel neighbor in graph.AdjancencyList[topElement])
+                foreach (VertexModel neighbor in graph.AdjancencyDictionary[topElement])
                 {
                     if (visited.Contains(neighbor) == false)
                     {

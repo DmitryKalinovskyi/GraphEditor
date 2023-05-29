@@ -120,6 +120,10 @@
            TargetType="{x:Type Line}">
         <Setter Property="StrokeThickness" Value="4"/>
         <Setter Property="Stroke" Value="Black"/>
-        
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Mark}" Value="True">
+                <Setter Property="Stroke" Value="Red"></Setter>
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>

@@ -14,17 +14,28 @@
     <None Remove="ArtWork\circled-5-50.png" />
     <None Remove="ArtWork\close-100.png" />
     <None Remove="ArtWork\close-50.png" />
+    <None Remove="ArtWork\close-512.png" />
     <None Remove="ArtWork\cursor-24.png" />
     <None Remove="ArtWork\cursor-48.png" />
     <None Remove="ArtWork\cursor-96.png" />
+    <None Remove="ArtWork\favicon.ico" />
     <None Remove="ArtWork\hand-32.png" />
     <None Remove="ArtWork\hand-64.png" />
     <None Remove="ArtWork\hand-96.png" />
     <None Remove="ArtWork\move-100.png" />
     <None Remove="ArtWork\move-50.png" />
+    <None Remove="ArtWork\path-32.png" />
+    <None Remove="ArtWork\path-64.png" />
+    <None Remove="ArtWork\path-96.png" />
     <None Remove="ArtWork\square-24.png" />
     <None Remove="ArtWork\square-48.png" />
     <None Remove="ArtWork\square-96.png" />
+    <None Remove="ArtWork\white-close-512.png" />
+    <None Remove="ArtWork\white-close-thin-100.png" />
+    <None Remove="ArtWork\white-path-32.png" />
+    <None Remove="ArtWork\white-path-64.png" />
+    <None Remove="ArtWork\white-path-96.png" />
+    <None Remove="ArtWork\windowIcon.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -46,6 +57,9 @@
     <Resource Include="ArtWork\close-50.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="ArtWork\close-512.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="ArtWork\cursor-24.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -53,6 +67,9 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="ArtWork\cursor-96.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ArtWork\favicon.ico">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="ArtWork\hand-32.png">
@@ -70,6 +87,15 @@
     <Resource Include="ArtWork\move-50.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="ArtWork\path-32.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ArtWork\path-64.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ArtWork\path-96.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="ArtWork\square-24.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
@@ -77,6 +103,24 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="ArtWork\square-96.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ArtWork\white-close-512.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ArtWork\white-close-thin-100.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ArtWork\white-path-32.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ArtWork\white-path-64.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ArtWork\white-path-96.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ArtWork\windowIcon.ico">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

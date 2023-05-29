@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
         WindowStartupLocation="CenterScreen"
-        Closing="Window_Closing">
+        Closing="Window_Closing" Icon="/ArtWork/windowIcon.ico">
     <Window.Resources>
         <local:ToolButtonCheckConverter x:Key="ToolButtonCheckConverter"/>
     </Window.Resources>
@@ -202,7 +202,7 @@
 
                 <WrapPanel Orientation="Horizontal">
                     <myControl:ToolButton Style="{StaticResource ToolButtonPrefab}"
-                             UriImage="../ArtWork/close-100.png"
+                             UriImage="../ArtWork/white-close-thin-100.png"
                              Command="{Binding ChangeEditorModeCommand}"
                              CommandParameter="GraphEditorRemovingMode"
                              IsChecked="{Binding DataContext.ActiveMode,
@@ -237,6 +237,16 @@
                             Converter={StaticResource ToolButtonCheckConverter},
                             ConverterParameter=GraphEditorDFSMode}">
                     </myControl:ToolButton>
+                    <myControl:ToolButton Style="{StaticResource ToolButtonPrefab}"
+                             UriImage="../ArtWork/white-path-96.png"
+                             Command="{Binding ChangeEditorModeCommand}"
+                             CommandParameter="GraphEditorShortestPathMode"
+                             IsChecked="{Binding DataContext.ActiveMode,
+                            Mode=OneWay,
+                            RelativeSource={RelativeSource AncestorType={x:Type WrapPanel}},
+                            Converter={StaticResource ToolButtonCheckConverter},
+                            ConverterParameter=GraphEditorShortestPathMode}">
+                    </myControl:ToolButton>
                 </WrapPanel>
             </WrapPanel>
             
@@ -246,12 +256,18 @@
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
 
-                            <TextBlock Text="{Binding GraphNameFormat}"/>
-                            
+                            <TextBlock Text="{Binding GraphNameFormat}"
+                                       Width="100"/>
+
                             <Button Command="{Binding DataContext.RemoveGraphCommand, 
                                 RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}"
                                     CommandParameter="{Binding}"
-                                >rem</Button>
+                                    BorderBrush="Transparent"
+                                    Background="Transparent"
+                                >
+                                <Image Source="../Artwork/close-512.png"
+                                       Width="12"></Image>
+                            </Button>
 
                             <!--<StackPanel.Triggers>
                                 <Trigger Property="{Binding IsSaved}" Value="True">

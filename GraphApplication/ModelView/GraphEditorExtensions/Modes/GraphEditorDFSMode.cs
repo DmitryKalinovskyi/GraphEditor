@@ -1,5 +1,6 @@
 ﻿using GraphApplication.Algorithms;
 using GraphApplication.Model;
+using GraphApplication.ModelView.GraphEditorExtensions.Displaying;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,50 +14,63 @@ namespace GraphApplication.ModelView.GraphEditorExtensions.Modes
     {
         public GraphEditorDFSMode(GraphEditorModelView modelView) : base(modelView)
         {
-            algorithm = new DFSAlgorithm();
+            _algorithm = new DFSAlgorithm();
         }
 
-        VertexModelView _selected;
-        DFSAlgorithm algorithm;
-
+        DFSAlgorithm _algorithm;
+        BFSDisplayer? _displayer;
 
         public override void VertexClicked(object sender, RoutedEventArgs e)
         {
-            VertexModelView clicked = (sender as FrameworkElement).DataContext as VertexModelView;
-
-            if (clicked == null)
-                return;
-
-            if (clicked == _selected)
-                _selected.IsSelected = false;
-
-            if(_selected != null)
+            if (_displayer != null)
             {
-                _selected.IsSelected = false;
+                CancelAnimation();
             }
 
-            _selected = clicked;
-            _selected.IsSelected = true;
-        }
-
-        public override void OnModeSwitch()
-        {
-            if(_selected != null)
-            {
-                _selected.IsSelected = false;
-            }
+            base.VertexClicked(sender, e);
         }
 
         public void Implement()
         {
-            IEnumerable<VertexModel> iterator = algorithm.Implement(_modelView.GraphModelView.Model, _selected.Model);
+            List<VertexModelView> selected = _modelView.SelectionManager.SelectedVerticles;
+            if (selected.Count != 1)
+            {
+                MessageBox.Show("Алгоритм пошуку найкоротшого шляху реалізувати не можна, поки не обрано дві вершини!",
+                    "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
 
-            string path = "";
+            IEnumerable<VertexModel> iterator = _algorithm.Implement(_modelView.GraphModelView.Model, selected[0].Model);
 
-            foreach (VertexModel model in iterator)
-                path += "->" + model.Caption;
 
-            MessageBox.Show($"Finded path: {path}");
+            if (iterator == null)
+            {
+                MessageBox.Show("Шляху між вершинами не існує!", "Інформація",
+                    MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+
+            List<VertexModelView> vertexModelViews = _modelView.GraphModelView.GetVertexModelViewsByModels(iterator);
+
+            _displayer = new(_modelView.GraphModelView, vertexModelViews);
+
+            _displayer.StartAnimation();
+        }
+
+        private void CancelAnimation()
+        {
+            if (_displayer != null)
+            {
+                _displayer.StopAnimation();
+                _displayer.RestoreAnimation();
+                _displayer = null;
+                _modelView.SelectionManager.DiselectAll();
+            }
+        }
+
+        public override void OnModeSwitch()
+        {
+            CancelAnimation();
         }
     }
 }

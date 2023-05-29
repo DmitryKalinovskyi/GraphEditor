@@ -16,7 +16,7 @@ namespace GraphApplication.ModelView.GraphEditorExtensions.Modes
     {
         public GraphEditorEdgeCreationMode(GraphEditorModelView modelView) : base(modelView)
         {
-
+            _modelView.SelectionManager.DiselectAll();
         }
 
 

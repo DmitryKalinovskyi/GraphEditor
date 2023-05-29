@@ -16,48 +16,25 @@ namespace GraphApplication.ModelView.GraphEditorExtensions.Modes
     {
         public GraphEditorSelectionMode(GraphEditorModelView modelView) : base(modelView)
         {
-            selected = new List<VertexModelView>();
         }
-
-        public List<VertexModelView> selected;
 
         public override void VertexClicked(object sender, RoutedEventArgs e)
         {
             if(sender is VertexButton vert && vert.DataContext is VertexModelView modelView)
             {
-                if (selected.Contains(modelView))
-                    Diselect(modelView);
-                else
-                    Select(modelView);
+                _modelView.SelectionManager.Select(modelView);
             }
         }
 
-
-        private void Select(VertexModelView vertexModelView)
+        public override void EditorMouseDown(object sender, MouseButtonEventArgs e)
         {
-            vertexModelView.IsSelected = true;
-            selected.Add(vertexModelView);
+            if (e.Source is Canvas)
+                _modelView.SelectionManager.DiselectAll();
         }
 
-        private void Diselect(VertexModelView vertexModelView)
-        {
-            vertexModelView.IsSelected = false;
-            selected.Remove(vertexModelView);
-        }
-
-        private void DiselectAll()
-        {
-            foreach(VertexModelView vertexModelView in selected)
-            {
-                vertexModelView.IsSelected = false;
-            }
-
-            selected.Clear();
-        }
 
         public override void OnModeSwitch()
         {
-            DiselectAll();
         }
     }
 }
