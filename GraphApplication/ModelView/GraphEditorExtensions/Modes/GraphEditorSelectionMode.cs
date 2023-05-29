@@ -12,49 +12,12 @@ using System.Windows.Input;
 
 namespace GraphApplication.ModelView.GraphEditorExtensions.Modes
 {
-    class GraphEditorSelectionMode : GraphEditorMode
+    public class GraphEditorSelectionMode : GraphEditorMode
     {
         public GraphEditorSelectionMode(GraphEditorModelView modelView) : base(modelView)
         {
             selected = new List<VertexModelView>();
         }
-
-        //simulate click
-
-        //VertexView? startClickObject;
-
-        //List<VertexView> selected;
-
-        //public override void MouseDown(VertexView vertexModelView, MouseEventArgs e)
-        //{
-        //    startClickObject = vertexModelView;
-        //}
-
-        //public override void MouseUp(VertexView vertexModelView, MouseEventArgs e)
-        //{
-        //    if(vertexModelView == startClickObject)
-        //    {
-        //        (vertexModelView.DataContext as VertexModelView).IsSelected = true;
-        //        selected.Add(vertexModelView);
-
-        //        Trace.WriteLine("Selected!");
-        //    }
-
-
-        //    startClickObject = null;
-        //}
-
-        //public override void EditorUp(object sender, MouseEventArgs e)
-        //{
-        //    Trace.WriteLine("Diselect all");
-
-        //    foreach(var vertexModelView in selected)
-        //    {
-        //        (vertexModelView.DataContext as VertexModelView).IsSelected = false;
-        //    }
-
-        //    selected.Clear();
-        //}
 
         public List<VertexModelView> selected;
 
@@ -90,6 +53,11 @@ namespace GraphApplication.ModelView.GraphEditorExtensions.Modes
             }
 
             selected.Clear();
+        }
+
+        public override void OnModeSwitch()
+        {
+            DiselectAll();
         }
     }
 }

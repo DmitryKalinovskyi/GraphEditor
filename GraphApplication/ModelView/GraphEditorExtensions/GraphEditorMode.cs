@@ -13,6 +13,8 @@ namespace GraphApplication.ModelView.GraphEditorExtensions
             _modelView = modelView;
         }
 
+        public abstract void OnModeSwitch();
+
         public virtual void EditorMouseDown(object sender, MouseButtonEventArgs e)
         {
             // Implement your logic for EditorMouseDown event handling

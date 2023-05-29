@@ -69,5 +69,9 @@ namespace GraphApplication.ModelView.GraphEditorExtensions.Modes
                 canvas.ReleaseMouseCapture();
             }
         }
+
+        public override void OnModeSwitch()
+        {
+        }
     }
 }

@@ -33,12 +33,17 @@ namespace GraphApplication.ModelView.GraphEditorExtensions.Modes
                 createPoint.X /= _modelView.ScaleValue;
                 createPoint.Y /= _modelView.ScaleValue;
 
-                VertexModelView vertexModelView = new VertexModelView(new VertexModel(createPoint.X, createPoint.Y, ""));
+                VertexModelView vertexModelView = new VertexModelView(
+                    new VertexModel(createPoint.X, createPoint.Y, _modelView.GraphModelView.GetFreeIndex()));
 
                 _modelView.GraphModelView.VertexModelViews.Add(vertexModelView);
 
                 Trace.WriteLine("Vertex created at point: " + createPoint.X + " " + createPoint.Y);
             }
+        }
+
+        public override void OnModeSwitch()
+        {
         }
     }
 }

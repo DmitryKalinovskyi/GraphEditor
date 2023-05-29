@@ -20,19 +20,30 @@ namespace GraphApplication.ModelView.GraphEditorExtensions.Modes
         public override void EdgeMouseDown(object sender, MouseButtonEventArgs e)
         {
             //get clicked edge
+            Trace.WriteLine("Edge removing..");
+
             EdgeModelView edgeModelView = (EdgeModelView)(sender as FrameworkElement).DataContext;
 
+            if (edgeModelView != null)
+            {
+                _modelView.GraphModelView.EdgeModelViews.Remove(edgeModelView);
+            }
+            else
+            {
+                Trace.WriteLine("Edge does not removed");
+            }
 
-            Trace.WriteLine("Removed");
-            _modelView.GraphModelView.EdgeModelViews.Remove(edgeModelView);
+        }
+
+        public override void OnModeSwitch()
+        {
         }
 
         public override void VertexClicked(object sender, RoutedEventArgs e)
         {
-            VertexModelView edgeModelView = (VertexModelView)(sender as FrameworkElement).DataContext;
+            VertexModelView vertexModleView = (VertexModelView)(sender as FrameworkElement).DataContext;
 
-            Trace.WriteLine("Removed");
-            _modelView.GraphModelView.VertexModelViews.Remove(edgeModelView);
+            _modelView.GraphModelView.VertexModelViews.Remove(vertexModleView);
         }
 
     }

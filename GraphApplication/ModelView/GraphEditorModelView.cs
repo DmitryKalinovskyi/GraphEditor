@@ -143,6 +143,9 @@ namespace GraphApplication.ModelView
             get { return _currentEditorMode; }
             set
             {
+                if (_currentEditorMode != null)
+                    _currentEditorMode.OnModeSwitch();
+
                 _currentEditorMode = value;
                 OnPropertyChanged(nameof(CurrentEditorMode));
             }

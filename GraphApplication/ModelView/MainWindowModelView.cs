@@ -22,7 +22,38 @@ namespace GraphApplication.ModelView
     {
         #region Commands
 
+        private RelayCommand _implementAlgorithmCommand;
 
+        public RelayCommand ImplementAlgorithmCommand
+        {
+            get
+            {
+                return _implementAlgorithmCommand ??
+                    (_implementAlgorithmCommand = new RelayCommand(obj =>
+                    {
+                        if (_selectedView == null)
+                        {
+                            MessageBox.Show("Не створено вкладки для реалізації алгоритму!", "Попередження",
+                                MessageBoxButton.OK, MessageBoxImage.Warning);
+
+                            return;
+                        }
+
+                        Trace.WriteLine("type of selected EditorMode " + _selectedView.CurrentEditorMode.GetType().Name);
+
+                        if(_selectedView.CurrentEditorMode  is IAlgorithmImplementer implementer)
+                        {
+                            implementer.Implement();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Алгоритм для реалізації не обрано!", "Попередження",
+                                MessageBoxButton.OK, MessageBoxImage.Warning);
+                        }
+
+                    }));
+            }
+        }
         private RelayCommand _createGraphCommand;
         public RelayCommand CreateGraphCommand
         {
@@ -77,7 +108,7 @@ namespace GraphApplication.ModelView
                             args.MaxTop = 1000;
                             args.MaxLeft= 1000;
                             args.Deegre = 3;
-                            args.VerticlesCount = 100;
+                            args.VerticlesCount = 500;
 
                             GraphModelGenerator generator = new GraphModelGenerator();
 
@@ -157,7 +188,7 @@ namespace GraphApplication.ModelView
                                  if (modelView.IsSaved == false)
                                  {
                                      //promt to save or not
-                                     MessageBoxResult result = MessageBox.Show("Граф не збережено, ви бажаєте його зберегти?",
+                                     MessageBoxResult result = MessageBox.Show($"Граф({modelView.GraphNameFormat}) не збережено, ви бажаєте його зберегти?",
                                          "Попередження", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
                                      if (result == MessageBoxResult.Yes)
                                      {
@@ -247,10 +278,7 @@ namespace GraphApplication.ModelView
                                 return;
 
 
-                            string typename = obj as string;
-
-                            if (typename == null)
-                                throw new Exception("Argument to change editor mode was empty");
+                            string typename = obj as string ?? throw new Exception("Argument to change editor mode was empty");
 
                             //convert selected mode from obj
                             var mode = EditorModeConverter.Convert(typename, SelectedView);
@@ -330,6 +358,18 @@ namespace GraphApplication.ModelView
 
 
             GraphEditorViews.CollectionChanged += (sender, e) => OnPropertyChanged(nameof(ToolBarEnabled));
+        }
+
+        public void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            //ask about saving
+
+            IEnumerable<GraphEditorModelView> graphViewsToClose = GraphEditorViews.ToList();
+
+            foreach(GraphEditorModelView view in graphViewsToClose)
+            {
+                RemoveGraphCommand.Execute(view);
+            }
         }
     }
 }

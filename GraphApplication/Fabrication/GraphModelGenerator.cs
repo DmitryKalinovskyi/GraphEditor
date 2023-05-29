@@ -16,17 +16,17 @@ namespace GraphApplication.Fabrication
             Random random = new Random();
 
             List<VertexModel> verticles = new List<VertexModel>();
-            for (int i = 1; i <= args.VerticlesCount; i++)
+            for (int i = 0; i < args.VerticlesCount; i++)
             {
                 double left = random.NextDouble() * args.MaxLeft;
                 double top = random.NextDouble() * args.MaxTop;
 
-                verticles.Add(new VertexModel(left, top, i.ToString()));
+                verticles.Add(new VertexModel(left, top, i));
             }
 
             List<EdgeModel> edges = new List<EdgeModel>();
 
-            for(int i = 1; i < args.VerticlesCount - 1; i++)
+            for(int i = 0; i < args.VerticlesCount - 1; i++)
             {
                 //we need to select random elements 
                 int next = random.Next(i + 1, args.VerticlesCount - 1);

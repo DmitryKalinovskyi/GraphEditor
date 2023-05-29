@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +14,9 @@ namespace GraphApplication.ModelView
     {
 
         private GraphModel _model;
+
+        Dictionary<VertexModel, VertexModelView> ModelViewAssociation = new Dictionary<VertexModel, VertexModelView>();
+
         public GraphModel Model 
         {
             get {  return _model; }
@@ -21,12 +26,13 @@ namespace GraphApplication.ModelView
                 _model = value;
 
                 //create all modelViews elements 
-                Dictionary<VertexModel, VertexModelView> temp = new Dictionary<VertexModel, VertexModelView>();
+                ModelViewAssociation = new Dictionary<VertexModel, VertexModelView>();
+
 
                 VertexModelViews = new ObservableCollection<VertexModelView>(
                     Model.Verticles.Select(vertexModel => {
                         VertexModelView modelView = new VertexModelView(vertexModel);
-                        temp[vertexModel] = modelView;
+                        ModelViewAssociation[vertexModel] = modelView;
 
                         return modelView;
                     }));
@@ -34,45 +40,55 @@ namespace GraphApplication.ModelView
                 EdgeModelViews = new ObservableCollection<EdgeModelView>(
                     Model.Edges.Select(edge =>
                     {
-                        return new EdgeModelView(temp[edge.Start], temp[edge.End]);
+                        return new EdgeModelView(ModelViewAssociation[edge.Start], ModelViewAssociation[edge.End]);
                     }));
 
-                VertexModelViews.CollectionChanged += (sender, e) =>
-                {
-                    if (e.NewItems != null)
+                VertexModelViews.CollectionChanged += OnVertexCollectionChanged;
 
-                        foreach (VertexModelView vertexModelView in e.NewItems)
-                            Model.Verticles.Add(vertexModelView.Model);
-
-                    if (e.OldItems != null)
-                        foreach (VertexModelView vertexModelView in e.OldItems)
-                        {
-                            //remove edge that associated with this verticle
-                            EdgeModelViews = new ObservableCollection<EdgeModelView>(
-                                EdgeModelViews.Where(edge => edge.Start != vertexModelView && edge.End != vertexModelView));
-
-                            Model.Verticles.Remove(vertexModelView.Model);
-                        }
-
-                };
-                EdgeModelViews.CollectionChanged += (sender, e) =>
-                {
-                    if (e.NewItems == null)
-                        return;
-
-                    foreach (EdgeModelView edgeModelView in e.NewItems)
-                        Model.Edges.Add(edgeModelView.EdgeModel);
-
-                    if (e.OldItems != null)
-                        foreach (EdgeModelView edgeModelView in e.OldItems)
-                            Model.Edges.Remove(edgeModelView.EdgeModel);
-
-                };
+                EdgeModelViews.CollectionChanged += OnEdgeCollectionChanged;
 
                 OnPropertyChanged(nameof(Model));
             }
         }
 
+        private void OnEdgeCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+                foreach (EdgeModelView edgeModelView in e.NewItems)
+                    Model.AddEdge(edgeModelView.EdgeModel);
+
+            if (e.OldItems != null)
+                foreach (EdgeModelView edgeModelView in e.OldItems)
+                    Model.RemoveEdge(edgeModelView.EdgeModel);
+        }
+
+        private void OnVertexCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+
+                foreach (VertexModelView vertexModelView in e.NewItems)
+                {
+                    Model.AddVertex(vertexModelView.Model);
+                    ModelViewAssociation[vertexModelView.Model] = vertexModelView;
+                }
+
+            if (e.OldItems != null)
+            {
+                HashSet<VertexModelView> old = new HashSet<VertexModelView>(); 
+                foreach (VertexModelView vertexModelView in e.OldItems)
+                {
+                    old.Add(vertexModelView);
+
+                    Model.RemoveVertex(vertexModelView.Model);
+                }
+
+                //remove edge that associated with this verticles
+                EdgeModelViews = new ObservableCollection<EdgeModelView>(
+                    EdgeModelViews.Where(edge => old.Contains(edge.Start) == false && old.Contains(edge.End) == false));
+
+                EdgeModelViews.CollectionChanged += OnEdgeCollectionChanged;
+            }
+        }
 
         private ObservableCollection<VertexModelView> _vertexModelViews;
         public ObservableCollection<VertexModelView> VertexModelViews
@@ -81,7 +97,7 @@ namespace GraphApplication.ModelView
             set
             {
                 _vertexModelViews = value;
-                OnPropertyChanged(nameof(_vertexModelViews));
+                OnPropertyChanged(nameof(VertexModelViews));
             }
         }
         private ObservableCollection<EdgeModelView> _edgeModelViews;
@@ -102,9 +118,30 @@ namespace GraphApplication.ModelView
         public GraphModelView()
         {
             Model = new GraphModel();
+        }
 
-            VertexModelViews = new ObservableCollection<VertexModelView>();
-            EdgeModelViews = new ObservableCollection<EdgeModelView>();
+        public int GetFreeIndex()
+        {
+
+            bool[] used = new bool[VertexModelViews.Count];
+
+            foreach(var view in VertexModelViews)
+            {
+                int index = view.Model.Id;
+                if (index >= used.Length)
+                    continue;
+
+                used[index] = true;
+            }
+
+            int i = 0;
+            for (; i < used.Length; i++)
+            {
+                if (used[i] == false)
+                    break;
+            }
+
+            return i;
         }
     }
 }

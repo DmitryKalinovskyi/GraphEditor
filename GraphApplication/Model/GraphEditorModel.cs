@@ -23,7 +23,10 @@ namespace GraphApplication.Model
         [DataMember]
         public double ScaleValue { get; set; } = DefaultScale;
 
+        [DataMember]
         public double OffsetX { get; set; }
+
+        [DataMember]
         public double OffsetY { get; set; } 
 
         [DataMember]

@@ -81,8 +81,4 @@
     </Resource>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Algorithms\" />
-  </ItemGroup>
-
 </Project>

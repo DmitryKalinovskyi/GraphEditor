@@ -84,5 +84,9 @@ namespace GraphApplication.ModelView.GraphEditorExtensions.Modes
                 (vertexView).ReleaseMouseCapture();
             }
         }
+
+        public override void OnModeSwitch()
+        {
+        }
     }
 }

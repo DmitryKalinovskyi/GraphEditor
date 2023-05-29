@@ -7,7 +7,8 @@
         xmlns:myControl="clr-namespace:GraphApplication.CustomControls"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        Closing="Window_Closing">
     <Window.Resources>
         <local:ToolButtonCheckConverter x:Key="ToolButtonCheckConverter"/>
     </Window.Resources>
@@ -49,6 +50,10 @@
                     CommandParameter="GraphEditorVertexCreationMode"
                     Modifiers="Shift"
                     />
+        <KeyBinding Key="I"
+                    Command="{Binding ImplementAlgorithmCommand}"
+                    Modifiers="Shift"
+                    />
         
     </Window.InputBindings>
     <Grid>
@@ -88,6 +93,20 @@
                 <MenuItem Header="Generate.." 
                           Command="{Binding GenerateGraphCommand}"
                           InputGestureText="Ctrl+G">
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="Algorithm">
+                <MenuItem Header="Implement"
+                          Command="{Binding ImplementAlgorithmCommand}"
+                          InputGestureText="Shift+I">
+                </MenuItem>
+                <MenuItem Header="BFS"
+                          Command="{Binding ChangeEditorModeCommand}"
+                          CommandParameter="GraphEditorBFSMode">
+                </MenuItem>
+                <MenuItem Header="DFS"
+                          Command="{Binding ChangeEditorModeCommand}"
+                          CommandParameter="GraphEditorDFSMode">
                 </MenuItem>
             </MenuItem>
         </Menu>
@@ -201,12 +220,22 @@
                     <myControl:ToolButton Style="{StaticResource ToolButtonPrefab}"
                              UriImage="png"
                              Command="{Binding ChangeEditorModeCommand}"
-                             CommandParameter="GraphEditorAlgorithmMode"
+                             CommandParameter="GraphEditorBFSMode"
                              IsChecked="{Binding DataContext.ActiveMode,
                             Mode=OneWay,
                             RelativeSource={RelativeSource AncestorType={x:Type WrapPanel}},
                             Converter={StaticResource ToolButtonCheckConverter},
-                            ConverterParameter=GraphEditorAlgorithmMode}">
+                            ConverterParameter=GraphEditorBFSMode}">
+                    </myControl:ToolButton>
+                    <myControl:ToolButton Style="{StaticResource ToolButtonPrefab}"
+                             UriImage="png"
+                             Command="{Binding ChangeEditorModeCommand}"
+                             CommandParameter="GraphEditorDFSMode"
+                             IsChecked="{Binding DataContext.ActiveMode,
+                            Mode=OneWay,
+                            RelativeSource={RelativeSource AncestorType={x:Type WrapPanel}},
+                            Converter={StaticResource ToolButtonCheckConverter},
+                            ConverterParameter=GraphEditorDFSMode}">
                     </myControl:ToolButton>
                 </WrapPanel>
             </WrapPanel>

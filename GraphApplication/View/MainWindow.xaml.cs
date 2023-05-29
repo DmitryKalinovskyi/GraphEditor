@@ -31,5 +31,10 @@ namespace GraphApplication.View
                 new XMLFileService<GraphEditorModel>()
             );
         }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            (DataContext as MainWindowModelView).Window_Closing(sender, e);
+        }
     }
 }

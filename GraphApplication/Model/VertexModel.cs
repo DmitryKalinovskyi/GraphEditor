@@ -15,22 +15,39 @@ namespace GraphApplication.Model
         public string Caption { get; set; }
 
         [DataMember]
+        public int Id { get; set; }
+
+        [DataMember]
         public double Left { get; set; }
 
         [DataMember]
         public double Top { get; set; }
 
-        public VertexModel()
+        [DataMember]
+        public bool IsActive { get; set; } = true;
+
+
+
+        public VertexModel(int id)
         {
-            Caption = "";
+            Id = id;
+            Caption = id.ToString();
         }
 
-        public VertexModel(string caption)
+        public VertexModel(string caption, int id)
         {
             Caption = caption;
+            Id = id;
         }
 
-        public VertexModel(double left, double top, string caption) 
+        public VertexModel(double left, double top, int id)
+        {
+            Caption = id.ToString();
+            Id = id;
+            Left = left;
+            Top = top;
+        }
+        public VertexModel(double left, double top, string caption, int id) 
         {
             Caption = caption;
             Left = left;
