@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 using System.Xml.Serialization;
 
 namespace GraphApplication.Services
@@ -19,8 +21,8 @@ namespace GraphApplication.Services
             {
                 using (var fileStream = new FileStream(filePath, FileMode.Open))
                 {
-                    var serializer = new XmlSerializer(typeof(T));
-                    return (T)serializer.Deserialize(fileStream);
+                    var serializer = new DataContractSerializer(typeof(T));
+                    return (T)serializer.ReadObject(fileStream);
                 }
             }
             catch (Exception ex)
@@ -35,8 +37,15 @@ namespace GraphApplication.Services
             {
                 using (var fileStream = new FileStream(filePath, FileMode.Create))
                 {
-                    var serializer = new XmlSerializer(typeof(T));
-                    serializer.Serialize(fileStream, data);
+                    var settings = new XmlWriterSettings()
+                    {
+                        Indent = true
+                    };
+                    using (var xmlWriter = XmlWriter.Create(fileStream, settings))
+                    {
+                        var serializer = new DataContractSerializer(typeof(T));
+                        serializer.WriteObject(xmlWriter, data);
+                    }
                 }
             }
             catch (Exception ex)

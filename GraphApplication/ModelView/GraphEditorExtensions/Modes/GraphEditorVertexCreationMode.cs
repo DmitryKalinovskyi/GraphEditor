@@ -10,7 +10,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace GraphApplication.ModelView.GraphEditorExtensions
+namespace GraphApplication.ModelView.GraphEditorExtensions.Modes
 {
     class GraphEditorVertexCreationMode : GraphEditorMode
     {
@@ -19,15 +19,23 @@ namespace GraphApplication.ModelView.GraphEditorExtensions
 
         }
 
-        public override void EditorMouseUp(object sender, MouseButtonEventArgs e)
+        public override void EditorMouseDown(object sender, MouseButtonEventArgs e)
         {
             if (sender is IInputElement)
             {
+                _modelView.IsSaved = false;
+
                 Point createPoint = Mouse.GetPosition((IInputElement)sender);
 
-                VertexModelView vertexModelView = new VertexModelView(new VertexModel(createPoint.X, createPoint.Y, "Created"), _modelView);
+                //gap position into canvas
+                createPoint.X -= _modelView.OffsetX;
+                createPoint.Y -= _modelView.OffsetY;
+                createPoint.X /= _modelView.ScaleValue;
+                createPoint.Y /= _modelView.ScaleValue;
 
-                _modelView.VertexModelViews.Add(vertexModelView);
+                VertexModelView vertexModelView = new VertexModelView(new VertexModel(createPoint.X, createPoint.Y, ""));
+
+                _modelView.GraphModelView.VertexModelViews.Add(vertexModelView);
 
                 Trace.WriteLine("Vertex created at point: " + createPoint.X + " " + createPoint.Y);
             }

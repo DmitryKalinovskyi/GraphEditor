@@ -1,4 +1,5 @@
-﻿using GraphApplication.Model;
+﻿using GraphApplication.Fabrication;
+using GraphApplication.Model;
 using GraphApplication.ModelView.GraphEditorExtensions;
 using GraphApplication.Services;
 using GraphApplication.Services.Commands;
@@ -32,15 +33,24 @@ namespace GraphApplication.ModelView
                      {
                          try
                          {
-                             // we can load our graph model
-                             GraphEditorModel graphModel = new GraphEditorModel(new List<GraphObjectModel> { new VertexModel(0, 0, "Node 1"), new VertexModel(100, 100, "Node 2"), new VertexModel(250, 250, "Node 3") });
+                             GraphEditorModelView modelView;
 
-                             GraphEditorModelView modelView = new GraphEditorModelView(graphModel, "graph1");
+                             if (obj is GraphModel)
+                             {
+                                 GraphEditorModel graphModel = new GraphEditorModel(obj as GraphModel);
+
+                                  modelView = new GraphEditorModelView(graphModel, "");
+                             }
+                             else
+                             {
+                                 GraphEditorModel graphModel = new GraphEditorModel();
+
+                                  modelView = new GraphEditorModelView(graphModel, "");
+                             }
+                             
 
                              SelectedView = modelView;
                              GraphEditorViews.Add(modelView);
-
-
 
                          }
                          catch (Exception ex)
@@ -51,7 +61,40 @@ namespace GraphApplication.ModelView
             }
         }
 
+        private RelayCommand _generateGraphCommand;
 
+        public RelayCommand GenerateGraphCommand
+        {
+            get {
+                return _generateGraphCommand ??
+                    (_generateGraphCommand = new RelayCommand(obj =>
+                    {
+                        try
+                        {
+                            Trace.WriteLine("Generating graph...");
+
+                            GraphModelArgs args = new GraphModelArgs();
+                            args.MaxTop = 1000;
+                            args.MaxLeft= 1000;
+                            args.Deegre = 3;
+                            args.VerticlesCount = 100;
+
+                            GraphModelGenerator generator = new GraphModelGenerator();
+
+                            object generated = generator.Generate(args);
+
+                            CreateGraphCommand.Execute(generated);
+
+                            Trace.WriteLine("Graph generated!");
+
+                        }
+                        catch (Exception ex)
+                        {
+                            Trace.WriteLine(ex);
+                        }
+                    }));
+            }
+        }
         private RelayCommand _saveGraphCommand;
 
         public RelayCommand SaveGraphCommand
@@ -63,18 +106,32 @@ namespace GraphApplication.ModelView
                     {
                         try
                         {
-                            if (SelectedView == null)
+                            var view = obj != null ? (obj as GraphEditorModelView) : SelectedView;
+                            if (view == null)
                                 return;
 
-                            var saveFileDialog = new SaveFileDialog();
-                            saveFileDialog.Filter = "XML files (*.xml)|*.xml";
-
-                            if (saveFileDialog.ShowDialog() == true)
+                            if (_openedGraphEditorModelViews.ContainsKey(view))
                             {
-                                string path = saveFileDialog.FileName;
-
-                                _fileService.Save(path, _selectedView.Model);
+                                view.IsSaved = true;
+                                _fileService.Save(_openedGraphEditorModelViews[view], view.Model);
                             }
+                            else // create as new file
+                            {
+                                var saveFileDialog = new SaveFileDialog();
+                                saveFileDialog.Filter = "XML files (*.xml)|*.xml";
+
+                                if (saveFileDialog.ShowDialog() == true)
+                                {
+                                    string path = saveFileDialog.FileName;
+
+                                    view.IsSaved = true;
+                                    _fileService.Save(path, view.Model);
+                                    _openedGraphEditorModelViews[view] = path;
+                                    view.Name = Path.GetFileName(path);
+                                }
+                            }
+
+                            
                         }
                         catch (Exception ex)
                         {
@@ -97,17 +154,30 @@ namespace GraphApplication.ModelView
                          {
                              if (obj is GraphEditorModelView modelView)
                              {
-                                 GraphEditorViews.Remove(modelView);
-
-                                 if(modelView.IsSaved == false)
+                                 if (modelView.IsSaved == false)
                                  {
-                                     SaveFileDialog saveFileDialog = new SaveFileDialog();
-                                     if (saveFileDialog.ShowDialog() == true)
+                                     //promt to save or not
+                                     MessageBoxResult result = MessageBox.Show("Граф не збережено, ви бажаєте його зберегти?",
+                                         "Попередження", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
+                                     if (result == MessageBoxResult.Yes)
                                      {
-                                         string path = saveFileDialog.FileName;
-                                         Trace.WriteLine(path);
+                                         SaveGraphCommand.Execute(modelView);
+                                     }
+                                     else if(result == MessageBoxResult.Cancel)
+                                     {
+                                         return;
                                      }
                                  }
+
+                                 GraphEditorViews.Remove(modelView);
+                                 _openedGraphEditorModelViews.Remove(modelView);
+                                 if (GraphEditorViews.Count == 0)
+                                 {
+                                     SelectedView = null;
+                                 }
+                                 else
+                                     SelectedView = GraphEditorViews[0];
+
                              }
                          }
                          catch (Exception ex)
@@ -134,10 +204,21 @@ namespace GraphApplication.ModelView
                              if (openFileDialog.ShowDialog() == true)
                              {
                                  string path = openFileDialog.FileName;
+                                 if(_openedGraphEditorModelViews.ContainsValue(path))
+                                 {
+                                     MessageBox.Show("Такий граф вже відкритий!", "Попередження", MessageBoxButton.OK, MessageBoxImage.Information);
+                                     return;
+                                 }
+
                                  string name = Path.GetFileName(path);
 
                                  GraphEditorModel modelView = _fileService.Open(path);
+
+                                 if (modelView == null)
+                                     throw new Exception();
+
                                  GraphEditorModelView graphEditorModelView = new GraphEditorModelView(modelView, name, true);
+                                 _openedGraphEditorModelViews[graphEditorModelView] = path;
 
                                  GraphEditorViews.Add(graphEditorModelView);
                                  SelectedView = graphEditorModelView;
@@ -190,7 +271,7 @@ namespace GraphApplication.ModelView
         #endregion
 
 
-        
+        private Dictionary<GraphEditorModelView, string> _openedGraphEditorModelViews;
 
         private IFileService<GraphEditorModel> _fileService;
 
@@ -244,6 +325,7 @@ namespace GraphApplication.ModelView
         public MainWindowModelView(ObservableCollection<GraphEditorModelView>  graphViews, IFileService<GraphEditorModel> fileService)
         {
             _fileService = fileService;
+            _openedGraphEditorModelViews = new Dictionary<GraphEditorModelView, string>();
             GraphEditorViews = graphViews;
 
 

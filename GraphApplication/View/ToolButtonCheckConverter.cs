@@ -23,11 +23,8 @@ namespace GraphApplication.View
             return false;
         }
 
-
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-           // GraphEditorMode mode = EditorModeConverter.Convert(parameter as string);
-
             return null;
         }
     }

@@ -17,7 +17,18 @@
                     Command="{Binding CreateGraphCommand}"
                     Modifiers="Ctrl"
                     />
-        
+        <KeyBinding Key="S"
+                    Command="{Binding SaveGraphCommand}"
+                    Modifiers="Ctrl"
+                    />
+        <KeyBinding Key="O"
+                    Command="{Binding LoadGraphCommand}"
+                    Modifiers="Ctrl"
+                    />
+        <KeyBinding Key="G"
+                    Command="{Binding GenerateGraphCommand}"
+                    Modifiers="Ctrl"/>
+
         <KeyBinding Key="W"
                     Command="{Binding ChangeEditorModeCommand}"
                     CommandParameter="GraphEditorSelectionMode"
@@ -51,37 +62,39 @@
         <!--Graph Menu strip-->
         <Menu>
             <MenuItem Header="File">
-                <MenuItem Header="New.." 
+                <MenuItem Header="New" 
                           Command="{Binding CreateGraphCommand}"
                           InputGestureText="Ctrl+N">
                 </MenuItem>
+                
                 <MenuItem Header="Open.."
                           Command="{Binding LoadGraphCommand}"
                           InputGestureText="Ctrl+O">
                     </MenuItem>
-                <MenuItem Header="Save"
+                <MenuItem Header="Save.."
                           Command="{Binding SaveGraphCommand}"
                           InputGestureText="Ctrl+S"></MenuItem>
-            </MenuItem>
-            <MenuItem Header="Edit">
-                <MenuItem Header="Undo"></MenuItem>
-                <MenuItem Header="Cope"></MenuItem>
-                <MenuItem Header="Paste"></MenuItem>
-                <MenuItem Header="Duplicate"></MenuItem>
             </MenuItem>
             
             <!--Auto generated code here-->
             <MenuItem Header="Tools">
-                <MenuItem Header="Selection"></MenuItem>
-                <MenuItem Header="Cope"></MenuItem>
-                <MenuItem Header="Paste"></MenuItem>
+                <MenuItem Header="Selection"
+                          InputGestureText="Shift+W"></MenuItem>
+                <MenuItem Header="Canvas move"></MenuItem>
+                <MenuItem Header="Verticle move"></MenuItem>
                 <MenuItem Header="Duplicate"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Graph">
+                <MenuItem Header="Generate.." 
+                          Command="{Binding GenerateGraphCommand}"
+                          InputGestureText="Ctrl+G">
+                </MenuItem>
             </MenuItem>
         </Menu>
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="100" MinWidth="56">
+                <ColumnDefinition Width="44" MinWidth="44">
                 </ColumnDefinition>
                 <ColumnDefinition Width="5">
                 </ColumnDefinition>
@@ -138,8 +151,9 @@
                     </myControl:ToolButton>-->
                 </WrapPanel>
 
-                <Separator/>
-                
+                <Separator HorizontalAlignment="Stretch"/>
+
+
                 <!--Creation tools-->
                 <WrapPanel Orientation="Horizontal">
                     <myControl:ToolButton Style="{StaticResource ToolButtonPrefab}"
@@ -161,6 +175,38 @@
                             RelativeSource={RelativeSource AncestorType={x:Type WrapPanel}},
                             Converter={StaticResource ToolButtonCheckConverter},
                             ConverterParameter=GraphEditorEdgeCreationMode}">
+                    </myControl:ToolButton>
+                </WrapPanel>
+
+                <Separator HorizontalAlignment="Stretch"/>
+
+
+                <WrapPanel Orientation="Horizontal">
+                    <myControl:ToolButton Style="{StaticResource ToolButtonPrefab}"
+                             UriImage="../ArtWork/close-100.png"
+                             Command="{Binding ChangeEditorModeCommand}"
+                             CommandParameter="GraphEditorRemovingMode"
+                             IsChecked="{Binding DataContext.ActiveMode,
+                            Mode=OneWay,
+                            RelativeSource={RelativeSource AncestorType={x:Type WrapPanel}},
+                            Converter={StaticResource ToolButtonCheckConverter},
+                            ConverterParameter=GraphEditorRemovingMode}">
+                    </myControl:ToolButton>
+                </WrapPanel>
+
+                <Separator HorizontalAlignment="Stretch"/>
+
+                <!--Algorithm Mode-->
+                <WrapPanel Orientation="Horizontal">
+                    <myControl:ToolButton Style="{StaticResource ToolButtonPrefab}"
+                             UriImage="png"
+                             Command="{Binding ChangeEditorModeCommand}"
+                             CommandParameter="GraphEditorAlgorithmMode"
+                             IsChecked="{Binding DataContext.ActiveMode,
+                            Mode=OneWay,
+                            RelativeSource={RelativeSource AncestorType={x:Type WrapPanel}},
+                            Converter={StaticResource ToolButtonCheckConverter},
+                            ConverterParameter=GraphEditorAlgorithmMode}">
                     </myControl:ToolButton>
                 </WrapPanel>
             </WrapPanel>

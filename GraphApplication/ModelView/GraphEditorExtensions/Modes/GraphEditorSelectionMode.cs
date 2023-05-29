@@ -10,7 +10,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace GraphApplication.ModelView.GraphEditorExtensions
+namespace GraphApplication.ModelView.GraphEditorExtensions.Modes
 {
     class GraphEditorSelectionMode : GraphEditorMode
     {

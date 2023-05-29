@@ -11,7 +11,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace GraphApplication.ModelView.GraphEditorExtensions
+namespace GraphApplication.ModelView.GraphEditorExtensions.Modes
 {
     public class GraphEditorMovingMode : GraphEditorMode
     {
@@ -51,6 +51,8 @@ namespace GraphApplication.ModelView.GraphEditorExtensions
 
             if (sender is VertexButton vertexView && vertexView.DataContext is VertexModelView vertexModelView)
             {
+                _modelView.IsSaved = false;
+
                 Point p = e.GetPosition(vertexView);
 
                 vertexModelView.IsSelected = true;
@@ -67,6 +69,8 @@ namespace GraphApplication.ModelView.GraphEditorExtensions
 
             if (sender is VertexButton vertexView && vertexView.DataContext is VertexModelView vertexModelView)
             {
+                _modelView.IsSaved = false;
+
                 Point p = e.GetPosition(vertexView);
 
                 vertexModelView.IsSelected = true;

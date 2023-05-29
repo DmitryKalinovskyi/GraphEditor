@@ -1,26 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace GraphApplication.Model
 {
+    /// <summary>
+    /// Store all information about GraphEditor but not actual graph
+    /// </summary>
+    /// 
+
+    [DataContract(IsReference = true)]
+
     public class GraphEditorModel
     {
-        public List<VertexModel> VertexObjects { get; set; }
-        public List<EdgeModel> EdgeObjects { get; set; }
+        public static double MinScale = 0.5;
+        public static double MaxScale = 6;
+        public static double DefaultScale = 1;
 
-        public GraphEditorModel(List<GraphObjectModel> graphObjects)
-        {
-            VertexObjects = graphObjects.Where(item => item is VertexModel).Cast<VertexModel>().ToList();
-            EdgeObjects = graphObjects.Where(item => item is EdgeModel).Cast<EdgeModel>().ToList();
-        }
+        [DataMember]
+        public double ScaleValue { get; set; } = DefaultScale;
+
+        public double OffsetX { get; set; }
+        public double OffsetY { get; set; } 
+
+        [DataMember]
+        public GraphModel GraphModel { get; set; }
 
         public GraphEditorModel()
         {
-            VertexObjects = new List<VertexModel>();
-            EdgeObjects = new List<EdgeModel>();
+            GraphModel = new GraphModel();
+        }
+
+        public GraphEditorModel(GraphModel graphModel)
+        {
+            GraphModel = graphModel;
         }
     }
 }

@@ -77,6 +77,23 @@ namespace GraphApplication.View
 
         }
 
+        private void Line_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            (DataContext as GraphEditorModelView)?.OnEdgeMouseDown(sender, e);
+
+        }
+
+        private void Line_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            (DataContext as GraphEditorModelView)?.OnEdgeMouseUp(sender, e);
+
+        }
+
+        private void Line_MouseMove(object sender, MouseEventArgs e)
+        {
+            (DataContext as GraphEditorModelView)?.OnEdgeMouseMove(sender, e);
+        }
+
         //якісь інші події
     }
 }

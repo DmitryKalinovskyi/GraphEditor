@@ -12,8 +12,6 @@ namespace GraphApplication.ModelView
     {
         public readonly VertexModel Model;
 
-        private readonly GraphEditorModelView _editorModelView;
-
         public string Caption
         {
             get { return Model.Caption; }
@@ -56,9 +54,8 @@ namespace GraphApplication.ModelView
             }
         }
 
-        public VertexModelView(VertexModel model, GraphEditorModelView editorModelView)
+        public VertexModelView(VertexModel model)
         {
-            _editorModelView = editorModelView;
             Model = model;
         }
     }

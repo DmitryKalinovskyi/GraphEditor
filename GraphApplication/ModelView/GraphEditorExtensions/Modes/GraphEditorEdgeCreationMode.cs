@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
-namespace GraphApplication.ModelView.GraphEditorExtensions
+namespace GraphApplication.ModelView.GraphEditorExtensions.Modes
 {
     public class GraphEditorEdgeCreationMode : GraphEditorMode
     {
@@ -29,7 +29,9 @@ namespace GraphApplication.ModelView.GraphEditorExtensions
             if (clickedVertex == null)
                 return;
 
-            if(startVertex == null)
+            _modelView.IsSaved = false;
+
+            if (startVertex == null)
             {
                 startVertex = clickedVertex;
                 clickedVertex.IsSelected = true;
@@ -51,7 +53,7 @@ namespace GraphApplication.ModelView.GraphEditorExtensions
         {
             EdgeModelView edgeModelView = new EdgeModelView(start, end);
 
-            _modelView.EdgeModelViews.Add(edgeModelView);
+            _modelView.GraphModelView.EdgeModelViews.Add(edgeModelView);
         }
     }
 }
