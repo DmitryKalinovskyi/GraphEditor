@@ -224,10 +224,11 @@
          >
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="Background" Value="Transparent"></Setter>
-        <Setter Property="BorderThickness" Value="2"></Setter>
+        <Setter Property="BorderThickness" Value="1"></Setter>
         <Setter Property="BorderBrush" Value="Transparent"></Setter>
         <Setter Property="Border.CornerRadius" Value="6"></Setter>
         <Setter Property="Margin" Value="3,0,3,0"></Setter>
+        <Setter Property="Padding" Value="5,5,5,5"></Setter>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type custom:AnimationButton}">
@@ -251,8 +252,8 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{StaticResource WiddowBg}"></Setter>
-                <Setter Property="BorderBrush" Value="Black"></Setter>
+                <Setter Property="Background" Value="White"></Setter>
+                <Setter Property="BorderBrush" Value="gray"></Setter>
             </Trigger>
         </Style.Triggers>
     </Style>

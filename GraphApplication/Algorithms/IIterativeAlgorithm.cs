@@ -9,6 +9,6 @@ namespace GraphApplication.Algorithms
 {
     public interface IIterativeAlgorithm
     {
-        public IEnumerable<VertexModel>? Implement(GraphModel graph, params object[] args);
+        public (IEnumerable<VertexModel>?, IEnumerable<EdgeModel>?) Implement(GraphModel graph, params object[] args);
     }
 }

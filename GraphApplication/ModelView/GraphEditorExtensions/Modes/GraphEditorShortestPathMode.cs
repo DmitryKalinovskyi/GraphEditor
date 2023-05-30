@@ -46,18 +46,19 @@ namespace GraphApplication.ModelView.GraphEditorExtensions.Modes
             VertexModelView start = selected[0];
             VertexModelView end = selected[1];
 
-            IEnumerable<VertexModel> iterator = _algorithm.Implement(_modelView.GraphModelView.Model, start.Model, end.Model);
+            (IEnumerable<VertexModel>?, IEnumerable<EdgeModel>?) iterator = _algorithm.Implement(_modelView.GraphModelView.Model, start.Model, end.Model);
 
-            if(iterator == null)
+            if(iterator.Item1 == null)
             {
                 MessageBox.Show("Шляху між вершинами не існує!", "Інформація",
                     MessageBoxButton.OK, MessageBoxImage.Information);
                 return false;
             }
 
-            List<VertexModelView> vertexModelViews = _modelView.GraphModelView.GetVertexModelViewsByModels(iterator);
+            List<VertexModelView> vertexModelViews = _modelView.GraphModelView.GetVertexModelViewsByModels(iterator.Item1);
+            List<EdgeModelView> edgesModelViews = _modelView.GraphModelView.GetEdgeModelViewsByModels(iterator.Item2);
 
-            _modelView.AnimationManager.SetAnimation(new BFSShortestPathDisplayer(_modelView.GraphModelView, vertexModelViews));
+            _modelView.AnimationManager.SetAnimation(new BFSShortestPathDisplayer(_modelView.GraphModelView, (vertexModelViews, edgesModelViews)));
             return true;
         }
 

@@ -40,19 +40,20 @@ namespace GraphApplication.ModelView.GraphEditorExtensions.Modes
                 return false;
             }
 
-            IEnumerable<VertexModel> iterator = _algorithm.Implement(_modelView.GraphModelView.Model, selected[0].Model);
+            (IEnumerable<VertexModel>?, IEnumerable<EdgeModel>?) iterator = _algorithm.Implement(_modelView.GraphModelView.Model, selected[0].Model);
 
 
-            if (iterator == null)
+            if (iterator.Item1 == null)
             {
                 MessageBox.Show("Шляху між вершинами не існує!", "Інформація",
                     MessageBoxButton.OK, MessageBoxImage.Information);
                 return false;
             }
 
-            List<VertexModelView> vertexModelViews = _modelView.GraphModelView.GetVertexModelViewsByModels(iterator);
+            List<VertexModelView> vertexModelViews = _modelView.GraphModelView.GetVertexModelViewsByModels(iterator.Item1);
+            List<EdgeModelView> edgesModelViews = _modelView.GraphModelView.GetEdgeModelViewsByModels(iterator.Item2);
 
-            DFSDisplayer _displayer = new(_modelView.GraphModelView, vertexModelViews);
+            DFSDisplayer _displayer = new(_modelView.GraphModelView, (vertexModelViews, edgesModelViews));
 
             _modelView.AnimationManager.SetAnimation(_displayer);
             return true;

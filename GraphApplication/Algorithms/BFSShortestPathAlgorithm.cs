@@ -10,14 +10,22 @@ namespace GraphApplication.Algorithms
 {
     public class BFSShortestPathAlgorithm : IIterativeAlgorithm
     {
-        private IEnumerable<VertexModel> BuildPathByParents(
+        private (IEnumerable<VertexModel>?, IEnumerable<EdgeModel>?) BuildPathByParents(
+            GraphModel graphModel,
             ref Dictionary<VertexModel, VertexModel> parents,
             VertexModel end)
         {
             List<VertexModel> path = new List<VertexModel>();
 
+            List<EdgeModel> edges = new List<EdgeModel>();
+
             while (true)
             {
+                if(path.Count > 0)
+                {
+                    edges.Insert(0, graphModel.EdgeDictionary[(end, path[0])]);
+                }
+
                 path.Insert(0, end);
 
                 if (parents.ContainsKey(end) == false)
@@ -28,10 +36,10 @@ namespace GraphApplication.Algorithms
                 end = parents[end];
             }
 
-            return path;
+            return (path, edges);
         }
 
-        public IEnumerable<VertexModel>? Implement(GraphModel graph, params object[] args)
+        public (IEnumerable<VertexModel>?, IEnumerable<EdgeModel>?) Implement(GraphModel graph, params object[] args)
         {
             if (args.Length < 2)
                 throw new ArgumentException("Для знаходження шляху потрібно передати 2 аргументи!"); 
@@ -65,13 +73,13 @@ namespace GraphApplication.Algorithms
                                 parents[neighbor] = topElement;
 
                             if (neighbor == end)
-                                return BuildPathByParents(ref parents, end);
+                                return BuildPathByParents(graph, ref parents, end);
 
                         }
                     }
                 }
 
-                return null;
+                return (null, null);
             }
             else
             {
