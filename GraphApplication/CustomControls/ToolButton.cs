@@ -57,6 +57,19 @@ namespace GraphApplication.CustomControls
             DependencyProperty.Register("UriImage", typeof(string), typeof(ToolButton), new PropertyMetadata(""));
 
 
+
+        public string TipContent
+        {
+            get { return (string)GetValue(TipContentProperty); }
+            set { SetValue(TipContentProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for TipContent.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty TipContentProperty =
+            DependencyProperty.Register("TipContent", typeof(string), typeof(ToolButton), new PropertyMetadata(""));
+
+
+
         static ToolButton()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(ToolButton), new FrameworkPropertyMetadata(typeof(ToolButton)));

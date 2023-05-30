@@ -51,9 +51,17 @@ namespace GraphApplication.ModelView.GraphEditorExtensions.Modes
 
         private void CreateEdge(VertexModelView start, VertexModelView end)
         {
-            EdgeModelView edgeModelView = new EdgeModelView(start, end);
 
-            _modelView.GraphModelView.EdgeModelViews.Add(edgeModelView);
+            if (_modelView.GraphModelView.Model.EdgeDictionary.ContainsKey((start.Model, end.Model)) == false)
+            {
+                EdgeModelView edgeModelView = new EdgeModelView(start, end);
+                _modelView.GraphModelView.EdgeModelViews.Add(edgeModelView);
+            }
+            else
+            {
+                Trace.WriteLine("Such edge has been created");
+            }
+
         }
 
         public override void OnModeSwitch()

@@ -129,6 +129,8 @@
                 <WrapPanel Orientation="Horizontal">
                     <myControl:ToolButton Style="{StaticResource ToolButtonPrefab}"
                              UriImage="../ArtWork/cursor-96.png"
+                             TipContent="Виділення"
+                                          
                              Command="{Binding ChangeEditorModeCommand}"
                              CommandParameter="GraphEditorSelectionMode"
                              IsChecked="{Binding DataContext.ActiveMode,
@@ -140,6 +142,8 @@
                     
                     <myControl:ToolButton Style="{StaticResource ToolButtonPrefab}"
                              UriImage="../ArtWork/hand-96.png"
+                             TipContent="Переміщення редактора"
+                                          
                              Command="{Binding ChangeEditorModeCommand}"
                              CommandParameter="GraphEditorMovingMode"
                              IsChecked="{Binding DataContext.ActiveMode,
@@ -150,6 +154,8 @@
                         </myControl:ToolButton>
                     <myControl:ToolButton Style="{StaticResource ToolButtonPrefab}"
                              UriImage="../ArtWork/move-100.png"
+                             TipContent="Переміщення вершин"
+                                          
                              Command="{Binding ChangeEditorModeCommand}"
                              CommandParameter="GraphEditorCanvasMovingMode"
                              IsChecked="{Binding DataContext.ActiveMode,
@@ -160,6 +166,7 @@
                         </myControl:ToolButton>
                     <myControl:ToolButton Style="{StaticResource ToolButtonPrefab}"
                              UriImage="../ArtWork/eye-90.png"
+                             TipContent="Приховання вершин"
                                           
                              Command="{Binding ChangeEditorModeCommand}"
                              CommandParameter="GraphEditorHideMode"
@@ -189,9 +196,11 @@
                     <myControl:ToolButton Style="{StaticResource ToolButtonPrefab}"
                                           
                              UriImage="../ArtWork/circled-5-100.png"
+                             TipContent="Створення вершини графа"
                              Command="{Binding ChangeEditorModeCommand}"
                              CommandParameter="GraphEditorVertexCreationMode"
                              IsChecked="{Binding DataContext.ActiveMode,
+                               
                             Mode=OneWay,
                             RelativeSource={RelativeSource AncestorType={x:Type WrapPanel}},
                             Converter={StaticResource ToolButtonCheckConverter},
@@ -199,6 +208,8 @@
                     </myControl:ToolButton>
                     <myControl:ToolButton Style="{StaticResource ToolButtonPrefab}"
                              UriImage="../ArtWork/arrow-100.png"
+                             TipContent="Створення ребра графа"
+                                          
                              Command="{Binding ChangeEditorModeCommand}"
                              CommandParameter="GraphEditorEdgeCreationMode"
                              IsChecked="{Binding DataContext.ActiveMode,
@@ -215,6 +226,8 @@
                 <WrapPanel Orientation="Horizontal">
                     <myControl:ToolButton Style="{StaticResource ToolButtonPrefab}"
                              UriImage="../ArtWork/white-close-thin-100.png"
+                             TipContent="Видалення"
+                                          
                              Command="{Binding ChangeEditorModeCommand}"
                              CommandParameter="GraphEditorRemovingMode"
                              IsChecked="{Binding DataContext.ActiveMode,
@@ -231,6 +244,8 @@
                 <WrapPanel Orientation="Horizontal">
                     <myControl:ToolButton Style="{StaticResource ToolButtonPrefab}"
                              Content="BFS"
+                             TipContent="Пошук в ширину"
+                                          
                              UriImage="None"
                                           
                              Command="{Binding ChangeEditorModeCommand}"
@@ -245,6 +260,8 @@
                     <myControl:ToolButton Style="{StaticResource ToolButtonPrefab}"
                              Content="DFS"   
                              UriImage="None"
+                             TipContent="Пошук в глубину"
+                                          
                                           
                              Command="{Binding ChangeEditorModeCommand}"
                              CommandParameter="GraphEditorDFSMode"
@@ -256,6 +273,8 @@
                     </myControl:ToolButton>
                     <myControl:ToolButton Style="{StaticResource ToolButtonPrefab}"
                              UriImage="../ArtWork/white-path-96.png"
+                             TipContent="Пошук найкоротшого шляху"
+                                          
                              Command="{Binding ChangeEditorModeCommand}"
                              CommandParameter="GraphEditorShortestPathMode"
                              IsChecked="{Binding DataContext.ActiveMode,

@@ -21,6 +21,10 @@
                         Background="{TemplateBinding Background}"
                         Padding="{TemplateBinding Padding}">
 
+                        <Border.ToolTip >
+                            <TextBlock Text="{Binding TipContent, RelativeSource={RelativeSource TemplatedParent}}"></TextBlock>
+                        </Border.ToolTip>
+                        
                         <Grid>
                             <Image Source="{Binding UriImage, RelativeSource={RelativeSource TemplatedParent}}"></Image>
                             <TextBlock Text="{TemplateBinding Content}"
@@ -68,8 +72,8 @@
                                         </DataTrigger>
                                         <MultiDataTrigger>
                                             <MultiDataTrigger.Conditions>
-                                                <Condition Binding="{Binding IsSelected}" Value="False"></Condition>
                                                 <Condition Binding="{Binding IsActive}" Value="True"></Condition>
+                                                <Condition Binding="{Binding IsSelected}" Value="False"></Condition>
                                                 <Condition Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsMouseOver}" Value="True"></Condition>
                                             </MultiDataTrigger.Conditions>
 
@@ -77,11 +81,22 @@
                                         </MultiDataTrigger>
                                         <MultiDataTrigger>
                                             <MultiDataTrigger.Conditions>
-                                                <Condition Binding="{Binding IsSelected}" Value="True"></Condition>
                                                 <Condition Binding="{Binding IsActive}" Value="True"></Condition>
+                                                <Condition Binding="{Binding IsSelected}" Value="True"></Condition>
+                                                <Condition Binding="{Binding IsMarked}" Value="False"></Condition>
                                             </MultiDataTrigger.Conditions>
 
-                                            <Setter Property="BorderBrush" Value="Aqua"></Setter>
+                                            <Setter Property="BorderBrush" Value="BlueViolet"></Setter>
+                                            <Setter Property="BorderThickness" Value="3"></Setter>
+                                        </MultiDataTrigger>
+                                        <MultiDataTrigger>
+                                            <MultiDataTrigger.Conditions>
+                                                <Condition Binding="{Binding IsActive}" Value="True"></Condition>
+                                                <Condition Binding="{Binding IsMarked}" Value="True"></Condition>
+                                            </MultiDataTrigger.Conditions>
+
+                                            <Setter Property="BorderBrush" Value="Crimson"></Setter>
+                                            <Setter Property="BorderThickness" Value="4"></Setter>
                                         </MultiDataTrigger>
                                         <MultiDataTrigger>
                                             <MultiDataTrigger.Conditions>
@@ -136,7 +151,6 @@
 
     </Style>
 
-
     <Style x:Key="Edge"
            TargetType="{x:Type Line}">
         <Setter Property="StrokeThickness" Value="4"/>
@@ -145,7 +159,7 @@
 
         <Style.Triggers>
             <DataTrigger Binding="{Binding IsMarked}" Value="True">
-                <Setter Property="Stroke" Value="Red"></Setter>
+                <Setter Property="Stroke" Value="Crimson"></Setter>
             </DataTrigger>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
@@ -153,8 +167,54 @@
                     <Condition Binding="{Binding End.IsActive}" Value="True"></Condition>
                 </MultiDataTrigger.Conditions>
                 
-                <Setter Property="Opacity" Value="1"></Setter>
+                <Setter Property="Opacity" Value="0.8"></Setter>
             </MultiDataTrigger>
         </Style.Triggers>
     </Style>
+
+    <!--<ControlTemplate x:Key="VertexTemplate">
+        <Grid>
+            <Ellipse
+                    MouseMove="VertexButton_MouseMove"
+                    MouseDown="VertexButton_MouseDown"
+                    MouseUp="VertexButton_MouseUp"
+                    PreviewMouseUp="VertexButton_PreviewMouseUp"
+                    PreviewMouseDown="VertexButton_PreviewMouseDown"
+                    Panel.ZIndex="0"
+                    Width="40"
+                    Height="40"
+                    Fill="White" Stroke="Black" 
+                    StrokeThickness="2">
+            </Ellipse>
+            <Border
+                    MouseMove="VertexButton_MouseMove"
+                    MouseDown="VertexButton_MouseDown"
+                    MouseUp="VertexButton_MouseUp"
+                    PreviewMouseUp="VertexButton_PreviewMouseUp"
+                    PreviewMouseDown="VertexButton_PreviewMouseDown"
+                    Panel.ZIndex="10"
+                    Width="40"
+                    Height="40"
+                    Background="White" 
+                BorderBrush="Black" 
+                    BorderThickness="2"
+                CornerRadius="20"
+                >
+
+            </Border>
+            <Label 
+                Panel.ZIndex="10"
+                Content="{Binding Caption}"
+                        Width="100"
+                    VerticalAlignment="Center"
+                    HorizontalContentAlignment="Center"
+                                       
+                    FontSize="16">
+            </Label>
+
+                <Grid.RenderTransform>
+                <TranslateTransform X="-50" Y="-20"/>
+            </Grid.RenderTransform>
+        </Grid>
+    </ControlTemplate>-->
 </ResourceDictionary>

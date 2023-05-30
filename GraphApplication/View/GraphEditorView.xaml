@@ -102,27 +102,7 @@
                                         MouseDoubleClick="VertexButton_MouseDoubleClick"
                                         Panel.ZIndex="10">
                         </control:VertexButton>
-                            <!--<Grid>
-                                <Grid.Style>
-                                    <Style>
-                                        
-                                    </Style>
-                                </Grid.Style>          
-                                <Ellipse
-                                        MouseMove="VertexButton_MouseMove"
-                                        MouseDown="VertexButton_MouseDown"
-                                        MouseUp="VertexButton_MouseUp"
-                                        PreviewMouseUp="VertexButton_PreviewMouseUp"
-                                        PreviewMouseDown="VertexButton_PreviewMouseDown"
-                                        Panel.ZIndex="10"
-                                        Width="50"
-                                        Height="50"
-                                        Fill="White" Stroke="Black" 
-                                        StrokeThickness="2">
-                                
-                            </Ellipse>
-                                <TextBlock Text="Vertex"/>
-                            </Grid>-->
+                            
 
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>

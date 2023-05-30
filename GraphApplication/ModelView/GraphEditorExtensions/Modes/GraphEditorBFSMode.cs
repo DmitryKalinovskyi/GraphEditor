@@ -37,7 +37,7 @@ namespace GraphApplication.ModelView.GraphEditorExtensions.Modes
             List<VertexModelView> selected = _modelView.SelectionManager.SelectedVerticles;
             if (selected.Count != 1)
             {
-                MessageBox.Show("Алгоритм пошуку найкоротшого шляху реалізувати не можна, поки не обрано дві вершини!",
+                MessageBox.Show("Алгоритм пошуку в ширину реалізувати не можливо, поки не обрано тільки одну вершину!",
                     "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }

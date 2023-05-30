@@ -65,6 +65,22 @@ namespace GraphApplication.ModelView
             }
         }
 
+        private bool _isMarked;
+
+        public bool IsMarked
+        {
+            get
+            {
+                return _isMarked;
+            }
+
+            set
+            {
+                _isMarked = value;
+                OnPropertyChanged(nameof(IsMarked));
+            }
+        }
+
         public VertexModelView(VertexModel model)
         {
             Model = model;

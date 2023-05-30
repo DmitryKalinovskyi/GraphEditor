@@ -37,13 +37,15 @@ namespace GraphApplication.ModelView.GraphEditorExtensions.Displaying
 
         private void Animation()
         {
+            _path[0].IsMarked = true;
+
             for (int i = 1; i < _path.Count(); i++)
             {
                 if (isCanceled) return;
 
                 try
                 {
-                    _path[i].IsSelected = true;
+                    _path[i].IsMarked = true;
                     VertexModelView prev = _path[i - 1];
                     VertexModelView next = _path[i];
 
@@ -72,7 +74,7 @@ namespace GraphApplication.ModelView.GraphEditorExtensions.Displaying
         {
             foreach (var v in _path)
             {
-                v.IsSelected = false;
+                v.IsMarked = false;
             }
 
             if (_edges.Count > 0)
