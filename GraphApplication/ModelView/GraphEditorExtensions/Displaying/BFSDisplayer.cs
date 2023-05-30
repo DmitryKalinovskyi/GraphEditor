@@ -8,38 +8,31 @@ using System.Threading.Tasks;
 
 namespace GraphApplication.ModelView.GraphEditorExtensions.Displaying
 {
-    public class BFSDisplayer : IDisplayAnimation
+    public class BFSDisplayer : LinearAnimation
     {
         private List<VertexModelView> _path;
         private List<EdgeModelView> _edges;
 
         private GraphModelView _graphModelView;
 
-        private Thread animationThread;
-        public int moveDelay = 200;
-
-
         public BFSDisplayer(GraphModelView graphModelView, List<VertexModelView> path)
         {
             _path = path;
             _edges = new();
             _graphModelView = graphModelView;
-            animationThread = new(Animation);
-        }
-
-        private bool isCanceled = false;
-
-        public void StartAnimation()
-        {
-            animationThread.Start();
+            _animationThread = new(Animation);
         }
 
         private void Animation()
         {
             _path[0].IsMarked = true;
+
+            Thread.Sleep(AnimationKeyFrameDelay);
+
+
             for (int i = 1; i < _path.Count(); i++)
             {
-                if (isCanceled) return;
+                if (_isCanceled) return;
 
                 try
                 {
@@ -47,29 +40,17 @@ namespace GraphApplication.ModelView.GraphEditorExtensions.Displaying
 
                     VertexModelView prev = _path[i - 1];
                     VertexModelView next = _path[i];
-
-                    //EdgeModel edge = _graphModelView.Model.EdgeDictionary[(prev.Model, next.Model)];
-                    //EdgeModelView edgeModelView = _graphModelView.EdgeModelViewAssociation[edge];
-
-                    //_edges.Add(edgeModelView);
-
-                    //edgeModelView.Mark = true;
                 }
                 catch (Exception e)
                 {
                     Trace.WriteLine(e);
                 }
 
-                Thread.Sleep(moveDelay);
+                Thread.Sleep(AnimationKeyFrameDelay);
             }
         }
 
-        public void StopAnimation()
-        {
-            isCanceled = true;
-        }
-
-        public void RestoreAnimation()
+        public override void RestoreAnimation()
         {
             foreach (var v in _path)
             {

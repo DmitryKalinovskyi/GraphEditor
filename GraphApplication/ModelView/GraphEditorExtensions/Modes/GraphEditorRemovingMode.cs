@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace GraphApplication.ModelView.GraphEditorExtensions.Modes
 {
-    public class GraphEditorRemovingMode : GraphEditorMode
+    public class GraphEditorRemovingMode : GraphEditorBuildingMode
     {
         public GraphEditorRemovingMode(GraphEditorModelView modelView) : base(modelView)
         {

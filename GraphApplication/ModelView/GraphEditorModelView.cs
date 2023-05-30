@@ -1,5 +1,6 @@
 ﻿using GraphApplication.Model;
 using GraphApplication.ModelView.GraphEditorExtensions;
+using GraphApplication.ModelView.GraphEditorExtensions.Displaying;
 using GraphApplication.ModelView.GraphEditorExtensions.Modes;
 using GraphApplication.Services.Commands;
 using GraphApplication.View;
@@ -7,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -68,14 +70,109 @@ namespace GraphApplication.ModelView
         //             }));
         //    }
         //}
+        private RelayCommand _implementAlgorithmCommand;
+
+        public RelayCommand ImplementAlgorithmCommand
+        {
+            get
+            {
+                return _implementAlgorithmCommand ??
+                    (_implementAlgorithmCommand = new RelayCommand(obj =>
+                    {
+                        if (CurrentEditorMode is IAlgorithmImplementer implementer)
+                        {
+                            bool result = implementer.Implement();
+
+                            //if (AnimationManager.Animation != null)
+                            //{
+                            //    MessageBox.Show("Немає обраної анімації алгоритма", "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            //    return;
+                            //}
+                            if(result)
+                            AnimationManager.StartAnimation();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Алгоритм для реалізації не обрано!", "Попередження",
+                                MessageBoxButton.OK, MessageBoxImage.Warning);
+                        }
+
+                    }));
+            }
+        }
+
+        private RelayCommand _endImplementationCommand;
+
+        public RelayCommand EndImplementationCommand
+        {
+            get
+            {
+                return _endImplementationCommand ??
+                    (_endImplementationCommand = new RelayCommand(obj =>
+                    {
+                        try
+                        {
+
+                            if (AnimationManager.IsAnimationActive == false)
+                            {
+                                MessageBox.Show("Немає обраної анімації алгоритма", "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                return;
+                            }
+
+                            AnimationManager.StopAnimation();
+                        }
+                        catch (Exception ex)
+                        {
+                            Trace.WriteLine(ex);
+                        }
+                    }));
+            }
+        }
+
         #endregion
 
-        
+        //private RelayCommand _pauseAnimation;
+
+        //public RelayCommand PauseAnimation
+        //{
+        //    get
+        //    {
+        //        return _pauseAnimation  ??
+        //            (_pauseAnimation = new RelayCommand(obj =>
+        //            {
+        //                try
+        //                {
+
+        //                    if (SelectedView == null)
+        //                    {
+        //                        return;
+        //                    }
+
+        //                    if (SelectedView.AnimationManager.Animation == null)
+        //                    {
+        //                        MessageBox.Show("Немає обраної анімації алгоритма", "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
+        //                        return;
+        //                    }
+
+        //                    SelectedView.AnimationManager.Animation.PauseAnimation();
+
+        //                }
+        //                catch (Exception ex)
+        //                {
+        //                    Trace.WriteLine(ex);
+        //                }
+        //            }));
+        //    }
+        //}
+
         public GraphEditorModel Model { get; private set; }
 
         public GraphModelView GraphModelView {get; private set;}
 
         public GraphEditorSelectionManager SelectionManager { get; private set; }
+
+        public GraphEditorAnimationManager AnimationManager { get; private set; }
+        
 
         private string _name;
         private bool _isSaved;
@@ -139,6 +236,16 @@ namespace GraphApplication.ModelView
             }
         }
 
+        public double CachingScale
+        {
+            get { return Math.Clamp(Model.CachingScale, 0.05, 1); }
+            set
+            {
+                Model.CachingScale = value;
+                OnPropertyChanged(nameof(CachingScale));
+            }
+        }
+
         private GraphEditorMode _currentEditorMode;
 
         public GraphEditorMode CurrentEditorMode
@@ -164,6 +271,7 @@ namespace GraphApplication.ModelView
             CurrentEditorMode = new GraphEditorSelectionMode(this);
             GraphModelView = new GraphModelView(Model.GraphModel);
             SelectionManager = new();
+            AnimationManager = new();
             
             InitializeEvents();
         }

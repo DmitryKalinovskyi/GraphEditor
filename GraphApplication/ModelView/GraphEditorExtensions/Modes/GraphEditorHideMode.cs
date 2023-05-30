@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace GraphApplication.ModelView.GraphEditorExtensions.Modes
 {
-    public class GraphEditorHideMode : GraphEditorMode
+    public class GraphEditorHideMode : GraphEditorBuildingMode
     {
         public GraphEditorHideMode(GraphEditorModelView modelView) : base(modelView)
         {

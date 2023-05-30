@@ -4,7 +4,7 @@
     <Style
         TargetType="{x:Type custom:ToolButton}"
            x:Key="ToolButtonPrefab">
-        
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="Background" Value="{StaticResource col1}"></Setter>
         <Setter Property="Width" Value="40"></Setter>
         <Setter Property="Height" Value="40"></Setter>
@@ -50,6 +50,7 @@
 
     <Style TargetType="{x:Type custom:VertexButton}">
         <Setter Property="Panel.ZIndex" Value="0"></Setter>
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type custom:VertexButton}">
@@ -156,7 +157,7 @@
         <Setter Property="StrokeThickness" Value="4"/>
         <Setter Property="Stroke" Value="Black"/>
         <Setter Property="Opacity" Value="0.5"></Setter>
-
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Style.Triggers>
             <DataTrigger Binding="{Binding IsMarked}" Value="True">
                 <Setter Property="Stroke" Value="Crimson"></Setter>
@@ -217,4 +218,42 @@
             </Grid.RenderTransform>
         </Grid>
     </ControlTemplate>-->
+
+    <Style
+        TargetType="{x:Type custom:AnimationButton}"
+         >
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="BorderThickness" Value="2"></Setter>
+        <Setter Property="BorderBrush" Value="Transparent"></Setter>
+        <Setter Property="Border.CornerRadius" Value="6"></Setter>
+        <Setter Property="Margin" Value="3,0,3,0"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type custom:AnimationButton}">
+                    <Border BorderThickness="{TemplateBinding BorderThickness}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        CornerRadius="{TemplateBinding Border.CornerRadius}"
+                        Background="{TemplateBinding Background}"
+                        Padding="{TemplateBinding Padding}">
+
+                        <Grid>
+                            <Image Source="{Binding UriImage, RelativeSource={RelativeSource TemplatedParent}}"></Image>
+                            <TextBlock Text="{TemplateBinding Content}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Foreground="White"></TextBlock>
+                        </Grid>
+
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource WiddowBg}"></Setter>
+                <Setter Property="BorderBrush" Value="Black"></Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
 </ResourceDictionary>

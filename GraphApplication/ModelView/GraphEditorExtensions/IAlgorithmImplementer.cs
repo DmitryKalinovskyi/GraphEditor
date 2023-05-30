@@ -8,6 +8,6 @@ namespace GraphApplication.ModelView.GraphEditorExtensions
 {
     public interface IAlgorithmImplementer
     {
-        public void Implement();
+        public bool Implement();
     }
 }

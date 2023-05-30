@@ -36,8 +36,13 @@
                         MouseDown="Canvas_MouseDown"
                         MouseUp="Canvas_MouseUp"
                         MouseMove="Canvas_MouseMove"
-                        >
-                    <Canvas.Background>
+                       >
+                <Canvas.CacheMode >
+                    <BitmapCache EnableClearType="False" 
+                                     RenderAtScale="{Binding CachingScale}" 
+                                     SnapsToDevicePixels="False"  />
+                </Canvas.CacheMode>
+                <Canvas.Background>
                         <!--<LinearGradientBrush>
                             <GradientStop Color="Gray" Offset="0" />
 
@@ -65,19 +70,29 @@
                         <ScaleTransform  ScaleX="{Binding ScaleValue}" ScaleY="{Binding ScaleValue}" />
                     </Rectangle.LayoutTransform>
                 </Rectangle>-->
-        
+
                 <ItemsControl ItemsSource="{Binding GraphModelView.VertexModelViews}"
                               Canvas.Left="{Binding OffsetX}"
                               Canvas.Top="{Binding OffsetY}"
-                              Width="500"
-                                Height="300"
-                              Panel.ZIndex="2">
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center"
+                              Panel.ZIndex="2"
+                              FocusVisualStyle="{x:Null}">
+                    <ItemsControl.CacheMode>
+
+                        <BitmapCache
+                                    EnableClearType="False" 
+                                     RenderAtScale="{Binding CachingScale}" 
+                                     SnapsToDevicePixels="False"/>
+                    </ItemsControl.CacheMode>
+
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <Canvas
-                            
-                                    >
-                            <Canvas.LayoutTransform>
+                                FocusVisualStyle="{x:Null}"
+                                >
+                                    
+                                <Canvas.LayoutTransform>
                                 <ScaleTransform  ScaleX="{Binding ScaleValue}" ScaleY="{Binding ScaleValue}" />
                             </Canvas.LayoutTransform>
                             
@@ -113,10 +128,19 @@
                               Canvas.Top="{Binding OffsetY}"
                               Width="500"
                         Height="300"
+                              FocusVisualStyle="{x:Null}"
                               Panel.ZIndex="1">
+                    <ItemsControl.CacheMode>
+                        
+                        <BitmapCache
+                                    EnableClearType="False" 
+                                     RenderAtScale="{Binding CachingScale}" 
+                                     SnapsToDevicePixels="False"/>
+                    </ItemsControl.CacheMode>
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <Canvas>
+                            <Canvas 
+                                >
                                 <Canvas.LayoutTransform>
                                     <ScaleTransform  ScaleX="{Binding ScaleValue}" ScaleY="{Binding ScaleValue}" />
                                 </Canvas.LayoutTransform>
@@ -156,19 +180,71 @@
                         CornerRadius="10"
                     VerticalAlignment="Top"
                     HorizontalAlignment="Stretch"
+                        
                     Margin="5, 5, 5, 5"
                         Padding="10,10,10,10">
                     <Grid>
+
+                        <Expander Header="Інформація про граф" IsExpanded="True">
+                            <StackPanel Orientation="Vertical">
+
+
+                                <Separator/>
+
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition>
+                                        </ColumnDefinition>
+                                        <ColumnDefinition>
+                                        </ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                        <RowDefinition></RowDefinition>
+                                    </Grid.RowDefinitions>
+
+                                    <TextBlock Grid.Row="0" Grid.Column="0">
+                                    к-сть вершин:
+                                    </TextBlock>
+                                    <TextBlock Grid.Row="1" Grid.Column="0">
+                                    к-сть ребер:
+                                    </TextBlock>
+                                    <TextBlock Grid.Row="2" Grid.Column="0">
+                                    </TextBlock>
+                                    <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding GraphModelView.VertexCount}">
+                                    </TextBlock>
+                                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding GraphModelView.EdgeCount}">
+                                    </TextBlock>
+                                    <TextBlock Grid.Row="2" Grid.Column="1">
+                                    </TextBlock>
+                                </Grid>
+                            </StackPanel>
+                        </Expander>
+                    
+
+                    <!--<Button VerticalAlignment="Bottom">
+                        Оновити
+                    </Button>-->
+
+                    </Grid>
+                </Border>
+            </Grid>
+            
+            <Grid HorizontalAlignment="Right">
+                <Border Grid.Column="1"
+                    Background="White"
+                        CornerRadius="10"
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Stretch"
                         
-                    <StackPanel Orientation="Vertical">
+                    Margin="5, 5, 5, 5"
+                        Padding="10,10,10,10">
+                    <Expander Header="Вигляд" IsExpanded="True">
 
+                        <StackPanel Orientation="Vertical">
 
-                        <Label HorizontalAlignment="Center" >
-                            Інформація про граф
-                        </Label>
-                        
-                        <Separator/>
-
+                            <Separator/>
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition>
@@ -180,55 +256,107 @@
                                     <RowDefinition></RowDefinition>
                                     <RowDefinition></RowDefinition>
                                     <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
                                 </Grid.RowDefinitions>
-
-                                <TextBlock Grid.Row="0" Grid.Column="0">
-                                    ксть вершин
+                                <TextBlock>
+                                    Віддаленість
                                 </TextBlock>
-                                <TextBlock Grid.Row="1" Grid.Column="0">
-                                    ксть ребер
+                                <Slider
+                                    Grid.Column="1"
+                                    Width="100"
+                                    Height="10" 
+                                    Panel.ZIndex="6"
+                                    Minimum="0.25" Maximum="3"
+                                    FlowDirection="RightToLeft"
+                                    HorizontalAlignment="Left"
+                                    Value="{Binding ScaleValue, Mode=TwoWay}">
+                                </Slider>
+                                <TextBlock
+                                    Grid.Row="1">
+                                    Якість
                                 </TextBlock>
-                                <TextBlock Grid.Row="2" Grid.Column="0">
-                                    ксть компонентів
-                                </TextBlock>
-                                <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding GraphModelView.VertexCount}">
-                                </TextBlock>
-                                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding GraphModelView.EdgeCount}">
-                                </TextBlock>
-                                <TextBlock Grid.Row="2" Grid.Column="1">
-                                </TextBlock>
+                                <Slider 
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    Width="100"
+                                    Height="10" 
+                                    Panel.ZIndex="6"
+                                    Minimum="0.05" Maximum="1"
+                                    HorizontalAlignment="Left"
+                                    Value="{Binding CachingScale, Mode=TwoWay}"
+                                    >
+                                </Slider>
+                                
+                                
                             </Grid>
-                        
+                            
 
-                        
-                    </StackPanel>
 
-                    <!--<Button VerticalAlignment="Bottom">
+
+                        </StackPanel>
+
+                        <!--<Button VerticalAlignment="Bottom">
                         Оновити
                     </Button>-->
 
-                    </Grid>
+                    </Expander>
+
+                    
                 </Border>
+
+                
             </Grid>
+            
+            <!--Animation panel-->
+
+            <Border
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom"
+                Background="White"
+                    CornerRadius="10"
+                    Margin="5, 5, 5, 5"
+                        Padding="4,4,4,4">
+                
+                    
+                        <StackPanel Orientation="Horizontal" Height="35"
+                                HorizontalAlignment="Center"
+                                    
+                                   >
+                            <control:AnimationButton
+                            UriImage="../ArtWork/icons8-start-90.png"
+                                Command="{Binding ImplementAlgorithmCommand}">
+                            </control:AnimationButton>
+                            <!--<control:AnimationButton
+                            UriImage="../ArtWork/icons8-pause-100.png">
+                            </control:AnimationButton>-->
+
+                            <control:AnimationButton
+                            UriImage="../ArtWork/icons8-stop-100.png"
+                                Command="{Binding EndImplementationCommand}"
+                                 IsEnabled="{Binding AnimationManager.IsAnimationActive}">
+                            </control:AnimationButton>
+                    
+                        <Slider Minimum="0" Maximum="3000" VerticalAlignment="Center"
+                                TickFrequency="10"
+                                IsSnapToTickEnabled="True"
+                                
+                                    Value="{Binding AnimationManager.AnimationSpeed, Mode=TwoWay}"
+                                    FlowDirection="RightToLeft"
+                                    Width="200">
+
+                        </Slider>
+                    <Image Source="../ArtWork/icons8-speed-100.png"
+                               Width="30"
+                               Height="30"></Image>
+                </StackPanel>
+            </Border>
 
         </Grid>
 
 
         <Grid Grid.Row="1">
-            <Grid.Background>
-                <LinearGradientBrush>
-                    <GradientStop Color="Black" Offset="0"></GradientStop>
-                    <GradientStop Color="gray" Offset="1"></GradientStop>
-                </LinearGradientBrush>
-            </Grid.Background>
-            <Slider x:Name="Slider"
-                    Width="200"
-                    Height="10" 
-                    Panel.ZIndex="6"
-                    Minimum="0.5" Maximum="3"
-                    HorizontalAlignment="Left"
-                    Value="{Binding ScaleValue, Mode=TwoWay}">
-            </Slider>
+            
+            
         </Grid>
 
             

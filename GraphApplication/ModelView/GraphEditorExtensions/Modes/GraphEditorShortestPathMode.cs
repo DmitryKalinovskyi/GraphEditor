@@ -21,29 +21,26 @@ namespace GraphApplication.ModelView.GraphEditorExtensions.Modes
 
         BFSShortestPathAlgorithm _algorithm;
 
-        BFSShortestPathDisplayer? _displayer;
-
         public override void VertexClicked(object sender, RoutedEventArgs e)
         {
-            if (_displayer != null)
+            if (_modelView.AnimationManager.IsAnimationActive)
             {
-                CancelAnimation();
+                MessageBox.Show("Завершіть програвання минулого алгоритму!",
+                   "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
 
             base.VertexClicked(sender, e);
         }
 
-        public void Implement()
+        public bool Implement()
         {
-            if (_displayer != null)
-                CancelAnimation();
 
             var selected = _modelView.SelectionManager.SelectedVerticles;
             if (selected.Count != 2)
             {
                 MessageBox.Show("Алгоритм пошуку найкоротшого шляху реалізувати не можна, поки не обрано дві вершини!",
                     "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
+                return false;
             }
 
             VertexModelView start = selected[0];
@@ -55,30 +52,28 @@ namespace GraphApplication.ModelView.GraphEditorExtensions.Modes
             {
                 MessageBox.Show("Шляху між вершинами не існує!", "Інформація",
                     MessageBoxButton.OK, MessageBoxImage.Information);
-                return;
+                return false;
             }
 
             List<VertexModelView> vertexModelViews = _modelView.GraphModelView.GetVertexModelViewsByModels(iterator);
 
-            _displayer = new(_modelView.GraphModelView, vertexModelViews);
-
-            _displayer.StartAnimation();
+            _modelView.AnimationManager.SetAnimation(new BFSShortestPathDisplayer(_modelView.GraphModelView, vertexModelViews));
+            return true;
         }
 
-        private void CancelAnimation()
-        {
-            if (_displayer != null)
-            {
-                _displayer.StopAnimation();
-                _displayer.RestoreAnimation();
-                _displayer = null;
-                _modelView.SelectionManager.DiselectAll();
-            }
-        }
+        //private void CancelAnimation()
+        //{
+        //    if (_displayer != null)
+        //    {
+        //        _displayer.StopAnimation();
+        //        _displayer.RestoreAnimation();
+        //        _displayer = null;
+        //        _modelView.SelectionManager.DiselectAll();
+        //    }
+        //}
 
         public override void OnModeSwitch()
         {
-            CancelAnimation();
         }
     }
 }

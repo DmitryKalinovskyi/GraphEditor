@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:GraphApplication.View"
         xmlns:myControl="clr-namespace:GraphApplication.CustomControls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
+        Title="MainWindow" Height="500" Width="800"
+        MinHeight="500" MinWidth="800"
         WindowStartupLocation="CenterScreen"
         Closing="Window_Closing" Icon="/ArtWork/windowIcon.ico">
     <Window.Resources>
@@ -51,7 +52,7 @@
                     Modifiers="Shift"
                     />
         <KeyBinding Key="I"
-                    Command="{Binding ImplementAlgorithmCommand}"
+                    Command="{Binding SelectedView.ImplementAlgorithmCommand}"
                     Modifiers="Shift"
                     />
         
@@ -107,6 +108,10 @@
                 <MenuItem Header="DFS"
                           Command="{Binding ChangeEditorModeCommand}"
                           CommandParameter="GraphEditorDFSMode">
+                </MenuItem>
+                <MenuItem Header="Shortest path"
+                          Command="{Binding ChangeEditorModeCommand}"
+                          CommandParameter="GraphEditorShortestPathMode">
                 </MenuItem>
             </MenuItem>
         </Menu>

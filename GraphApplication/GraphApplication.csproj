@@ -23,6 +23,13 @@
     <None Remove="ArtWork\hand-32.png" />
     <None Remove="ArtWork\hand-64.png" />
     <None Remove="ArtWork\hand-96.png" />
+    <None Remove="ArtWork\icons8-pause-100.png" />
+    <None Remove="ArtWork\icons8-pause-50.png" />
+    <None Remove="ArtWork\icons8-speed-100.png" />
+    <None Remove="ArtWork\icons8-speed-50.png" />
+    <None Remove="ArtWork\icons8-start-90.png" />
+    <None Remove="ArtWork\icons8-stop-100.png" />
+    <None Remove="ArtWork\icons8-stop-50.png" />
     <None Remove="ArtWork\move-100.png" />
     <None Remove="ArtWork\move-50.png" />
     <None Remove="ArtWork\path-32.png" />
@@ -83,6 +90,27 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="ArtWork\hand-96.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ArtWork\icons8-pause-100.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ArtWork\icons8-pause-50.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ArtWork\icons8-speed-100.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ArtWork\icons8-speed-50.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ArtWork\icons8-start-90.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ArtWork\icons8-stop-100.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ArtWork\icons8-stop-50.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="ArtWork\move-100.png">

@@ -10,15 +10,12 @@ using System.Threading.Tasks;
 
 namespace GraphApplication.ModelView.GraphEditorExtensions.Displaying
 {
-    public class BFSShortestPathDisplayer: IDisplayAnimation
+    public class BFSShortestPathDisplayer: LinearAnimation
     {
         private List<VertexModelView> _path;
         private List<EdgeModelView> _edges;
 
         private GraphModelView _graphModelView;
-
-        private Thread animationThread;
-        public int moveDelay = 200;
 
 
         public BFSShortestPathDisplayer(GraphModelView graphModelView, List<VertexModelView> path)
@@ -26,23 +23,18 @@ namespace GraphApplication.ModelView.GraphEditorExtensions.Displaying
             _path = path;
             _edges = new();
             _graphModelView = graphModelView;
-            animationThread = new(Animation);
+            _animationThread = new(Animation);
         }
-
-        private bool isCanceled = false;
-
-        public void StartAnimation()
-        {
-            animationThread.Start();
-        }
-
         private void Animation()
         {
             _path[0].IsMarked = true;
 
+            Thread.Sleep(AnimationKeyFrameDelay);
+
+
             for (int i = 1; i < _path.Count(); i++)
             {
-                if (isCanceled) return;
+                if (_isCanceled) return;
 
                 try
                 {
@@ -62,16 +54,11 @@ namespace GraphApplication.ModelView.GraphEditorExtensions.Displaying
                     Trace.WriteLine(e);
                 }
 
-                Thread.Sleep(moveDelay);
+                Thread.Sleep(AnimationKeyFrameDelay);
             }
         }
 
-        public void StopAnimation()
-        {
-            isCanceled = true;
-        }
-
-        public void RestoreAnimation()
+        public override void RestoreAnimation()
         {
             foreach (var v in _path)
             {

@@ -1,6 +1,7 @@
 ﻿using GraphApplication.Fabrication;
 using GraphApplication.Model;
 using GraphApplication.ModelView.GraphEditorExtensions;
+using GraphApplication.ModelView.GraphEditorExtensions.Modes;
 using GraphApplication.Services;
 using GraphApplication.Services.Commands;
 using GraphApplication.View;
@@ -15,6 +16,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Shapes;
 
 namespace GraphApplication.ModelView
 {
@@ -22,38 +24,7 @@ namespace GraphApplication.ModelView
     {
         #region Commands
 
-        private RelayCommand _implementAlgorithmCommand;
-
-        public RelayCommand ImplementAlgorithmCommand
-        {
-            get
-            {
-                return _implementAlgorithmCommand ??
-                    (_implementAlgorithmCommand = new RelayCommand(obj =>
-                    {
-                        if (_selectedView == null)
-                        {
-                            MessageBox.Show("Не створено вкладки для реалізації алгоритму!", "Попередження",
-                                MessageBoxButton.OK, MessageBoxImage.Warning);
-
-                            return;
-                        }
-
-                        Trace.WriteLine("type of selected EditorMode " + _selectedView.CurrentEditorMode.GetType().Name);
-
-                        if(_selectedView.CurrentEditorMode  is IAlgorithmImplementer implementer)
-                        {
-                            implementer.Implement();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Алгоритм для реалізації не обрано!", "Попередження",
-                                MessageBoxButton.OK, MessageBoxImage.Warning);
-                        }
-
-                    }));
-            }
-        }
+       
         private RelayCommand _createGraphCommand;
         public RelayCommand CreateGraphCommand
         {
@@ -105,8 +76,8 @@ namespace GraphApplication.ModelView
                             Trace.WriteLine("Generating graph...");
 
                             GraphModelArgs args = new GraphModelArgs();
-                            args.MaxTop = 1000;
-                            args.MaxLeft= 1000;
+                            args.MaxTop = 2000;
+                            args.MaxLeft= 2000;
                             args.Deegre = 3;
                             args.VerticlesCount = 500;
 
@@ -158,7 +129,7 @@ namespace GraphApplication.ModelView
                                     view.IsSaved = true;
                                     _fileService.Save(path, view.Model);
                                     _openedGraphEditorModelViews[view] = path;
-                                    view.Name = Path.GetFileName(path);
+                                    view.Name = System.IO.Path.GetFileName(path);
                                 }
                             }
 
@@ -241,7 +212,7 @@ namespace GraphApplication.ModelView
                                      return;
                                  }
 
-                                 string name = Path.GetFileName(path);
+                                 string name = System.IO.Path.GetFileName(path);
 
                                  GraphEditorModel modelView = _fileService.Open(path);
 
@@ -285,6 +256,13 @@ namespace GraphApplication.ModelView
                             if (mode == null)
                                 throw new Exception("Failed to get new mode instance");
 
+                            if(SelectedView.AnimationManager.IsAnimationActive == true 
+                            && mode is GraphEditorBuildingMode)
+                            {
+                                MessageBox.Show("Поки анімація не завершена редагувати граф неможливо!", "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                return;
+                            }
+
                             ActiveMode = mode;
 
                         }
@@ -297,6 +275,8 @@ namespace GraphApplication.ModelView
         }
 
         #endregion
+
+        
 
 
         private Dictionary<GraphEditorModelView, string> _openedGraphEditorModelViews;
