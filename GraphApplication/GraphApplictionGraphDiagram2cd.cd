@@ -139,7 +139,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="GraphApplication.ModelView.GraphEditorExtensions.Modes.GraphEditorCanvasMovingMode" Collapsed="true">
-    <Position X="1" Y="4.75" Width="1.5" />
+    <Position X="1.25" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAACAAAEAAAAAAABAAAIAAAAAQEAAAAIA=</HashCode>
       <FileName>ModelView\GraphEditorExtensions\Modes\GraphEditorCanvasMovingMode.cs</FileName>

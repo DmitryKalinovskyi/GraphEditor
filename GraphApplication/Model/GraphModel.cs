@@ -50,6 +50,9 @@ namespace GraphApplication.Model
 
         public void RemoveEdge(EdgeModel edge)
         {
+            EdgeDictionary.Remove((edge.Start, edge.End));
+            EdgeDictionary.Remove((edge.End, edge.Start));
+
             AdjancencyDictionary[edge.Start].Remove(edge.End);
             AdjancencyDictionary[edge.End].Remove(edge.Start);
 
