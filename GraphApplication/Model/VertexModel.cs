@@ -31,13 +31,11 @@ namespace GraphApplication.Model
             Id = id;
             Caption = id.ToString();
         }
-
         public VertexModel(string caption, int id)
         {
             Caption = caption;
             Id = id;
         }
-
         public VertexModel(double left, double top, int id)
         {
             Caption = id.ToString();

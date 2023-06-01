@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace GraphApplication.ModelView.GraphEditorExtensions.Displaying
 {
-    public class DFSDisplayer: LinearAnimation
+    public class DFSDisplayer: Animation
     {
         private (List<VertexModelView>, List<EdgeModelView>) _path;
 

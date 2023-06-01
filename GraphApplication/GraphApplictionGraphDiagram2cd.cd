@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="GraphApplication.Algorithms.BFSAlgorithm" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="18.5" Y="8.25" Width="1.5" />
+    <Position X="25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Algorithms\BFSAlgorithm.cs</FileName>
@@ -9,7 +9,7 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="GraphApplication.Algorithms.BFSShortestPathAlgorithm" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="18" Y="9" Width="2" />
+    <Position X="26.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAEAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Algorithms\BFSShortestPathAlgorithm.cs</FileName>
@@ -17,106 +17,121 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="GraphApplication.Algorithms.DFSAlgorithm" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="18.5" Y="9.75" Width="1.5" />
+    <Position X="28.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Algorithms\DFSAlgorithm.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
+  <Class Name="GraphApplication.CustomControls.AnimationButton" Collapsed="true">
+    <Position X="21.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CustomControls\AnimationButton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Class Name="GraphApplication.CustomControls.ToolButton" Collapsed="true">
-    <Position X="24.5" Y="6.75" Width="1.5" />
+    <Position X="21.5" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAIAAAAAAAAAAAAABBAAAAAAAAAAAAAAAAAACAAA=</HashCode>
       <FileName>CustomControls\ToolButton.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GraphApplication.CustomControls.VertexButton" Collapsed="true">
-    <Position X="22.75" Y="6.75" Width="1.5" />
+    <Position X="25" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>CustomControls\VertexButton.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GraphApplication.Fabrication.GeneratorArgs" Collapsed="true">
-    <Position X="16" Y="7" Width="1.5" />
+    <Position X="23.25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Fabrication\GeneratorArgs.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GraphApplication.Fabrication.GraphModelArgs" Collapsed="true">
-    <Position X="14.25" Y="7" Width="1.5" />
+    <Position X="23.25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAABCAgAAAAAAAAAAAA=</HashCode>
       <FileName>Fabrication\GraphModelArgs.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GraphApplication.Fabrication.GraphModelGenerator" Collapsed="true">
-    <Position X="14" Y="6.25" Width="1.75" />
+    <Position X="25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
       <FileName>Fabrication\GraphModelGenerator.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GraphApplication.Model.EdgeModel">
-    <Position X="3" Y="8.75" Width="1.5" />
+  <Class Name="GraphApplication.Model.EdgeModel" Collapsed="true">
+    <Position X="10.5" Y="8.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAIAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model\EdgeModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GraphApplication.Model.GraphEditorModel" Collapsed="true">
-    <Position X="5.5" Y="8.75" Width="1.75" />
+    <Position X="25" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>gAAAAAIAAAAAAoAAAAAAAAAAAAAAAYDAAAAAQAAAAAA=</HashCode>
       <FileName>Model\GraphEditorModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GraphApplication.Model.GraphModel" Collapsed="true">
-    <Position X="7.75" Y="8.75" Width="1.5" />
+    <Position X="21.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAgEgAAEAAKAAAAACABCAAABAAAAACAAIAAAAAgAAAA=</HashCode>
       <FileName>Model\GraphModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GraphApplication.Model.GraphObjectModel" Collapsed="true">
-    <Position X="2" Y="7.5" Width="1.5" />
+    <Position X="9.5" Y="7.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model\GraphObjectModel.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GraphApplication.Model.VertexModel">
-    <Position X="0.75" Y="8.75" Width="1.5" />
+  <Class Name="GraphApplication.Model.VertexModel" Collapsed="true">
+    <Position X="8.25" Y="8.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAACAAAAAAAAAAAAEAAAAAAAAAAIAAAACAAAAAAAAAA=</HashCode>
       <FileName>Model\VertexModel.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GraphApplication.ModelView.GraphEditorExtensions.Displaying.BFSDisplayer" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="14.25" Y="8.25" Width="1.5" />
+  <Class Name="GraphApplication.ModelView.GraphEditorExtensions.Displaying.BFSDisplayer" Collapsed="true">
+    <Position X="0.5" Y="8.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAACAAAAgAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ModelView\GraphEditorExtensions\Displaying\BFSDisplayer.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GraphApplication.ModelView.GraphEditorExtensions.Displaying.BFSShortestPathDisplayer" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="13.75" Y="9.75" Width="2" />
+  <Class Name="GraphApplication.ModelView.GraphEditorExtensions.Displaying.BFSShortestPathDisplayer" Collapsed="true">
+    <Position X="2.75" Y="8.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAACAAAAgAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ModelView\GraphEditorExtensions\Displaying\BFSShortestPathDisplayer.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="GraphApplication.ModelView.GraphEditorExtensions.Displaying.DFSDisplayer" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="14.25" Y="9" Width="1.5" />
+  <Class Name="GraphApplication.ModelView.GraphEditorExtensions.Displaying.DFSDisplayer" Collapsed="true">
+    <Position X="5" Y="8.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAACAAAAgAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ModelView\GraphEditorExtensions\Displaying\DFSDisplayer.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="GraphApplication.ModelView.GraphEditorExtensions.Displaying.Animation" Collapsed="true">
+    <Position X="2.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACIAAAAAAAQAgAEEAAAAAACAAAAAIAAQIAEAAAA=</HashCode>
+      <FileName>ModelView\GraphEditorExtensions\Displaying\Animation.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
   <Class Name="GraphApplication.ModelView.GraphEditorExtensions.Modes.GraphEditorBFSMode" Collapsed="true">
-    <Position X="0.75" Y="3.25" Width="1.75" />
+    <Position X="5.5" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAEAAAIAAAAAAAAAAAAAAAAIAAAAAAAAAQAAA=</HashCode>
       <FileName>ModelView\GraphEditorExtensions\Modes\GraphEditorBFSMode.cs</FileName>
@@ -124,14 +139,14 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="GraphApplication.ModelView.GraphEditorExtensions.Modes.GraphEditorCanvasMovingMode" Collapsed="true">
-    <Position X="6.5" Y="1.75" Width="2.5" />
+    <Position X="1" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAACAAAEAAAAAAABAAAIAAAAAQEAAAAIA=</HashCode>
       <FileName>ModelView\GraphEditorExtensions\Modes\GraphEditorCanvasMovingMode.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GraphApplication.ModelView.GraphEditorExtensions.Modes.GraphEditorDFSMode" Collapsed="true">
-    <Position X="5.75" Y="3.25" Width="1.75" />
+    <Position X="3.25" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAEAAAIAAAAAAAAAAAAAAAAIAAAAAAAAAQAAA=</HashCode>
       <FileName>ModelView\GraphEditorExtensions\Modes\GraphEditorDFSMode.cs</FileName>
@@ -139,15 +154,15 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="GraphApplication.ModelView.GraphEditorExtensions.Modes.GraphEditorEdgeCreationMode" Collapsed="true">
-    <Position X="11.75" Y="1.75" Width="1.5" />
+    <Position X="12.25" Y="6.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAgAAAMAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAMAAAAAAAAAAAAA=</HashCode>
       <FileName>ModelView\GraphEditorExtensions\Modes\GraphEditorEdgeCreationMode.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="GraphApplication.ModelView.GraphEditorExtensions.Modes.GraphEditorHideMode" Collapsed="true">
-    <Position X="14" Y="1.75" Width="1.5" />
+    <Position X="14.5" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
       <FileName>ModelView\GraphEditorExtensions\Modes\GraphEditorHideMode.cs</FileName>
@@ -155,7 +170,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="GraphApplication.ModelView.GraphEditorExtensions.Modes.GraphEditorMovingMode" Collapsed="true">
-    <Position X="16.25" Y="1.75" Width="1.5" />
+    <Position X="16.75" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAgAAAAADAAAAAAAAAABAAAAIAAAAAQEAAAAAA=</HashCode>
       <FileName>ModelView\GraphEditorExtensions\Modes\GraphEditorMovingMode.cs</FileName>
@@ -163,7 +178,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="GraphApplication.ModelView.GraphEditorExtensions.Modes.GraphEditorRemovingMode" Collapsed="true">
-    <Position X="18.25" Y="1.75" Width="1.5" />
+    <Position X="19" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAIAAAAABAAAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
       <FileName>ModelView\GraphEditorExtensions\Modes\GraphEditorRemovingMode.cs</FileName>
@@ -171,14 +186,14 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="GraphApplication.ModelView.GraphEditorExtensions.Modes.GraphEditorSelectionMode" Collapsed="true">
-    <Position X="3.25" Y="1.75" Width="2.25" />
+    <Position X="5.5" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAABAAAIAAAAAAAAAAAAA=</HashCode>
       <FileName>ModelView\GraphEditorExtensions\Modes\GraphEditorSelectionMode.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GraphApplication.ModelView.GraphEditorExtensions.Modes.GraphEditorShortestPathMode" Collapsed="true">
-    <Position X="3" Y="3.25" Width="2.5" />
+    <Position X="7.75" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAEAAAIAAAAAAAAAAAAAAAAIAAAAAAAAAQAAA=</HashCode>
       <FileName>ModelView\GraphEditorExtensions\Modes\GraphEditorShortestPathMode.cs</FileName>
@@ -186,7 +201,7 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="GraphApplication.ModelView.GraphEditorExtensions.Modes.GraphEditorVertexCreationMode" Collapsed="true">
-    <Position X="9.5" Y="1.75" Width="1.5" />
+    <Position X="10" Y="6.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAABAAAIAAAAAAAAAAAAA=</HashCode>
       <FileName>ModelView\GraphEditorExtensions\Modes\GraphEditorVertexCreationMode.cs</FileName>
@@ -194,56 +209,63 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="GraphApplication.ModelView.GraphEditorExtensions.EditorModeConverter" Collapsed="true">
-    <Position X="18.5" Y="5.5" Width="1.5" />
+    <Position X="21.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ModelView\GraphEditorExtensions\EditorModeConverter.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GraphApplication.ModelView.GraphEditorExtensions.GraphEditorMode" Collapsed="true">
-    <Position X="10.75" Y="0.5" Width="1.5" />
+    <Position X="10" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>ABAAAAAwAAACYBAAQFBAABAgBHEAAIAASAABAAAEAIA=</HashCode>
       <FileName>ModelView\GraphEditorExtensions\GraphEditorMode.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GraphApplication.ModelView.GraphEditorExtensions.GraphEditorSelectionManager" Collapsed="true">
-    <Position X="5.25" Y="7" Width="2.25" />
+    <Position X="26.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAEAAAAAAAAAAAAAEICAAAgAAAQAAAAAA=</HashCode>
       <FileName>ModelView\GraphEditorExtensions\GraphEditorSelectionManager.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GraphApplication.ModelView.EdgeModelView" Collapsed="true">
-    <Position X="1" Y="5.75" Width="1.5" />
+    <Position X="7.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAIAAAAAACEAAAAAAAAAABAAAAAAAAAAAAgAAAAAAAA=</HashCode>
       <FileName>ModelView\EdgeModelView.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="GraphApplication.ModelView.GraphEditorAnimationManager" Collapsed="true">
+    <Position X="9.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAAAEAAAAgACAAAAAAQAgAAAgAAA=</HashCode>
+      <FileName>ModelView\GraphEditorAnimationManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Class Name="GraphApplication.ModelView.GraphEditorModelView" Collapsed="true">
-    <Position X="3.25" Y="5.75" Width="1.5" />
+    <Position X="12" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IABAIAQACBCCQgACgCQAAARAAFAAABLQIAiAQAAAECA=</HashCode>
       <FileName>ModelView\GraphEditorModelView.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GraphApplication.ModelView.GraphModelView" Collapsed="true">
-    <Position X="5.5" Y="5.75" Width="1.5" />
+    <Position X="0.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAIQIAAAAIgAACAEQCBAMIACAAAgAAAAAAAA=</HashCode>
       <FileName>ModelView\GraphModelView.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GraphApplication.ModelView.MainWindowModelView" Collapsed="true">
-    <Position X="7.75" Y="5.75" Width="1.5" />
+    <Position X="3" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAGEEAACEIgBAABAAAAAAAAAAMABBBYCAAEECAAA=</HashCode>
       <FileName>ModelView\MainWindowModelView.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GraphApplication.ModelView.NotifyModelView" Collapsed="true">
-    <Position X="5.5" Y="4.5" Width="1.5" />
+    <Position X="6.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAIAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ModelView\NotifyModelView.cs</FileName>
@@ -251,14 +273,14 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="GraphApplication.ModelView.VertexModelView" Collapsed="true">
-    <Position X="10" Y="5.75" Width="1.5" />
+    <Position X="5.25" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAEAEAAAEAAAABCAAAAIAAAACAgAAAAAAAA=</HashCode>
       <FileName>ModelView\VertexModelView.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GraphApplication.Services.Commands.RelayCommand" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="18.5" Y="6.25" Width="1.5" />
+    <Position X="28.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAACAAQAAEAEAABAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Services\Commands\RelayCommand.cs</FileName>
@@ -266,7 +288,7 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="GraphApplication.Services.XMLFileService&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="18.5" Y="7" Width="1.5" />
+    <Position X="26.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAIAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Services\XMLFileService.cs</FileName>
@@ -274,7 +296,7 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="GraphApplication.View.GraphEditorView" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="12.5" Y="5" Width="1.5" />
+    <Position X="28.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAAAAAABQAAAAEAAAAAACAQEAACIAAAAABIAAAAECAA=</HashCode>
       <FileName>View\GraphEditorView.xaml.cs</FileName>
@@ -282,7 +304,7 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="GraphApplication.View.MainWindow" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="16" Y="5" Width="1.5" />
+    <Position X="26.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>View\MainWindow.xaml.cs</FileName>
@@ -290,7 +312,7 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="GraphApplication.View.ToolButtonCheckConverter" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="24.5" Y="6" Width="2.25" />
+    <Position X="23.25" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>View\ToolButtonCheckConverter.cs</FileName>
@@ -298,49 +320,49 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="GraphApplication.App" Collapsed="true">
-    <Position X="14.25" Y="5" Width="1.5" />
+    <Position X="23.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>App.xaml.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Interface Name="GraphApplication.Algorithms.IAlgorithm&lt;T&gt;" Collapsed="true">
-    <Position X="24.5" Y="5.25" Width="1.5" />
+    <Position X="21.5" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Algorithms\IAlgorithm.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="GraphApplication.Algorithms.IIterativeAlgorithm" Collapsed="true">
-    <Position X="20.25" Y="8.25" Width="1.75" />
+    <Position X="28.5" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Algorithms\IIterativeAlgorithm.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="GraphApplication.Fabrication.IObjectGenerator" Collapsed="true">
-    <Position X="16" Y="6.25" Width="1.5" />
+    <Position X="21.5" Y="5.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
       <FileName>Fabrication\IObjectGenerator.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="GraphApplication.ModelView.GraphEditorExtensions.Displaying.IDisplayAnimation" Collapsed="true">
-    <Position X="16" Y="8.25" Width="1.75" />
+    <Position X="25" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAQAgAEEAAAAAACAAAAAAAAAAAEAAAA=</HashCode>
       <FileName>ModelView\GraphEditorExtensions\Displaying\IDisplayAnimation.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="GraphApplication.ModelView.GraphEditorExtensions.IAlgorithmImplementer" Collapsed="true">
-    <Position X="8" Y="3.5" Width="2" />
+    <Position X="23.25" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>ModelView\GraphEditorExtensions\IAlgorithmImplementer.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="GraphApplication.Services.IFileService&lt;T&gt;" Collapsed="true">
-    <Position X="20.25" Y="7" Width="1.5" />
+    <Position X="26.75" Y="4.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAIAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Services\IFileService.cs</FileName>

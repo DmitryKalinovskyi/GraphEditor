@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GraphApplication.ModelView.GraphEditorExtensions.Displaying
 {
-    public abstract class LinearAnimation : IDisplayAnimation
+    public abstract class Animation : IDisplayAnimation
     {
         public int AnimationKeyFrameDelay { get; set; }
 
@@ -19,7 +19,7 @@ namespace GraphApplication.ModelView.GraphEditorExtensions.Displaying
 
         protected bool _isPaused;
 
-        public LinearAnimation()
+        public Animation()
         {
             _isStarted = false;
             _isPaused = false;

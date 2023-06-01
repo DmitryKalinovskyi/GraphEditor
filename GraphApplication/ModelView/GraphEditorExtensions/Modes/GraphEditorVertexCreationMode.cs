@@ -12,7 +12,7 @@ using System.Windows.Input;
 
 namespace GraphApplication.ModelView.GraphEditorExtensions.Modes
 {
-    class GraphEditorVertexCreationMode : GraphEditorBuildingMode
+    class GraphEditorVertexCreationMode : GraphEditorMode, IBuildingMode
     {
         public GraphEditorVertexCreationMode(GraphEditorModelView modelView) : base(modelView)
         {

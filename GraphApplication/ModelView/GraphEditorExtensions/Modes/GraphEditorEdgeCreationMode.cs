@@ -12,7 +12,7 @@ using System.Windows.Input;
 
 namespace GraphApplication.ModelView.GraphEditorExtensions.Modes
 {
-    public class GraphEditorEdgeCreationMode : GraphEditorBuildingMode
+    public class GraphEditorEdgeCreationMode : GraphEditorMode, IBuildingMode
     {
         public GraphEditorEdgeCreationMode(GraphEditorModelView modelView) : base(modelView)
         {
@@ -20,32 +20,26 @@ namespace GraphApplication.ModelView.GraphEditorExtensions.Modes
         }
 
 
-        VertexModelView? startVertex;
-
         public override void VertexClicked(object sender, RoutedEventArgs e)
         {
+            Trace.WriteLine("Edge clicked!");
+
             VertexModelView? clickedVertex = ((VertexButton)sender).DataContext as VertexModelView;
 
             if (clickedVertex == null)
                 return;
+            Trace.WriteLine($"Edge Proceeded! {clickedVertex.Model.Id}");
+
 
             _modelView.IsSaved = false;
 
-            if (startVertex == null)
+            _modelView.SelectionManager.Select(clickedVertex);
+
+            var selected = _modelView.SelectionManager.SelectedVerticles;
+            if (selected.Count() == 2)
             {
-                startVertex = clickedVertex;
-                clickedVertex.IsSelected = true;
-            }
-            else if (clickedVertex == startVertex)
-            {
-                startVertex.IsSelected = false;
-                startVertex = null;
-            }
-            else
-            {
-                CreateEdge(startVertex, clickedVertex);
-                startVertex.IsSelected = false;
-                startVertex = null;
+                CreateEdge(selected[0], selected[1]);
+                _modelView.SelectionManager.DiselectAll();
             }
         }
 
@@ -66,8 +60,7 @@ namespace GraphApplication.ModelView.GraphEditorExtensions.Modes
 
         public override void OnModeSwitch()
         {
-            if (startVertex != null)
-                startVertex.IsSelected = false;
+            _modelView.SelectionManager.DiselectAll();
         }
     }
 }

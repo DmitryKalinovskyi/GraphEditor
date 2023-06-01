@@ -13,6 +13,8 @@ namespace GraphApplication.Model
     {
         [DataMember]
         private List<VertexModel> _verticles;
+        [DataMember]
+        private List<EdgeModel> _edges;
 
         public List<VertexModel> Verticles => _verticles;
 
@@ -33,13 +35,7 @@ namespace GraphApplication.Model
             AdjancencyDictionary.Remove(vertex);
         }
 
-
-        [DataMember]
-        private List<EdgeModel> _edges;
-
         public List<EdgeModel> Edges => _edges;
-
-
 
         public void AddEdge(EdgeModel edge)
         {
@@ -60,9 +56,9 @@ namespace GraphApplication.Model
             _edges.Remove(edge);
         }
 
+        // Graph representations
         private Dictionary<VertexModel, HashSet<VertexModel>> _adjancencyList;
         private Dictionary<(VertexModel, VertexModel), EdgeModel> _edgeDictionary;
-
 
         public Dictionary<VertexModel, HashSet<VertexModel>> AdjancencyDictionary
         {
@@ -129,9 +125,7 @@ namespace GraphApplication.Model
 
             _adjancencyList = BuildAdjancencyList();
         }
-
         
-
         public GraphModel()
         {
             _verticles = new List<VertexModel>();

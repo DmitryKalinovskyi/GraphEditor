@@ -257,7 +257,7 @@ namespace GraphApplication.ModelView
                                 throw new Exception("Failed to get new mode instance");
 
                             if(SelectedView.AnimationManager.IsAnimationActive == true 
-                            && mode is GraphEditorBuildingMode)
+                            && mode is IBuildingMode)
                             {
                                 MessageBox.Show("Поки анімація не завершена редагувати граф неможливо!", "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
                                 return;
@@ -275,9 +275,6 @@ namespace GraphApplication.ModelView
         }
 
         #endregion
-
-        
-
 
         private Dictionary<GraphEditorModelView, string> _openedGraphEditorModelViews;
 

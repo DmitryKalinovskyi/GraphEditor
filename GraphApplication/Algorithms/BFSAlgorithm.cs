@@ -21,7 +21,6 @@ namespace GraphApplication.Algorithms
             Queue<VertexModel> queue = new Queue<VertexModel>();
             Queue<EdgeModel> edgesQueue = new Queue<EdgeModel>();
 
-
             queue.Enqueue(startPoint);
 
             visited.Add(startPoint);
@@ -34,10 +33,6 @@ namespace GraphApplication.Algorithms
                 if (edgesQueue.Count > 0)
                     edges.Add(edgesQueue.Dequeue());
 
-                //if(edgesQueue.Count > 0)
-                //{
-                //    edges.Add(edgesQueue.Dequeue());
-                //}
                 visited.Add(topElement);
 
 

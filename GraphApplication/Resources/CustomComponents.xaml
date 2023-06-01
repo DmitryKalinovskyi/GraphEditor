@@ -96,7 +96,7 @@
                                                 <Condition Binding="{Binding IsMarked}" Value="True"></Condition>
                                             </MultiDataTrigger.Conditions>
 
-                                            <Setter Property="BorderBrush" Value="Crimson"></Setter>
+                                            <Setter Property="BorderBrush" Value="Red"></Setter>
                                             <Setter Property="BorderThickness" Value="4"></Setter>
                                         </MultiDataTrigger>
                                         <MultiDataTrigger>
@@ -160,7 +160,7 @@
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Style.Triggers>
             <DataTrigger Binding="{Binding IsMarked}" Value="True">
-                <Setter Property="Stroke" Value="Crimson"></Setter>
+                <Setter Property="Stroke" Value="Red"></Setter>
             </DataTrigger>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>

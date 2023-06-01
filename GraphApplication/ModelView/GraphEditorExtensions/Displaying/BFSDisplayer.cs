@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GraphApplication.ModelView.GraphEditorExtensions.Displaying
 {
-    public class BFSDisplayer : LinearAnimation
+    public class BFSDisplayer : Animation
     {
         private (List<VertexModelView>, List<EdgeModelView>) _path;
 

@@ -13,7 +13,7 @@ using System.Windows.Input;
 
 namespace GraphApplication.ModelView.GraphEditorExtensions.Modes
 {
-    public class GraphEditorMovingMode : GraphEditorBuildingMode
+    public class GraphEditorMovingMode : GraphEditorMode, IBuildingMode
     {
         public GraphEditorMovingMode(GraphEditorModelView modelView) : base(modelView)
         {

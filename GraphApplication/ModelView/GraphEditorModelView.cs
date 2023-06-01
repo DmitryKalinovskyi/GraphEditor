@@ -131,39 +131,6 @@ namespace GraphApplication.ModelView
 
         #endregion
 
-        //private RelayCommand _pauseAnimation;
-
-        //public RelayCommand PauseAnimation
-        //{
-        //    get
-        //    {
-        //        return _pauseAnimation  ??
-        //            (_pauseAnimation = new RelayCommand(obj =>
-        //            {
-        //                try
-        //                {
-
-        //                    if (SelectedView == null)
-        //                    {
-        //                        return;
-        //                    }
-
-        //                    if (SelectedView.AnimationManager.Animation == null)
-        //                    {
-        //                        MessageBox.Show("Немає обраної анімації алгоритма", "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
-        //                        return;
-        //                    }
-
-        //                    SelectedView.AnimationManager.Animation.PauseAnimation();
-
-        //                }
-        //                catch (Exception ex)
-        //                {
-        //                    Trace.WriteLine(ex);
-        //                }
-        //            }));
-        //    }
-        //}
 
         public GraphEditorModel Model { get; private set; }
 

@@ -48,8 +48,8 @@
 
                             <GradientStop Color="White" Offset="1.0" />
                         </LinearGradientBrush>-->
-                    <SolidColorBrush>
-                        Gray
+                    <SolidColorBrush Color="LightBlue">
+                        
                     </SolidColorBrush>
                     </Canvas.Background>
 

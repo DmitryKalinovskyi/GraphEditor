@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace GraphApplication.ModelView.GraphEditorExtensions.Displaying
 {
-    public class BFSShortestPathDisplayer: LinearAnimation
+    public class BFSShortestPathDisplayer: Animation
     {
         private (List<VertexModelView>, List<EdgeModelView>) _path;
 
