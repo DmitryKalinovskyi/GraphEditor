@@ -23,8 +23,6 @@ namespace GraphApplication.ModelView
     public class MainWindowModelView : NotifyModelView
     {
         #region Commands
-
-       
         private RelayCommand _createGraphCommand;
         public RelayCommand CreateGraphCommand
         {
@@ -276,6 +274,7 @@ namespace GraphApplication.ModelView
 
         #endregion
 
+        // Use dictionary to limit opening the same graph few times
         private Dictionary<GraphEditorModelView, string> _openedGraphEditorModelViews;
 
         private IFileService<GraphEditorModel> _fileService;

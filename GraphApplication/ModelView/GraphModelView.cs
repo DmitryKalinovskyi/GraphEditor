@@ -18,12 +18,17 @@ namespace GraphApplication.ModelView
         public int VertexCount { get { return VertexModelViews.Count(); } }
         public int EdgeCount { get { return EdgeModelViews.Count(); } }
 
+
+        // Dictionary to get ModelView by Model
         public Dictionary<VertexModel, VertexModelView> VertexModelViewAssociation { get; private set; }
         public Dictionary<EdgeModel, EdgeModelView> EdgeModelViewAssociation { get; private set; } 
 
         public List<VertexModelView> GetVertexModelViewsByModels(IEnumerable<VertexModel> models)
         {
             List<VertexModelView> vertexModelViews = new List<VertexModelView>();
+
+            if (models == null || models.Count() == 0)
+                return vertexModelViews;
 
             foreach (VertexModel model in models)
                 vertexModelViews.Add(VertexModelViewAssociation[model]);
@@ -34,6 +39,9 @@ namespace GraphApplication.ModelView
         public List<EdgeModelView> GetEdgeModelViewsByModels(IEnumerable<EdgeModel> models)
         {
             List<EdgeModelView> edgeModelViews = new List<EdgeModelView>();
+
+            if (models == null || models.Count() == 0)
+                return edgeModelViews;
 
             foreach (EdgeModel model in models)
                 edgeModelViews.Add(EdgeModelViewAssociation[model]);
@@ -50,35 +58,40 @@ namespace GraphApplication.ModelView
                 _model = value;
 
                 //create all modelViews elements 
-                VertexModelViewAssociation = new Dictionary<VertexModel, VertexModelView>();
-                EdgeModelViewAssociation = new Dictionary<EdgeModel, EdgeModelView>();
-
-                VertexModelViews = new ObservableCollection<VertexModelView>();
-
-                Model.Verticles.ForEach(vertexModel => {
-                    VertexModelView modelView = new VertexModelView(vertexModel);
-                    VertexModelViewAssociation[vertexModel] = modelView;
-
-                    VertexModelViews.Add(modelView);
-                });
-
-                EdgeModelViews = new ObservableCollection<EdgeModelView>();
-
-                Model.Edges.ForEach(edge => {
-                    EdgeModelView modelView = new(edge, VertexModelViewAssociation[edge.Start], VertexModelViewAssociation[edge.End]);
-                    EdgeModelViewAssociation[modelView.Model] = modelView;
-
-                    EdgeModelViews.Add(modelView);
-                });
-
-                VertexModelViews.CollectionChanged += OnVertexCollectionChanged;
-
-                EdgeModelViews.CollectionChanged += OnEdgeCollectionChanged;
-
-                OnPropertyChanged(nameof(Model));
-                OnPropertyChanged(nameof(VertexCount));
-                OnPropertyChanged(nameof(EdgeCount));
+                InitializeDependentModelViews();
             }
+        }
+
+        protected void InitializeDependentModelViews()
+        {
+            VertexModelViewAssociation = new Dictionary<VertexModel, VertexModelView>();
+            EdgeModelViewAssociation = new Dictionary<EdgeModel, EdgeModelView>();
+
+            VertexModelViews = new ObservableCollection<VertexModelView>();
+
+            Model.Verticles.ForEach(vertexModel => {
+                VertexModelView modelView = new VertexModelView(vertexModel);
+                VertexModelViewAssociation[vertexModel] = modelView;
+
+                VertexModelViews.Add(modelView);
+            });
+
+            EdgeModelViews = new ObservableCollection<EdgeModelView>();
+
+            Model.Edges.ForEach(edge => {
+                EdgeModelView modelView = new(edge, VertexModelViewAssociation[edge.Start], VertexModelViewAssociation[edge.End]);
+                EdgeModelViewAssociation[modelView.Model] = modelView;
+
+                EdgeModelViews.Add(modelView);
+            });
+
+            VertexModelViews.CollectionChanged += OnVertexCollectionChanged;
+
+            EdgeModelViews.CollectionChanged += OnEdgeCollectionChanged;
+
+            OnPropertyChanged(nameof(Model));
+            OnPropertyChanged(nameof(VertexCount));
+            OnPropertyChanged(nameof(EdgeCount));
         }
 
         private void OnEdgeCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)

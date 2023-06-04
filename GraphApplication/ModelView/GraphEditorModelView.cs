@@ -228,7 +228,6 @@ namespace GraphApplication.ModelView
             }
         }
 
-
         public GraphEditorModelView(GraphEditorModel model, string name, bool isSaved = false)
         {
             Model = model;

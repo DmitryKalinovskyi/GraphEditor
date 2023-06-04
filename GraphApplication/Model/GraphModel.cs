@@ -18,107 +18,120 @@ namespace GraphApplication.Model
 
         public List<VertexModel> Verticles => _verticles;
 
+        public List<EdgeModel> Edges => _edges;
+
         public void AddVertex(VertexModel vertex)
         {
-            AdjancencyDictionary[vertex] = new HashSet<VertexModel>();
+            UpdateRepresentations(vertex);
+
             _verticles.Add(vertex);
         }
 
         public void RemoveVertex(VertexModel vertex)
         {
-            foreach(var v in AdjancencyDictionary[vertex])
-            {
-                AdjancencyDictionary[v].Remove(vertex);
-            }
+            UpdateRepresentations(vertex, false);
+
             _verticles.Remove(vertex);
-
-            AdjancencyDictionary.Remove(vertex);
         }
-
-        public List<EdgeModel> Edges => _edges;
 
         public void AddEdge(EdgeModel edge)
         {
-            AdjancencyDictionary[edge.Start].Add(edge.End);
-            AdjancencyDictionary[edge.End].Add(edge.Start);
-
-            EdgeDictionary[(edge.Start, edge.End)] = edge;
-            EdgeDictionary[(edge.End, edge.Start)] = edge;
-
+            UpdateRepresentations(edge);
             _edges.Add(edge);
         }
 
         public void RemoveEdge(EdgeModel edge)
         {
-            EdgeDictionary.Remove((edge.Start, edge.End));
-            EdgeDictionary.Remove((edge.End, edge.Start));
-
-            AdjancencyDictionary[edge.Start].Remove(edge.End);
-            AdjancencyDictionary[edge.End].Remove(edge.Start);
-
+            UpdateRepresentations(edge, false);
             _edges.Remove(edge);
         }
 
-        // Graph representations
+        protected virtual void UpdateRepresentations(VertexModel vertex, bool isAdded = true)
+        {
+            if (isAdded)
+            {
+                AdjancencyDictionary[vertex] = new HashSet<VertexModel>();
+            }
+            else
+            {
+                foreach (var v in AdjancencyDictionary[vertex])
+                {
+                    AdjancencyDictionary[v].Remove(vertex);
+                }
+                AdjancencyDictionary.Remove(vertex);
+            }
+        }
+
+        protected virtual void UpdateRepresentations(EdgeModel edge, bool isAdded = true)
+        {
+            if (isAdded)
+            {
+                AdjancencyDictionary[edge.Start].Add(edge.End);
+                AdjancencyDictionary[edge.End].Add(edge.Start);
+
+                EdgeDictionary[(edge.Start, edge.End)] = edge;
+                EdgeDictionary[(edge.End, edge.Start)] = edge;
+            }
+            else
+            {
+                EdgeDictionary.Remove((edge.Start, edge.End));
+                EdgeDictionary.Remove((edge.End, edge.Start));
+
+                AdjancencyDictionary[edge.Start].Remove(edge.End);
+                AdjancencyDictionary[edge.End].Remove(edge.Start);
+            }
+        }
+
         private Dictionary<VertexModel, HashSet<VertexModel>> _adjancencyList;
         private Dictionary<(VertexModel, VertexModel), EdgeModel> _edgeDictionary;
 
+        // two default representations for fast algorithm implementing, requires more memory
         public Dictionary<VertexModel, HashSet<VertexModel>> AdjancencyDictionary
         {
             get
             {
                 if (_adjancencyList == null)
-                    _adjancencyList = BuildAdjancencyList();
+                    InitializeRepresentations();
 
                 return _adjancencyList;
             }
-            private set
-            {
-                _adjancencyList = value;
-            }
         }
-
         public Dictionary<(VertexModel, VertexModel), EdgeModel> EdgeDictionary
         {
             get
             {
                 if(_edgeDictionary == null)
-                {
-                    _edgeDictionary = new();
-                    foreach(var edge in _edges)
-                    {
-                        EdgeDictionary[(edge.Start, edge.End)] = edge;
-                        EdgeDictionary[(edge.End, edge.Start)] = edge;
-                    }
-                }
+                    InitializeRepresentations();   
 
                 return _edgeDictionary;
             }
-
-            private set
-            {
-                _edgeDictionary = value;
-            }
         }
 
-        protected virtual Dictionary<VertexModel, HashSet<VertexModel>> BuildAdjancencyList()
+        protected virtual void InitializeRepresentations()
         {
-            Dictionary<VertexModel, HashSet<VertexModel>> adjancencyList = new();
+            _adjancencyList = new();
 
             //init AdjancencyList
             foreach (VertexModel vertex in _verticles)
             {
-                adjancencyList[vertex] = new HashSet<VertexModel>();
+                _adjancencyList[vertex] = new HashSet<VertexModel>();
             }
 
             //build AdjancencyList
             foreach (EdgeModel edge in _edges)
             {
-                adjancencyList[edge.Start].Add(edge.End);
-                adjancencyList[edge.End].Add(edge.Start);
+                _adjancencyList[edge.Start].Add(edge.End);
+                _adjancencyList[edge.End].Add(edge.Start);
             }
 
-            return adjancencyList;
+            //build EdgeDictionary
+            _edgeDictionary = new();
+            foreach (var edge in _edges)
+            {
+                EdgeDictionary[(edge.Start, edge.End)] = edge;
+                EdgeDictionary[(edge.End, edge.Start)] = edge;
+            }
+
         }
 
         public GraphModel(List<VertexModel> verticles, List<EdgeModel> edges)
@@ -126,7 +139,7 @@ namespace GraphApplication.Model
             _verticles = verticles;
             _edges = edges;
 
-            _adjancencyList = BuildAdjancencyList();
+            InitializeRepresentations();
         }
         
         public GraphModel()
@@ -134,7 +147,7 @@ namespace GraphApplication.Model
             _verticles = new List<VertexModel>();
             _edges = new List<EdgeModel>();
 
-            _adjancencyList = BuildAdjancencyList();
+            InitializeRepresentations();
         }
     }
 }
