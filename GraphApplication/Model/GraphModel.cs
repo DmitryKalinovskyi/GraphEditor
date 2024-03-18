@@ -110,6 +110,10 @@ namespace GraphApplication.Model
 
         protected virtual void InitializeRepresentations()
         {
+            // can be null due to serializing and deserializing
+            _edgeDictionary = new();
+            _adjancencyList = new();
+
             //init AdjancencyList
             foreach (VertexModel vertex in _verticles)
             {

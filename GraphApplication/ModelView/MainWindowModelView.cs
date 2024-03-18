@@ -4,26 +4,20 @@ using GraphApplication.ModelView.GraphEditorExtensions;
 using GraphApplication.ModelView.GraphEditorExtensions.Modes;
 using GraphApplication.Services;
 using GraphApplication.Services.Commands;
-using GraphApplication.View;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Shapes;
 
 namespace GraphApplication.ModelView
 {
     public class MainWindowModelView : NotifyModelView
     {
         #region Commands
-        private RelayCommand _createGraphCommand;
+        private RelayCommand? _createGraphCommand;
         public RelayCommand CreateGraphCommand
         {
             get
@@ -61,8 +55,7 @@ namespace GraphApplication.ModelView
             }
         }
 
-        private RelayCommand _generateGraphCommand;
-
+        private RelayCommand? _generateGraphCommand;
         public RelayCommand GenerateGraphCommand
         {
             get {
@@ -95,8 +88,8 @@ namespace GraphApplication.ModelView
                     }));
             }
         }
-        private RelayCommand _saveGraphCommand;
-
+        
+        private RelayCommand? _saveGraphCommand;
         public RelayCommand SaveGraphCommand
         {
             get
@@ -141,8 +134,7 @@ namespace GraphApplication.ModelView
             }
         }
 
-
-        private RelayCommand _removeGraphCommand;
+        private RelayCommand? _removeGraphCommand;
         public RelayCommand RemoveGraphCommand
         {
             get
@@ -187,7 +179,7 @@ namespace GraphApplication.ModelView
             }
         }
 
-        private RelayCommand _loadGraphCommand;
+        private RelayCommand? _loadGraphCommand;
         public RelayCommand LoadGraphCommand
         {
             get
@@ -232,8 +224,7 @@ namespace GraphApplication.ModelView
             }
         }
 
-        private RelayCommand _changeEditorModeCommand;
-
+        private RelayCommand? _changeEditorModeCommand;
         public RelayCommand ChangeEditorModeCommand
         {
             get
@@ -326,15 +317,17 @@ namespace GraphApplication.ModelView
 
         public bool ToolBarEnabled { get { return GraphEditorViews.Count() > 0; } }
 
-        public MainWindowModelView(ObservableCollection<GraphEditorModelView>  graphViews, IFileService<GraphEditorModel> fileService)
+        public MainWindowModelView(ObservableCollection<GraphEditorModelView> graphViews, IFileService<GraphEditorModel> fileService)
         {
             _fileService = fileService;
             _openedGraphEditorModelViews = new Dictionary<GraphEditorModelView, string>();
-            GraphEditorViews = graphViews;
-
+            _graphEditorViews = graphViews;
 
             GraphEditorViews.CollectionChanged += (sender, e) => OnPropertyChanged(nameof(ToolBarEnabled));
         }
+
+        // Default constructor with basic services
+        public MainWindowModelView(): this(new ObservableCollection<GraphEditorModelView>(), new XMLFileService<GraphEditorModel>()) { }
 
         public void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
