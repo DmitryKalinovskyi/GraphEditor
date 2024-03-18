@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Runtime.Serialization;
 
 namespace GraphApplication.Model
 {
@@ -13,7 +8,6 @@ namespace GraphApplication.Model
     /// 
 
     [DataContract(IsReference = true)]
-
     public class GraphEditorModel
     {
         public static double MinScale = 0.25;

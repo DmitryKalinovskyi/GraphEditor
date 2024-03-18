@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GraphApplication.ModelView.GraphEditorExtensions
+﻿namespace GraphApplication.ModelView.GraphEditorExtensions
 {
     public interface IAlgorithmImplementer
     {
-        public bool Implement();
+        public bool ImplementAlgorithm();
     }
 }

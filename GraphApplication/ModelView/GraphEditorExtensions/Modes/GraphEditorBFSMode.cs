@@ -32,7 +32,7 @@ namespace GraphApplication.ModelView.GraphEditorExtensions.Modes
             base.VertexClicked(sender, e);
         }
 
-        public bool Implement()
+        public bool ImplementAlgorithm()
         {
             List<VertexModelView> selected = _modelView.SelectionManager.SelectedVerticles;
             if (selected.Count != 1)

@@ -81,7 +81,7 @@ namespace GraphApplication.ModelView
                     {
                         if (CurrentEditorMode is IAlgorithmImplementer implementer)
                         {
-                            bool result = implementer.Implement();
+                            bool result = implementer.ImplementAlgorithm();
 
                             //if (AnimationManager.Animation != null)
                             //{
