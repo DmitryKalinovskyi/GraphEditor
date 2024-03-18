@@ -1,5 +1,5 @@
 ﻿using GraphApplication.Algorithms.Results;
-using GraphApplication.Model;
+using GraphApplication.Models;
 
 namespace GraphApplication.Algorithms.Contracts
 {

@@ -1,0 +1,395 @@
+﻿<Window x:Class="GraphApplication.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GraphApplication.Views"
+        xmlns:modelViews="clr-namespace:GraphApplication.ModelViews"
+        xmlns:myControl="clr-namespace:GraphApplication.CustomControls"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="500" Width="800"
+        MinHeight="500" MinWidth="800"
+        WindowStartupLocation="CenterScreen"
+        Closing="Window_Closing" Icon="/ArtWork/windowIcon.ico">
+    <Window.DataContext>
+        <modelViews:MainWindowModelView/>
+    </Window.DataContext>
+    
+    <Window.Resources>
+        <local:ToolButtonCheckConverter x:Key="ToolButtonCheckConverter"/>
+    </Window.Resources>
+    
+    <!--Command shortcurs-->
+    <Window.InputBindings>
+        <KeyBinding Key="N"
+                    Command="{Binding CreateGraphCommand}"
+                    Modifiers="Ctrl"
+                    />
+        <KeyBinding Key="S"
+                    Command="{Binding SaveGraphCommand}"
+                    Modifiers="Ctrl"
+                    />
+        <KeyBinding Key="O"
+                    Command="{Binding LoadGraphCommand}"
+                    Modifiers="Ctrl"
+                    />
+        <KeyBinding Key="G"
+                    Command="{Binding GenerateGraphCommand}"
+                    Modifiers="Ctrl"/>
+
+        <KeyBinding Key="W"
+                    Command="{Binding ChangeEditorModeCommand}"
+                    CommandParameter="GraphEditorSelectionMode"
+                    Modifiers="Shift"
+                    />
+        <KeyBinding Key="E"
+                    Command="{Binding ChangeEditorModeCommand}"
+                    CommandParameter="GraphEditorCanvasMovingMode"
+                    Modifiers="Shift"
+                    />
+        <KeyBinding Key="R"
+                    Command="{Binding ChangeEditorModeCommand}"
+                    CommandParameter="GraphEditorMovingMode"
+                    Modifiers="Shift"
+                    />
+        <KeyBinding Key="V"
+                    Command="{Binding ChangeEditorModeCommand}"
+                    CommandParameter="GraphEditorVertexCreationMode"
+                    Modifiers="Shift"
+                    />
+        <KeyBinding Key="I"
+                    Command="{Binding SelectedView.ImplementAlgorithmCommand}"
+                    Modifiers="Shift"
+                    />
+        
+    </Window.InputBindings>
+    
+    <!--Window content-->
+    <Grid
+        Background="{DynamicResource WindowBackground}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <!--Graph Menu strip-->
+        <Menu>
+            <Menu.Style>
+                <Style TargetType="Menu">
+                    <Setter Property="Background" Value="{DynamicResource MenuBackground}"/>
+                    <Setter Property="BorderBrush" Value="{DynamicResource MenuBorder}"/>
+                </Style>
+            </Menu.Style>
+            
+            <!--Provide a theme changing for menu strip-->
+            <Menu.Resources>
+                <Style TargetType="MenuItem" x:Key="MenuHeader">
+                    <Setter Property="Background" Value="{DynamicResource MenuHeaderBackground}"/>
+                    <Setter Property="BorderBrush" Value="{DynamicResource MenuHeaderBorder}"/>
+
+
+
+                    <!--<Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="MenuItem">
+                                <Border x:Name="Bd" Padding="4,0,4,0" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True" Uid="Border_38">
+                                    <ContentPresenter x:Name="ContentPresenter"  Content="{TemplateBinding Header}" Grid.Column="1" ContentSource="Header" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Uid="ContentPresenter_33"/>
+                                </Border>
+                                --><!--<Setter Property="Foreground" Value="{DynamicResource MenuHeaderFont}"/>
+                                <Setter Property="Background" Value="{DynamicResource MenuHeaderBackground}"/>
+                                <Setter Property="BorderBrush" Value="{DynamicResource MenuHeaderBorder}"/>--><!--
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsHighlighted" Value="True">
+                                        <Setter Property="Background" Value="{DynamicResource MenuHeaderBackgroundHover}"/>
+                                        <Setter Property="BorderBrush" Value="{DynamicResource MenuHeaderBorderHover}"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>-->
+                </Style>
+            </Menu.Resources>
+            <MenuItem Header="File"
+                      Style="{DynamicResource MenuHeader}">
+                <MenuItem Header="New"
+                          Style="{DynamicResource MenuHeader}"
+                          Command="{Binding CreateGraphCommand}"
+                          InputGestureText="Ctrl+N"/>
+
+                <MenuItem Header="Open.."
+                          Style="{DynamicResource MenuHeader}"
+                          Command="{Binding LoadGraphCommand}"
+                          InputGestureText="Ctrl+O"/>
+
+                <MenuItem Header="Save.."
+                          Style="{DynamicResource MenuHeader}"
+                          Command="{Binding SaveGraphCommand}"
+                          InputGestureText="Ctrl+S"/>
+            </MenuItem>
+            
+            <!--Tools-->
+            <MenuItem Header="Tools"
+                      Style="{DynamicResource MenuHeader}">
+
+                <MenuItem Header="Selection"
+                          Style="{DynamicResource MenuHeader}"
+                          InputGestureText="Shift+W"></MenuItem>
+                <MenuItem Header="Canvas move"
+                          Style="{DynamicResource MenuHeader}"
+                          ></MenuItem>
+                <MenuItem Header="Verticle move"
+                          Style="{DynamicResource MenuHeader}"
+                          ></MenuItem>
+                <MenuItem Header="Duplicate"
+                          Style="{DynamicResource MenuHeader}"
+                          ></MenuItem>
+            </MenuItem>
+            
+            <!--Graph generation-->
+            <MenuItem Header="Graph"
+                      Style="{DynamicResource MenuHeader}">
+                <MenuItem Header="Generate.." 
+                          Style="{DynamicResource MenuHeader}"
+                          Command="{Binding GenerateGraphCommand}"
+                          InputGestureText="Ctrl+G">
+                </MenuItem>
+            </MenuItem>
+            
+            <!--Algorithms-->
+            <MenuItem Header="Algorithm"
+                      Style="{DynamicResource MenuHeader}">
+                <MenuItem Header="Implement"
+                          Style="{DynamicResource MenuHeader}"
+                          Command="{Binding ImplementAlgorithmCommand}"
+                          InputGestureText="Shift+I">
+                </MenuItem>
+                <MenuItem Header="BFS"
+                          Style="{DynamicResource MenuHeader}"
+                          Command="{Binding ChangeEditorModeCommand}"
+                          CommandParameter="GraphEditorBFSMode">
+                </MenuItem>
+                <MenuItem Header="DFS"
+                          Style="{DynamicResource MenuHeader}"
+                          Command="{Binding ChangeEditorModeCommand}"
+                          CommandParameter="GraphEditorDFSMode">
+                </MenuItem>
+                <MenuItem Header="Shortest path"
+                          Style="{DynamicResource MenuHeader}"
+                          Command="{Binding ChangeEditorModeCommand}"
+                          CommandParameter="GraphEditorShortestPathMode">
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+
+        <!--Editor-->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="44" MinWidth="44"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            
+            <!--ToolBar-->
+            <WrapPanel Orientation="Vertical" IsEnabled="{Binding ToolBarEnabled}" >
+                <WrapPanel.Background>
+                    <SolidColorBrush Color="white"></SolidColorBrush>
+                </WrapPanel.Background>
+                 
+                <!--Object interaction-->
+                <WrapPanel Orientation="Horizontal">
+                    <myControl:ToolButton Style="{StaticResource ToolButtonPrefab}"
+                             UriImage="../ArtWork/cursor-96.png"
+                             TipContent="Виділення"
+                                          
+                             Command="{Binding ChangeEditorModeCommand}"
+                             CommandParameter="GraphEditorSelectionMode"
+                             IsChecked="{Binding DataContext.ActiveMode,
+                            Mode=OneWay,
+                            RelativeSource={RelativeSource AncestorType={x:Type WrapPanel}},
+                            Converter={StaticResource ToolButtonCheckConverter},
+                            ConverterParameter=GraphEditorSelectionMode}">
+                    </myControl:ToolButton>
+                    
+                    <myControl:ToolButton Style="{StaticResource ToolButtonPrefab}"
+                             UriImage="../ArtWork/hand-96.png"
+                             TipContent="Переміщення редактора"
+                                          
+                             Command="{Binding ChangeEditorModeCommand}"
+                             CommandParameter="GraphEditorMovingMode"
+                             IsChecked="{Binding DataContext.ActiveMode,
+                            Mode=OneWay,
+                            RelativeSource={RelativeSource AncestorType={x:Type WrapPanel}},
+                            Converter={StaticResource ToolButtonCheckConverter},
+                            ConverterParameter=GraphEditorMovingMode}">
+                        </myControl:ToolButton>
+                    <myControl:ToolButton Style="{StaticResource ToolButtonPrefab}"
+                             UriImage="../ArtWork/move-100.png"
+                             TipContent="Переміщення вершин"
+                                          
+                             Command="{Binding ChangeEditorModeCommand}"
+                             CommandParameter="GraphEditorCanvasMovingMode"
+                             IsChecked="{Binding DataContext.ActiveMode,
+                            Mode=OneWay,
+                            RelativeSource={RelativeSource AncestorType={x:Type WrapPanel}},
+                            Converter={StaticResource ToolButtonCheckConverter},
+                            ConverterParameter=GraphEditorCanvasMovingMode}">
+                        </myControl:ToolButton>
+                    <myControl:ToolButton Style="{StaticResource ToolButtonPrefab}"
+                             UriImage="../ArtWork/eye-90.png"
+                             TipContent="Приховання вершин"
+                                          
+                             Command="{Binding ChangeEditorModeCommand}"
+                             CommandParameter="GraphEditorHideMode"
+                             IsChecked="{Binding DataContext.ActiveMode,
+                            Mode=OneWay,
+                            RelativeSource={RelativeSource AncestorType={x:Type WrapPanel}},
+                            Converter={StaticResource ToolButtonCheckConverter},
+                            ConverterParameter=GraphEditorHideMode}">
+                    </myControl:ToolButton>
+                    <!--<myControl:ToolButton Style="{StaticResource ToolButtonPrefab}"
+                             UriImage="../ArtWork/square-96.png"
+                             Command="{Binding ChangeEditorModeCommand}"
+                             CommandParameter=""
+                             IsChecked="{Binding DataContext.ActiveMode,
+                            Mode=OneWay,
+                            RelativeSource={RelativeSource AncestorType={x:Type WrapPanel}},
+                            Converter={StaticResource ToolButtonCheckConverter},
+                            ConverterParameter=None}">
+                    </myControl:ToolButton>-->
+                </WrapPanel>
+
+                <Separator HorizontalAlignment="Stretch"/>
+
+
+                <!--Creation tools-->
+                <WrapPanel Orientation="Horizontal">
+                    <myControl:ToolButton Style="{StaticResource ToolButtonPrefab}"
+                                          
+                             UriImage="../ArtWork/circled-5-100.png"
+                             TipContent="Створення вершини графа"
+                             Command="{Binding ChangeEditorModeCommand}"
+                             CommandParameter="GraphEditorVertexCreationMode"
+                             IsChecked="{Binding DataContext.ActiveMode,
+                               
+                            Mode=OneWay,
+                            RelativeSource={RelativeSource AncestorType={x:Type WrapPanel}},
+                            Converter={StaticResource ToolButtonCheckConverter},
+                            ConverterParameter=GraphEditorVertexCreationMode}">
+                    </myControl:ToolButton>
+                    <myControl:ToolButton Style="{StaticResource ToolButtonPrefab}"
+                             UriImage="../ArtWork/arrow-100.png"
+                             TipContent="Створення ребра графа"
+                                          
+                             Command="{Binding ChangeEditorModeCommand}"
+                             CommandParameter="GraphEditorEdgeCreationMode"
+                             IsChecked="{Binding DataContext.ActiveMode,
+                            Mode=OneWay,
+                            RelativeSource={RelativeSource AncestorType={x:Type WrapPanel}},
+                            Converter={StaticResource ToolButtonCheckConverter},
+                            ConverterParameter=GraphEditorEdgeCreationMode}">
+                    </myControl:ToolButton>
+                </WrapPanel>
+
+                <Separator HorizontalAlignment="Stretch"/>
+
+
+                <WrapPanel Orientation="Horizontal">
+                    <myControl:ToolButton Style="{StaticResource ToolButtonPrefab}"
+                             UriImage="../ArtWork/white-close-thin-100.png"
+                             TipContent="Видалення"
+                                          
+                             Command="{Binding ChangeEditorModeCommand}"
+                             CommandParameter="GraphEditorRemovingMode"
+                             IsChecked="{Binding DataContext.ActiveMode,
+                            Mode=OneWay,
+                            RelativeSource={RelativeSource AncestorType={x:Type WrapPanel}},
+                            Converter={StaticResource ToolButtonCheckConverter},
+                            ConverterParameter=GraphEditorRemovingMode}">
+                    </myControl:ToolButton>
+                </WrapPanel>
+
+                <Separator HorizontalAlignment="Stretch"/>
+
+                <!--Algorithm Mode-->
+                <WrapPanel Orientation="Horizontal">
+                    <myControl:ToolButton Style="{StaticResource ToolButtonPrefab}"
+                             Content="BFS"
+                             TipContent="Пошук в ширину"
+                                          
+                             UriImage="None"
+                                          
+                             Command="{Binding ChangeEditorModeCommand}"
+                             CommandParameter="GraphEditorBFSMode"
+
+                             IsChecked="{Binding DataContext.ActiveMode,
+                            Mode=OneWay,
+                            RelativeSource={RelativeSource AncestorType={x:Type WrapPanel}},
+                            Converter={StaticResource ToolButtonCheckConverter},
+                            ConverterParameter=GraphEditorBFSMode}">
+                    </myControl:ToolButton>
+                    <myControl:ToolButton Style="{StaticResource ToolButtonPrefab}"
+                             Content="DFS"   
+                             UriImage="None"
+                             TipContent="Пошук в глубину"
+                                          
+                                          
+                             Command="{Binding ChangeEditorModeCommand}"
+                             CommandParameter="GraphEditorDFSMode"
+                             IsChecked="{Binding DataContext.ActiveMode,
+                            Mode=OneWay,
+                            RelativeSource={RelativeSource AncestorType={x:Type WrapPanel}},
+                            Converter={StaticResource ToolButtonCheckConverter},
+                            ConverterParameter=GraphEditorDFSMode}">
+                    </myControl:ToolButton>
+                    <myControl:ToolButton Style="{StaticResource ToolButtonPrefab}"
+                             UriImage="../ArtWork/white-path-96.png"
+                             TipContent="Пошук найкоротшого шляху"
+                                          
+                             Command="{Binding ChangeEditorModeCommand}"
+                             CommandParameter="GraphEditorShortestPathMode"
+                             IsChecked="{Binding DataContext.ActiveMode,
+                            Mode=OneWay,
+                            RelativeSource={RelativeSource AncestorType={x:Type WrapPanel}},
+                            Converter={StaticResource ToolButtonCheckConverter},
+                            ConverterParameter=GraphEditorShortestPathMode}">
+                    </myControl:ToolButton>
+                </WrapPanel>
+            </WrapPanel>
+
+            <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch"/>
+               
+            <!--Opened graphs-->
+            <TabControl Grid.Column="2" ItemsSource="{Binding GraphEditorViews}" SelectedItem="{Binding SelectedView}">
+                <TabControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+
+                            <TextBlock Text="{Binding GraphNameFormat}"
+                                       Width="100"/>
+
+                            <Button Command="{Binding DataContext.RemoveGraphCommand, 
+                                RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}"
+                                    CommandParameter="{Binding}"
+                                    BorderBrush="Transparent"
+                                    Background="Transparent"
+                                >
+                                <Image Source="../Artwork/close-512.png"
+                                       Width="12"></Image>
+                            </Button>
+
+                            <!--<StackPanel.Triggers>
+                                <Trigger Property="{Binding IsSaved}" Value="True">
+                                </Trigger>   
+                            </StackPanel.Triggers>-->
+                        </StackPanel>
+                    </DataTemplate>
+                </TabControl.ItemTemplate>
+                <TabControl.ContentTemplate>
+                    <DataTemplate>
+                        <local:GraphEditorView DataContext="{Binding}"/>
+                    </DataTemplate>
+                </TabControl.ContentTemplate>
+            </TabControl>
+        </Grid>
+    </Grid>
+</Window>

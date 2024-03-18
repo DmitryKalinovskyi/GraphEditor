@@ -1,6 +1,6 @@
 ﻿namespace GraphApplication.Services
 {
-    public interface IFileService<T> where T: class
+    public interface IFileService<T> where T : class
     {
         public T Open(string filePath);
 

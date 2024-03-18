@@ -3,10 +3,10 @@ using System.Windows.Input;
 
 namespace GraphApplication.Services.Commands
 {
-    public class RelayCommand: ICommand
+    public class RelayCommand : ICommand
     {
         private Action<object?> _execute;
-        private Func<object?, bool>? _canExecute; 
+        private Func<object?, bool>? _canExecute;
 
 
         public event EventHandler? CanExecuteChanged //is called when conditions for whether command can be executed or not change

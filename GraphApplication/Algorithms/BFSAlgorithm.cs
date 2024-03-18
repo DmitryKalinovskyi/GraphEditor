@@ -1,6 +1,6 @@
 ﻿using GraphApplication.Algorithms.Contracts;
 using GraphApplication.Algorithms.Results;
-using GraphApplication.Model;
+using GraphApplication.Models;
 using System;
 using System.Collections.Generic;
 

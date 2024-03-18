@@ -1,4 +1,4 @@
-﻿using GraphApplication.Model;
+﻿using GraphApplication.Models;
 using System.Collections.Generic;
 
 namespace GraphApplication.Algorithms.Results
@@ -8,7 +8,7 @@ namespace GraphApplication.Algorithms.Results
     /// </summary>
     public class IterativeAlgorithmResult
     {
-        public static IterativeAlgorithmResult FailedToBuildRouteResult = new (null, null);
+        public static IterativeAlgorithmResult FailedToBuildRouteResult = new(null, null);
 
         public IEnumerable<VertexModel>? VertexModels { get; set; }
 

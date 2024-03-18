@@ -1,6 +1,6 @@
 ﻿using GraphApplication.Algorithms.Contracts;
 using GraphApplication.Algorithms.Results;
-using GraphApplication.Model;
+using GraphApplication.Models;
 using System;
 using System.Collections.Generic;
 
@@ -19,7 +19,7 @@ namespace GraphApplication.Algorithms
 
             while (true)
             {
-                if(path.Count > 0)
+                if (path.Count > 0)
                 {
                     edges.Insert(0, graphModel.EdgeDictionary[(end, path[0])]);
                 }
@@ -70,7 +70,7 @@ namespace GraphApplication.Algorithms
                         queue.Enqueue(neighbor);
                         visited.Add(topElement);
 
-                        if(parents.ContainsKey(neighbor) == false)
+                        if (parents.ContainsKey(neighbor) == false)
                             parents[neighbor] = topElement;
 
                         if (neighbor == end)

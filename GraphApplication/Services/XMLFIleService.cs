@@ -16,11 +16,11 @@ namespace GraphApplication.Services
             {
                 using (var fileStream = new FileStream(filePath, FileMode.Open))
                 {
-                    if(fileStream == null)
+                    if (fileStream == null)
                         throw new FileLoadException("Failed to load file");
 
                     var serializer = new DataContractSerializer(typeof(T));
-                    
+
                     object? readedObject = serializer.ReadObject(fileStream);
 
                     if (readedObject == null)

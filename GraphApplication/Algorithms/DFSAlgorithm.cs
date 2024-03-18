@@ -1,6 +1,6 @@
 ﻿using GraphApplication.Algorithms.Contracts;
 using GraphApplication.Algorithms.Results;
-using GraphApplication.Model;
+using GraphApplication.Models;
 using System;
 using System.Collections.Generic;
 
@@ -35,7 +35,7 @@ namespace GraphApplication.Algorithms
                 EdgeModel? edge = null;
 
                 if (edgesStack.Count > 0)
-                edge = edgesStack.Pop();
+                    edge = edgesStack.Pop();
 
                 if (visited.Contains(topElement))
                 {
@@ -62,7 +62,7 @@ namespace GraphApplication.Algorithms
 
             }
 
-            return new (ans, edges);
+            return new(ans, edges);
         }
     }
 }

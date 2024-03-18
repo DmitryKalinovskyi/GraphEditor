@@ -1,9 +1,6 @@
-﻿using GraphApplication.Model;
+﻿using GraphApplication.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GraphApplication.Fabrication
 {
@@ -26,7 +23,7 @@ namespace GraphApplication.Fabrication
 
             List<EdgeModel> edges = new List<EdgeModel>();
 
-            for(int i = 0; i < args.VerticlesCount - 1; i++)
+            for (int i = 0; i < args.VerticlesCount - 1; i++)
             {
                 //we need to select random elements 
                 int next = random.Next(i + 1, args.VerticlesCount - 1);
