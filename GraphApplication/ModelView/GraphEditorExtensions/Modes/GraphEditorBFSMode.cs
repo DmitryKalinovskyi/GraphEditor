@@ -19,17 +19,6 @@ namespace GraphApplication.ModelView.GraphEditorExtensions.Modes
             _algorithm = algorithm;
         }
 
-        //public override void VertexClicked(object sender, RoutedEventArgs e)
-        //{
-        //    if (_modelView.AnimationManager.IsAnimationActive)
-        //    {
-        //        MessageBox.Show("Завершіть програвання минулого алгоритму!",
-        //           "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
-        //    }
-
-        //    base.VertexClicked(sender, e);
-        //}
-
         public bool ImplementAlgorithm()
         {
             List<VertexModelView> selected = _modelView.SelectionManager.SelectedVerticles;
@@ -47,14 +36,6 @@ namespace GraphApplication.ModelView.GraphEditorExtensions.Modes
 
             if(routeBuildResult.VertexModels == null)
                 throw new ArgumentNullException("Vertex models are null.");
-
-            // strange part of code, i always can implement bfs if selected only one point
-            //if (routeBuildResult.VertexModels == null)
-            //{
-            //    MessageBox.Show("Шляху між вершинами не існує!", "Інформація",
-            //        MessageBoxButton.OK, MessageBoxImage.Information);
-            //    return false;
-            //}
 
             List<VertexModelView> vertexModelViews = _modelView.GraphModelView.GetVertexModelViewsByModels(routeBuildResult.VertexModels);
             List<EdgeModelView> edgesModelViews = _modelView.GraphModelView.GetEdgeModelViewsByModels(routeBuildResult.EdgeModels);

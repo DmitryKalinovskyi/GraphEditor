@@ -19,17 +19,6 @@ namespace GraphApplication.ModelView.GraphEditorExtensions.Modes
             _algorithm = algorithm;
         }
 
-        //public override void VertexClicked(object sender, RoutedEventArgs e)
-        //{
-        //    if (_modelView.AnimationManager.IsAnimationActive)
-        //    {
-        //        MessageBox.Show("Завершіть програвання минулого алгоритму!",
-        //          "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
-        //    }
-
-        //    base.VertexClicked(sender, e);
-        //}
-
         public bool ImplementAlgorithm()
         {
             List<VertexModelView> selected = _modelView.SelectionManager.SelectedVerticles;

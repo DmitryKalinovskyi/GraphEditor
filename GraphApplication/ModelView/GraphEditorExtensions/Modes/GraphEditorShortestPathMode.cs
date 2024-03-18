@@ -2,6 +2,7 @@
 using GraphApplication.Algorithms.Contracts;
 using GraphApplication.Algorithms.Results;
 using GraphApplication.ModelView.GraphEditorExtensions.Displaying;
+using System;
 using System.Collections.Generic;
 using System.Windows;
 
@@ -17,18 +18,6 @@ namespace GraphApplication.ModelView.GraphEditorExtensions.Modes
         {
             _algorithm = algorithm;
         }
-
-        // i don't undestand purpose of this code, because MainWindowViewModel disallow to change modes while another algorithm is running.
-        //public override void VertexClicked(object sender, RoutedEventArgs e)
-        //{
-        //    if (_modelView.AnimationManager.IsAnimationActive)
-        //    {
-        //        MessageBox.Show("Завершіть програвання минулого алгоритму!",
-        //           "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
-        //    }
-
-        //    base.VertexClicked(sender, e);
-        //}
 
         public bool ImplementAlgorithm()
         {
@@ -53,8 +42,11 @@ namespace GraphApplication.ModelView.GraphEditorExtensions.Modes
                 return false;
             }
 
-            List<VertexModelView> vertexModelViews = _modelView.GraphModelView.GetVertexModelViewsByModels(routeBuildResult.Item1);
-            List<EdgeModelView> edgesModelViews = _modelView.GraphModelView.GetEdgeModelViewsByModels(routeBuildResult.Item2);
+            if (routeBuildResult.EdgeModels == null)
+                throw new ArgumentNullException("Edge models are null.");
+
+            List<VertexModelView> vertexModelViews = _modelView.GraphModelView.GetVertexModelViewsByModels(routeBuildResult.VertexModels);
+            List<EdgeModelView> edgesModelViews = _modelView.GraphModelView.GetEdgeModelViewsByModels(routeBuildResult.EdgeModels);
 
             _modelView.AnimationManager.SetAnimation(new BFSShortestPathDisplayer(_modelView.GraphModelView, (vertexModelViews, edgesModelViews)));
             return true;
