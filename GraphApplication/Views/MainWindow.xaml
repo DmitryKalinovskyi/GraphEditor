@@ -58,7 +58,7 @@
                     Modifiers="Shift"
                     />
         <KeyBinding Key="I"
-                    Command="{Binding SelectedView.ImplementAlgorithmCommand}"
+                    Command="{Binding OpenedGraphModelViewsManager.SelectedView.StartAlgorithmCommand}"
                     Modifiers="Shift"
                     />
         
@@ -158,11 +158,11 @@
             <!--Algorithms-->
             <MenuItem Header="Algorithm"
                       Style="{DynamicResource MenuHeader}">
-                <MenuItem Header="Implement"
+                <!--<MenuItem Header="Implement"
                           Style="{DynamicResource MenuHeader}"
                           Command="{Binding ImplementAlgorithmCommand}"
                           InputGestureText="Shift+I">
-                </MenuItem>
+                </MenuItem>-->
                 <MenuItem Header="BFS"
                           Style="{DynamicResource MenuHeader}"
                           Command="{Binding ChangeEditorModeCommand}"
@@ -359,7 +359,7 @@
             <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch"/>
                
             <!--Opened graphs-->
-            <TabControl Grid.Column="2" ItemsSource="{Binding GraphEditorViews}" SelectedItem="{Binding SelectedView}">
+            <TabControl Grid.Column="2" ItemsSource="{Binding OpenedGraphModelViewsManager.GraphEditorViews}" SelectedItem="{Binding OpenedGraphModelViewsManager.SelectedView}">
                 <TabControl.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">

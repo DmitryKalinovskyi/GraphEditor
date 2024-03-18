@@ -1,7 +1,8 @@
-﻿using GraphApplication.Models;
+﻿using GraphApplication.Commands;
+using GraphApplication.Commands.CommandList;
+using GraphApplication.Models;
 using GraphApplication.ModelViews.GraphEditorExtensions;
 using GraphApplication.ModelViews.GraphEditorExtensions.Modes;
-using GraphApplication.Services.Commands;
 using System;
 using System.Diagnostics;
 using System.Windows;
@@ -11,112 +12,9 @@ namespace GraphApplication.ModelViews
     public partial class GraphEditorModelView : NotifyModelView
     {
         #region Commands
-        //private RelayCommand _createVertexCommand;
+        public Command StartAlgorithmCommand { get; set; }
 
-        //public RelayCommand CreateVertexCommand
-        //{
-        //    get
-        //    {
-        //        return _createVertexCommand ??
-        //             (_createVertexCommand = new RelayCommand(obj =>
-        //             {
-        //                 try
-        //                 {
-        //                     //define args for our model
-        //                     VertexModel vertex = new VertexModel();
-
-        //                     VertexModelViews.Add(new VertexModelView(vertex, this));
-
-        //                 }
-        //                 catch (Exception ex)
-        //                 {
-        //                     MessageBox.Show("Відбулася помилка виконання команди: " + ex.Message, "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
-        //                 }
-        //             }));
-        //    }
-        //}
-        //private RelayCommand _createEdgeCommand;
-
-        //public RelayCommand CreateEdgeCommand
-        //{
-        //    get
-        //    {
-        //        return _createEdgeCommand ??
-        //             (_createEdgeCommand = new RelayCommand(obj =>
-        //             {
-        //                 try
-        //                 {
-        //                     //define args for our model
-
-
-
-        //                 }
-        //                 catch (Exception ex)
-        //                 {
-        //                     MessageBox.Show("Відбулася помилка виконання команди: " + ex.Message, "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
-        //                 }
-        //             }));
-        //    }
-        //}
-        private RelayCommand _implementAlgorithmCommand;
-
-        public RelayCommand ImplementAlgorithmCommand
-        {
-            get
-            {
-                return _implementAlgorithmCommand ??
-                    (_implementAlgorithmCommand = new RelayCommand(obj =>
-                    {
-                        if (CurrentEditorMode is IAlgorithmImplementer implementer)
-                        {
-                            bool result = implementer.ImplementAlgorithm();
-
-                            //if (AnimationManager.Animation != null)
-                            //{
-                            //    MessageBox.Show("Немає обраної анімації алгоритма", "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
-                            //    return;
-                            //}
-                            if (result)
-                                AnimationManager.StartAnimation();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Алгоритм для реалізації не обрано!", "Попередження",
-                                MessageBoxButton.OK, MessageBoxImage.Warning);
-                        }
-
-                    }));
-            }
-        }
-
-        private RelayCommand _endImplementationCommand;
-
-        public RelayCommand EndImplementationCommand
-        {
-            get
-            {
-                return _endImplementationCommand ??
-                    (_endImplementationCommand = new RelayCommand(obj =>
-                    {
-                        try
-                        {
-
-                            if (AnimationManager.IsAnimationActive == false)
-                            {
-                                MessageBox.Show("Немає обраної анімації алгоритма", "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
-                                return;
-                            }
-
-                            AnimationManager.StopAnimation();
-                        }
-                        catch (Exception ex)
-                        {
-                            Trace.WriteLine(ex);
-                        }
-                    }));
-            }
-        }
-
+        public Command EndAlgorithmCommand { get; set; }
         #endregion
 
         public GraphEditorModel Model { get; private set; }
@@ -226,7 +124,14 @@ namespace GraphApplication.ModelViews
             SelectionManager = new();
             AnimationManager = new();
 
+            InitializeCommands();
             InitializeEvents();
+        }
+
+        private void InitializeCommands()
+        {
+            StartAlgorithmCommand = new StartAlgorithmCommand(this);
+            EndAlgorithmCommand = new EndAlgorithmCommand(AnimationManager);
         }
     }
 }

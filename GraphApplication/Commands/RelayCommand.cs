@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace GraphApplication.Services.Commands
+namespace GraphApplication.Commands
 {
     public class RelayCommand : ICommand
     {
         private Action<object?> _execute;
         private Func<object?, bool>? _canExecute;
-
 
         public event EventHandler? CanExecuteChanged //is called when conditions for whether command can be executed or not change
         {

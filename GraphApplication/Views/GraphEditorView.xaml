@@ -327,7 +327,7 @@
                                    >
                             <control:AnimationButton
                             UriImage="../ArtWork/icons8-start-90.png"
-                                Command="{Binding ImplementAlgorithmCommand}">
+                                Command="{Binding StartAlgorithmCommand}">
                             </control:AnimationButton>
                             <!--<control:AnimationButton
                             UriImage="../ArtWork/icons8-pause-100.png">
@@ -335,7 +335,7 @@
 
                             <control:AnimationButton
                             UriImage="../ArtWork/icons8-stop-100.png"
-                                Command="{Binding EndImplementationCommand}"
+                                Command="{Binding EndAlgorithmCommand}"
                                  IsEnabled="{Binding AnimationManager.IsAnimationActive}">
                             </control:AnimationButton>
                     
