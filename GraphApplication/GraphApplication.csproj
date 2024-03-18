@@ -157,4 +157,8 @@
     </Resource>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\GraphEditorToolbar\Tools\" />
+  </ItemGroup>
+
 </Project>

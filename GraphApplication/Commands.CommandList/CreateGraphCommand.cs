@@ -1,4 +1,5 @@
 ﻿using GraphApplication.Models;
+using GraphApplication.Models.GraphRepresentations;
 using GraphApplication.ModelViews;
 using GraphApplication.Views;
 

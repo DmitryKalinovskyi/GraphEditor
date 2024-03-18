@@ -25,7 +25,6 @@ namespace GraphApplication.ModelViews.GraphEditorExtensions.Displaying
 
             Thread.Sleep(AnimationKeyFrameDelay);
 
-
             for (int i = 1; i < _path.Item1.Count(); i++)
             {
                 if (_isCanceled) return;

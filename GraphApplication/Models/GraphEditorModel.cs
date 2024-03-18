@@ -1,4 +1,5 @@
-﻿using System.Runtime.Serialization;
+﻿using GraphApplication.Models.GraphRepresentations;
+using System.Runtime.Serialization;
 
 namespace GraphApplication.Models
 {
@@ -30,14 +31,15 @@ namespace GraphApplication.Models
         [DataMember]
         public GraphModel GraphModel { get; set; }
 
-        public GraphEditorModel()
-        {
-            GraphModel = new GraphModel();
-        }
+        [DataMember]
+        public ToolBarModel ToolBarModel { get; set; }
+
+        public GraphEditorModel() : this(new()) { }
 
         public GraphEditorModel(GraphModel graphModel)
         {
             GraphModel = graphModel;
+            ToolBarModel = new();
         }
     }
 }

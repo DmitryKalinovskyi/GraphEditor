@@ -12,21 +12,20 @@ namespace GraphApplication.ModelViews
     public partial class GraphEditorModelView : NotifyModelView
     {
         #region Commands
-        public Command StartAlgorithmCommand { get; set; }
+        //public Command StartAlgorithmCommand { get; set; }
 
-        public Command EndAlgorithmCommand { get; set; }
+        //public Command EndAlgorithmCommand { get; set; }
         #endregion
 
         public GraphEditorModel Model { get; private set; }
 
         public GraphModelView GraphModelView { get; private set; }
 
-        public GraphEditorSelectionManager SelectionManager { get; private set; }
+        //public GraphEditorSelectionManager SelectionManager { get; private set; }
 
-        public GraphEditorAnimationManager AnimationManager { get; private set; }
+        //public GraphEditorAnimationManager AnimationManager { get; private set; }
 
         private string _name;
-        private bool _isSaved;
         public string Name
         {
             get { return _name; }
@@ -37,6 +36,8 @@ namespace GraphApplication.ModelViews
                 OnPropertyChanged(nameof(GraphNameFormat));
             }
         }
+
+        private bool _isSaved;
         public bool IsSaved
         {
             get { return _isSaved; }
@@ -115,23 +116,25 @@ namespace GraphApplication.ModelViews
 
         public GraphEditorModelView(GraphEditorModel model, string name, bool isSaved = false)
         {
-            Model = model;
-            Name = name;
-            IsSaved = isSaved;
+            _name = name;
+            _isSaved = isSaved;
 
-            CurrentEditorMode = new GraphEditorSelectionMode(this);
+            _currentEditorMode = new GraphEditorSelectionMode(this);
+            
+            Model = model;
             GraphModelView = new GraphModelView(Model.GraphModel);
-            SelectionManager = new();
-            AnimationManager = new();
+            //SelectionManager = new();
+            //AnimationManager = new();
 
             InitializeCommands();
-            InitializeEvents();
+            //InitializeEvents();
         }
 
         private void InitializeCommands()
         {
-            StartAlgorithmCommand = new StartAlgorithmCommand(this);
-            EndAlgorithmCommand = new EndAlgorithmCommand(AnimationManager);
+            // Deprecated to the UI, UI manages how algorithm work, and how you can end it
+            //StartAlgorithmCommand = new StartAlgorithmCommand(this);
+            //EndAlgorithmCommand = new EndAlgorithmCommand(AnimationManager);
         }
     }
 }

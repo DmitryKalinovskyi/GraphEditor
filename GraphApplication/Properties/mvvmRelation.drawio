@@ -1,0 +1,67 @@
+<mxfile host="app.diagrams.net" modified="2024-03-18T19:16:08.672Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" etag="dAA9vkhxmW1UL4tCmicC" version="24.0.4" type="device">
+  <diagram name="Сторінка-1" id="vs3-b8sPeZqsffEENLVP">
+    <mxGraphModel dx="2074" dy="614" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="0g3CQfi0CI15tBxCwXql-1" value="Models" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="30" y="170" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="0g3CQfi0CI15tBxCwXql-2" value="Data that can be serialized, like information &lt;br&gt;about GraphEditor, Graph and objects inside it&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp;&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="-45" y="200" width="270" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="0g3CQfi0CI15tBxCwXql-3" value="ModelViews" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="270" y="100" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="0g3CQfi0CI15tBxCwXql-5" value="Services" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="270" y="360" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="0g3CQfi0CI15tBxCwXql-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="0g3CQfi0CI15tBxCwXql-6" target="0g3CQfi0CI15tBxCwXql-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="0g3CQfi0CI15tBxCwXql-6" value="Commands" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="270" y="230" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="0g3CQfi0CI15tBxCwXql-7" value="Serializing/Deserializing data" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="240" y="390" width="180" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="0g3CQfi0CI15tBxCwXql-9" value="Views" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="505" y="170" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="0g3CQfi0CI15tBxCwXql-10" value="Views create responsive UI for the users, in case of GraphEditorApplication &lt;br&gt;views used to manage the graph, and display some algorithms in them." style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="380" y="200" width="420" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="0g3CQfi0CI15tBxCwXql-11" value="In my opinion ModelViews, should create interface to interact&lt;div&gt;&amp;nbsp;with models in frendly way with Views (using commands)&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="155" y="60" width="350" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="0g3CQfi0CI15tBxCwXql-8" value="Commands builds they interaction using services, &lt;br&gt;then commands used for ModelViews (And Views at some point)&amp;nbsp;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="-95" y="300" width="370" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="0g3CQfi0CI15tBxCwXql-14" value="" style="endArrow=none;dashed=1;html=1;dashPattern=1 3;strokeWidth=2;rounded=0;entryX=0;entryY=1;entryDx=0;entryDy=0;exitX=0.474;exitY=-0.04;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="0g3CQfi0CI15tBxCwXql-8" target="0g3CQfi0CI15tBxCwXql-6">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="150" y="310" as="sourcePoint" />
+            <mxPoint x="200" y="260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0g3CQfi0CI15tBxCwXql-16" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="0g3CQfi0CI15tBxCwXql-1" target="0g3CQfi0CI15tBxCwXql-3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="90" y="150" as="sourcePoint" />
+            <mxPoint x="140" y="100" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0g3CQfi0CI15tBxCwXql-17" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="0g3CQfi0CI15tBxCwXql-3" target="0g3CQfi0CI15tBxCwXql-9">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="420" y="170" as="sourcePoint" />
+            <mxPoint x="470" y="120" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="0g3CQfi0CI15tBxCwXql-20" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="0g3CQfi0CI15tBxCwXql-6" target="0g3CQfi0CI15tBxCwXql-3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="300" y="220" as="sourcePoint" />
+            <mxPoint x="350" y="170" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

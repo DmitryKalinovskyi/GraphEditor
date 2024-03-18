@@ -26,7 +26,7 @@ namespace GraphApplication.ModelViews
 
         public Command? LoadGraphCommand { get; set; }
 
-        public Command? ChangeEditorModeCommand { get; set; }
+        //public Command? ChangeEditorModeCommand { get; set; }
         #endregion
 
         public OpenedGraphModelViewsManager OpenedGraphModelViewsManager { get; set; }
@@ -50,7 +50,7 @@ namespace GraphApplication.ModelViews
             }
         }
 
-        public bool ToolBarEnabled { get { return OpenedGraphModelViewsManager.GraphEditorViews.Count() > 0; } }
+        //public bool ToolBarEnabled { get { return OpenedGraphModelViewsManager.GraphEditorViews.Count() > 0; } }
 
         public MainWindowModelView(ObservableCollection<GraphEditorModelView> graphViews)
         {
@@ -58,7 +58,7 @@ namespace GraphApplication.ModelViews
 
             InitializeCommands();
 
-            OpenedGraphModelViewsManager.GraphEditorViews.CollectionChanged += (sender, e) => OnPropertyChanged(nameof(ToolBarEnabled));
+            //OpenedGraphModelViewsManager.GraphEditorViews.CollectionChanged += (sender, e) => OnPropertyChanged(nameof(ToolBarEnabled));
         }
 
         private void InitializeCommands()
@@ -68,7 +68,7 @@ namespace GraphApplication.ModelViews
             SaveGraphCommand = new SaveGraphCommand(this);
             RemoveGraphCommand = new RemoveGraphCommand(this);
             LoadGraphCommand = new LoadGraphCommand(this);
-            ChangeEditorModeCommand = new ChangeEditorModeCommand(this);
+            //ChangeEditorModeCommand = new ChangeEditorModeCommand(this);
         }
 
         // Default constructor with basic services
