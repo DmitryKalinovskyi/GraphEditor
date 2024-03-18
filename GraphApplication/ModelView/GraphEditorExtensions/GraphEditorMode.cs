@@ -1,5 +1,4 @@
-﻿using GraphApplication.View;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
 
 namespace GraphApplication.ModelView.GraphEditorExtensions
@@ -13,7 +12,7 @@ namespace GraphApplication.ModelView.GraphEditorExtensions
             _modelView = modelView;
         }
 
-        public abstract void OnModeSwitch();
+        public virtual void OnModeSwitch() { }
 
         public virtual void EditorMouseDown(object sender, MouseButtonEventArgs e)
         {

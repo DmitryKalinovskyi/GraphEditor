@@ -1,28 +1,33 @@
-﻿using GraphApplication.Model;
+﻿using GraphApplication.Algorithms.Contracts;
+using GraphApplication.Algorithms.Results;
+using GraphApplication.Model;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GraphApplication.Algorithms
 {
-    public class DFSAlgorithm : IIterativeAlgorithm
+    public class DFSAlgorithm : IDFSAlgorithm
     {
-        public (IEnumerable<VertexModel>?, IEnumerable<EdgeModel>?) Implement(GraphModel graph, params object[] args)
+        /// <summary>
+        /// Build dfs path in graph, as first argument you should pass VertexModel
+        /// </summary>
+        /// <param name="graph"></param>
+        /// <param name="args"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
+        public IterativeAlgorithmResult BuildRoute(GraphModel graph, params object[] args)
         {
             VertexModel startPoint = args[0] as VertexModel ?? throw new ArgumentException("Початкова точка не вказана! ");
 
-            HashSet<VertexModel> visited = new HashSet<VertexModel>();
+            HashSet<VertexModel> visited = new();
 
-            List<VertexModel> ans = new List<VertexModel>();
-            List<EdgeModel> edges = new List<EdgeModel>();
+            List<VertexModel> ans = new();
+            List<EdgeModel> edges = new();
 
-            Stack<VertexModel> stack = new Stack<VertexModel>();
-            Stack<EdgeModel> edgesStack = new Stack<EdgeModel>();
+            Stack<VertexModel> stack = new();
+            Stack<EdgeModel> edgesStack = new();
 
             stack.Push(startPoint);
-
 
             while (stack.Count > 0)
             {
@@ -57,7 +62,7 @@ namespace GraphApplication.Algorithms
 
             }
 
-            return (ans, edges);
+            return new (ans, edges);
         }
     }
 }

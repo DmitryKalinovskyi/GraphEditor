@@ -1,34 +1,34 @@
 ﻿using GraphApplication.Algorithms;
-using GraphApplication.Model;
+using GraphApplication.Algorithms.Contracts;
+using GraphApplication.Algorithms.Results;
 using GraphApplication.ModelView.GraphEditorExtensions.Displaying;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace GraphApplication.ModelView.GraphEditorExtensions.Modes
 {
     public class GraphEditorDFSMode : GraphEditorSelectionMode, IAlgorithmImplementer
     {
-        public GraphEditorDFSMode(GraphEditorModelView modelView) : base(modelView)
+        private IDFSAlgorithm _algorithm;
+
+        public GraphEditorDFSMode(GraphEditorModelView modelView) : this(modelView, new DFSAlgorithm()) { }
+
+        public GraphEditorDFSMode(GraphEditorModelView modelView, IDFSAlgorithm algorithm) : base(modelView)
         {
-            _algorithm = new DFSAlgorithm();
+            _algorithm = algorithm;
         }
 
-        DFSAlgorithm _algorithm;
+        //public override void VertexClicked(object sender, RoutedEventArgs e)
+        //{
+        //    if (_modelView.AnimationManager.IsAnimationActive)
+        //    {
+        //        MessageBox.Show("Завершіть програвання минулого алгоритму!",
+        //          "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
+        //    }
 
-        public override void VertexClicked(object sender, RoutedEventArgs e)
-        {
-            if (_modelView.AnimationManager.IsAnimationActive)
-            {
-                MessageBox.Show("Завершіть програвання минулого алгоритму!",
-                  "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-
-            base.VertexClicked(sender, e);
-        }
+        //    base.VertexClicked(sender, e);
+        //}
 
         public bool ImplementAlgorithm()
         {
@@ -40,38 +40,21 @@ namespace GraphApplication.ModelView.GraphEditorExtensions.Modes
                 return false;
             }
 
-            (IEnumerable<VertexModel>?, IEnumerable<EdgeModel>?) iterator = _algorithm.Implement(_modelView.GraphModelView.Model, selected[0].Model);
+            IterativeAlgorithmResult routeBuildResult = _algorithm.BuildRoute(_modelView.GraphModelView.Model, selected[0].Model);
 
+            if (routeBuildResult.EdgeModels == null)
+                throw new ArgumentNullException("Edge models are null.");
 
-            if (iterator.Item1 == null)
-            {
-                MessageBox.Show("Шляху між вершинами не існує!", "Інформація",
-                    MessageBoxButton.OK, MessageBoxImage.Information);
-                return false;
-            }
+            if (routeBuildResult.VertexModels == null)
+                throw new ArgumentNullException("Vertex models are null.");
 
-            List<VertexModelView> vertexModelViews = _modelView.GraphModelView.GetVertexModelViewsByModels(iterator.Item1);
-            List<EdgeModelView> edgesModelViews = _modelView.GraphModelView.GetEdgeModelViewsByModels(iterator.Item2);
+            List<VertexModelView> vertexModelViews = _modelView.GraphModelView.GetVertexModelViewsByModels(routeBuildResult.VertexModels);
+            List<EdgeModelView> edgesModelViews = _modelView.GraphModelView.GetEdgeModelViewsByModels(routeBuildResult.EdgeModels);
 
             DFSDisplayer _displayer = new(_modelView.GraphModelView, (vertexModelViews, edgesModelViews));
 
             _modelView.AnimationManager.SetAnimation(_displayer);
             return true;
-        }
-
-        //private void CancelAnimation()
-        //{
-        //    if (_displayer != null)
-        //    {
-        //        _displayer.StopAnimation();
-        //        _displayer.RestoreAnimation();
-        //        _displayer = null;
-        //        _modelView.SelectionManager.DiselectAll();
-        //    }
-        //}
-
-        public override void OnModeSwitch()
-        {
         }
     }
 }

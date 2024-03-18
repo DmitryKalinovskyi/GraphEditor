@@ -1,11 +1,4 @@
-﻿using GraphApplication.CustomControls;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -13,9 +6,7 @@ namespace GraphApplication.ModelView.GraphEditorExtensions.Modes
 {
     public class GraphEditorCanvasMovingMode : GraphEditorMode
     {
-        public GraphEditorCanvasMovingMode(GraphEditorModelView modelView) : base(modelView)
-        {
-        }
+        public GraphEditorCanvasMovingMode(GraphEditorModelView modelView) : base(modelView) { }
 
         bool isDragging = false;
         Point dragPoint;

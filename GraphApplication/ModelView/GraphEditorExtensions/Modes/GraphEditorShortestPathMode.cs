@@ -1,36 +1,34 @@
 ﻿using GraphApplication.Algorithms;
-using GraphApplication.Model;
+using GraphApplication.Algorithms.Contracts;
+using GraphApplication.Algorithms.Results;
 using GraphApplication.ModelView.GraphEditorExtensions.Displaying;
-using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Input;
 
 namespace GraphApplication.ModelView.GraphEditorExtensions.Modes
 {
     public class GraphEditorShortestPathMode : GraphEditorSelectionMode, IAlgorithmImplementer
     {
-        public GraphEditorShortestPathMode(GraphEditorModelView modelView) : base(modelView)
+        private IShortestPathAlgorithm _algorithm;
+
+        public GraphEditorShortestPathMode(GraphEditorModelView modelView) : this(modelView, new BFSShortestPathAlgorithm()) { }
+
+        public GraphEditorShortestPathMode(GraphEditorModelView modelView, IShortestPathAlgorithm algorithm) : base(modelView)
         {
-            _algorithm = new BFSShortestPathAlgorithm();
+            _algorithm = algorithm;
         }
 
-        BFSShortestPathAlgorithm _algorithm;
+        // i don't undestand purpose of this code, because MainWindowViewModel disallow to change modes while another algorithm is running.
+        //public override void VertexClicked(object sender, RoutedEventArgs e)
+        //{
+        //    if (_modelView.AnimationManager.IsAnimationActive)
+        //    {
+        //        MessageBox.Show("Завершіть програвання минулого алгоритму!",
+        //           "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
+        //    }
 
-        public override void VertexClicked(object sender, RoutedEventArgs e)
-        {
-            if (_modelView.AnimationManager.IsAnimationActive)
-            {
-                MessageBox.Show("Завершіть програвання минулого алгоритму!",
-                   "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-
-            base.VertexClicked(sender, e);
-        }
+        //    base.VertexClicked(sender, e);
+        //}
 
         public bool ImplementAlgorithm()
         {
@@ -46,35 +44,20 @@ namespace GraphApplication.ModelView.GraphEditorExtensions.Modes
             VertexModelView start = selected[0];
             VertexModelView end = selected[1];
 
-            (IEnumerable<VertexModel>?, IEnumerable<EdgeModel>?) iterator = _algorithm.Implement(_modelView.GraphModelView.Model, start.Model, end.Model);
+            IterativeAlgorithmResult routeBuildResult = _algorithm.BuildRoute(_modelView.GraphModelView.Model, start.Model, end.Model);
 
-            if(iterator.Item1 == null)
+            if(routeBuildResult.VertexModels == null)
             {
                 MessageBox.Show("Шляху між вершинами не існує!", "Інформація",
                     MessageBoxButton.OK, MessageBoxImage.Information);
                 return false;
             }
 
-            List<VertexModelView> vertexModelViews = _modelView.GraphModelView.GetVertexModelViewsByModels(iterator.Item1);
-            List<EdgeModelView> edgesModelViews = _modelView.GraphModelView.GetEdgeModelViewsByModels(iterator.Item2);
+            List<VertexModelView> vertexModelViews = _modelView.GraphModelView.GetVertexModelViewsByModels(routeBuildResult.Item1);
+            List<EdgeModelView> edgesModelViews = _modelView.GraphModelView.GetEdgeModelViewsByModels(routeBuildResult.Item2);
 
             _modelView.AnimationManager.SetAnimation(new BFSShortestPathDisplayer(_modelView.GraphModelView, (vertexModelViews, edgesModelViews)));
             return true;
-        }
-
-        //private void CancelAnimation()
-        //{
-        //    if (_displayer != null)
-        //    {
-        //        _displayer.StopAnimation();
-        //        _displayer.RestoreAnimation();
-        //        _displayer = null;
-        //        _modelView.SelectionManager.DiselectAll();
-        //    }
-        //}
-
-        public override void OnModeSwitch()
-        {
         }
     }
 }

@@ -1,36 +1,34 @@
 ﻿using GraphApplication.Algorithms;
-using GraphApplication.Model;
+using GraphApplication.Algorithms.Contracts;
+using GraphApplication.Algorithms.Results;
 using GraphApplication.ModelView.GraphEditorExtensions.Displaying;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace GraphApplication.ModelView.GraphEditorExtensions.Modes
 {
     public class GraphEditorBFSMode : GraphEditorSelectionMode, IAlgorithmImplementer
     {
-        public GraphEditorBFSMode(GraphEditorModelView modelView) : base(modelView)
+        private IBFSAlgorithm _algorithm;
+
+        public GraphEditorBFSMode(GraphEditorModelView modelView) : this(modelView, new BFSAlgorithm()) {}
+
+        public GraphEditorBFSMode(GraphEditorModelView modelView, IBFSAlgorithm algorithm) : base(modelView)
         {
-            _algorithm = new BFSAlgorithm();
+            _algorithm = algorithm;
         }
 
+        //public override void VertexClicked(object sender, RoutedEventArgs e)
+        //{
+        //    if (_modelView.AnimationManager.IsAnimationActive)
+        //    {
+        //        MessageBox.Show("Завершіть програвання минулого алгоритму!",
+        //           "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
+        //    }
 
-        BFSAlgorithm _algorithm;
-
-        public override void VertexClicked(object sender, RoutedEventArgs e)
-        {
-            if (_modelView.AnimationManager.IsAnimationActive)
-            {
-                MessageBox.Show("Завершіть програвання минулого алгоритму!",
-                   "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-
-            base.VertexClicked(sender, e);
-        }
+        //    base.VertexClicked(sender, e);
+        //}
 
         public bool ImplementAlgorithm()
         {
@@ -42,18 +40,24 @@ namespace GraphApplication.ModelView.GraphEditorExtensions.Modes
                 return false;
             }
 
-            (IEnumerable<VertexModel>?, IEnumerable<EdgeModel>?) iterator = _algorithm.Implement(_modelView.GraphModelView.Model, selected[0].Model);
+            IterativeAlgorithmResult routeBuildResult = _algorithm.BuildRoute(_modelView.GraphModelView.Model, selected[0].Model);
 
+            if (routeBuildResult.EdgeModels == null)
+                throw new ArgumentNullException("Edge models are null.");
 
-            if (iterator.Item1 == null)
-            {
-                MessageBox.Show("Шляху між вершинами не існує!", "Інформація",
-                    MessageBoxButton.OK, MessageBoxImage.Information);
-                return false;
-            }
+            if(routeBuildResult.VertexModels == null)
+                throw new ArgumentNullException("Vertex models are null.");
 
-            List<VertexModelView> vertexModelViews = _modelView.GraphModelView.GetVertexModelViewsByModels(iterator.Item1);
-            List<EdgeModelView> edgesModelViews = _modelView.GraphModelView.GetEdgeModelViewsByModels(iterator.Item2);
+            // strange part of code, i always can implement bfs if selected only one point
+            //if (routeBuildResult.VertexModels == null)
+            //{
+            //    MessageBox.Show("Шляху між вершинами не існує!", "Інформація",
+            //        MessageBoxButton.OK, MessageBoxImage.Information);
+            //    return false;
+            //}
+
+            List<VertexModelView> vertexModelViews = _modelView.GraphModelView.GetVertexModelViewsByModels(routeBuildResult.VertexModels);
+            List<EdgeModelView> edgesModelViews = _modelView.GraphModelView.GetEdgeModelViewsByModels(routeBuildResult.EdgeModels);
 
             BFSDisplayer _displayer = new(_modelView.GraphModelView, (vertexModelViews, edgesModelViews));
 
@@ -61,10 +65,6 @@ namespace GraphApplication.ModelView.GraphEditorExtensions.Modes
 
             _displayer.StartAnimation();
             return true;
-        }
-
-        public override void OnModeSwitch()
-        {
         }
     }
 }

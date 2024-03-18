@@ -1,23 +1,21 @@
-﻿using GraphApplication.Model;
+﻿using GraphApplication.Algorithms.Contracts;
+using GraphApplication.Algorithms.Results;
+using GraphApplication.Model;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 
 namespace GraphApplication.Algorithms
 {
-    public class BFSShortestPathAlgorithm : IIterativeAlgorithm
+    public class BFSShortestPathAlgorithm : IShortestPathAlgorithm
     {
-        private (IEnumerable<VertexModel>?, IEnumerable<EdgeModel>?) BuildPathByParents(
+        private IterativeAlgorithmResult BuildPathByParents(
             GraphModel graphModel,
             ref Dictionary<VertexModel, VertexModel> parents,
             VertexModel end)
         {
-            List<VertexModel> path = new List<VertexModel>();
+            List<VertexModel> path = new();
 
-            List<EdgeModel> edges = new List<EdgeModel>();
+            List<EdgeModel> edges = new();
 
             while (true)
             {
@@ -36,55 +34,53 @@ namespace GraphApplication.Algorithms
                 end = parents[end];
             }
 
-            return (path, edges);
+            return new(path, edges);
         }
 
-        public (IEnumerable<VertexModel>?, IEnumerable<EdgeModel>?) Implement(GraphModel graph, params object[] args)
+        /// <summary>
+        /// Build shortest path in graph between two points, as arguments you should pass 2 VertexModels
+        /// </summary>
+        /// <param name="graph"></param>
+        /// <param name="args"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
+        public IterativeAlgorithmResult BuildRoute(GraphModel graph, params object[] args)
         {
             if (args.Length < 2)
-                throw new ArgumentException("Для знаходження шляху потрібно передати 2 аргументи!"); 
+                throw new ArgumentException("Для знаходження шляху потрібно передати 2 аргументи!");
 
+            VertexModel start = args[0] as VertexModel ?? throw new ArgumentException("First argument should be vertex model.");
+            VertexModel end = args[1] as VertexModel ?? throw new ArgumentException("Second argument should be vertex model.");
 
+            Dictionary<VertexModel, VertexModel> parents = new();
+            HashSet<VertexModel> visited = new();
 
-            if (args[0] is VertexModel start && args[1] is VertexModel end)
+            Queue<VertexModel> queue = new Queue<VertexModel>();
+
+            queue.Enqueue(start);
+
+            while (queue.Count > 0)
             {
-                Dictionary<VertexModel, VertexModel> parents = new();
-             //   Dictionary<VertexModel, int> distances = new();
-                HashSet<VertexModel> visited = new();
+                VertexModel topElement = queue.Dequeue();
 
-                Queue<VertexModel> queue = new Queue<VertexModel>();
-
-                queue.Enqueue(start);
-              //  distances[start] = 0;
-
-
-                while (queue.Count > 0)
+                foreach (VertexModel neighbor in graph.AdjancencyDictionary[topElement])
                 {
-                    VertexModel topElement = queue.Dequeue();
-
-                    foreach (VertexModel neighbor in graph.AdjancencyDictionary[topElement])
+                    if (visited.Contains(neighbor) == false && neighbor.IsActive)
                     {
-                        if (visited.Contains(neighbor) == false && neighbor.IsActive)
-                        {
-                            queue.Enqueue(neighbor);
-                            visited.Add(topElement);
+                        queue.Enqueue(neighbor);
+                        visited.Add(topElement);
 
-                            if(parents.ContainsKey(neighbor) == false)
-                                parents[neighbor] = topElement;
+                        if(parents.ContainsKey(neighbor) == false)
+                            parents[neighbor] = topElement;
 
-                            if (neighbor == end)
-                                return BuildPathByParents(graph, ref parents, end);
+                        if (neighbor == end)
+                            return BuildPathByParents(graph, ref parents, end);
 
-                        }
                     }
                 }
+            }
 
-                return (null, null);
-            }
-            else
-            {
-                throw new ArgumentException("Для знаходження шляху потрібно передати 2 вершини!");
-            }
+            return IterativeAlgorithmResult.FailedToBuildRouteResult;
         }
     }
 }

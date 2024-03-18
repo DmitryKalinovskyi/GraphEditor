@@ -1,15 +1,21 @@
-﻿using GraphApplication.Model;
+﻿using GraphApplication.Algorithms.Contracts;
+using GraphApplication.Algorithms.Results;
+using GraphApplication.Model;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GraphApplication.Algorithms
 {
-    public class BFSAlgorithm : IIterativeAlgorithm
+    public class BFSAlgorithm : IBFSAlgorithm
     {
-        public (IEnumerable<VertexModel>, IEnumerable<EdgeModel>) Implement(GraphModel graph, params object[] args)
+        /// <summary>
+        /// Build bfs path in graph, as first argument you should pass VertexModel
+        /// </summary>
+        /// <param name="graph"></param>
+        /// <param name="args"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
+        public IterativeAlgorithmResult BuildRoute(GraphModel graph, params object[] args)
         {
             VertexModel startPoint = args[0] as VertexModel ?? throw new ArgumentException("Starting pos is not defined.");
 
@@ -49,7 +55,7 @@ namespace GraphApplication.Algorithms
                 }
             }
 
-            return (ans, edges);
+            return new IterativeAlgorithmResult(ans, edges);
         }
     }
 }
