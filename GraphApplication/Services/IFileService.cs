@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GraphApplication.Services
+﻿namespace GraphApplication.Services
 {
     public interface IFileService<T> where T: class
     {
