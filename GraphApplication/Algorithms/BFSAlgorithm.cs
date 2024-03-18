@@ -11,7 +11,7 @@ namespace GraphApplication.Algorithms
     {
         public (IEnumerable<VertexModel>, IEnumerable<EdgeModel>) Implement(GraphModel graph, params object[] args)
         {
-            VertexModel startPoint = args[0] as VertexModel ?? throw new ArgumentException("Початкова точка не вказана! ");
+            VertexModel startPoint = args[0] as VertexModel ?? throw new ArgumentException("Starting pos is not defined.");
 
             HashSet<VertexModel> visited = new HashSet<VertexModel>();
 

@@ -76,7 +76,7 @@
   <Class Name="GraphApplication.Model.GraphModel" Collapsed="true">
     <Position X="7.75" Y="8.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAgEgAAEAAKAAAAACABCAAABAAAAACAAIAAAAAgAAAA=</HashCode>
+      <HashCode>AAgEgAAAAAKAAAAACABCAAABAAAAACAQIAAAAAgAACA=</HashCode>
       <FileName>Model\GraphModel.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -141,7 +141,7 @@
   <Class Name="GraphApplication.ModelView.GraphEditorExtensions.Modes.GraphEditorEdgeCreationMode" Collapsed="true">
     <Position X="11.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAgAAAMAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAIAAAAAAAAAAAAAAAAMAAAAAAAAAAAAA=</HashCode>
       <FileName>ModelView\GraphEditorExtensions\Modes\GraphEditorEdgeCreationMode.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" />
@@ -231,7 +231,7 @@
   <Class Name="GraphApplication.ModelView.GraphModelView" Collapsed="true">
     <Position X="5.5" Y="5.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAIQIAAAAIgAACAEQCBAMIACAAAgAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAIQIAAAAIgAACAEQCBAMIACAAAgACAAAAAA=</HashCode>
       <FileName>ModelView\GraphModelView.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -263,7 +263,6 @@
       <HashCode>AAAAAAAAAAACAAQAAEAEAABAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Services\Commands\RelayCommand.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="GraphApplication.Services.XMLFileService&lt;T&gt;" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="18.5" Y="7" Width="1.5" />
@@ -279,7 +278,6 @@
       <HashCode>QAAAAAABQAAAAEAAAAAACAQEAACIAAAAABIAAAAECAA=</HashCode>
       <FileName>View\GraphEditorView.xaml.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="GraphApplication.View.MainWindow" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="16" Y="5" Width="1.5" />
@@ -287,7 +285,6 @@
       <HashCode>AAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>View\MainWindow.xaml.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="GraphApplication.View.ToolButtonCheckConverter" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="24.5" Y="6" Width="2.25" />
@@ -295,7 +292,6 @@
       <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>View\ToolButtonCheckConverter.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="GraphApplication.App" Collapsed="true">
     <Position X="14.25" Y="5" Width="1.5" />

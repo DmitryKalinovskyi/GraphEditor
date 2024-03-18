@@ -37,8 +37,8 @@
                         MouseUp="Canvas_MouseUp"
                         MouseMove="Canvas_MouseMove"
                        >
-                <Canvas.CacheMode >
-                    <BitmapCache EnableClearType="False" 
+                <Canvas.CacheMode>
+                    <BitmapCache EnableClearType="True" 
                                      RenderAtScale="{Binding CachingScale}" 
                                      SnapsToDevicePixels="False"  />
                 </Canvas.CacheMode>

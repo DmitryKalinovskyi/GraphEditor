@@ -21,7 +21,6 @@ namespace GraphApplication.Model
         public static double DefaultScale = 1;
         public static double DefaultCachingScale = 0.8;
 
-
         [DataMember]
         public double ScaleValue { get; set; } = DefaultScale;
 

@@ -77,7 +77,7 @@ namespace GraphApplication.ModelView
                             args.MaxTop = 2000;
                             args.MaxLeft= 2000;
                             args.Deegre = 3;
-                            args.VerticlesCount = 500;
+                            args.VerticlesCount = 100;
 
                             GraphModelGenerator generator = new GraphModelGenerator();
 

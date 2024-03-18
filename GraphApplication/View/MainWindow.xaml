@@ -13,8 +13,9 @@
     <Window.Resources>
         <local:ToolButtonCheckConverter x:Key="ToolButtonCheckConverter"/>
     </Window.Resources>
+    
+    <!--Command shortcurs-->
     <Window.InputBindings>
-        <!--Default commands-->
         <KeyBinding Key="N"
                     Command="{Binding CreateGraphCommand}"
                     Modifiers="Ctrl"
@@ -57,74 +58,133 @@
                     />
         
     </Window.InputBindings>
-    <Grid>
+    
+    <!--Window content-->
+    <Grid
+        Background="{DynamicResource WindowBackground}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="25">
-            </RowDefinition>
-            <RowDefinition>
-            </RowDefinition>
+            <RowDefinition Height="25"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
         <!--Graph Menu strip-->
         <Menu>
-            <MenuItem Header="File">
-                <MenuItem Header="New" 
+            <Menu.Style>
+                <Style TargetType="Menu">
+                    <Setter Property="Background" Value="{DynamicResource MenuBackground}"/>
+                    <Setter Property="BorderBrush" Value="{DynamicResource MenuBorder}"/>
+                </Style>
+            </Menu.Style>
+            
+            <!--Provide a theme changing for menu strip-->
+            <Menu.Resources>
+                <Style TargetType="MenuItem" x:Key="MenuHeader">
+                    <Setter Property="Background" Value="{DynamicResource MenuHeaderBackground}"/>
+                    <Setter Property="BorderBrush" Value="{DynamicResource MenuHeaderBorder}"/>
+
+
+
+                    <!--<Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="MenuItem">
+                                <Border x:Name="Bd" Padding="4,0,4,0" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True" Uid="Border_38">
+                                    <ContentPresenter x:Name="ContentPresenter"  Content="{TemplateBinding Header}" Grid.Column="1" ContentSource="Header" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Uid="ContentPresenter_33"/>
+                                </Border>
+                                --><!--<Setter Property="Foreground" Value="{DynamicResource MenuHeaderFont}"/>
+                                <Setter Property="Background" Value="{DynamicResource MenuHeaderBackground}"/>
+                                <Setter Property="BorderBrush" Value="{DynamicResource MenuHeaderBorder}"/>--><!--
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsHighlighted" Value="True">
+                                        <Setter Property="Background" Value="{DynamicResource MenuHeaderBackgroundHover}"/>
+                                        <Setter Property="BorderBrush" Value="{DynamicResource MenuHeaderBorderHover}"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>-->
+                </Style>
+            </Menu.Resources>
+            <MenuItem Header="File"
+                      Style="{DynamicResource MenuHeader}">
+                <MenuItem Header="New"
+                          Style="{DynamicResource MenuHeader}"
                           Command="{Binding CreateGraphCommand}"
-                          InputGestureText="Ctrl+N">
-                </MenuItem>
-                
+                          InputGestureText="Ctrl+N"/>
+
                 <MenuItem Header="Open.."
+                          Style="{DynamicResource MenuHeader}"
                           Command="{Binding LoadGraphCommand}"
-                          InputGestureText="Ctrl+O">
-                    </MenuItem>
+                          InputGestureText="Ctrl+O"/>
+
                 <MenuItem Header="Save.."
+                          Style="{DynamicResource MenuHeader}"
                           Command="{Binding SaveGraphCommand}"
-                          InputGestureText="Ctrl+S"></MenuItem>
+                          InputGestureText="Ctrl+S"/>
             </MenuItem>
             
-            <!--Auto generated code here-->
-            <MenuItem Header="Tools">
+            <!--Tools-->
+            <MenuItem Header="Tools"
+                      Style="{DynamicResource MenuHeader}">
+
                 <MenuItem Header="Selection"
+                          Style="{DynamicResource MenuHeader}"
                           InputGestureText="Shift+W"></MenuItem>
-                <MenuItem Header="Canvas move"></MenuItem>
-                <MenuItem Header="Verticle move"></MenuItem>
-                <MenuItem Header="Duplicate"></MenuItem>
+                <MenuItem Header="Canvas move"
+                          Style="{DynamicResource MenuHeader}"
+                          ></MenuItem>
+                <MenuItem Header="Verticle move"
+                          Style="{DynamicResource MenuHeader}"
+                          ></MenuItem>
+                <MenuItem Header="Duplicate"
+                          Style="{DynamicResource MenuHeader}"
+                          ></MenuItem>
             </MenuItem>
-            <MenuItem Header="Graph">
+            
+            <!--Graph generation-->
+            <MenuItem Header="Graph"
+                      Style="{DynamicResource MenuHeader}">
                 <MenuItem Header="Generate.." 
+                          Style="{DynamicResource MenuHeader}"
                           Command="{Binding GenerateGraphCommand}"
                           InputGestureText="Ctrl+G">
                 </MenuItem>
             </MenuItem>
-            <MenuItem Header="Algorithm">
+            
+            <!--Algorithms-->
+            <MenuItem Header="Algorithm"
+                      Style="{DynamicResource MenuHeader}">
                 <MenuItem Header="Implement"
+                          Style="{DynamicResource MenuHeader}"
                           Command="{Binding ImplementAlgorithmCommand}"
                           InputGestureText="Shift+I">
                 </MenuItem>
                 <MenuItem Header="BFS"
+                          Style="{DynamicResource MenuHeader}"
                           Command="{Binding ChangeEditorModeCommand}"
                           CommandParameter="GraphEditorBFSMode">
                 </MenuItem>
                 <MenuItem Header="DFS"
+                          Style="{DynamicResource MenuHeader}"
                           Command="{Binding ChangeEditorModeCommand}"
                           CommandParameter="GraphEditorDFSMode">
                 </MenuItem>
                 <MenuItem Header="Shortest path"
+                          Style="{DynamicResource MenuHeader}"
                           Command="{Binding ChangeEditorModeCommand}"
                           CommandParameter="GraphEditorShortestPathMode">
                 </MenuItem>
             </MenuItem>
         </Menu>
 
+        <!--Editor-->
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="44" MinWidth="44">
-                </ColumnDefinition>
-                <ColumnDefinition Width="5">
-                </ColumnDefinition>
-                <ColumnDefinition>
-                </ColumnDefinition>
+                <ColumnDefinition Width="44" MinWidth="44"/>
+                <ColumnDefinition Width="5"/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
+            
+            <!--ToolBar-->
             <WrapPanel Orientation="Vertical" IsEnabled="{Binding ToolBarEnabled}" >
                 <WrapPanel.Background>
                     <SolidColorBrush Color="white"></SolidColorBrush>
@@ -290,8 +350,10 @@
                     </myControl:ToolButton>
                 </WrapPanel>
             </WrapPanel>
-            
-            <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch"></GridSplitter>
+
+            <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch"/>
+               
+            <!--Opened graphs-->
             <TabControl Grid.Column="2" ItemsSource="{Binding GraphEditorViews}" SelectedItem="{Binding SelectedView}">
                 <TabControl.ItemTemplate>
                     <DataTemplate>
@@ -319,7 +381,7 @@
                 </TabControl.ItemTemplate>
                 <TabControl.ContentTemplate>
                     <DataTemplate>
-                        <local:GraphEditorView DataContext="{Binding}"></local:GraphEditorView>
+                        <local:GraphEditorView DataContext="{Binding}"/>
                     </DataTemplate>
                 </TabControl.ContentTemplate>
             </TabControl>

@@ -9,7 +9,6 @@ namespace GraphApplication.ModelView
 {
     public abstract class NotifyModelView: INotifyPropertyChanged
     {
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged(string propertyName)

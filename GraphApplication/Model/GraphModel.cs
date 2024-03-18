@@ -13,6 +13,7 @@ namespace GraphApplication.Model
     {
         [DataMember]
         private List<VertexModel> _verticles;
+
         [DataMember]
         private List<EdgeModel> _edges;
 
@@ -109,8 +110,6 @@ namespace GraphApplication.Model
 
         protected virtual void InitializeRepresentations()
         {
-            _adjancencyList = new();
-
             //init AdjancencyList
             foreach (VertexModel vertex in _verticles)
             {
@@ -125,7 +124,6 @@ namespace GraphApplication.Model
             }
 
             //build EdgeDictionary
-            _edgeDictionary = new();
             foreach (var edge in _edges)
             {
                 EdgeDictionary[(edge.Start, edge.End)] = edge;
@@ -138,16 +136,12 @@ namespace GraphApplication.Model
         {
             _verticles = verticles;
             _edges = edges;
+            _edgeDictionary = new();
+            _adjancencyList = new();
 
             InitializeRepresentations();
         }
-        
-        public GraphModel()
-        {
-            _verticles = new List<VertexModel>();
-            _edges = new List<EdgeModel>();
 
-            InitializeRepresentations();
-        }
+        public GraphModel() : this(new List<VertexModel>(), new List<EdgeModel>()) { }
     }
 }

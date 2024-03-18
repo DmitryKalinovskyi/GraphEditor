@@ -1,0 +1,34 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    
+    <!--Main window-->
+    <SolidColorBrush Color="White" x:Key="WindowBackground"/>
+
+    <!--Menu Strip-->
+    <SolidColorBrush Color="White" x:Key="MenuBackground"/>
+    <SolidColorBrush Color="White" x:Key="MenuBorder"/>
+
+    <SolidColorBrush Color="Black" x:Key="MenuHeaderFont"/>
+    <SolidColorBrush Color="White" x:Key="MenuHeaderBackground"/>
+    <SolidColorBrush Color="Red" x:Key="MenuHeaderBackgroundHover"/>
+    <SolidColorBrush Color="White" x:Key="MenuHeaderBorder"/>
+    <SolidColorBrush Color="Red" x:Key="MenuHeaderBorderHover"/>
+
+    <!--<SolidColorBrush Color="White" x:Key="MenuNestedFont"/>
+    <SolidColorBrush Color="White" x:Key="MenuNestedBackground"/>
+    <SolidColorBrush Color="White" x:Key="MenuNestedBackgroundHover"/>
+    <SolidColorBrush Color="White" x:Key="MenuNestedBorder"/>
+    <SolidColorBrush Color="White" x:Key="MenuNestedBorderHover"/>-->
+    
+    
+
+
+    <!--Toolbar-->
+    
+    <!--Editor-->
+    
+    
+    
+    
+    
+</ResourceDictionary>
