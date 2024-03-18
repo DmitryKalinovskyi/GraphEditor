@@ -6,7 +6,8 @@ namespace GraphApplication.ModelViews.GraphEditorExtensions
     {
         public static GraphEditorMode Convert(string modeName, params object[] args)
         {
-            string fullName = $"GraphApplication.ModelView.GraphEditorExtensions.Modes.{modeName}";
+            // TODO: bind string to namespace
+            string fullName = $"GraphApplication.ModelViews.GraphEditorExtensions.Modes.{modeName}";
 
             Type type = Type.GetType(fullName) ??
                 throw new Exception("Failed to convert modeName to the modeType! Possible incorrect name of mode.");

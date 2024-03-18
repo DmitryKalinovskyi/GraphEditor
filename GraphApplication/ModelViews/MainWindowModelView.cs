@@ -21,11 +21,8 @@ namespace GraphApplication.ModelViews
         {
             get
             {
-                return _createGraphCommand ??
-                     (_createGraphCommand = new RelayCommand(obj =>
+                return _createGraphCommand ??= new RelayCommand(obj =>
                      {
-                         try
-                         {
                              GraphEditorModelView modelView;
 
                              if (obj is GraphModel)
@@ -45,12 +42,8 @@ namespace GraphApplication.ModelViews
                              SelectedView = modelView;
                              GraphEditorViews.Add(modelView);
 
-                         }
-                         catch (Exception ex)
-                         {
-                             MessageBox.Show("Відбулася помилка виконання команди: " + ex.Message, "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
-                         }
-                     }));
+                         //    MessageBox.Show("Відбулася помилка виконання команди: " + ex.Message, "Помилка", MessageBoxButton.OK, MessageBoxImage.Error);
+                     });
             }
         }
 
@@ -59,13 +52,8 @@ namespace GraphApplication.ModelViews
         {
             get
             {
-                return _generateGraphCommand ??
-                    (_generateGraphCommand = new RelayCommand(obj =>
+                return _generateGraphCommand ??= new RelayCommand(obj =>
                     {
-                        try
-                        {
-                            Trace.WriteLine("Generating graph...");
-
                             GraphModelArgs args = new GraphModelArgs();
                             args.MaxTop = 2000;
                             args.MaxLeft = 2000;
@@ -77,15 +65,7 @@ namespace GraphApplication.ModelViews
                             object generated = generator.Generate(args);
 
                             CreateGraphCommand.Execute(generated);
-
-                            Trace.WriteLine("Graph generated!");
-
-                        }
-                        catch (Exception ex)
-                        {
-                            Trace.WriteLine(ex);
-                        }
-                    }));
+                    });
             }
         }
 
@@ -94,43 +74,33 @@ namespace GraphApplication.ModelViews
         {
             get
             {
-                return _saveGraphCommand ??
-                    (_saveGraphCommand = new RelayCommand(obj =>
+                return _saveGraphCommand ??= new RelayCommand(obj =>
                     {
-                        try
-                        {
-                            var view = obj != null ? obj as GraphEditorModelView : SelectedView;
-                            if (view == null)
-                                return;
+                        var view = obj != null ? obj as GraphEditorModelView : SelectedView;
+                        if (view == null)
+                            return;
 
-                            if (_openedGraphEditorModelViews.ContainsKey(view))
+                        if (_openedGraphEditorModelViews.ContainsKey(view))
+                        {
+                            view.IsSaved = true;
+                            _fileService.Save(_openedGraphEditorModelViews[view], view.Model);
+                        }
+                        else // create as new file
+                        {
+                            var saveFileDialog = new SaveFileDialog();
+                            saveFileDialog.Filter = "XML files (*.xml)|*.xml";
+
+                            if (saveFileDialog.ShowDialog() == true)
                             {
+                                string path = saveFileDialog.FileName;
+
                                 view.IsSaved = true;
-                                _fileService.Save(_openedGraphEditorModelViews[view], view.Model);
+                                _fileService.Save(path, view.Model);
+                                _openedGraphEditorModelViews[view] = path;
+                                view.Name = System.IO.Path.GetFileName(path);
                             }
-                            else // create as new file
-                            {
-                                var saveFileDialog = new SaveFileDialog();
-                                saveFileDialog.Filter = "XML files (*.xml)|*.xml";
-
-                                if (saveFileDialog.ShowDialog() == true)
-                                {
-                                    string path = saveFileDialog.FileName;
-
-                                    view.IsSaved = true;
-                                    _fileService.Save(path, view.Model);
-                                    _openedGraphEditorModelViews[view] = path;
-                                    view.Name = System.IO.Path.GetFileName(path);
-                                }
-                            }
-
-
                         }
-                        catch (Exception ex)
-                        {
-                            Trace.WriteLine(ex);
-                        }
-                    }));
+                    });
             }
         }
 
@@ -139,11 +109,8 @@ namespace GraphApplication.ModelViews
         {
             get
             {
-                return _removeGraphCommand ??
-                     (_removeGraphCommand = new RelayCommand(obj =>
+                return _removeGraphCommand ??= new RelayCommand(obj =>
                      {
-                         try
-                         {
                              if (obj is GraphEditorModelView modelView)
                              {
                                  if (modelView.IsSaved == false)
@@ -171,11 +138,7 @@ namespace GraphApplication.ModelViews
                                      SelectedView = GraphEditorViews[0];
 
                              }
-                         }
-                         catch (Exception ex)
-                         {
-                         }
-                     }));
+                     });
             }
         }
 
@@ -184,11 +147,8 @@ namespace GraphApplication.ModelViews
         {
             get
             {
-                return _loadGraphCommand ??
-                     (_loadGraphCommand = new RelayCommand(obj =>
+                return _loadGraphCommand ??= new RelayCommand(obj =>
                      {
-                         try
-                         {
                              //propmt load location
                              var openFileDialog = new OpenFileDialog();
                              openFileDialog.Filter = "XML files (*.xml)|*.xml";
@@ -215,12 +175,7 @@ namespace GraphApplication.ModelViews
                                  GraphEditorViews.Add(graphEditorModelView);
                                  SelectedView = graphEditorModelView;
                              }
-                         }
-                         catch (Exception ex)
-                         {
-                             Trace.WriteLine(ex);
-                         }
-                     }));
+                     });
             }
         }
 
@@ -229,37 +184,28 @@ namespace GraphApplication.ModelViews
         {
             get
             {
-                return _changeEditorModeCommand ??
-                    (_changeEditorModeCommand = new RelayCommand(obj =>
+                return _changeEditorModeCommand ??= new RelayCommand(obj =>
                     {
-                        try
+                        if (SelectedView == null)
+                            return;
+
+
+                        string typename = obj as string ?? throw new Exception("Argument to change editor mode was empty");
+
+                        //convert selected mode from obj
+                        var mode = EditorModeConverter.Convert(typename, SelectedView);
+                        if (mode == null)
+                            throw new Exception("Failed to get new mode instance");
+
+                        if (SelectedView.AnimationManager.IsAnimationActive == true
+                        && mode is IBuildingMode)
                         {
-                            if (SelectedView == null)
-                                return;
-
-
-                            string typename = obj as string ?? throw new Exception("Argument to change editor mode was empty");
-
-                            //convert selected mode from obj
-                            var mode = EditorModeConverter.Convert(typename, SelectedView);
-                            if (mode == null)
-                                throw new Exception("Failed to get new mode instance");
-
-                            if (SelectedView.AnimationManager.IsAnimationActive == true
-                            && mode is IBuildingMode)
-                            {
-                                MessageBox.Show("Поки анімація не завершена редагувати граф неможливо!", "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
-                                return;
-                            }
-
-                            ActiveMode = mode;
-
+                            MessageBox.Show("Поки анімація не завершена редагувати граф неможливо!", "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            return;
                         }
-                        catch (Exception ex)
-                        {
-                            Trace.WriteLine(ex);
-                        }
-                    }));
+
+                        ActiveMode = mode;
+                    });
             }
         }
 
