@@ -275,16 +275,20 @@ namespace GraphApplication.ModelViews
         // Default constructor with basic services
         public MainWindowModelView() : this(new ObservableCollection<GraphEditorModelView>(), new XMLFileService<GraphEditorModel>()) { }
 
-        public void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        public void CloseAndSave()
         {
             //ask about saving
-
             IEnumerable<GraphEditorModelView> graphViewsToClose = GraphEditorViews.ToList();
 
             foreach (GraphEditorModelView view in graphViewsToClose)
             {
                 RemoveGraphCommand.Execute(view);
             }
+        }
+
+        public void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            CloseAndSave();
         }
     }
 }

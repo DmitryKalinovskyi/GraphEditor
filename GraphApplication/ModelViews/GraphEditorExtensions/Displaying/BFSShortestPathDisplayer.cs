@@ -12,13 +12,13 @@ namespace GraphApplication.ModelViews.GraphEditorExtensions.Displaying
 
         private GraphModelView _graphModelView;
 
-
         public BFSShortestPathDisplayer(GraphModelView graphModelView, (List<VertexModelView>, List<EdgeModelView>) path)
         {
             _path = path;
             _graphModelView = graphModelView;
             _animationThread = new(Animation);
         }
+
         private void Animation()
         {
             _path.Item1[0].IsMarked = true;
