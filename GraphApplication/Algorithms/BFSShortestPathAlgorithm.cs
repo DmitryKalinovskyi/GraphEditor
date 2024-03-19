@@ -10,7 +10,7 @@ namespace GraphApplication.Algorithms
     public class BFSShortestPathAlgorithm : IShortestPathAlgorithm
     {
         private IterativeAlgorithmResult BuildPathByParents(
-            GraphModel graphModel,
+            GraphModel_VertexEdgeList graphModel,
             ref Dictionary<VertexModel, VertexModel> parents,
             VertexModel end)
         {
@@ -45,7 +45,7 @@ namespace GraphApplication.Algorithms
         /// <param name="args"></param>
         /// <returns></returns>
         /// <exception cref="ArgumentException"></exception>
-        public IterativeAlgorithmResult BuildRoute(GraphModel graph, params object[] args)
+        public IterativeAlgorithmResult BuildRoute(GraphModel_VertexEdgeList graph, params object[] args)
         {
             if (args.Length < 2)
                 throw new ArgumentException("Для знаходження шляху потрібно передати 2 аргументи!");

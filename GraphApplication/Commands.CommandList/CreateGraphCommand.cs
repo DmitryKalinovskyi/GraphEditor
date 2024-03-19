@@ -17,9 +17,9 @@ namespace GraphApplication.Commands.CommandList
         {
             GraphEditorModelView modelView;
 
-            if (parameter is GraphModel)
+            if (parameter is GraphModel_VertexEdgeList)
             {
-                GraphEditorModel graphModel = new GraphEditorModel(parameter as GraphModel);
+                GraphEditorModel graphModel = new GraphEditorModel(parameter as GraphModel_VertexEdgeList);
 
                 modelView = new GraphEditorModelView(graphModel, "");
             }

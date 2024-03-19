@@ -2,6 +2,6 @@
 {
     public interface IGraphModel_EdgeDictionary_Converter
     {
-        GraphModel_EdgeDictionary Convert(GraphModel graphModel);
+        GraphModel_EdgeDictionary Convert(GraphModel_VertexEdgeList graphModel);
     }
 }

@@ -8,6 +8,6 @@ namespace GraphApplication.Algorithms.Contracts
     /// </summary>
     public interface IIterativeAlgorithm
     {
-        public IterativeAlgorithmResult BuildRoute(GraphModel graph, params object[] args);
+        public IterativeAlgorithmResult BuildRoute(GraphModel_VertexEdgeList graph, params object[] args);
     }
 }

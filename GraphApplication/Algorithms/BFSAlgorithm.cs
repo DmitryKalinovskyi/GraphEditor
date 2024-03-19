@@ -16,7 +16,7 @@ namespace GraphApplication.Algorithms
         /// <param name="args"></param>
         /// <returns></returns>
         /// <exception cref="ArgumentException"></exception>
-        public IterativeAlgorithmResult BuildRoute(GraphModel graph, params object[] args)
+        public IterativeAlgorithmResult BuildRoute(GraphModel_VertexEdgeList graph, params object[] args)
         {
             VertexModel startPoint = args[0] as VertexModel ?? throw new ArgumentException("Starting pos is not defined.");
 

@@ -33,7 +33,7 @@ namespace GraphApplication.Fabrication
                 edges.Add(new EdgeModel(verticles[i], verticles[next]));
             }
 
-            GraphModel model = new GraphModel(verticles, edges);
+            GraphModel_VertexEdgeList model = new GraphModel_VertexEdgeList(verticles, edges);
 
             return model;
         }

@@ -29,14 +29,14 @@ namespace GraphApplication.Models
         public double CachingScale { get; set; } = DefaultCachingScale;
 
         [DataMember]
-        public GraphModel GraphModel { get; set; }
+        public GraphModel_VertexEdgeList GraphModel { get; set; }
 
         [DataMember]
         public ToolBarModel ToolBarModel { get; set; }
 
         public GraphEditorModel() : this(new()) { }
 
-        public GraphEditorModel(GraphModel graphModel)
+        public GraphEditorModel(GraphModel_VertexEdgeList graphModel)
         {
             GraphModel = graphModel;
             ToolBarModel = new();
