@@ -1,4 +1,5 @@
 ﻿using GraphApplication.CustomControls;
+using GraphApplication.Models;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows;
@@ -41,8 +42,8 @@ namespace GraphApplication.ModelViews.GraphEditorExtensions.Modes
 
             if (_modelView.GraphModelView.Model.IsConnectionBetween(start.Model, end.Model) == false)
             {
-                EdgeModelView edgeModelView = new EdgeModelView(start, end);
-                _modelView.GraphModelView.EdgeModelViews.Add(edgeModelView);
+                EdgeModel edgeModel = new EdgeModel(start.Model, end.Model);
+                _modelView.GraphModelView.AddEdgeCommand.Execute(edgeModel);
             }
             else
             {

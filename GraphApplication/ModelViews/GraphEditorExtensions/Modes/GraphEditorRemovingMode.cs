@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using GraphApplication.Models;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 
@@ -21,7 +22,7 @@ namespace GraphApplication.ModelViews.GraphEditorExtensions.Modes
 
             if (edgeModelView != null)
             {
-                _modelView.GraphModelView.EdgeModelViews.Remove(edgeModelView);
+                _modelView.GraphModelView.RemoveEdgeCommand.Execute(edgeModelView.Model);
             }
             else
             {
@@ -38,7 +39,9 @@ namespace GraphApplication.ModelViews.GraphEditorExtensions.Modes
         {
             VertexModelView vertexModleView = (VertexModelView)(sender as FrameworkElement).DataContext;
 
-            _modelView.GraphModelView.VertexModelViews.Remove(vertexModleView);
+            VertexModel model = vertexModleView.Model;
+
+            _modelView.GraphModelView.RemoveVertexCommand.Execute(model);
         }
 
     }

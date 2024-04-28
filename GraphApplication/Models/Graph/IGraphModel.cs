@@ -24,7 +24,11 @@ namespace GraphApplication.Models.Graph
 
         public bool IsConnectionBetween(TVertex source, TVertex destination);
 
+        public IEnumerable<TVertex> GetNeighbors(TVertex source);
+
         public TEdge? GetEdgeBetween(TVertex source, TVertex destination);
+
+        public IEnumerable<TEdge> GetEdges(TVertex source);
 
         public IEnumerable<TVertex> GetVertices();
 
@@ -43,7 +47,4 @@ namespace GraphApplication.Models.Graph
         public event EventHandler<TVertex>? OnVertexRemoved;
         public event EventHandler<TEdge>? OnEdgeRemoved;
     }
-
-    // use weighted edgeModel
-    public interface IWeightedGraphModel: IGraphModel<VertexModel, EdgeModel> { }
 }

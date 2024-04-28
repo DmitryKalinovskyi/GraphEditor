@@ -78,13 +78,13 @@
                               VerticalAlignment="Center"
                               Panel.ZIndex="2"
                               FocusVisualStyle="{x:Null}">
-                    <ItemsControl.CacheMode>
+                    <!--<ItemsControl.CacheMode>
 
                         <BitmapCache
                                     EnableClearType="False" 
                                      RenderAtScale="{Binding CachingScale}" 
                                      SnapsToDevicePixels="False"/>
-                    </ItemsControl.CacheMode>
+                    </ItemsControl.CacheMode>-->
 
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -123,20 +123,20 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
 
-                <ItemsControl ItemsSource="{Binding GraphModelView.EdgeModelViews}"
+                <ItemsControl ItemsSource="{Binding GraphModelView.EdgeModelViews, UpdateSourceTrigger=PropertyChanged}"
                               Canvas.Left="{Binding OffsetX}"
                               Canvas.Top="{Binding OffsetY}"
                               Width="500"
                         Height="300"
                               FocusVisualStyle="{x:Null}"
                               Panel.ZIndex="1">
-                    <ItemsControl.CacheMode>
+                    <!--<ItemsControl.CacheMode>
                         
                         <BitmapCache
                                     EnableClearType="False" 
                                      RenderAtScale="{Binding CachingScale}" 
                                      SnapsToDevicePixels="False"/>
-                    </ItemsControl.CacheMode>
+                    </ItemsControl.CacheMode>-->
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <Canvas 
