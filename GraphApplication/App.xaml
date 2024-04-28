@@ -1,8 +1,7 @@
 ﻿<Application x:Class="GraphApplication.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:GraphApplication"
-             StartupUri="Views/MainWindow.xaml">
+             xmlns:local="clr-namespace:GraphApplication">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
