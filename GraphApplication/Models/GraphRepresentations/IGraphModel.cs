@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace GraphApplication.Models.GraphRepresentations
 {
+    /// <summary>
+    /// This is basic interface for graph interaction, you can make own graph representation or use one that already writed.
+    /// </summary>
     public interface IGraphModel
     {
         // Methods should notify about each event.

@@ -1,30 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
+using System.Linq;
 
 namespace GraphApplication.Models.GraphRepresentations
 {
     /// <summary>
-    /// This is default graph representations, it's friendy with data saving, but require more time to remove vertex,
-    /// edge, check connectivity between vertices or get edge between them.
+    /// This is hybrid representation of graph, all operation (except getting all vertices and edges, and except removing vertices) have O(1) Time complexity
     /// </summary>
-    [DataContract(IsReference = true)]
-    public class GraphModel_VertexEdgeList: IGraphModel
+    public class GraphModel_EdgeDictionaryVertexList: IGraphModel
     {
-        [DataMember]
-        private List<VertexModel> _vertices;
+        public Dictionary<(VertexModel, VertexModel), EdgeModel> EdgeDictionary { get; set; }
 
-        [DataMember]
-        private List<EdgeModel> _edges;
+        public List<VertexModel> Vertices { get; set; }
+
+        public GraphModel_EdgeDictionaryVertexList() : this(new(), new()) { }
+
+        public GraphModel_EdgeDictionaryVertexList(Dictionary<(VertexModel, VertexModel), EdgeModel> edgeDictionary, List<VertexModel> vertices)
+        {
+            EdgeDictionary = edgeDictionary;
+            Vertices = vertices;
+        }
 
         public event EventHandler<VertexModel>? OnVertexAdded;
         public event EventHandler<EdgeModel>? OnEdgeAdded;
         public event EventHandler<VertexModel>? OnVertexRemoved;
         public event EventHandler<EdgeModel>? OnEdgeRemoved;
-
-        public List<VertexModel> Vertices => _vertices;
-
-        public List<EdgeModel> Edges => _edges;
 
         /// <summary>
         /// Time complexity O(1)
@@ -32,18 +32,17 @@ namespace GraphApplication.Models.GraphRepresentations
         /// <param name="vertex"></param>
         public void AddVertex(VertexModel vertex)
         {
-            _vertices.Add(vertex);
+            Vertices.Add(vertex);
             OnVertexAdded?.Invoke(this, vertex);
         }
 
         /// <summary>
-        /// Time complexity O(Vertices + Edges)
+        /// Time complexity O(Vertices)
         /// </summary>
         /// <param name="vertex"></param>
         public void RemoveVertex(VertexModel vertex)
         {
-            _vertices.Remove(vertex);
-            ClearEdgesConnectedTo(vertex);
+            Vertices.Remove(vertex);
             OnVertexRemoved?.Invoke(this, vertex);
         }
 
@@ -53,34 +52,25 @@ namespace GraphApplication.Models.GraphRepresentations
         /// <param name="edge"></param>
         public void AddEdge(EdgeModel edge)
         {
-            _edges.Add(edge);
+            EdgeDictionary[(edge.Start, edge.End)] = edge;
+            EdgeDictionary[(edge.End, edge.Start)] = edge;
             OnEdgeAdded?.Invoke(this, edge);
         }
 
         /// <summary>
-        /// Time complexity O(Edges)
+        /// Time complexity O(1)
         /// </summary>
         /// <param name="edge"></param>
         public void RemoveEdge(EdgeModel edge)
         {
-            _edges.Remove(edge);
+            EdgeDictionary.Remove((edge.Start, edge.End));
+            EdgeDictionary.Remove((edge.End, edge.Start));
+
             OnEdgeRemoved?.Invoke(this, edge);
         }
 
-        public void ClearEdgesConnectedTo(VertexModel vertex)
-        {
-            var edges = new List<EdgeModel>();
-            foreach (var edge in Edges)
-            {
-                if (edge.Start != vertex && edge.End != vertex)
-                    edges.Add(edge);
-            }
-
-            _edges = edges;
-        }
-
         /// <summary>
-        /// Time complexity O(Edges)
+        /// Time complexity O(1)
         /// </summary>
         /// <param name="vertex1"></param>
         /// <param name="vertex2"></param>
@@ -90,18 +80,17 @@ namespace GraphApplication.Models.GraphRepresentations
             return GetEdgeBetween(vertex1, vertex2) != null;
         }
 
+
         /// <summary>
-        /// Time complexity O(Edges)
+        /// Time comlexity O(1)
         /// </summary>
         /// <param name="vertex1"></param>
         /// <param name="vertex2"></param>
         /// <returns></returns>
         public EdgeModel? GetEdgeBetween(VertexModel vertex1, VertexModel vertex2)
         {
-            foreach(var edge in Edges)
-            {
-                if(edge.Start == vertex1 && edge.End == vertex2) return edge;
-            }
+            if(EdgeDictionary.ContainsKey((vertex1, vertex2)))
+                return EdgeDictionary[(vertex1, vertex2)];
 
             return null;
         }
@@ -112,6 +101,7 @@ namespace GraphApplication.Models.GraphRepresentations
         /// <returns></returns>
         public IEnumerable<VertexModel> GetVertices()
         {
+            // we can't return pointer to the actual vertices, then we just return copy.
             return Vertices.ToArray();
         }
 
@@ -121,15 +111,8 @@ namespace GraphApplication.Models.GraphRepresentations
         /// <returns></returns>
         public IEnumerable<EdgeModel> GetEdges()
         {
-            return Edges.ToArray();
+            // why to hash set? because dict can contain copy values of the edges, hash set will make them unique.
+            return EdgeDictionary.Values.ToHashSet();
         }
-
-        public GraphModel_VertexEdgeList(List<VertexModel> verticles, List<EdgeModel> edges)
-        {
-            _vertices = verticles;
-            _edges = edges;
-        }
-
-        public GraphModel_VertexEdgeList() : this(new List<VertexModel>(), new List<EdgeModel>()) { }
     }
 }
