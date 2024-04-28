@@ -5,7 +5,7 @@ namespace GraphApplication.Models
 
     [DataContract(IsReference = true)]
 
-    public class EdgeModel : GraphObjectModel
+    public class EdgeModel 
     {
         [DataMember]
         public VertexModel Start { get; set; }

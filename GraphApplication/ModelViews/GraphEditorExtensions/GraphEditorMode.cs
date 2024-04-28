@@ -6,8 +6,8 @@ namespace GraphApplication.ModelViews.GraphEditorExtensions
     public abstract class GraphEditorMode
     {
 
-        protected readonly GraphEditorModelView _modelView;
-        public GraphEditorMode(GraphEditorModelView modelView)
+        protected readonly GraphProjectModelView _modelView;
+        public GraphEditorMode(GraphProjectModelView modelView)
         {
             _modelView = modelView;
         }

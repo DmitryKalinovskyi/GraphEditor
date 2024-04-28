@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GraphApplication.Models;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -8,11 +9,11 @@ namespace GraphApplication.ModelViews.GraphEditorExtensions.Displaying
 {
     public class DFSDisplayer : Animation
     {
-        private (List<VertexModelView>, List<EdgeModelView>) _path;
+        private (IList<VertexModelView>, IList<EdgeModelView>) _path;
 
         private GraphModelView _graphModelView;
 
-        public DFSDisplayer(GraphModelView graphModelView, (List<VertexModelView>, List<EdgeModelView>) path)
+        public DFSDisplayer(GraphModelView graphModelView, (IList<VertexModelView>, IList<EdgeModelView>) path)
         {
             _path = path;
             _graphModelView = graphModelView;

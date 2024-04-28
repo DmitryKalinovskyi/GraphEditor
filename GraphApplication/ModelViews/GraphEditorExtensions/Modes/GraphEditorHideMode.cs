@@ -4,7 +4,7 @@ namespace GraphApplication.ModelViews.GraphEditorExtensions.Modes
 {
     public class GraphEditorHideMode : GraphEditorMode, IBuildingMode
     {
-        public GraphEditorHideMode(GraphEditorModelView modelView) : base(modelView)
+        public GraphEditorHideMode(GraphProjectModelView modelView) : base(modelView)
         {
         }
 

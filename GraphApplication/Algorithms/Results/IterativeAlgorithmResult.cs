@@ -10,11 +10,11 @@ namespace GraphApplication.Algorithms.Results
     {
         public static IterativeAlgorithmResult FailedToBuildRouteResult = new(null, null);
 
-        public IEnumerable<VertexModel>? VertexModels { get; set; }
+        public IList<VertexModel>? VertexModels { get; set; }
 
-        public IEnumerable<EdgeModel>? EdgeModels { get; set; }
+        public IList<EdgeModel>? EdgeModels { get; set; }
 
-        public IterativeAlgorithmResult(IEnumerable<VertexModel>? vertexModels, IEnumerable<EdgeModel>? edgeModels)
+        public IterativeAlgorithmResult(IList<VertexModel>? vertexModels, IList<EdgeModel>? edgeModels)
         {
             VertexModels = vertexModels;
             EdgeModels = edgeModels;

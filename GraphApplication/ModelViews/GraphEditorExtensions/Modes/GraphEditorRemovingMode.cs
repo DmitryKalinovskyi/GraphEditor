@@ -6,7 +6,7 @@ namespace GraphApplication.ModelViews.GraphEditorExtensions.Modes
 {
     public class GraphEditorRemovingMode : GraphEditorMode, IBuildingMode
     {
-        public GraphEditorRemovingMode(GraphEditorModelView modelView) : base(modelView)
+        public GraphEditorRemovingMode(GraphProjectModelView modelView) : base(modelView)
         {
         }
 

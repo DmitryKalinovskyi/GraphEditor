@@ -1,14 +1,15 @@
-﻿using System.Runtime.Serialization;
+﻿using GraphApplication.Models.Graph;
+using System.Runtime.Serialization;
 
 namespace GraphApplication.Models
 {
     /// <summary>
-    /// Store all information about GraphEditor but not actual graph
+    /// Store all information about project
     /// </summary>
     /// 
 
     [DataContract(IsReference = true)]
-    public class GraphEditorModel
+    public class GraphProjectModel
     {
         public static double MinScale = 0.25;
         public static double MaxScale = 6;
@@ -28,16 +29,26 @@ namespace GraphApplication.Models
         public double CachingScale { get; set; } = DefaultCachingScale;
 
         [DataMember]
-        public GraphModel GraphModel { get; set; }
+        public IGraphModel? GraphModel { get; set; }
 
-        public GraphEditorModel()
-        {
-            GraphModel = new GraphModel();
-        }
-
-        public GraphEditorModel(GraphModel graphModel)
+        public GraphProjectModel(IGraphModel graphModel)
         {
             GraphModel = graphModel;
         }
+
+        public GraphProjectModel()
+        {
+            GraphModel = null;
+        }
+
+        //public GraphEditorModel()
+        //{
+        //    GraphModel = new GraphModel();
+        //}
+
+        //public GraphEditorModel(IGraphModel<TVertex graphModel)
+        //{
+        //    GraphModel = graphModel;
+        //}
     }
 }

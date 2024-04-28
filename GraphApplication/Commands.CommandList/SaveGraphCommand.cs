@@ -8,11 +8,11 @@ namespace GraphApplication.Commands.CommandList
     public class SaveGraphCommand: Command
     {
         private MainWindowModelView _mainWindowsViewModel;
-        private IFileService<GraphEditorModel> _fileService;
+        private IFileService<GraphProjectModel> _fileService;
 
-        public SaveGraphCommand(MainWindowModelView mainWindowModelView) : this(mainWindowModelView, new XMLFileService<GraphEditorModel>()) { }
+        public SaveGraphCommand(MainWindowModelView mainWindowModelView) : this(mainWindowModelView, new XMLFileService<GraphProjectModel>()) { }
 
-        public SaveGraphCommand(MainWindowModelView mainWindowModelView, IFileService<GraphEditorModel> fileService)
+        public SaveGraphCommand(MainWindowModelView mainWindowModelView, IFileService<GraphProjectModel> fileService)
         {
             _mainWindowsViewModel = mainWindowModelView;
             _fileService = fileService;
@@ -20,7 +20,7 @@ namespace GraphApplication.Commands.CommandList
 
         public override void Execute(object? parameter)
         {
-            var viewModel = parameter != null ? parameter as GraphEditorModelView : _mainWindowsViewModel.OpenedGraphModelViewsManager.SelectedView;
+            var viewModel = parameter != null ? parameter as GraphProjectModelView : _mainWindowsViewModel.OpenedGraphModelViewsManager.SelectedView;
             if (viewModel == null)
                 return;
 

@@ -7,7 +7,7 @@ namespace GraphApplication.ModelViews.GraphEditorExtensions.Modes
 {
     public class GraphEditorSelectionMode : GraphEditorMode
     {
-        public GraphEditorSelectionMode(GraphEditorModelView modelView) : base(modelView)
+        public GraphEditorSelectionMode(GraphProjectModelView modelView) : base(modelView)
         {
         }
 

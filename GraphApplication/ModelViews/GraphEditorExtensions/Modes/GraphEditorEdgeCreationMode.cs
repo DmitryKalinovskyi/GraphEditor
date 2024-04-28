@@ -7,7 +7,7 @@ namespace GraphApplication.ModelViews.GraphEditorExtensions.Modes
 {
     public class GraphEditorEdgeCreationMode : GraphEditorMode, IBuildingMode
     {
-        public GraphEditorEdgeCreationMode(GraphEditorModelView modelView) : base(modelView)
+        public GraphEditorEdgeCreationMode(GraphProjectModelView modelView) : base(modelView)
         {
             _modelView.SelectionManager.DiselectAll();
         }
@@ -39,7 +39,7 @@ namespace GraphApplication.ModelViews.GraphEditorExtensions.Modes
         private void CreateEdge(VertexModelView start, VertexModelView end)
         {
 
-            if (_modelView.GraphModelView.Model.EdgeDictionary.ContainsKey((start.Model, end.Model)) == false)
+            if (_modelView.GraphModelView.Model.IsConnectionBetween(start.Model, end.Model) == false)
             {
                 EdgeModelView edgeModelView = new EdgeModelView(start, end);
                 _modelView.GraphModelView.EdgeModelViews.Add(edgeModelView);

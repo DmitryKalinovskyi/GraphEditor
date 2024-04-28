@@ -12,9 +12,9 @@ namespace GraphApplication.ModelViews.GraphEditorExtensions.Modes
     {
         private IShortestPathAlgorithm _algorithm;
 
-        public GraphEditorShortestPathMode(GraphEditorModelView modelView) : this(modelView, new BFSShortestPathAlgorithm()) { }
+        public GraphEditorShortestPathMode(GraphProjectModelView modelView) : this(modelView, new BFSShortestPathAlgorithm()) { }
 
-        public GraphEditorShortestPathMode(GraphEditorModelView modelView, IShortestPathAlgorithm algorithm) : base(modelView)
+        public GraphEditorShortestPathMode(GraphProjectModelView modelView, IShortestPathAlgorithm algorithm) : base(modelView)
         {
             _algorithm = algorithm;
         }
@@ -45,8 +45,8 @@ namespace GraphApplication.ModelViews.GraphEditorExtensions.Modes
             if (routeBuildResult.EdgeModels == null)
                 throw new ArgumentNullException("Edge models are null.");
 
-            List<VertexModelView> vertexModelViews = _modelView.GraphModelView.GetVertexModelViewsByModels(routeBuildResult.VertexModels);
-            List<EdgeModelView> edgesModelViews = _modelView.GraphModelView.GetEdgeModelViewsByModels(routeBuildResult.EdgeModels);
+            List<VertexModelView> vertexModelViews = _modelView.GraphModelView.GetVertexModelViews_By_VertexModels(routeBuildResult.VertexModels);
+            List<EdgeModelView> edgesModelViews = _modelView.GraphModelView.GetEdgeModelViews_By_EdgeModels(routeBuildResult.EdgeModels);
 
             _modelView.AnimationManager.SetAnimation(new BFSShortestPathDisplayer(_modelView.GraphModelView, (vertexModelViews, edgesModelViews)));
             return true;

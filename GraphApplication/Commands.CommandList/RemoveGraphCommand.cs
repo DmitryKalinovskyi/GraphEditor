@@ -22,7 +22,7 @@ namespace GraphApplication.Commands.CommandList
 
         public override void Execute(object? parameter)
         {
-            if (parameter is GraphEditorModelView modelView)
+            if (parameter is GraphProjectModelView modelView)
             {
                 if (modelView.IsSaved == false)
                 {

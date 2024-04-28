@@ -12,9 +12,9 @@ namespace GraphApplication.ModelViews.GraphEditorExtensions.Modes
     {
         private IDFSAlgorithm _algorithm;
 
-        public GraphEditorDFSMode(GraphEditorModelView modelView) : this(modelView, new DFSAlgorithm()) { }
+        public GraphEditorDFSMode(GraphProjectModelView modelView) : this(modelView, new DFSAlgorithm()) { }
 
-        public GraphEditorDFSMode(GraphEditorModelView modelView, IDFSAlgorithm algorithm) : base(modelView)
+        public GraphEditorDFSMode(GraphProjectModelView modelView, IDFSAlgorithm algorithm) : base(modelView)
         {
             _algorithm = algorithm;
         }
@@ -37,8 +37,8 @@ namespace GraphApplication.ModelViews.GraphEditorExtensions.Modes
             if (routeBuildResult.VertexModels == null)
                 throw new ArgumentNullException("Vertex models are null.");
 
-            List<VertexModelView> vertexModelViews = _modelView.GraphModelView.GetVertexModelViewsByModels(routeBuildResult.VertexModels);
-            List<EdgeModelView> edgesModelViews = _modelView.GraphModelView.GetEdgeModelViewsByModels(routeBuildResult.EdgeModels);
+            List<VertexModelView> vertexModelViews = _modelView.GraphModelView.GetVertexModelViews_By_VertexModels(routeBuildResult.VertexModels);
+            List<EdgeModelView> edgesModelViews = _modelView.GraphModelView.GetEdgeModelViews_By_EdgeModels(routeBuildResult.EdgeModels);
 
             DFSDisplayer _displayer = new(_modelView.GraphModelView, (vertexModelViews, edgesModelViews));
 

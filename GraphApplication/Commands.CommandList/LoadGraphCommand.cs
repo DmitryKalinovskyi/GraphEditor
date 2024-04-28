@@ -15,11 +15,11 @@ namespace GraphApplication.Commands.CommandList
     public class LoadGraphCommand: Command
     {
         private MainWindowModelView _mainWindowsViewModel;
-        private IFileService<GraphEditorModel> _fileService;
+        private IFileService<GraphProjectModel> _fileService;
 
-        public LoadGraphCommand(MainWindowModelView mainWindowModelView) : this(mainWindowModelView, new XMLFileService<GraphEditorModel>()) { }
+        public LoadGraphCommand(MainWindowModelView mainWindowModelView) : this(mainWindowModelView, new XMLFileService<GraphProjectModel>()) { }
 
-        public LoadGraphCommand(MainWindowModelView mainWindowModelView, IFileService<GraphEditorModel> fileService)
+        public LoadGraphCommand(MainWindowModelView mainWindowModelView, IFileService<GraphProjectModel> fileService)
         {
             _mainWindowsViewModel = mainWindowModelView;
             _fileService = fileService;
@@ -42,12 +42,12 @@ namespace GraphApplication.Commands.CommandList
 
                 string name = System.IO.Path.GetFileName(path);
 
-                GraphEditorModel modelView = _fileService.Open(path);
+                GraphProjectModel modelView = _fileService.Open(path);
 
                 if (modelView == null)
                     throw new Exception();
 
-                GraphEditorModelView graphEditorModelView = new GraphEditorModelView(modelView, name, true);
+                GraphProjectModelView graphEditorModelView = new GraphProjectModelView(modelView, name, true);
                 _mainWindowsViewModel.OpenedGraphModelViewsManager.AssignModelView(graphEditorModelView, path);
                 _mainWindowsViewModel.OpenedGraphModelViewsManager.GraphEditorViews.Add(graphEditorModelView);
                 _mainWindowsViewModel.OpenedGraphModelViewsManager.SelectedView = graphEditorModelView;

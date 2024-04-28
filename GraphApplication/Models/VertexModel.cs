@@ -4,7 +4,7 @@ namespace GraphApplication.Models
 {
 
     [DataContract(IsReference = true)]
-    public class VertexModel : GraphObjectModel
+    public class VertexModel
     {
         [DataMember]
         public string Caption { get; set; }

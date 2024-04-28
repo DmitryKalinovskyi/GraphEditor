@@ -6,8 +6,8 @@ namespace GraphApplication.Commands.CommandList
 {
     public class StartAlgorithmCommand : Command
     {
-        private GraphEditorModelView _graphEditorModelView;
-        public StartAlgorithmCommand(GraphEditorModelView graphEditorModelView)
+        private GraphProjectModelView _graphEditorModelView;
+        public StartAlgorithmCommand(GraphProjectModelView graphEditorModelView)
         {
             _graphEditorModelView = graphEditorModelView;
         }

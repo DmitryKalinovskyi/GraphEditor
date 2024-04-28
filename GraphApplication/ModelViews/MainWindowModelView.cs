@@ -52,7 +52,7 @@ namespace GraphApplication.ModelViews
 
         public bool ToolBarEnabled { get { return OpenedGraphModelViewsManager.GraphEditorViews.Count() > 0; } }
 
-        public MainWindowModelView(ObservableCollection<GraphEditorModelView> graphViews)
+        public MainWindowModelView(ObservableCollection<GraphProjectModelView> graphViews)
         {
             OpenedGraphModelViewsManager = new(graphViews, new());
 
@@ -72,14 +72,14 @@ namespace GraphApplication.ModelViews
         }
 
         // Default constructor with basic services
-        public MainWindowModelView() : this(new ObservableCollection<GraphEditorModelView>()) { }
+        public MainWindowModelView() : this(new ObservableCollection<GraphProjectModelView>()) { }
 
         public void CloseAndSave()
         {
             //ask about saving
-            IEnumerable<GraphEditorModelView> graphViewsToClose = OpenedGraphModelViewsManager.GraphEditorViews.ToList();
+            IEnumerable<GraphProjectModelView> graphViewsToClose = OpenedGraphModelViewsManager.GraphEditorViews.ToList();
 
-            foreach (GraphEditorModelView view in graphViewsToClose)
+            foreach (GraphProjectModelView view in graphViewsToClose)
             {
                 RemoveGraphCommand?.Execute(view);
             }

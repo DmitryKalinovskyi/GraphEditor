@@ -1,5 +1,6 @@
 ﻿using GraphApplication.Algorithms.Results;
 using GraphApplication.Models;
+using GraphApplication.Models.Graph;
 
 namespace GraphApplication.Algorithms.Contracts
 {
@@ -8,6 +9,6 @@ namespace GraphApplication.Algorithms.Contracts
     /// </summary>
     public interface IIterativeAlgorithm
     {
-        public IterativeAlgorithmResult BuildRoute(GraphModel graph, params object[] args);
+        public IterativeAlgorithmResult BuildRoute(IGraphModel graph, params object[] args);
     }
 }

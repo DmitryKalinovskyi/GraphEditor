@@ -12,9 +12,9 @@ namespace GraphApplication.ModelViews.GraphEditorExtensions.Modes
     {
         private IBFSAlgorithm _algorithm;
 
-        public GraphEditorBFSMode(GraphEditorModelView modelView) : this(modelView, new BFSAlgorithm()) { }
+        public GraphEditorBFSMode(GraphProjectModelView modelView) : this(modelView, new BFSAlgorithm()) { }
 
-        public GraphEditorBFSMode(GraphEditorModelView modelView, IBFSAlgorithm algorithm) : base(modelView)
+        public GraphEditorBFSMode(GraphProjectModelView modelView, IBFSAlgorithm algorithm) : base(modelView)
         {
             _algorithm = algorithm;
         }
@@ -37,8 +37,8 @@ namespace GraphApplication.ModelViews.GraphEditorExtensions.Modes
             if (routeBuildResult.VertexModels == null)
                 throw new ArgumentNullException("Vertex models are null.");
 
-            List<VertexModelView> vertexModelViews = _modelView.GraphModelView.GetVertexModelViewsByModels(routeBuildResult.VertexModels);
-            List<EdgeModelView> edgesModelViews = _modelView.GraphModelView.GetEdgeModelViewsByModels(routeBuildResult.EdgeModels);
+            List<VertexModelView> vertexModelViews = _modelView.GraphModelView.GetVertexModelViews_By_VertexModels(routeBuildResult.VertexModels);
+            List<EdgeModelView> edgesModelViews = _modelView.GraphModelView.GetEdgeModelViews_By_EdgeModels(routeBuildResult.EdgeModels);
 
             BFSDisplayer _displayer = new(_modelView.GraphModelView, (vertexModelViews, edgesModelViews));
 

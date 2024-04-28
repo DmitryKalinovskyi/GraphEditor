@@ -1,4 +1,5 @@
 ﻿using GraphApplication.Models;
+using GraphApplication.Models.Graph;
 using System;
 using System.Collections.Generic;
 
@@ -32,7 +33,7 @@ namespace GraphApplication.Fabrication
                 edges.Add(new EdgeModel(verticles[i], verticles[next]));
             }
 
-            GraphModel model = new GraphModel(verticles, edges);
+            IGraphModel model = new DefaultGraphModel<VertexModel, EdgeModel>(verticles, edges);
 
             return model;
         }

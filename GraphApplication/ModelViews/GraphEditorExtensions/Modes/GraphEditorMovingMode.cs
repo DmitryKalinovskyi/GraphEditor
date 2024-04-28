@@ -7,7 +7,7 @@ namespace GraphApplication.ModelViews.GraphEditorExtensions.Modes
 {
     public class GraphEditorMovingMode : GraphEditorMode, IBuildingMode
     {
-        public GraphEditorMovingMode(GraphEditorModelView modelView) : base(modelView)
+        public GraphEditorMovingMode(GraphProjectModelView modelView) : base(modelView)
         {
 
         }

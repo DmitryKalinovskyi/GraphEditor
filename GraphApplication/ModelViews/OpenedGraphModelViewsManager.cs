@@ -11,9 +11,9 @@ namespace GraphApplication.ModelViews
     public class OpenedGraphModelViewsManager: NotifyModelView
     {
         // Use dictionary to limit opening the same graph few times
-        private Dictionary<GraphEditorModelView, string> _openedGraphEditorModelViews;
+        private Dictionary<GraphProjectModelView, string> _openedGraphEditorModelViews;
 
-        public bool IsOpened(GraphEditorModelView modelView)
+        public bool IsOpened(GraphProjectModelView modelView)
         {
             return _openedGraphEditorModelViews.ContainsKey(modelView);
         }
@@ -23,17 +23,17 @@ namespace GraphApplication.ModelViews
             return _openedGraphEditorModelViews.ContainsValue(path);
         }
 
-        public string GetOpenedPath(GraphEditorModelView modelView)
+        public string GetOpenedPath(GraphProjectModelView modelView)
         {
             return _openedGraphEditorModelViews[modelView];
         }
 
-        public void AssignModelView(GraphEditorModelView modelView, string path)
+        public void AssignModelView(GraphProjectModelView modelView, string path)
         {
             _openedGraphEditorModelViews[modelView] = path;
         }
 
-        public void RemoveModelView(GraphEditorModelView modelView)
+        public void RemoveModelView(GraphProjectModelView modelView)
         {
             _openedGraphEditorModelViews.Remove(modelView);
             _graphEditorViews.Remove(modelView);
@@ -44,9 +44,9 @@ namespace GraphApplication.ModelViews
                 SelectedView = GraphEditorViews[0];
         }
 
-        private ObservableCollection<GraphEditorModelView> _graphEditorViews;
+        private ObservableCollection<GraphProjectModelView> _graphEditorViews;
 
-        public ObservableCollection<GraphEditorModelView> GraphEditorViews
+        public ObservableCollection<GraphProjectModelView> GraphEditorViews
         {
             get { return _graphEditorViews; }
             set
@@ -56,9 +56,9 @@ namespace GraphApplication.ModelViews
             }
         }
 
-        private GraphEditorModelView? _selectedView;
+        private GraphProjectModelView? _selectedView;
 
-        public GraphEditorModelView? SelectedView
+        public GraphProjectModelView? SelectedView
         {
             get { return _selectedView; }
             set
@@ -70,9 +70,9 @@ namespace GraphApplication.ModelViews
 
         public OpenedGraphModelViewsManager():this(new(), new()) { }
 
-        public OpenedGraphModelViewsManager(ObservableCollection<GraphEditorModelView> graphEditorViews) : this(graphEditorViews, new()) { }
+        public OpenedGraphModelViewsManager(ObservableCollection<GraphProjectModelView> graphEditorViews) : this(graphEditorViews, new()) { }
 
-        public OpenedGraphModelViewsManager(ObservableCollection<GraphEditorModelView> graphEditorViews, Dictionary<GraphEditorModelView, string> openedGraphEditorModelViews)
+        public OpenedGraphModelViewsManager(ObservableCollection<GraphProjectModelView> graphEditorViews, Dictionary<GraphProjectModelView, string> openedGraphEditorModelViews)
         {
             _openedGraphEditorModelViews = openedGraphEditorModelViews;
             _graphEditorViews = graphEditorViews;

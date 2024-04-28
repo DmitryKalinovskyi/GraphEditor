@@ -3,7 +3,7 @@ using System.Windows.Input;
 
 namespace GraphApplication.ModelViews
 {
-    public partial class GraphEditorModelView
+    public partial class GraphProjectModelView
     {
         public void InitializeEvents()
         {

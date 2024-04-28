@@ -1,6 +1,7 @@
 ﻿using GraphApplication.Commands;
 using GraphApplication.Commands.CommandList;
 using GraphApplication.Models;
+using GraphApplication.Models.Graph;
 using GraphApplication.ModelViews.GraphEditorExtensions;
 using GraphApplication.ModelViews.GraphEditorExtensions.Modes;
 using System;
@@ -9,7 +10,7 @@ using System.Windows;
 
 namespace GraphApplication.ModelViews
 {
-    public partial class GraphEditorModelView : NotifyModelView
+    public partial class GraphProjectModelView : NotifyModelView
     {
         #region Commands
         public Command StartAlgorithmCommand { get; set; }
@@ -17,7 +18,7 @@ namespace GraphApplication.ModelViews
         public Command EndAlgorithmCommand { get; set; }
         #endregion
 
-        public GraphEditorModel Model { get; private set; }
+        public GraphProjectModel Model { get; private set; }
 
         public GraphModelView GraphModelView { get; private set; }
 
@@ -80,7 +81,7 @@ namespace GraphApplication.ModelViews
 
         public double ScaleValue
         {
-            get { return Math.Clamp(Model.ScaleValue, GraphEditorModel.MinScale, GraphEditorModel.MaxScale); }
+            get { return Math.Clamp(Model.ScaleValue, GraphProjectModel.MinScale, GraphProjectModel.MaxScale); }
             set
             {
                 Model.ScaleValue = value;
@@ -113,14 +114,14 @@ namespace GraphApplication.ModelViews
             }
         }
 
-        public GraphEditorModelView(GraphEditorModel model, string name, bool isSaved = false)
+        public GraphProjectModelView(GraphProjectModel model, string name, bool isSaved = false)
         {
             Model = model;
             Name = name;
             IsSaved = isSaved;
 
             CurrentEditorMode = new GraphEditorSelectionMode(this);
-            GraphModelView = new GraphModelView(Model.GraphModel);
+            GraphModelView = new GraphModelView(new DefaultGraphModel<VertexModel, EdgeModel>());
             SelectionManager = new();
             AnimationManager = new();
 

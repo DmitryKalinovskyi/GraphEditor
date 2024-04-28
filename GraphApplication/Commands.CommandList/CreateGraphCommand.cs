@@ -1,4 +1,5 @@
 ﻿using GraphApplication.Models;
+using GraphApplication.Models.Graph;
 using GraphApplication.ModelViews;
 using GraphApplication.Views;
 
@@ -14,19 +15,19 @@ namespace GraphApplication.Commands.CommandList
 
         public override void Execute(object? parameter)
         {
-            GraphEditorModelView modelView;
+            GraphProjectModelView modelView;
 
-            if (parameter is GraphModel)
+            if (parameter is IGraphModel graphModel)
             {
-                GraphEditorModel graphModel = new GraphEditorModel(parameter as GraphModel);
+                GraphProjectModel editorModel = new GraphProjectModel(graphModel);
 
-                modelView = new GraphEditorModelView(graphModel, "");
+                modelView = new GraphProjectModelView(editorModel, "");
             }
             else
             {
-                GraphEditorModel graphModel = new GraphEditorModel();
+                GraphProjectModel editorModel = new();
 
-                modelView = new GraphEditorModelView(graphModel, "");
+                modelView = new GraphProjectModelView(editorModel, "");
             }
 
 

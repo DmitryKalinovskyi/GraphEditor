@@ -6,7 +6,7 @@ namespace GraphApplication.ModelViews.GraphEditorExtensions.Modes
 {
     public class GraphEditorCanvasMovingMode : GraphEditorMode
     {
-        public GraphEditorCanvasMovingMode(GraphEditorModelView modelView) : base(modelView) { }
+        public GraphEditorCanvasMovingMode(GraphProjectModelView modelView) : base(modelView) { }
 
         bool isDragging = false;
         Point dragPoint;

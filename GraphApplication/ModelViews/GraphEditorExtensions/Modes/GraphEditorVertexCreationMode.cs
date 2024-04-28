@@ -7,7 +7,7 @@ namespace GraphApplication.ModelViews.GraphEditorExtensions.Modes
 {
     class GraphEditorVertexCreationMode : GraphEditorMode, IBuildingMode
     {
-        public GraphEditorVertexCreationMode(GraphEditorModelView modelView) : base(modelView)
+        public GraphEditorVertexCreationMode(GraphProjectModelView modelView) : base(modelView)
         {
             _modelView.SelectionManager.DiselectAll();
         }
