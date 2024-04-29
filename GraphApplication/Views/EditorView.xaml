@@ -206,7 +206,7 @@
                         
                     Margin="5, 5, 5, 5"
                         Padding="10,10,10,10">
-                    <Expander Header="Вигляд" IsExpanded="True">
+                    <Expander Header="Visual" IsExpanded="True">
 
                         <StackPanel Orientation="Vertical">
 
@@ -225,7 +225,7 @@
                                     <RowDefinition></RowDefinition>
                                 </Grid.RowDefinitions>
                                 <TextBlock>
-                                    Віддаленість
+                                    Zoom
                                 </TextBlock>
                                 <Slider
                                     Grid.Column="1"
@@ -239,7 +239,7 @@
                                 </Slider>
                                 <TextBlock
                                     Grid.Row="1">
-                                    Якість
+                                    Quality
                                 </TextBlock>
                                 <Slider 
                                     Grid.Row="1"
@@ -281,9 +281,9 @@
                     VerticalAlignment="Bottom"
                 Background="White"
                 
-                    CornerRadius="10, 10, 0, 0"
-                    Margin="5, 5, 5, 0"
-                        Padding="4,4,4,4">
+                    CornerRadius="8, 8, 8, 8"
+                    Margin="5, 5, 5, 5"
+                        Padding="5,5,5,5">
                 <Expander>
                     
 
