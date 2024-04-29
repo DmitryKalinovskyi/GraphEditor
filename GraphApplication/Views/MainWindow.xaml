@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GraphApplication.Views"
         xmlns:modelViews="clr-namespace:GraphApplication.ModelViews"
-        xmlns:myControl="clr-namespace:GraphApplication.CustomControls"
+        xmlns:converters="clr-namespace:GraphApplication.Converters"
         mc:Ignorable="d"
         Title="MainWindow" Height="500" Width="800"
         MinHeight="500" MinWidth="800"
@@ -17,6 +17,12 @@
     
     <Window.Resources>
         <local:ToolButtonCheckConverter x:Key="ToolButtonCheckConverter"/>
+        <converters:InverseBoolConverter x:Key="InverseBoolConverter"/>
+        <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+        <converters:ValueConverterGroup x:Key="InvertBoolToVisibilityConverter">
+            <converters:InverseBoolConverter/>
+            <converters:BoolToVisibilityConverter/>
+        </converters:ValueConverterGroup>
     </Window.Resources>
     
     <!--Command shortcurs-->
@@ -37,7 +43,7 @@
                     Command="{Binding GenerateGraphCommand}"
                     Modifiers="Ctrl"/>
 
-        <KeyBinding Key="W"
+        <!--<KeyBinding Key="W"
                     Command="{Binding ChangeEditorModeCommand}"
                     CommandParameter="GraphEditorSelectionMode"
                     Modifiers="Shift"
@@ -46,17 +52,17 @@
                     Command="{Binding ChangeEditorModeCommand}"
                     CommandParameter="GraphEditorCanvasMovingMode"
                     Modifiers="Shift"
-                    />
-        <KeyBinding Key="R"
+                    />-->
+        <!--<KeyBinding Key="R"
                     Command="{Binding ChangeEditorModeCommand}"
                     CommandParameter="GraphEditorMovingMode"
                     Modifiers="Shift"
-                    />
-        <KeyBinding Key="V"
+                    />-->
+        <!--<KeyBinding Key="V"
                     Command="{Binding ChangeEditorModeCommand}"
                     CommandParameter="GraphEditorVertexCreationMode"
                     Modifiers="Shift"
-                    />
+                    />-->
         <KeyBinding Key="I"
                     Command="{Binding OpenedGraphModelViewsManager.SelectedView.StartAlgorithmCommand}"
                     Modifiers="Shift"
@@ -156,13 +162,13 @@
             </MenuItem>
             
             <!--Algorithms-->
-            <MenuItem Header="Algorithm"
+            <!--<MenuItem Header="Algorithm"
                       Style="{DynamicResource MenuHeader}">
-                <!--<MenuItem Header="Implement"
+                --><!--<MenuItem Header="Implement"
                           Style="{DynamicResource MenuHeader}"
                           Command="{Binding ImplementAlgorithmCommand}"
                           InputGestureText="Shift+I">
-                </MenuItem>-->
+                </MenuItem>--><!--
                 <MenuItem Header="BFS"
                           Style="{DynamicResource MenuHeader}"
                           Command="{Binding ChangeEditorModeCommand}"
@@ -178,188 +184,15 @@
                           Command="{Binding ChangeEditorModeCommand}"
                           CommandParameter="GraphEditorShortestPathMode">
                 </MenuItem>
-            </MenuItem>
+            </MenuItem>-->
         </Menu>
 
         <!--Editor-->
         <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="44" MinWidth="44"/>
-                <ColumnDefinition Width="5"/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            
-            <!--ToolBar-->
-            <WrapPanel Orientation="Vertical" IsEnabled="{Binding ToolBarEnabled}" >
-                <WrapPanel.Background>
-                    <SolidColorBrush Color="white"></SolidColorBrush>
-                </WrapPanel.Background>
-                 
-                <!--Object interaction-->
-                <WrapPanel Orientation="Horizontal">
-                    <myControl:ToolButton Style="{StaticResource ToolButtonPrefab}"
-                             UriImage="../ArtWork/cursor-96.png"
-                             TipContent="Виділення"
-                                          
-                             Command="{Binding ChangeEditorModeCommand}"
-                             CommandParameter="GraphEditorSelectionMode"
-                             IsChecked="{Binding DataContext.ActiveMode,
-                            Mode=OneWay,
-                            RelativeSource={RelativeSource AncestorType={x:Type WrapPanel}},
-                            Converter={StaticResource ToolButtonCheckConverter},
-                            ConverterParameter=GraphEditorSelectionMode}">
-                    </myControl:ToolButton>
-                    
-                    <myControl:ToolButton Style="{StaticResource ToolButtonPrefab}"
-                             UriImage="../ArtWork/hand-96.png"
-                             TipContent="Переміщення редактора"
-                                          
-                             Command="{Binding ChangeEditorModeCommand}"
-                             CommandParameter="GraphEditorMovingMode"
-                             IsChecked="{Binding DataContext.ActiveMode,
-                            Mode=OneWay,
-                            RelativeSource={RelativeSource AncestorType={x:Type WrapPanel}},
-                            Converter={StaticResource ToolButtonCheckConverter},
-                            ConverterParameter=GraphEditorMovingMode}">
-                        </myControl:ToolButton>
-                    <myControl:ToolButton Style="{StaticResource ToolButtonPrefab}"
-                             UriImage="../ArtWork/move-100.png"
-                             TipContent="Переміщення вершин"
-                                          
-                             Command="{Binding ChangeEditorModeCommand}"
-                             CommandParameter="GraphEditorCanvasMovingMode"
-                             IsChecked="{Binding DataContext.ActiveMode,
-                            Mode=OneWay,
-                            RelativeSource={RelativeSource AncestorType={x:Type WrapPanel}},
-                            Converter={StaticResource ToolButtonCheckConverter},
-                            ConverterParameter=GraphEditorCanvasMovingMode}">
-                        </myControl:ToolButton>
-                    <myControl:ToolButton Style="{StaticResource ToolButtonPrefab}"
-                             UriImage="../ArtWork/eye-90.png"
-                             TipContent="Приховання вершин"
-                                          
-                             Command="{Binding ChangeEditorModeCommand}"
-                             CommandParameter="GraphEditorHideMode"
-                             IsChecked="{Binding DataContext.ActiveMode,
-                            Mode=OneWay,
-                            RelativeSource={RelativeSource AncestorType={x:Type WrapPanel}},
-                            Converter={StaticResource ToolButtonCheckConverter},
-                            ConverterParameter=GraphEditorHideMode}">
-                    </myControl:ToolButton>
-                    <!--<myControl:ToolButton Style="{StaticResource ToolButtonPrefab}"
-                             UriImage="../ArtWork/square-96.png"
-                             Command="{Binding ChangeEditorModeCommand}"
-                             CommandParameter=""
-                             IsChecked="{Binding DataContext.ActiveMode,
-                            Mode=OneWay,
-                            RelativeSource={RelativeSource AncestorType={x:Type WrapPanel}},
-                            Converter={StaticResource ToolButtonCheckConverter},
-                            ConverterParameter=None}">
-                    </myControl:ToolButton>-->
-                </WrapPanel>
-
-                <Separator HorizontalAlignment="Stretch"/>
-
-
-                <!--Creation tools-->
-                <WrapPanel Orientation="Horizontal">
-                    <myControl:ToolButton Style="{StaticResource ToolButtonPrefab}"
-                                          
-                             UriImage="../ArtWork/circled-5-100.png"
-                             TipContent="Створення вершини графа"
-                             Command="{Binding ChangeEditorModeCommand}"
-                             CommandParameter="GraphEditorVertexCreationMode"
-                             IsChecked="{Binding DataContext.ActiveMode,
-                               
-                            Mode=OneWay,
-                            RelativeSource={RelativeSource AncestorType={x:Type WrapPanel}},
-                            Converter={StaticResource ToolButtonCheckConverter},
-                            ConverterParameter=GraphEditorVertexCreationMode}">
-                    </myControl:ToolButton>
-                    <myControl:ToolButton Style="{StaticResource ToolButtonPrefab}"
-                             UriImage="../ArtWork/arrow-100.png"
-                             TipContent="Створення ребра графа"
-                                          
-                             Command="{Binding ChangeEditorModeCommand}"
-                             CommandParameter="GraphEditorEdgeCreationMode"
-                             IsChecked="{Binding DataContext.ActiveMode,
-                            Mode=OneWay,
-                            RelativeSource={RelativeSource AncestorType={x:Type WrapPanel}},
-                            Converter={StaticResource ToolButtonCheckConverter},
-                            ConverterParameter=GraphEditorEdgeCreationMode}">
-                    </myControl:ToolButton>
-                </WrapPanel>
-
-                <Separator HorizontalAlignment="Stretch"/>
-
-
-                <WrapPanel Orientation="Horizontal">
-                    <myControl:ToolButton Style="{StaticResource ToolButtonPrefab}"
-                             UriImage="../ArtWork/white-close-thin-100.png"
-                             TipContent="Видалення"
-                                          
-                             Command="{Binding ChangeEditorModeCommand}"
-                             CommandParameter="GraphEditorRemovingMode"
-                             IsChecked="{Binding DataContext.ActiveMode,
-                            Mode=OneWay,
-                            RelativeSource={RelativeSource AncestorType={x:Type WrapPanel}},
-                            Converter={StaticResource ToolButtonCheckConverter},
-                            ConverterParameter=GraphEditorRemovingMode}">
-                    </myControl:ToolButton>
-                </WrapPanel>
-
-                <Separator HorizontalAlignment="Stretch"/>
-
-                <!--Algorithm Mode-->
-                <WrapPanel Orientation="Horizontal">
-                    <myControl:ToolButton Style="{StaticResource ToolButtonPrefab}"
-                             Content="BFS"
-                             TipContent="Пошук в ширину"
-                                          
-                             UriImage="None"
-                                          
-                             Command="{Binding ChangeEditorModeCommand}"
-                             CommandParameter="GraphEditorBFSMode"
-
-                             IsChecked="{Binding DataContext.ActiveMode,
-                            Mode=OneWay,
-                            RelativeSource={RelativeSource AncestorType={x:Type WrapPanel}},
-                            Converter={StaticResource ToolButtonCheckConverter},
-                            ConverterParameter=GraphEditorBFSMode}">
-                    </myControl:ToolButton>
-                    <myControl:ToolButton Style="{StaticResource ToolButtonPrefab}"
-                             Content="DFS"   
-                             UriImage="None"
-                             TipContent="Пошук в глубину"
-                                          
-                                          
-                             Command="{Binding ChangeEditorModeCommand}"
-                             CommandParameter="GraphEditorDFSMode"
-                             IsChecked="{Binding DataContext.ActiveMode,
-                            Mode=OneWay,
-                            RelativeSource={RelativeSource AncestorType={x:Type WrapPanel}},
-                            Converter={StaticResource ToolButtonCheckConverter},
-                            ConverterParameter=GraphEditorDFSMode}">
-                    </myControl:ToolButton>
-                    <myControl:ToolButton Style="{StaticResource ToolButtonPrefab}"
-                             UriImage="../ArtWork/white-path-96.png"
-                             TipContent="Пошук найкоротшого шляху"
-                                          
-                             Command="{Binding ChangeEditorModeCommand}"
-                             CommandParameter="GraphEditorShortestPathMode"
-                             IsChecked="{Binding DataContext.ActiveMode,
-                            Mode=OneWay,
-                            RelativeSource={RelativeSource AncestorType={x:Type WrapPanel}},
-                            Converter={StaticResource ToolButtonCheckConverter},
-                            ConverterParameter=GraphEditorShortestPathMode}">
-                    </myControl:ToolButton>
-                </WrapPanel>
-            </WrapPanel>
-
-            <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch"/>
-               
             <!--Opened graphs-->
-            <TabControl Grid.Column="2" ItemsSource="{Binding OpenedGraphModelViewsManager.GraphEditorViews}" SelectedItem="{Binding OpenedGraphModelViewsManager.SelectedView}">
+            <TabControl ItemsSource="{Binding OpenedGraphModelViewsManager.GraphEditorViews}"
+                        SelectedItem="{Binding OpenedGraphModelViewsManager.SelectedView}"
+                        Name="ProjectsTab">
                 <TabControl.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
@@ -386,10 +219,20 @@
                 </TabControl.ItemTemplate>
                 <TabControl.ContentTemplate>
                     <DataTemplate>
-                        <local:GraphEditorView DataContext="{Binding}"/>
+                        <local:GraphEditorView DataContext="{Binding}"
+                                               Margin="-2, -2, -2, -2"/>
                     </DataTemplate>
                 </TabControl.ContentTemplate>
             </TabControl>
+            <TextBlock HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Visibility="{Binding HasItems,
+                ElementName=ProjectsTab,
+                Converter={StaticResource InvertBoolToVisibilityConverter},
+                UpdateSourceTrigger=PropertyChanged
+                }">
+                Press Ctr + N to create new Graph project.
+            </TextBlock>
         </Grid>
     </Grid>
 </Window>

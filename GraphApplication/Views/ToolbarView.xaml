@@ -1,0 +1,192 @@
+﻿<UserControl x:Class="GraphApplication.Views.ToolbarView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:GraphApplication.Views"
+             xmlns:controls="clr-namespace:GraphApplication.CustomControls"
+             mc:Ignorable="d" >
+    <UserControl.Resources>
+        <local:ToolButtonCheckConverter x:Key="ToolButtonCheckConverter"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="{x:Type Border}">
+                <Setter Property="Margin" Value="0, 0, 10, 10"/>
+                <Setter Property="Padding" Value="5, 5, 5, 5"/>
+                <Setter Property="Background" Value="White"/>
+                <Setter Property="CornerRadius" Value="8, 8, 8, 8"/>
+            </Style>
+        </Grid.Resources>
+        
+        <!--ToolBar-->
+            
+        <WrapPanel Orientation="Vertical" >
+            <!--Object interaction-->
+            <Border>
+                <WrapPanel Orientation="Vertical">
+                <controls:ToolButton Style="{StaticResource ToolButtonPrefab}"
+                 UriImage="{DynamicResource CursorIconUri}"
+                 TipContent="Виділення"
+                              
+                 Command="{Binding ChangeEditorModeCommand}"
+                 CommandParameter="GraphEditorSelectionMode"
+                 IsChecked="{Binding DataContext.EditorMode,
+                Mode=OneWay,
+                RelativeSource={RelativeSource AncestorType={x:Type WrapPanel}},
+                Converter={StaticResource ToolButtonCheckConverter},
+                ConverterParameter=GraphEditorSelectionMode}">
+                </controls:ToolButton>
+
+                <controls:ToolButton Style="{StaticResource ToolButtonPrefab}"
+                 UriImage="{DynamicResource HandIconUri}"
+                 TipContent="Переміщення редактора"
+                              
+                 Command="{Binding ChangeEditorModeCommand}"
+                 CommandParameter="GraphEditorMovingMode"
+                 IsChecked="{Binding DataContext.EditorMode,
+                Mode=OneWay,
+                RelativeSource={RelativeSource AncestorType={x:Type WrapPanel}},
+                Converter={StaticResource ToolButtonCheckConverter},
+                ConverterParameter=GraphEditorMovingMode}">
+                </controls:ToolButton>
+                <controls:ToolButton Style="{StaticResource ToolButtonPrefab}"
+                 UriImage="{DynamicResource MoveIconUri}"
+                 TipContent="Переміщення вершин"
+                              
+                 Command="{Binding ChangeEditorModeCommand}"
+                 CommandParameter="GraphEditorCanvasMovingMode"
+                 IsChecked="{Binding DataContext.EditorMode,
+                Mode=OneWay,
+                RelativeSource={RelativeSource AncestorType={x:Type WrapPanel}},
+                Converter={StaticResource ToolButtonCheckConverter},
+                ConverterParameter=GraphEditorCanvasMovingMode}">
+                </controls:ToolButton>
+                <controls:ToolButton Style="{StaticResource ToolButtonPrefab}"
+                 UriImage="{DynamicResource VisibilityIconUri}"
+                 TipContent="Приховання вершин"
+                              
+                 Command="{Binding ChangeEditorModeCommand}"
+                 CommandParameter="GraphEditorHideMode"
+                 IsChecked="{Binding DataContext.EditorMode,
+                Mode=OneWay,
+                RelativeSource={RelativeSource AncestorType={x:Type WrapPanel}},
+                Converter={StaticResource ToolButtonCheckConverter},
+                ConverterParameter=GraphEditorHideMode}">
+                </controls:ToolButton>
+                <!--<myControl:ToolButton Style="{StaticResource ToolButtonPrefab}"
+                 UriImage="../ArtWork/square-96.png"
+                 Command="{Binding ChangeEditorModeCommand}"
+                 CommandParameter=""
+                 IsChecked="{Binding DataContext.EditorMode,
+                Mode=OneWay,
+                RelativeSource={RelativeSource AncestorType={x:Type WrapPanel}},
+                Converter={StaticResource ToolButtonCheckConverter},
+                ConverterParameter=None}">
+        </myControl:ToolButton>-->
+            </WrapPanel>
+        </Border>
+
+
+        <!--Creation tools-->
+            <Border>
+                
+            <WrapPanel Orientation="Vertical">
+                <controls:ToolButton Style="{StaticResource ToolButtonPrefab}"
+                              
+                 UriImage="{DynamicResource CircleIconUri}"
+                 TipContent="Створення вершини графа"
+                 Command="{Binding ChangeEditorModeCommand}"
+                 CommandParameter="GraphEditorVertexCreationMode"
+                 IsChecked="{Binding DataContext.EditorMode,
+                   
+                Mode=OneWay,
+                RelativeSource={RelativeSource AncestorType={x:Type WrapPanel}},
+                Converter={StaticResource ToolButtonCheckConverter},
+                ConverterParameter=GraphEditorVertexCreationMode}">
+                </controls:ToolButton>
+                <controls:ToolButton Style="{StaticResource ToolButtonPrefab}"
+                 UriImage="{DynamicResource ArrowIconUri}"
+                 TipContent="Створення ребра графа"
+                              
+                 Command="{Binding ChangeEditorModeCommand}"
+                 CommandParameter="GraphEditorEdgeCreationMode"
+                 IsChecked="{Binding DataContext.EditorMode,
+                Mode=OneWay,
+                RelativeSource={RelativeSource AncestorType={x:Type WrapPanel}},
+                Converter={StaticResource ToolButtonCheckConverter},
+                ConverterParameter=GraphEditorEdgeCreationMode}">
+                </controls:ToolButton>
+            </WrapPanel>
+            </Border>
+
+
+            <Border>
+                
+            <WrapPanel Orientation="Vertical">
+                <controls:ToolButton Style="{StaticResource ToolButtonPrefab}"
+                 UriImage="{DynamicResource CrossIconUri}"
+                 TipContent="Видалення"
+                              
+                 Command="{Binding ChangeEditorModeCommand}"
+                 CommandParameter="GraphEditorRemovingMode"
+                 IsChecked="{Binding DataContext.EditorMode,
+                Mode=OneWay,
+                RelativeSource={RelativeSource AncestorType={x:Type WrapPanel}},
+                Converter={StaticResource ToolButtonCheckConverter},
+                ConverterParameter=GraphEditorRemovingMode}">
+                </controls:ToolButton>
+            </WrapPanel>
+            </Border>
+
+            <!--Algorithm Mode-->
+            <Border>
+                
+            <WrapPanel Orientation="Vertical">
+                <controls:ToolButton Style="{StaticResource ToolButtonPrefab}"
+                 Content="BFS"
+                 TipContent="Пошук в ширину"
+                              
+                 UriImage="None"
+                              
+                 Command="{Binding ChangeEditorModeCommand}"
+                 CommandParameter="GraphEditorBFSMode"
+
+                 IsChecked="{Binding DataContext.EditorMode,
+                Mode=OneWay,
+                RelativeSource={RelativeSource AncestorType={x:Type WrapPanel}},
+                Converter={StaticResource ToolButtonCheckConverter},
+                ConverterParameter=GraphEditorBFSMode}">
+                </controls:ToolButton>
+                <controls:ToolButton Style="{StaticResource ToolButtonPrefab}"
+                 Content="DFS"   
+                 UriImage="None"
+                 TipContent="Пошук в глубину"
+                              
+                              
+                 Command="{Binding ChangeEditorModeCommand}"
+                 CommandParameter="GraphEditorDFSMode"
+                 IsChecked="{Binding DataContext.EditorMode,
+                Mode=OneWay,
+                RelativeSource={RelativeSource AncestorType={x:Type WrapPanel}},
+                Converter={StaticResource ToolButtonCheckConverter},
+                ConverterParameter=GraphEditorDFSMode}">
+                </controls:ToolButton>
+                <controls:ToolButton Style="{StaticResource ToolButtonPrefab}"
+                 UriImage="{DynamicResource PathIconUri}"
+                 TipContent="Пошук найкоротшого шляху"
+                              
+                 Command="{Binding ChangeEditorModeCommand}"
+                 CommandParameter="GraphEditorShortestPathMode"
+                 IsChecked="{Binding DataContext.EditorMode,
+                Mode=OneWay,
+                RelativeSource={RelativeSource AncestorType={x:Type WrapPanel}},
+                Converter={StaticResource ToolButtonCheckConverter},
+                ConverterParameter=GraphEditorShortestPathMode}">
+                </controls:ToolButton>
+            </WrapPanel>
+            </Border>
+
+        </WrapPanel>
+    </Grid>
+</UserControl>

@@ -13,9 +13,11 @@ namespace GraphApplication.ModelViews
     public partial class GraphProjectModelView : NotifyModelView
     {
         #region Commands
-        public Command StartAlgorithmCommand { get; set; }
+        public Command? StartAlgorithmCommand { get; set; }
 
-        public Command EndAlgorithmCommand { get; set; }
+        public Command? EndAlgorithmCommand { get; set; }
+
+        public Command? ChangeEditorModeCommand { get; set; } 
         #endregion
 
         public GraphProjectModel Model { get; private set; }
@@ -28,6 +30,7 @@ namespace GraphApplication.ModelViews
 
         private string _name;
         private bool _isSaved;
+
         public string Name
         {
             get { return _name; }
@@ -99,18 +102,18 @@ namespace GraphApplication.ModelViews
             }
         }
 
-        private GraphEditorMode _currentEditorMode;
+        private GraphEditorMode _editorMode;
 
-        public GraphEditorMode CurrentEditorMode
+        public GraphEditorMode EditorMode
         {
-            get { return _currentEditorMode; }
+            get { return _editorMode; }
             set
             {
-                if (_currentEditorMode != null)
-                    _currentEditorMode.OnModeSwitch();
+                if (_editorMode != null)
+                    _editorMode.OnModeSwitch();
 
-                _currentEditorMode = value;
-                OnPropertyChanged(nameof(CurrentEditorMode));
+                _editorMode = value;
+                OnPropertyChanged(nameof(EditorMode));
             }
         }
 
@@ -120,7 +123,7 @@ namespace GraphApplication.ModelViews
             Name = name;
             IsSaved = isSaved;
 
-            CurrentEditorMode = new GraphEditorSelectionMode(this);
+            EditorMode = new GraphEditorSelectionMode(this);
             GraphModelView = new GraphModelView(new DefaultGraphModel<VertexModel, EdgeModel>());
             SelectionManager = new();
             AnimationManager = new();
@@ -133,6 +136,7 @@ namespace GraphApplication.ModelViews
         {
             StartAlgorithmCommand = new StartAlgorithmCommand(this);
             EndAlgorithmCommand = new EndAlgorithmCommand(AnimationManager);
+            ChangeEditorModeCommand = new ChangeEditorModeCommand(this);
         }
     }
 }

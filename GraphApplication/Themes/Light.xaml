@@ -1,5 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:System="clr-namespace:System;assembly=mscorlib">
     
     <!--Main window-->
     <SolidColorBrush Color="White" x:Key="WindowBackground"/>
@@ -24,10 +25,31 @@
 
 
     <!--Toolbar-->
-    
+    <SolidColorBrush Color="White" x:Key="ToolbarButton"/>
+    <SolidColorBrush Color="Black" x:Key="ToolbarButtonForeground"/>
+
+    <SolidColorBrush Color="#eeeeef" x:Key="ToolbarButtonHovered"/>
+    <SolidColorBrush Color="Black" x:Key="ToolbarButtonForegroundHovered"/>
+
+    <SolidColorBrush Color="AliceBlue" x:Key="ToolbarButtonActive"/>
+    <SolidColorBrush Color="Gray" x:Key="ToolbarButtonForegroundActive"/>
+
     <!--Editor-->
     <SolidColorBrush Color="#f2f3f5" x:Key="EditorBackground"/>
     <SolidColorBrush Color="#a2a3a5" x:Key="EditorBottomBackground"/>
     <SolidColorBrush Color="White" x:Key="EditorBottomForeground"/>
+    
+    <!--Icons Uri-->
+    <System:String x:Key="CursorIconUri">/ArtWork/Light/icons8-cursor.png</System:String>
+    <System:String x:Key="HandIconUri">/ArtWork/Light/icons8-hand-96.png</System:String>
+    <System:String x:Key="MoveIconUri">/ArtWork/Light/icons8-move-96.png</System:String>
+    <System:String x:Key="VisibilityIconUri">/ArtWork/Light/icons8-visibility-64.png</System:String>
+
+    <System:String x:Key="ArrowIconUri">/ArtWork/Light/icons8-arrow-96.png</System:String>
+    <System:String x:Key="CrossIconUri">/ArtWork/Light/icons8-cross-100.png</System:String>
+    <System:String x:Key="CircleIconUri">/ArtWork/Light/icons8-26-circle-96.png</System:String>
+    <System:String x:Key="PathIconUri">/ArtWork/Light/icons8-path-100.png</System:String>
+    
+    
 
 </ResourceDictionary>

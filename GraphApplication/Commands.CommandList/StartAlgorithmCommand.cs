@@ -14,7 +14,7 @@ namespace GraphApplication.Commands.CommandList
 
         public override void Execute(object? parameter)
         {
-            if (_graphEditorModelView.CurrentEditorMode is IAlgorithmImplementer implementer)
+            if (_graphEditorModelView.EditorMode is IAlgorithmImplementer implementer)
             {
                 bool result = implementer.ImplementAlgorithm();
 

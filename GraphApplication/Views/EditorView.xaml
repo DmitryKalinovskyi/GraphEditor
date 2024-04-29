@@ -362,7 +362,14 @@
             </StackPanel>
         </DockPanel>
 
+        <Border Margin="5 5 5 5"
+              HorizontalAlignment="Left"
+              VerticalAlignment="Center">
             
+        <local:ToolbarView>
+            
+        </local:ToolbarView>
+        </Border>
 
     </Grid>
 </UserControl>

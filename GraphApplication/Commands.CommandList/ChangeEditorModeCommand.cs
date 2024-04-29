@@ -7,32 +7,29 @@ namespace GraphApplication.Commands.CommandList
 {
     public class ChangeEditorModeCommand : Command
     {
-        private MainWindowModelView _mainWindowsViewModel;
+        private GraphProjectModelView _project;
 
-        public ChangeEditorModeCommand(MainWindowModelView mainWindowModelView) 
+        public ChangeEditorModeCommand(GraphProjectModelView project) 
         {
-            _mainWindowsViewModel = mainWindowModelView;
+            _project = project; 
         }
 
         public override void Execute(object? parameter)
         {
-            if (_mainWindowsViewModel.OpenedGraphModelViewsManager.SelectedView == null)
-                return;
-
             string typename = parameter as string ?? throw new Exception("Argument to change editor mode was empty");
 
             //convert selected mode from obj
-            var mode = EditorModeConverter.Convert(typename, _mainWindowsViewModel.OpenedGraphModelViewsManager.SelectedView) ?? 
+            var mode = EditorModeConverter.Convert(typename, _project) ?? 
                 throw new Exception("Failed to get new mode instance");
 
-            if (_mainWindowsViewModel.OpenedGraphModelViewsManager.SelectedView.AnimationManager.IsAnimationActive == true
+            if (_project.AnimationManager.IsAnimationActive == true
             && mode is IBuildingMode)
             {
                 MessageBox.Show("Поки анімація не завершена редагувати граф неможливо!", "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
-            _mainWindowsViewModel.ActiveMode = mode;
+            _project.EditorMode = mode;
         }
     }
 }

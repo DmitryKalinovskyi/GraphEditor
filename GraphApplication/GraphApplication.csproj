@@ -30,6 +30,14 @@
     <None Remove="ArtWork\icons8-start-90.png" />
     <None Remove="ArtWork\icons8-stop-100.png" />
     <None Remove="ArtWork\icons8-stop-50.png" />
+    <None Remove="ArtWork\Light\icons8-26-circle-96.png" />
+    <None Remove="ArtWork\Light\icons8-arrow-96.png" />
+    <None Remove="ArtWork\Light\icons8-cross-100.png" />
+    <None Remove="ArtWork\Light\icons8-cursor.png" />
+    <None Remove="ArtWork\Light\icons8-hand-96.png" />
+    <None Remove="ArtWork\Light\icons8-move-96.png" />
+    <None Remove="ArtWork\Light\icons8-path-100.png" />
+    <None Remove="ArtWork\Light\icons8-visibility-64.png" />
     <None Remove="ArtWork\move-100.png" />
     <None Remove="ArtWork\move-50.png" />
     <None Remove="ArtWork\path-32.png" />
@@ -116,6 +124,30 @@
     </Resource>
     <Resource Include="ArtWork\icons8-stop-50.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ArtWork\Light\icons8-26-circle-96.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ArtWork\Light\icons8-arrow-96.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ArtWork\Light\icons8-cross-100.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ArtWork\Light\icons8-cursor.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ArtWork\Light\icons8-hand-96.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ArtWork\Light\icons8-move-96.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ArtWork\Light\icons8-path-100.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ArtWork\Light\icons8-visibility-64.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="ArtWork\move-100.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>

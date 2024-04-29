@@ -5,7 +5,6 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Resources/UIColor.xaml"/>
                 <ResourceDictionary Source="/Resources/CustomComponents.xaml"/>
                 <ResourceDictionary Source="/Themes/Light.xaml"/>
             </ResourceDictionary.MergedDictionaries>
