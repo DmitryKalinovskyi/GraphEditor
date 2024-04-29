@@ -23,6 +23,7 @@
             <converters:InverseBoolConverter/>
             <converters:BoolToVisibilityConverter/>
         </converters:ValueConverterGroup>
+        
     </Window.Resources>
     
     <!--Command shortcurs-->

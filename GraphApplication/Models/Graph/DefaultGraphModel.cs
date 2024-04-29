@@ -44,13 +44,13 @@ namespace GraphApplication.Models.Graph
         private void BindEdge(TEdge edge)
         {
             _neighbors[(TVertex)edge.Start].Add((TVertex)edge.End);
-            _neighbors[(TVertex)edge.End].Add((TVertex)edge.Start);
+            //_neighbors[(TVertex)edge.End].Add((TVertex)edge.Start);
             _edgeBinding[((TVertex)edge.Start, (TVertex)edge.End)] = edge;
         }
 
         private void UnbindEdge(TEdge edge)
         {
-            _neighbors[(TVertex)edge.End].Remove((TVertex)edge.Start);
+            _neighbors[(TVertex)edge.Start].Remove((TVertex)edge.End);
 
             _edgeBinding.Remove(((TVertex)edge.Start, (TVertex)edge.End));
         }

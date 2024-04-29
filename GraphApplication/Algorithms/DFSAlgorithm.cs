@@ -11,7 +11,54 @@ namespace GraphApplication.Algorithms
     {
         public IterativeAlgorithmResult BuildRoute(IGraphModel graph, params object[] args)
         {
-            throw new NotImplementedException();
+            VertexModel startPoint = args[0] as VertexModel ?? throw new ArgumentException("Starting point is not seted.");
+
+            var workingGraph = (IGraphModel<VertexModel, EdgeModel>) graph ?? throw new ArgumentException("Invalid graph type.");
+
+            HashSet<VertexModel> visited = new();
+
+            List<VertexModel> ans = new();
+            List<EdgeModel> edges = new();
+
+            Stack<VertexModel> stack = new();
+            Stack<EdgeModel> edgesStack = new();
+
+            stack.Push(startPoint);
+
+            while (stack.Count > 0)
+            {
+                VertexModel topElement = stack.Pop();
+                EdgeModel? edge = null;
+
+                if (edgesStack.Count > 0)
+                    edge = edgesStack.Pop();
+
+                if (visited.Contains(topElement))
+                {
+                    continue;
+                }
+
+                ans.Add(topElement);
+                if (edge != null)
+                {
+                    edges.Add(edge);
+                }
+
+                visited.Add(topElement);
+
+                foreach (VertexModel neighbor in workingGraph.GetNeighbors(topElement))
+                {
+                    if (visited.Contains(neighbor) == false && neighbor.IsActive)
+                    {
+                        stack.Push(neighbor);
+
+                        edgesStack.Push(workingGraph.GetEdgeBetween(topElement, neighbor));
+                    }
+                }
+
+            }
+
+            return new(ans, edges);
         }
     }
 

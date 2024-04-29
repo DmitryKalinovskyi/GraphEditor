@@ -39,6 +39,8 @@
     <SolidColorBrush Color="#a2a3a5" x:Key="EditorBottomBackground"/>
     <SolidColorBrush Color="White" x:Key="EditorBottomForeground"/>
     
+    <SolidColorBrush Color="Black" Opacity="0.5" x:Key="GridLinesBrush"/>
+    
     <!--Icons Uri-->
     <System:String x:Key="CursorIconUri">/ArtWork/Light/icons8-cursor.png</System:String>
     <System:String x:Key="HandIconUri">/ArtWork/Light/icons8-hand-96.png</System:String>

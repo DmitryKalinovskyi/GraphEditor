@@ -11,22 +11,55 @@
              d:DesignHeight="650" d:DesignWidth="1000">
     <UserControl.Resources>
         <converters:DoubleConverter x:Key="DoubleConverter"/>
+
+        <GeometryDrawing x:Key="SmallGridGeometry"
+                 Geometry="M0,0 L0,1 0.03,1 0.03,0.03 1,0.03 1,0 Z"
+                 Brush="{DynamicResource GridLinesBrush}" />
+
+        <GeometryDrawing x:Key="LargeGridGeometry"
+                 Geometry="M0,0 L0,1 0.015,1 0.015,0.015 1,0.015 1,0 Z"
+                 Brush="{DynamicResource GridLinesBrush}" />
+
+        <DrawingBrush x:Key="SmallGridLinesDrawingBrush"
+              TileMode="Tile"
+              ViewportUnits="Absolute"
+              Viewport="0 0 15 15"
+              Transform="{Binding ViewportTransform, ElementName=Editor}"
+              Drawing="{StaticResource SmallGridGeometry}" />
+
+        <DrawingBrush x:Key="LargeGridLinesDrawingBrush"
+              TileMode="Tile"
+              ViewportUnits="Absolute"
+              Opacity="0.5"
+              Viewport="0 0 150 150"
+              Transform="{Binding Transform, ElementName=Editor}"
+              Drawing="{StaticResource LargeGridGeometry}" />
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
             <RowDefinition Height="20"></RowDefinition>
         </Grid.RowDefinitions>
+        
         <Grid>
-                <Canvas ClipToBounds="True"
-                    Panel.ZIndex="-1"
+            <!--Grids-->
+            <!--<Grid Panel.ZIndex="-2" Background="{DynamicResource SmallGridLinesDrawingBrush}"
+                  IsHitTestVisible="False"/>
+            <Grid Panel.ZIndex="-3" Background="{DynamicResource LargeGridLinesDrawingBrush}"
+                  IsHitTestVisible="False"/>-->
+            <Grid Panel.ZIndex="-4" Background="{DynamicResource EditorBackground}"
+                  IsHitTestVisible="False">
+            </Grid>
+            <Canvas ClipToBounds="True"
                         MouseDown="Canvas_MouseDown"
                         MouseUp="Canvas_MouseUp"
                         MouseMove="Canvas_MouseMove"
-                        Background="{DynamicResource EditorBackground}"
+                    Panel.ZIndex="-1"
+                   Background="Transparent"
+                        Name="Editor"
                        >
-               
-                        <!--<LinearGradientBrush>
+
+                <!--<LinearGradientBrush>
                             <GradientStop Color="Gray" Offset="0" />
 
                             <GradientStop Color="White" Offset="1.0" />
@@ -60,6 +93,7 @@
                               VerticalAlignment="Center"
                               Panel.ZIndex="2"
                               FocusVisualStyle="{x:Null}">
+                    
                     <!--<ItemsControl.CacheMode>
 
                         <BitmapCache
