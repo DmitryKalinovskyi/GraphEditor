@@ -362,7 +362,17 @@
             </StackPanel>
         </DockPanel>
 
+        <Border Margin="5 5 5 5"
+              HorizontalAlignment="Left"
+              VerticalAlignment="Top"
+              Padding="5, 5, 5, 5"
+                Background="White"
+                CornerRadius="8, 8, 8, 8">
             
+        <local:ToolbarView>
+            
+        </local:ToolbarView>
+        </Border>
 
     </Grid>
 </UserControl>
