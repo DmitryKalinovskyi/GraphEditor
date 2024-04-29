@@ -86,6 +86,7 @@ namespace GraphApplication.ModelViews
             _vertexBinding = new();
 
             AssignEvents();
+            AssignPropertyDependency();
             CreateModelViews();
         }
 
@@ -97,6 +98,15 @@ namespace GraphApplication.ModelViews
             Model.OnEdgeRemoved += (sender, edge) => RemoveEdgeView(edge);
             Model.OnVertexAdded += (sender, vertex) => AddVertexView(vertex);
             Model.OnVertexRemoved += (sender, vertex) => RemoveVertexView(vertex);
+        }
+
+        private void AssignPropertyDependency()
+        {
+            Model.OnEdgeAdded += (sender, edge) => OnPropertyChanged(nameof(EdgeCount));
+            Model.OnEdgeRemoved += (sender, edge) => OnPropertyChanged(nameof(EdgeCount));
+            Model.OnVertexAdded += (sender, vertex) => OnPropertyChanged(nameof(VertexCount));
+            Model.OnVertexRemoved += (sender, vertex) => OnPropertyChanged(nameof(VertexCount));
+
         }
 
         private void AddEdgeView(EdgeModel edge)

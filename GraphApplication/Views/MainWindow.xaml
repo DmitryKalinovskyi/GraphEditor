@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GraphApplication.Views"
         xmlns:modelViews="clr-namespace:GraphApplication.ModelViews"
-        xmlns:myControl="clr-namespace:GraphApplication.CustomControls"
+        xmlns:converters="clr-namespace:GraphApplication.Converters"
         mc:Ignorable="d"
         Title="MainWindow" Height="500" Width="800"
         MinHeight="500" MinWidth="800"
@@ -17,6 +17,12 @@
     
     <Window.Resources>
         <local:ToolButtonCheckConverter x:Key="ToolButtonCheckConverter"/>
+        <converters:InverseBoolConverter x:Key="InverseBoolConverter"/>
+        <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+        <converters:ValueConverterGroup x:Key="InvertBoolToVisibilityConverter">
+            <converters:InverseBoolConverter/>
+            <converters:BoolToVisibilityConverter/>
+        </converters:ValueConverterGroup>
     </Window.Resources>
     
     <!--Command shortcurs-->
@@ -184,7 +190,9 @@
         <!--Editor-->
         <Grid Grid.Row="1">
             <!--Opened graphs-->
-            <TabControl ItemsSource="{Binding OpenedGraphModelViewsManager.GraphEditorViews}" SelectedItem="{Binding OpenedGraphModelViewsManager.SelectedView}">
+            <TabControl ItemsSource="{Binding OpenedGraphModelViewsManager.GraphEditorViews}"
+                        SelectedItem="{Binding OpenedGraphModelViewsManager.SelectedView}"
+                        Name="ProjectsTab">
                 <TabControl.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
@@ -211,10 +219,20 @@
                 </TabControl.ItemTemplate>
                 <TabControl.ContentTemplate>
                     <DataTemplate>
-                        <local:GraphEditorView DataContext="{Binding}"/>
+                        <local:GraphEditorView DataContext="{Binding}"
+                                               Margin="-2, -2, -2, -2"/>
                     </DataTemplate>
                 </TabControl.ContentTemplate>
             </TabControl>
+            <TextBlock HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Visibility="{Binding HasItems,
+                ElementName=ProjectsTab,
+                Converter={StaticResource InvertBoolToVisibilityConverter},
+                UpdateSourceTrigger=PropertyChanged
+                }">
+                Press Ctr + N to create new Graph project.
+            </TextBlock>
         </Grid>
     </Grid>
 </Window>

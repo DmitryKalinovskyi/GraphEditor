@@ -10,12 +10,23 @@
         <local:ToolButtonCheckConverter x:Key="ToolButtonCheckConverter"/>
     </UserControl.Resources>
     <Grid>
+        <Grid.Resources>
+            <Style TargetType="{x:Type Border}">
+                <Setter Property="Margin" Value="0, 0, 10, 10"/>
+                <Setter Property="Padding" Value="5, 5, 5, 5"/>
+                <Setter Property="Background" Value="White"/>
+                <Setter Property="CornerRadius" Value="8, 8, 8, 8"/>
+            </Style>
+        </Grid.Resources>
+        
         <!--ToolBar-->
+            
         <WrapPanel Orientation="Vertical" >
             <!--Object interaction-->
-            <WrapPanel Orientation="Vertical">
+            <Border>
+                <WrapPanel Orientation="Vertical">
                 <controls:ToolButton Style="{StaticResource ToolButtonPrefab}"
-                 UriImage="../ArtWork/cursor-96.png"
+                 UriImage="{DynamicResource CursorIconUri}"
                  TipContent="Виділення"
                               
                  Command="{Binding ChangeEditorModeCommand}"
@@ -28,7 +39,7 @@
                 </controls:ToolButton>
 
                 <controls:ToolButton Style="{StaticResource ToolButtonPrefab}"
-                 UriImage="../ArtWork/hand-96.png"
+                 UriImage="{DynamicResource HandIconUri}"
                  TipContent="Переміщення редактора"
                               
                  Command="{Binding ChangeEditorModeCommand}"
@@ -40,7 +51,7 @@
                 ConverterParameter=GraphEditorMovingMode}">
                 </controls:ToolButton>
                 <controls:ToolButton Style="{StaticResource ToolButtonPrefab}"
-                 UriImage="../ArtWork/move-100.png"
+                 UriImage="{DynamicResource MoveIconUri}"
                  TipContent="Переміщення вершин"
                               
                  Command="{Binding ChangeEditorModeCommand}"
@@ -52,7 +63,7 @@
                 ConverterParameter=GraphEditorCanvasMovingMode}">
                 </controls:ToolButton>
                 <controls:ToolButton Style="{StaticResource ToolButtonPrefab}"
-                 UriImage="../ArtWork/eye-90.png"
+                 UriImage="{DynamicResource VisibilityIconUri}"
                  TipContent="Приховання вершин"
                               
                  Command="{Binding ChangeEditorModeCommand}"
@@ -74,15 +85,16 @@
                 ConverterParameter=None}">
         </myControl:ToolButton>-->
             </WrapPanel>
+        </Border>
 
-            <Separator HorizontalAlignment="Stretch"/>
 
-
-            <!--Creation tools-->
+        <!--Creation tools-->
+            <Border>
+                
             <WrapPanel Orientation="Vertical">
                 <controls:ToolButton Style="{StaticResource ToolButtonPrefab}"
                               
-                 UriImage="../ArtWork/circled-5-100.png"
+                 UriImage="{DynamicResource CircleIconUri}"
                  TipContent="Створення вершини графа"
                  Command="{Binding ChangeEditorModeCommand}"
                  CommandParameter="GraphEditorVertexCreationMode"
@@ -94,7 +106,7 @@
                 ConverterParameter=GraphEditorVertexCreationMode}">
                 </controls:ToolButton>
                 <controls:ToolButton Style="{StaticResource ToolButtonPrefab}"
-                 UriImage="../ArtWork/arrow-100.png"
+                 UriImage="{DynamicResource ArrowIconUri}"
                  TipContent="Створення ребра графа"
                               
                  Command="{Binding ChangeEditorModeCommand}"
@@ -106,13 +118,14 @@
                 ConverterParameter=GraphEditorEdgeCreationMode}">
                 </controls:ToolButton>
             </WrapPanel>
+            </Border>
 
-            <Separator HorizontalAlignment="Stretch"/>
 
-
+            <Border>
+                
             <WrapPanel Orientation="Vertical">
                 <controls:ToolButton Style="{StaticResource ToolButtonPrefab}"
-                 UriImage="../ArtWork/white-close-thin-100.png"
+                 UriImage="{DynamicResource CrossIconUri}"
                  TipContent="Видалення"
                               
                  Command="{Binding ChangeEditorModeCommand}"
@@ -124,10 +137,11 @@
                 ConverterParameter=GraphEditorRemovingMode}">
                 </controls:ToolButton>
             </WrapPanel>
-
-            <Separator HorizontalAlignment="Stretch"/>
+            </Border>
 
             <!--Algorithm Mode-->
+            <Border>
+                
             <WrapPanel Orientation="Vertical">
                 <controls:ToolButton Style="{StaticResource ToolButtonPrefab}"
                  Content="BFS"
@@ -159,7 +173,7 @@
                 ConverterParameter=GraphEditorDFSMode}">
                 </controls:ToolButton>
                 <controls:ToolButton Style="{StaticResource ToolButtonPrefab}"
-                 UriImage="../ArtWork/white-path-96.png"
+                 UriImage="{DynamicResource PathIconUri}"
                  TipContent="Пошук найкоротшого шляху"
                               
                  Command="{Binding ChangeEditorModeCommand}"
@@ -171,6 +185,8 @@
                 ConverterParameter=GraphEditorShortestPathMode}">
                 </controls:ToolButton>
             </WrapPanel>
+            </Border>
+
         </WrapPanel>
     </Grid>
 </UserControl>
