@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace GraphApplication.Models.Graph
 {
+    // don't use this inteface with inheritance, use it just for graph notatioin
     public interface IGraphModel { }
 
     public interface IGraphModel<TVertex, TEdge>: IGraphModel
@@ -24,7 +25,11 @@ namespace GraphApplication.Models.Graph
 
         public bool IsConnectionBetween(TVertex source, TVertex destination);
 
+        public IEnumerable<TVertex> GetNeighbors(TVertex source);
+
         public TEdge? GetEdgeBetween(TVertex source, TVertex destination);
+
+        public IEnumerable<TEdge> GetEdges(TVertex source);
 
         public IEnumerable<TVertex> GetVertices();
 
@@ -43,7 +48,4 @@ namespace GraphApplication.Models.Graph
         public event EventHandler<TVertex>? OnVertexRemoved;
         public event EventHandler<TEdge>? OnEdgeRemoved;
     }
-
-    // use weighted edgeModel
-    public interface IWeightedGraphModel: IGraphModel<VertexModel, EdgeModel> { }
 }

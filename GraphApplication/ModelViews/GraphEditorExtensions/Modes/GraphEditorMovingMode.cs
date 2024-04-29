@@ -17,8 +17,8 @@ namespace GraphApplication.ModelViews.GraphEditorExtensions.Modes
 
         private void UpdatePosition(Point delta, VertexModelView modelView)
         {
-            modelView.Top += delta.Y;
-            modelView.Left += delta.X;
+            modelView.X += delta.X;
+            modelView.Y += delta.Y;
         }
 
 

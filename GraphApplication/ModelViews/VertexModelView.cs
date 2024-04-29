@@ -1,4 +1,5 @@
 ﻿using GraphApplication.Models;
+using System.Windows;
 
 namespace GraphApplication.ModelViews
 {
@@ -12,26 +13,27 @@ namespace GraphApplication.ModelViews
             set
             {
                 Model.Caption = value;
-                OnPropertyChanged(nameof(Model.Caption));
+                OnPropertyChanged(nameof(Caption));
             }
         }
 
-        public double Top
+        public double X
         {
-            get { return Model.Top; }
+            get { return Model.X; }
             set
             {
-                Model.Top = value;
-                OnPropertyChanged(nameof(Model.Top));
+                Model.X = value;
+                OnPropertyChanged(nameof(X));
             }
         }
-        public double Left
+
+        public double Y
         {
-            get { return Model.Left; }
+            get { return Model.Y; }
             set
             {
-                Model.Left = value;
-                OnPropertyChanged(nameof(Model.Left));
+                Model.Y = value;
+                OnPropertyChanged(nameof(Y));
             }
         }
 
@@ -55,7 +57,7 @@ namespace GraphApplication.ModelViews
             set
             {
                 Model.IsActive = value;
-                OnPropertyChanged(nameof(Model.IsActive));
+                OnPropertyChanged(nameof(IsActive));
             }
         }
 
