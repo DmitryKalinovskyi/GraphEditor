@@ -95,7 +95,9 @@ namespace GraphApplication.CustomControls
             DependencyProperty.Register("EndY", typeof(double), typeof(GraphArrow), new PropertyMetadata(.0d));
 
 
-
+        // readonly dp prop, about lenght
+        // readonly dp prop, angle
+        // 
 
         static GraphArrow()
         {

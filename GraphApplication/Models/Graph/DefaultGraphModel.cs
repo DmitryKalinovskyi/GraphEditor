@@ -34,10 +34,11 @@ namespace GraphApplication.Models.Graph
 
         public DefaultGraphModel(IEnumerable<TVertex> vertices, IEnumerable<TEdge> edges)
         {
-            _vertices = new(vertices);
             _edgeBinding = new();
             _neighbors = new();
+            _vertices = new();
 
+            foreach(var vertex in vertices) AddVertex(vertex);
             foreach (var edge in edges) BindEdge(edge);
         }
 

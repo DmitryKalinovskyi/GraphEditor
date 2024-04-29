@@ -124,7 +124,7 @@ namespace GraphApplication.ModelViews
             IsSaved = isSaved;
 
             EditorMode = new GraphEditorSelectionMode(this);
-            GraphModelView = new GraphModelView(new DefaultGraphModel<VertexModel, EdgeModel>());
+            GraphModelView = new GraphModelView(model.GraphModel ?? new DefaultGraphModel<VertexModel, EdgeModel>());
             SelectionManager = new();
             AnimationManager = new();
 

@@ -77,9 +77,9 @@ namespace GraphApplication.ModelViews
 
         public IGraphModel<VertexModel, EdgeModel> Model { get; private set; }
 
-        public GraphModelView(IGraphModel<VertexModel, EdgeModel> model)
+        public GraphModelView(IGraphModel model)
         {
-            Model = model;
+            Model = (IGraphModel<VertexModel, EdgeModel>)model;
             VertexModelViews = new();
             EdgeModelViews = new();
             _edgeBinding = new();

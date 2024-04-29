@@ -13,7 +13,8 @@ namespace GraphApplication.Fabrication
 
             Random random = new Random();
 
-            List<VertexModel> verticles = new List<VertexModel>();
+
+            List<VertexModel> verticles = new();
             for (int i = 0; i < args.VerticlesCount; i++)
             {
                 double left = random.NextDouble() * args.MaxLeft;
@@ -21,21 +22,22 @@ namespace GraphApplication.Fabrication
 
                 verticles.Add(new VertexModel(i, left, top));
             }
-
-            List<EdgeModel> edges = new List<EdgeModel>();
+            IGraphModel<VertexModel, EdgeModel> graph = new DefaultGraphModel<VertexModel, EdgeModel>(verticles, new List<EdgeModel>());
 
             for (int i = 0; i < args.VerticlesCount - 1; i++)
             {
-                //we need to select random elements 
-                int next = random.Next(i + 1, args.VerticlesCount - 1);
+                try
+                {
+                    //we need to select random elements 
+                    int next = random.Next(i + 1, args.VerticlesCount - 1);
 
 
-                edges.Add(new EdgeModel(verticles[i], verticles[next]));
+                    graph.AddEdge(new EdgeModel(verticles[i], verticles[next]));
+                }
+                catch { }
             }
 
-            IGraphModel model = new DefaultGraphModel<VertexModel, EdgeModel>(verticles, edges);
-
-            return model;
+            return graph;
         }
 
     }
