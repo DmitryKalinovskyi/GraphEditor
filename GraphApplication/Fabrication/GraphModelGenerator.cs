@@ -19,7 +19,7 @@ namespace GraphApplication.Fabrication
                 double left = random.NextDouble() * args.MaxLeft;
                 double top = random.NextDouble() * args.MaxTop;
 
-                verticles.Add(new VertexModel(left, top, i));
+                verticles.Add(new VertexModel(i, left, top));
             }
 
             List<EdgeModel> edges = new List<EdgeModel>();

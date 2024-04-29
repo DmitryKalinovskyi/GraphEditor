@@ -103,7 +103,10 @@ namespace GraphApplication.Models.Graph
         public void RemoveVertex(TVertex vertex)
         {
             // remove related edges
-            var edges = GetEdges(vertex);
+            //var edges = GetEdges(vertex);
+
+            // remove each in deegre and out deegre vertex
+            var edges = _edgeBinding.Values.Where(edge => edge.Start == vertex || edge.End  == vertex);
 
             foreach (var edge in edges) RemoveEdge(edge);
 

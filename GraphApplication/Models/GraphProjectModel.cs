@@ -40,15 +40,5 @@ namespace GraphApplication.Models
         {
             GraphModel = null;
         }
-
-        //public GraphEditorModel()
-        //{
-        //    GraphModel = new GraphModel();
-        //}
-
-        //public GraphEditorModel(IGraphModel<TVertex graphModel)
-        //{
-        //    GraphModel = graphModel;
-        //}
     }
 }

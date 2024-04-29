@@ -26,9 +26,8 @@
     <!--Toolbar-->
     
     <!--Editor-->
-    
-    
-    
-    
-    
+    <SolidColorBrush Color="#f2f3f5" x:Key="EditorBackground"/>
+    <SolidColorBrush Color="#a2a3a5" x:Key="EditorBottomBackground"/>
+    <SolidColorBrush Color="White" x:Key="EditorBottomForeground"/>
+
 </ResourceDictionary>

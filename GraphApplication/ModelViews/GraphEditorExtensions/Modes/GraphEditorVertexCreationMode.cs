@@ -26,7 +26,7 @@ namespace GraphApplication.ModelViews.GraphEditorExtensions.Modes
                 createPoint.X /= _modelView.ScaleValue;
                 createPoint.Y /= _modelView.ScaleValue;
 
-                var vertexModel = new VertexModel(createPoint.X, createPoint.Y, _modelView.GraphModelView.GetFreeIndex());
+                var vertexModel = new VertexModel(_modelView.GraphModelView.GetFreeIndex(), createPoint.X, createPoint.Y);
 
                 _modelView.GraphModelView.AddVertexCommand.Execute(vertexModel);
 
