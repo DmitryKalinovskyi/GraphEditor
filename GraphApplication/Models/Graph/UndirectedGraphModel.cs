@@ -1,5 +1,4 @@
 ﻿using System;
-using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -8,7 +7,19 @@ using System.Threading.Tasks;
 
 namespace GraphApplication.Models.Graph
 {
-    public class DefaultGraphModel<TVertex, TEdge> : IGraphModel<TVertex, TEdge>
+    [DataContract(IsReference = true)]
+    public class UndirectedGraphModel : UndirectedGraphModel<VertexModel, EdgeModel> 
+    {
+        public UndirectedGraphModel() { }
+
+        public UndirectedGraphModel(IEnumerable<VertexModel> vertices, IEnumerable<EdgeModel> edges) : base(vertices, edges) { }
+    }
+
+    //[DataContract(IsReference = true)]
+    //public class UndirectedWeightedGraphModel : UndirectedGraphModel<VertexModel, WeightedEdgeModel<double>> { }
+
+    [DataContract(IsReference = true)]
+    public class UndirectedGraphModel<TVertex, TEdge> : IGraphModel<TVertex, TEdge>
         where TVertex : VertexModel
         where TEdge : EdgeModel
     {
@@ -17,43 +28,50 @@ namespace GraphApplication.Models.Graph
         public event EventHandler<TVertex>? OnVertexRemoved;
         public event EventHandler<TEdge>? OnEdgeRemoved;
 
+        [DataMember]
         private HashSet<TVertex> _vertices;
-        //private HashSet<TEdge> _edges;  
-
+        
+        [DataMember]
         private Dictionary<(TVertex, TVertex), TEdge> _edgeBinding;
+        
+        [DataMember]
         private Dictionary<TVertex, HashSet<TVertex>> _neighbors;
 
-        //private HashSet<TEdge> _edges;
-
-        public DefaultGraphModel()
+        public UndirectedGraphModel()
         {
             _vertices = new();
             _edgeBinding = new();
             _neighbors = new();
         }
 
-        public DefaultGraphModel(IEnumerable<TVertex> vertices, IEnumerable<TEdge> edges)
+        public UndirectedGraphModel(IEnumerable<TVertex> vertices, IEnumerable<TEdge> edges)
         {
             _edgeBinding = new();
             _neighbors = new();
             _vertices = new();
 
-            foreach(var vertex in vertices) AddVertex(vertex);
+            foreach (var vertex in vertices) AddVertex(vertex);
             foreach (var edge in edges) BindEdge(edge);
         }
 
         private void BindEdge(TEdge edge)
         {
+            if (IsConnectionBetween((TVertex)edge.Start, (TVertex)edge.End))
+                throw new InvalidOperationException("Vertices already connected, there are not multigraph supporting.");
+
             _neighbors[(TVertex)edge.Start].Add((TVertex)edge.End);
-            //_neighbors[(TVertex)edge.End].Add((TVertex)edge.Start);
+            _neighbors[(TVertex)edge.End].Add((TVertex)edge.Start);
             _edgeBinding[((TVertex)edge.Start, (TVertex)edge.End)] = edge;
+            _edgeBinding[((TVertex)edge.End, (TVertex)edge.Start)] = edge;
         }
 
         private void UnbindEdge(TEdge edge)
         {
             _neighbors[(TVertex)edge.Start].Remove((TVertex)edge.End);
+            _neighbors[(TVertex)edge.End].Remove((TVertex)edge.Start);
 
             _edgeBinding.Remove(((TVertex)edge.Start, (TVertex)edge.End));
+            _edgeBinding.Remove(((TVertex)edge.End, (TVertex)edge.Start));
         }
 
         public void AddEdge(TEdge edge)
@@ -98,7 +116,7 @@ namespace GraphApplication.Models.Graph
         {
             UnbindEdge(edge);
             //_edges.Remove(edge);
-            OnEdgeRemoved?.Invoke(this, edge);  
+            OnEdgeRemoved?.Invoke(this, edge);
         }
 
         public void RemoveVertex(TVertex vertex)
@@ -107,7 +125,7 @@ namespace GraphApplication.Models.Graph
             //var edges = GetEdges(vertex);
 
             // remove each in deegre and out deegre vertex
-            var edges = _edgeBinding.Values.Where(edge => edge.Start == vertex || edge.End  == vertex);
+            var edges = _edgeBinding.Values.Where(edge => edge.Start == vertex || edge.End == vertex);
 
             foreach (var edge in edges) RemoveEdge(edge);
 
@@ -142,10 +160,10 @@ namespace GraphApplication.Models.Graph
 
             List<TEdge> edges = new();
             // get edge between source and each neighbor
-            foreach(var neighbor in neighbors)
+            foreach (var neighbor in neighbors)
             {
                 var edge = GetEdgeBetween(source, neighbor);
-                if(edge != null) edges.Add(edge);   
+                if (edge != null) edges.Add(edge);
             }
 
             return edges;

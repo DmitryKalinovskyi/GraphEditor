@@ -22,7 +22,7 @@ namespace GraphApplication.Fabrication
 
                 verticles.Add(new VertexModel(i, left, top));
             }
-            IGraphModel<VertexModel, EdgeModel> graph = new DefaultGraphModel<VertexModel, EdgeModel>(verticles, new List<EdgeModel>());
+            IGraphModel<VertexModel, EdgeModel> graph = new UndirectedGraphModel(verticles, new List<EdgeModel>());
 
             for (int i = 0; i < args.VerticlesCount - 1; i++)
             {
@@ -32,7 +32,7 @@ namespace GraphApplication.Fabrication
                     int next = random.Next(i + 1, args.VerticlesCount - 1);
 
 
-                    graph.AddEdge(new EdgeModel(verticles[i], verticles[next]));
+                    graph.AddEdge(new WeightedEdgeModel<double>(verticles[i], verticles[next]));
                 }
                 catch { }
             }

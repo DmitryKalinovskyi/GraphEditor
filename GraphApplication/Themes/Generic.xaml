@@ -8,7 +8,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type controls:GraphArrow}">
-                    <Grid>
+                    <Canvas>
                         
                     <!--<Border Background="{TemplateBinding Background}"
                             BorderBrush="{TemplateBinding BorderBrush}"
@@ -26,19 +26,26 @@
         >
     <!--Style="{StaticResource Edge}"-->
                         </Line>
-                        
-                        <Path Stretch="Fill" Fill="Black" 
+                            <!--Style="{StaticResource Edge}">-->
+
+                        <!--<Path Stretch="Fill" Fill="Black"
+                              Canvas.Top="{TemplateBinding EndY}"
+                              Canvas.Left="{TemplateBinding EndX}"
           Data="M 0,110 70,110 45,90 75,90 120,120 75,150 45,150 70,130 0,130 Z"
             Width="30" Height="24"
-                              
-          RenderTransformOrigin=".5,.5">
+                              >
                             <Path.RenderTransform>
                                 <RotateTransform Angle="180" />
-                                <!--<TranslateTransform X="{TemplateBinding EndX}"
-                                                    Y="{TemplateBinding EndY}"/>-->
+                                --><!--<TranslateTransform X="{TemplateBinding EndX}"
+                                                    Y="{TemplateBinding EndY}"/>--><!--
                             </Path.RenderTransform>
-                        </Path>
-                    </Grid>
+                        </Path>-->
+                        <TextBlock Text="{TemplateBinding Caption}"
+                               Canvas.Left="{TemplateBinding CenterX}"
+                               Canvas.Top="{TemplateBinding CenterY}"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"/>
+                    </Canvas>
                     <!--</Border>-->
                 </ControlTemplate>
             </Setter.Value>

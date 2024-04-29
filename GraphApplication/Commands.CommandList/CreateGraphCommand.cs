@@ -25,7 +25,7 @@ namespace GraphApplication.Commands.CommandList
             }
             else
             {
-                GraphProjectModel editorModel = new();
+                GraphProjectModel editorModel = new(new UndirectedGraphModel());
 
                 modelView = new GraphProjectModelView(editorModel, "");
             }

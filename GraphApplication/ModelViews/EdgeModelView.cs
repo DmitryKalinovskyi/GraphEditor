@@ -4,7 +4,17 @@ namespace GraphApplication.ModelViews
 {
     public class EdgeModelView : NotifyModelView
     {
-        public readonly EdgeModel Model;
+        public readonly WeightedEdgeModel<double> Model;
+
+        public double Weight 
+        {
+            get { return Model.Weight; }
+            set
+            {
+                Model.Weight = value;
+                OnPropertyChanged(nameof(Weight));
+            }
+        }
 
         private bool _isMarked;
 
@@ -27,12 +37,12 @@ namespace GraphApplication.ModelViews
 
         public EdgeModelView(VertexModelView start, VertexModelView end)
         {
-            Model = new EdgeModel(start.Model, end.Model);
+            Model = new(start.Model, end.Model);
             Start = start;
             End = end;
         }
 
-        public EdgeModelView(EdgeModel model, VertexModelView start, VertexModelView end)
+        public EdgeModelView(WeightedEdgeModel<double> model, VertexModelView start, VertexModelView end)
         {
             Model = model;
             Start = start;
