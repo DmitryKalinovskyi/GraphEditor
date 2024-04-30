@@ -35,12 +35,16 @@ namespace GraphApplication.ModelViews.GraphEditorExtensions.Modes
 
             IterativeAlgorithmResult routeBuildResult = _algorithm.BuildRoute(_modelView.GraphModelView.Model, start.Model, end.Model);
 
-            if (routeBuildResult.VertexModels == null)
+            if (routeBuildResult == IterativeAlgorithmResult.FailedToBuildRouteResult)
             {
                 MessageBox.Show("Шляху між вершинами не існує!", "Інформація",
                     MessageBoxButton.OK, MessageBoxImage.Information);
                 return false;
             }
+
+            if(routeBuildResult.VertexModels == null)
+                throw new ArgumentNullException("Edge models are null.");
+
 
             if (routeBuildResult.EdgeModels == null)
                 throw new ArgumentNullException("Edge models are null.");
