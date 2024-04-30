@@ -5,6 +5,9 @@
 
 
     <Style TargetType="{x:Type controls:GraphArrow}">
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Opacity" Value="0.5"/>
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type controls:GraphArrow}">
@@ -14,8 +17,8 @@
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="{TemplateBinding BorderThickness}">-->
 
-                        <Line Stroke="Black"
-                              Opacity="0.5"
+                        <Line Stroke="{TemplateBinding Foreground}"
+                              Opacity="{TemplateBinding Opacity}"
                               FocusVisualStyle="{x:Null}"
                               StrokeThickness="4"
     X1="{TemplateBinding StartX}"
@@ -40,13 +43,39 @@
                                                     Y="{TemplateBinding EndY}"/>--><!--
                             </Path.RenderTransform>
                         </Path>-->
-                        <TextBlock Text="{TemplateBinding Caption}"
+                        <!--<controls:EditableTextBox Width="100"
+                                                  Canvas.Left="{TemplateBinding CenterX}"
+                                                  Canvas.Right="{TemplateBinding CenterY}"
+                                                  HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"/>-->
+                        <controls:EditableTextBlock Text="{Binding Path=Caption, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                                                    Canvas.Left="{TemplateBinding CenterX}"
+                                                    Canvas.Top="{TemplateBinding CenterY}">
+
+                        </controls:EditableTextBlock>
+
+
+                        <!--<TextBlock Text="{TemplateBinding Caption}"
                                Canvas.Left="{TemplateBinding CenterX}"
                                Canvas.Top="{TemplateBinding CenterY}"
                                HorizontalAlignment="Center"
-                               VerticalAlignment="Center"/>
+                               VerticalAlignment="Center"/>-->
+                        
                     </Canvas>
                     <!--</Border>-->
+                    <ControlTemplate.Triggers>
+                            <DataTrigger Binding="{Binding IsMarked}" Value="True">
+                                <Setter Property="Foreground" Value="Red"></Setter>
+                            </DataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding Start.IsActive}" Value="True"></Condition>
+                                    <Condition Binding="{Binding End.IsActive}" Value="True"></Condition>
+                                </MultiDataTrigger.Conditions>
+
+                                <Setter Property="Opacity" Value="0.8"></Setter>
+                            </MultiDataTrigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -72,15 +101,14 @@
         </MultiDataTrigger>
     </Style.Triggers>
 </Style>-->
-
-    <Style TargetType="{x:Type controls:Editor}">
+    <Style TargetType="{x:Type controls:EditableTextBlock}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type controls:Editor}">
-                    <Border Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
-                    </Border>
+                <ControlTemplate TargetType="{x:Type controls:EditableTextBlock}">
+                    <Grid>
+                        <!--<TextBlock Text="{TemplateBinding Text}" />-->
+                        <TextBox Text="{Binding Path=Text, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" />
+                    </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

@@ -177,7 +177,7 @@
                                     StartY="{Binding Start.Y}"
                                     EndX="{Binding End.X}"
                                     EndY="{Binding End.Y}"
-                                    Caption="{Binding Weight}"
+                                    Caption="{Binding Weight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                     MouseDown="Line_MouseDown"
                                     MouseUp="Line_MouseUp"
                                     MouseMove="Line_MouseMove"/>

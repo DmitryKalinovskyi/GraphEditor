@@ -103,7 +103,7 @@ namespace GraphApplication.CustomControls
         }
 
         public static readonly DependencyProperty CaptionProperty =
-            DependencyProperty.Register("Caption", typeof(string), typeof(GraphArrow), new PropertyMetadata(""));
+            DependencyProperty.Register("Caption", typeof(string), typeof(GraphArrow), new FrameworkPropertyMetadata("", FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
 
 
 
