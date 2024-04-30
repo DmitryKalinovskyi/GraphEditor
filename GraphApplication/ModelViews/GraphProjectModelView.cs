@@ -41,6 +41,7 @@ namespace GraphApplication.ModelViews
                 OnPropertyChanged(nameof(GraphNameFormat));
             }
         }
+
         public bool IsSaved
         {
             get { return _isSaved; }
@@ -81,7 +82,6 @@ namespace GraphApplication.ModelViews
             }
         }
 
-
         public double ScaleValue
         {
             get { return Math.Clamp(Model.ScaleValue, GraphProjectModel.MinScale, GraphProjectModel.MaxScale); }
@@ -99,6 +99,26 @@ namespace GraphApplication.ModelViews
             {
                 Model.CachingScale = value;
                 OnPropertyChanged(nameof(CachingScale));
+            }
+        }
+
+        public double ActiveStrokeThickness
+        {
+            get => Model.ActiveStrokeThickness;
+            set
+            {
+                Model.ActiveStrokeThickness = value;
+                OnPropertyChanged(nameof(ActiveStrokeThickness));
+            }
+        }
+
+        public double DefaultStrokeThickness
+        {
+            get => Model.DefaultStrokeThickness;
+            set
+            {
+                Model.DefaultStrokeThickness = value;
+                OnPropertyChanged(nameof(DefaultStrokeThickness));
             }
         }
 
@@ -131,6 +151,14 @@ namespace GraphApplication.ModelViews
             GraphModelView = new GraphModelView(model.GraphModel);
             SelectionManager = new();
             AnimationManager = new();
+
+            PropertyChanged += (sender, args) => {
+                if(args.PropertyName != nameof(IsSaved) && args.PropertyName != nameof(GraphNameFormat))
+                    IsSaved = false;
+                };
+
+            GraphModelView.PropertyChanged += (sender, args) => IsSaved = false;
+
 
             InitializeCommands();
             InitializeEvents();

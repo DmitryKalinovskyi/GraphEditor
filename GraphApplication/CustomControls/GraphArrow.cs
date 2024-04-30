@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -44,126 +45,74 @@ namespace GraphApplication.CustomControls
     ///     <MyNamespace:GraphArrow/>
     ///
     /// </summary>
-    public class GraphArrow : Control
+    public class GraphArrow : Arrow
     {
 
 
-        public double StartX
+        public double HiddenStrokeThickness
         {
-            get { return (double)GetValue(StartXProperty); }
-            set { SetValue(StartXProperty, value); }
+            get { return (double)GetValue(HiddenStrokeThicknessProperty); }
+            set { SetValue(HiddenStrokeThicknessProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for StartX.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty StartXProperty =
-            DependencyProperty.Register("StartX", typeof(double), typeof(GraphArrow), new PropertyMetadata(.0d, UpdateCenterX));
+        // Using a DependencyProperty as the backing store for HiddenStrokeThickness.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty HiddenStrokeThicknessProperty =
+            DependencyProperty.Register("HiddenStrokeThickness", typeof(double), typeof(GraphArrow), new PropertyMetadata(2d));
 
-        
 
-        public double StartY
+
+        public double HiddenOpacity
         {
-            get { return (double)GetValue(StartYProperty); }
-            set { SetValue(StartYProperty, value); }
+            get { return (double)GetValue(HiddenOpacityProperty); }
+            set { SetValue(HiddenOpacityProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for StartY.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty StartYProperty =
-            DependencyProperty.Register("StartY", typeof(double), typeof(GraphArrow), new PropertyMetadata(.0d, UpdateCenterY));
+        // Using a DependencyProperty as the backing store for HiddenOpacity.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty HiddenOpacityProperty =
+            DependencyProperty.Register("HiddenOpacity", typeof(double), typeof(GraphArrow), new PropertyMetadata(.2d));
 
 
 
-        public double EndX
+        public static readonly DependencyProperty DefaultStrokeThicknessProperty =
+            DependencyProperty.Register("DefaultStrokeThickness", typeof(double), typeof(GraphArrow), new PropertyMetadata(3d));
+
+        public static readonly DependencyProperty ActiveStrokeThicknessProperty =
+            DependencyProperty.Register("ActiveStrokeThickness", typeof(double), typeof(GraphArrow), new PropertyMetadata(5d));
+
+        public static readonly DependencyProperty DefaultOpacityProperty =
+            DependencyProperty.Register("DefaultOpacity", typeof(double), typeof(GraphArrow), new PropertyMetadata(.7d));
+
+        public static readonly DependencyProperty ActiveOpacityProperty =
+            DependencyProperty.Register("ActiveOpacity", typeof(double), typeof(GraphArrow), new PropertyMetadata(.9d));
+
+
+        public double DefaultStrokeThickness
         {
-            get { return (double)GetValue(EndXProperty); }
-            set { SetValue(EndXProperty, value); }
+            get { return (double)GetValue(DefaultStrokeThicknessProperty); }
+            set { SetValue(DefaultStrokeThicknessProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for EndX.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty EndXProperty =
-            DependencyProperty.Register("EndX", typeof(double), typeof(GraphArrow), new PropertyMetadata(.0d, UpdateCenterX));
-
-
-
-        public double EndY
+        public double ActiveStrokeThickness
         {
-            get { return (double)GetValue(EndYProperty); }
-            set { SetValue(EndYProperty, value); }
+            get { return (double)GetValue(ActiveStrokeThicknessProperty); }
+            set { SetValue(ActiveStrokeThicknessProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for EndY.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty EndYProperty =
-            DependencyProperty.Register("EndY", typeof(double), typeof(GraphArrow), new PropertyMetadata(.0d, UpdateCenterY));
-
-
-
-        public string Caption
+        public double DefaultOpacity
         {
-            get { return (string)GetValue(CaptionProperty); }
-            set { SetValue(CaptionProperty, value); }
+            get { return (double)GetValue(DefaultOpacityProperty); }
+            set { SetValue(DefaultOpacityProperty, value); }
         }
 
-        public static readonly DependencyProperty CaptionProperty =
-            DependencyProperty.Register("Caption", typeof(string), typeof(GraphArrow), new FrameworkPropertyMetadata("", FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
-
-
-
-
-
-        public double CenterX
+        public double ActiveOpacity
         {
-            get { return (double)GetValue(CenterXProperty); }
-            protected set { SetValue(CenterXProperty, value); }
+            get { return (double)GetValue(ActiveOpacityProperty); }
+            set { SetValue(ActiveOpacityProperty, value); }
         }
-
-        // Using a DependencyProperty as the backing store for CenterX.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty CenterXProperty =
-            DependencyProperty.Register("CenterX", typeof(double), typeof(GraphArrow), new PropertyMetadata(.0d));
-
-
-
-        public double CenterY
-        {
-            get { return (double)GetValue(CenterYProperty); }
-            protected set { SetValue(CenterYProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for CenterY.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty CenterYProperty =
-            DependencyProperty.Register("CenterY", typeof(double), typeof(GraphArrow), new PropertyMetadata(.0d));
-
-
-
-
-
-
-
-
-        // readonly dp prop, about lenght
-        // readonly dp prop, angle
-        // readonly CenterX, CenterY
-
-        // edge type? 
-
 
         static GraphArrow()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(GraphArrow), new FrameworkPropertyMetadata(typeof(GraphArrow)));
-        }
-
-        private static void UpdateCenterX(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            double x1 = (double)d.GetValue(StartXProperty);
-            double x2 = (double)d.GetValue(EndXProperty);
-            double centerX = (x1 + x2) / 2;
-            d.SetValue(CenterXProperty, centerX);
-        }
-
-        private static void UpdateCenterY(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            double y1 = (double)d.GetValue(StartYProperty);
-            double y2 = (double)d.GetValue(EndYProperty);
-            double centerY = (y1 + y2) / 2;
-            d.SetValue(CenterYProperty, centerY);
         }
     }
 }

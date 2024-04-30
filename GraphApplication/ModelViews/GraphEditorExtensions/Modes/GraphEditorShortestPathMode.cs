@@ -12,7 +12,7 @@ namespace GraphApplication.ModelViews.GraphEditorExtensions.Modes
     {
         private IShortestPathAlgorithm _algorithm;
 
-        public GraphEditorShortestPathMode(GraphProjectModelView modelView) : this(modelView, new BFSShortestPathAlgorithm()) { }
+        public GraphEditorShortestPathMode(GraphProjectModelView modelView) : this(modelView, new DijkstraAlgorithm()) { }
 
         public GraphEditorShortestPathMode(GraphProjectModelView modelView, IShortestPathAlgorithm algorithm) : base(modelView)
         {
