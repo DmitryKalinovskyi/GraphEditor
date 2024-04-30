@@ -178,11 +178,11 @@
                                     EndX="{Binding End.X}"
                                     EndY="{Binding End.Y}"
                                     Caption="{Binding Weight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                    DefaultStrokeThickness="{Binding DefaultStrokeThickness}"
-                                    ActiveStrokeThickness="{Binding ActiveStrokeThickness}"
                                     MouseDown="Line_MouseDown"
                                     MouseUp="Line_MouseUp"
                                     MouseMove="Line_MouseMove"/>
+                                    <!--ActiveStrokeThickness="{Binding ActiveStrokeThickness}"-->
+                                    <!--DefaultStrokeThickness="{Binding DefaultStrokeThickness}"-->
                                 
                             </Grid>
                         </DataTemplate>
