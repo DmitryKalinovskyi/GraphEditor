@@ -7,13 +7,13 @@ using System.Collections.Generic;
 
 namespace GraphApplication.Algorithms
 {
-    public class BFSShortestPathAlgorithm : IShortestPathAlgorithm
-    {
-        public IterativeAlgorithmResult BuildRoute(IGraphModel graph, params object[] args)
-        {
-            throw new NotImplementedException();
-        }
-    }
+    //public class BFSShortestPathAlgorithm : IShortestPathAlgorithm
+    //{
+    //    public IterativeAlgorithmResult BuildRoute(IGraphModel graph, params object[] args)
+    //    {
+    //        throw new NotImplementedException();
+    //    }
+    //}
     //public class BFSShortestPathAlgorithm : IShortestPathAlgorithm
     //{
     //    private IterativeAlgorithmResult BuildPathByParents(

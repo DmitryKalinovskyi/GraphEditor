@@ -178,6 +178,8 @@
                                     EndX="{Binding End.X}"
                                     EndY="{Binding End.Y}"
                                     Caption="{Binding Weight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    DefaultStrokeThickness="{Binding DefaultStrokeThickness}"
+                                    ActiveStrokeThickness="{Binding ActiveStrokeThickness}"
                                     MouseDown="Line_MouseDown"
                                     MouseUp="Line_MouseUp"
                                     MouseMove="Line_MouseMove"/>
@@ -246,51 +248,41 @@
                         <StackPanel Orientation="Vertical">
 
                             <Separator/>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition>
-                                    </ColumnDefinition>
-                                    <ColumnDefinition>
-                                    </ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition></RowDefinition>
-                                    <RowDefinition></RowDefinition>
-                                    <RowDefinition></RowDefinition>
-                                    <RowDefinition></RowDefinition>
-                                </Grid.RowDefinitions>
+                            <StackPanel>
                                 <TextBlock>
                                     Zoom
                                 </TextBlock>
                                 <Slider
-                                    Grid.Column="1"
                                     Width="100"
                                     Height="10" 
                                     Panel.ZIndex="6"
                                     Minimum="0.25" Maximum="3"
                                     FlowDirection="RightToLeft"
                                     HorizontalAlignment="Left"
-                                    Value="{Binding ScaleValue, Mode=TwoWay}">
-                                </Slider>
-                                <TextBlock
-                                    Grid.Row="1">
+                                    Value="{Binding ScaleValue, Mode=TwoWay}"/>
+                                <TextBlock>
                                     Quality
                                 </TextBlock>
                                 <Slider 
-                                    Grid.Row="1"
-                                    Grid.Column="1"
                                     Width="100"
                                     Height="10" 
                                     Panel.ZIndex="6"
                                     Minimum="0.05" Maximum="1"
                                     HorizontalAlignment="Left"
                                     Value="{Binding CachingScale, Mode=TwoWay}"
-                                    >
-                                </Slider>
-                                
-                                
-                            </Grid>
-                            
+                                    />
+
+                                <TextBlock Text="Default stroke thickness"/>
+                                <Slider 
+                                    Width="100"
+                                    Height="10" 
+                                    Panel.ZIndex="6"
+                                    Minimum="0.05" Maximum="1"
+                                    HorizontalAlignment="Left"
+                                    Value="{Binding DefaultStrokeThickness, Mode=TwoWay}"
+                                    />
+                            </StackPanel>
+                                       
 
 
 

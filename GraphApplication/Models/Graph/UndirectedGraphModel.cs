@@ -99,7 +99,8 @@ namespace GraphApplication.Models.Graph
 
         public IEnumerable<TEdge> GetEdges()
         {
-            return _edgeBinding.Values;
+            // we have repeating edges
+            return _edgeBinding.Values.Distinct();
         }
 
         public IEnumerable<TVertex> GetVertices()
@@ -141,7 +142,7 @@ namespace GraphApplication.Models.Graph
 
         public int GetEdgesCount()
         {
-            return _edgeBinding.Count;
+            return _edgeBinding.Count / 2;
         }
 
         public IEnumerable<TVertex> GetNeighbors(TVertex source)

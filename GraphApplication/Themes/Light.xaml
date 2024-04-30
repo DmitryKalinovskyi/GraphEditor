@@ -51,6 +51,7 @@
     <System:String x:Key="CrossIconUri">/ArtWork/Light/icons8-cross-100.png</System:String>
     <System:String x:Key="CircleIconUri">/ArtWork/Light/icons8-26-circle-96.png</System:String>
     <System:String x:Key="PathIconUri">/ArtWork/Light/icons8-path-100.png</System:String>
+    <System:String x:Key="BoneIconUri">/ArtWork/Light/icons8-bone-96.png</System:String>
     
     
 

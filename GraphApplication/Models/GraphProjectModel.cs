@@ -31,6 +31,12 @@ namespace GraphApplication.Models
         public double CachingScale { get; set; } = DefaultCachingScale;
 
         [DataMember]
+        public double DefaultStrokeThickness { get; set; } = 4;
+
+        [DataMember]
+        public double ActiveStrokeThickness { get; set; } = 6;
+
+        [DataMember]
         public IGraphModel? GraphModel { get; set; }
 
         public GraphProjectModel(IGraphModel graphModel)

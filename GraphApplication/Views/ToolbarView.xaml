@@ -172,6 +172,7 @@
                 Converter={StaticResource ToolButtonCheckConverter},
                 ConverterParameter=GraphEditorDFSMode}">
                 </controls:ToolButton>
+                
                 <controls:ToolButton Style="{StaticResource ToolButtonPrefab}"
                  UriImage="{DynamicResource PathIconUri}"
                  TipContent="Пошук найкоротшого шляху"
@@ -184,7 +185,20 @@
                 Converter={StaticResource ToolButtonCheckConverter},
                 ConverterParameter=GraphEditorShortestPathMode}">
                 </controls:ToolButton>
-            </WrapPanel>
+
+                    <controls:ToolButton Style="{StaticResource ToolButtonPrefab}"
+                     UriImage="{DynamicResource BoneIconUri}"
+                     TipContent="Minimum spanning tree in the graph"
+              
+                     Command="{Binding ChangeEditorModeCommand}"
+                     CommandParameter="GraphEditorSpanningTreeMode"
+                     IsChecked="{Binding DataContext.EditorMode,
+                    Mode=OneWay,
+                    RelativeSource={RelativeSource AncestorType={x:Type WrapPanel}},
+                    Converter={StaticResource ToolButtonCheckConverter},
+                    ConverterParameter=GraphEditorSpanningTreeMode}">
+                    </controls:ToolButton>
+                </WrapPanel>
             </Border>
 
         </WrapPanel>

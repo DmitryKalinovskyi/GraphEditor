@@ -6,7 +6,7 @@
 
     <Style TargetType="{x:Type controls:GraphArrow}">
         <Setter Property="Foreground" Value="Black"/>
-        <Setter Property="Opacity" Value="0.5"/>
+
 
         <Setter Property="Template">
             <Setter.Value>
@@ -20,7 +20,7 @@
                         <Line Stroke="{TemplateBinding Foreground}"
                               Opacity="{TemplateBinding Opacity}"
                               FocusVisualStyle="{x:Null}"
-                              StrokeThickness="4"
+                              StrokeThickness="{TemplateBinding StrokeThickness}"
     X1="{TemplateBinding StartX}"
         Y1="{TemplateBinding StartY}"
         X2="{TemplateBinding EndX}"
@@ -64,17 +64,20 @@
                     </Canvas>
                     <!--</Border>-->
                     <ControlTemplate.Triggers>
-                            <DataTrigger Binding="{Binding IsMarked}" Value="True">
-                                <Setter Property="Foreground" Value="Red"></Setter>
-                            </DataTrigger>
-                            <MultiDataTrigger>
-                                <MultiDataTrigger.Conditions>
-                                    <Condition Binding="{Binding Start.IsActive}" Value="True"></Condition>
-                                    <Condition Binding="{Binding End.IsActive}" Value="True"></Condition>
-                                </MultiDataTrigger.Conditions>
+                        <DataTrigger Binding="{Binding IsMarked}" Value="True">
+                            <Setter Property="Foreground" Value="Red"/>
+                            <Setter Property="StrokeThickness" Value="{Binding ActiveStrokeThickness, RelativeSource={RelativeSource Self}}"/>
+                            <Setter Property="Opacity" Value="{Binding ActiveOpacity, RelativeSource={RelativeSource Self}}"/>
+                        </DataTrigger>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Start.IsActive}" Value="True"></Condition>
+                                <Condition Binding="{Binding End.IsActive}" Value="True"></Condition>
+                            </MultiDataTrigger.Conditions>
 
-                                <Setter Property="Opacity" Value="0.8"></Setter>
-                            </MultiDataTrigger>
+                            <Setter Property="StrokeThickness" Value="{Binding DefaultStrokeThickness, RelativeSource={RelativeSource Self}}"/>
+                            <Setter Property="Opacity" Value="{Binding DefaultOpacity, RelativeSource={RelativeSource Self}}"/>
+                        </MultiDataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

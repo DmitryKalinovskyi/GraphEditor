@@ -1,4 +1,6 @@
-﻿using GraphApplication.Views;
+﻿using GraphApplication.Algorithms;
+using GraphApplication.Algorithms.Contracts;
+using GraphApplication.Views;
 using Microsoft.Extensions.DependencyInjection;
 using System.Windows;
 
@@ -16,6 +18,10 @@ namespace GraphApplication
             IServiceCollection services = new ServiceCollection();
 
             services.AddSingleton<MainWindow>();
+
+            services.AddScoped<IBFSAlgorithm, BFSAlgorithm>();
+            services.AddScoped<IDFSAlgorithm, DFSAlgorithm>();
+            services.AddScoped<IMinSpanningTreeAlgorithm, PrimAlgorithm>();
 
             _serviceProvider = services.BuildServiceProvider();
         }
