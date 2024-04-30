@@ -28,7 +28,7 @@ namespace GraphApplication.ModelViews
 
         public GraphEditorAnimationManager AnimationManager { get; private set; }
 
-        private string _name;
+        private string _name = "";
         private bool _isSaved;
 
         public string Name
@@ -119,12 +119,16 @@ namespace GraphApplication.ModelViews
 
         public GraphProjectModelView(GraphProjectModel model, string name, bool isSaved = false)
         {
+            if (model.GraphModel == null)
+                throw new ArgumentNullException(nameof(model.GraphModel));
+
             Model = model;
             Name = name;
             IsSaved = isSaved;
 
             EditorMode = new GraphEditorSelectionMode(this);
-            GraphModelView = new GraphModelView(new DefaultGraphModel<VertexModel, EdgeModel>());
+            
+            GraphModelView = new GraphModelView(model.GraphModel);
             SelectionManager = new();
             AnimationManager = new();
 

@@ -75,11 +75,11 @@ namespace GraphApplication.ModelViews
 
         #endregion
 
-        public IGraphModel<VertexModel, EdgeModel> Model { get; private set; }
+        public UndirectedGraphModel Model { get; private set; }
 
-        public GraphModelView(IGraphModel<VertexModel, EdgeModel> model)
+        public GraphModelView(IGraphModel model)
         {
-            Model = model;
+            Model = (UndirectedGraphModel) model;
             VertexModelViews = new();
             EdgeModelViews = new();
             _edgeBinding = new();
@@ -114,7 +114,7 @@ namespace GraphApplication.ModelViews
             var start = GetVertexModelView_By_VertexModel(edge.Start);
             var end = GetVertexModelView_By_VertexModel(edge.End);
 
-            var edgeModelView = new EdgeModelView(edge, start, end);
+            var edgeModelView = new EdgeModelView((WeightedEdgeModel<double>)edge, start, end);
             // bind
             _edgeBinding[edge] = edgeModelView;
 

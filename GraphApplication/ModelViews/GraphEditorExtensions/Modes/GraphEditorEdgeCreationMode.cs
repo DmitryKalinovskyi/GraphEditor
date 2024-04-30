@@ -42,7 +42,7 @@ namespace GraphApplication.ModelViews.GraphEditorExtensions.Modes
 
             if (_modelView.GraphModelView.Model.IsConnectionBetween(start.Model, end.Model) == false)
             {
-                EdgeModel edgeModel = new EdgeModel(start.Model, end.Model);
+                EdgeModel edgeModel = new WeightedEdgeModel<double>(start.Model, end.Model);
                 _modelView.GraphModelView.AddEdgeCommand.Execute(edgeModel);
             }
             else

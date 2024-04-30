@@ -56,9 +56,9 @@ namespace GraphApplication.CustomControls
 
         // Using a DependencyProperty as the backing store for StartX.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty StartXProperty =
-            DependencyProperty.Register("StartX", typeof(double), typeof(GraphArrow), new PropertyMetadata(.0d));
+            DependencyProperty.Register("StartX", typeof(double), typeof(GraphArrow), new PropertyMetadata(.0d, UpdateCenterX));
 
-
+        
 
         public double StartY
         {
@@ -68,7 +68,7 @@ namespace GraphApplication.CustomControls
 
         // Using a DependencyProperty as the backing store for StartY.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty StartYProperty =
-            DependencyProperty.Register("StartY", typeof(double), typeof(GraphArrow), new PropertyMetadata(.0d));
+            DependencyProperty.Register("StartY", typeof(double), typeof(GraphArrow), new PropertyMetadata(.0d, UpdateCenterY));
 
 
 
@@ -80,7 +80,7 @@ namespace GraphApplication.CustomControls
 
         // Using a DependencyProperty as the backing store for EndX.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty EndXProperty =
-            DependencyProperty.Register("EndX", typeof(double), typeof(GraphArrow), new PropertyMetadata(.0d));
+            DependencyProperty.Register("EndX", typeof(double), typeof(GraphArrow), new PropertyMetadata(.0d, UpdateCenterX));
 
 
 
@@ -92,14 +92,78 @@ namespace GraphApplication.CustomControls
 
         // Using a DependencyProperty as the backing store for EndY.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty EndYProperty =
-            DependencyProperty.Register("EndY", typeof(double), typeof(GraphArrow), new PropertyMetadata(.0d));
+            DependencyProperty.Register("EndY", typeof(double), typeof(GraphArrow), new PropertyMetadata(.0d, UpdateCenterY));
 
 
+
+        public string Caption
+        {
+            get { return (string)GetValue(CaptionProperty); }
+            set { SetValue(CaptionProperty, value); }
+        }
+
+        public static readonly DependencyProperty CaptionProperty =
+            DependencyProperty.Register("Caption", typeof(string), typeof(GraphArrow), new FrameworkPropertyMetadata("", FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+
+
+
+
+
+        public double CenterX
+        {
+            get { return (double)GetValue(CenterXProperty); }
+            protected set { SetValue(CenterXProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for CenterX.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty CenterXProperty =
+            DependencyProperty.Register("CenterX", typeof(double), typeof(GraphArrow), new PropertyMetadata(.0d));
+
+
+
+        public double CenterY
+        {
+            get { return (double)GetValue(CenterYProperty); }
+            protected set { SetValue(CenterYProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for CenterY.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty CenterYProperty =
+            DependencyProperty.Register("CenterY", typeof(double), typeof(GraphArrow), new PropertyMetadata(.0d));
+
+
+
+
+
+
+
+
+        // readonly dp prop, about lenght
+        // readonly dp prop, angle
+        // readonly CenterX, CenterY
+
+        // edge type? 
 
 
         static GraphArrow()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(GraphArrow), new FrameworkPropertyMetadata(typeof(GraphArrow)));
+        }
+
+        private static void UpdateCenterX(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            double x1 = (double)d.GetValue(StartXProperty);
+            double x2 = (double)d.GetValue(EndXProperty);
+            double centerX = (x1 + x2) / 2;
+            d.SetValue(CenterXProperty, centerX);
+        }
+
+        private static void UpdateCenterY(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            double y1 = (double)d.GetValue(StartYProperty);
+            double y2 = (double)d.GetValue(EndYProperty);
+            double centerY = (y1 + y2) / 2;
+            d.SetValue(CenterYProperty, centerY);
         }
     }
 }

@@ -9,6 +9,8 @@ namespace GraphApplication.Models
     /// 
 
     [DataContract(IsReference = true)]
+    [KnownType(typeof(UndirectedGraphModel))]
+    [KnownType(typeof(DirectedGraphModel))]
     public class GraphProjectModel
     {
         public static double MinScale = 0.25;
