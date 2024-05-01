@@ -27,23 +27,23 @@ namespace GraphApplication.ModelViews
         public Command? LoadGraphCommand { get; set; }
         #endregion
 
-        public OpenedGraphModelViewsManager OpenedGraphModelViewsManager { get; set; }
+        public OpenedProjectsManager OpenedGraphModelViewsManager { get; set; }
 
         public GraphEditorMode? ActiveMode
         {
             get
             {
-                if (OpenedGraphModelViewsManager.SelectedView == null)
+                if (OpenedGraphModelViewsManager.SelectedProject == null)
                     return null;
 
-                return OpenedGraphModelViewsManager.SelectedView.EditorMode;
+                return OpenedGraphModelViewsManager.SelectedProject.EditorMode;
             }
             set
             {
-                if (OpenedGraphModelViewsManager.SelectedView == null || value == null)
+                if (OpenedGraphModelViewsManager.SelectedProject == null || value == null)
                     return;
 
-                OpenedGraphModelViewsManager.SelectedView.EditorMode = value;
+                OpenedGraphModelViewsManager.SelectedProject.EditorMode = value;
                 OnPropertyChanged(nameof(ActiveMode));
             }
         }
@@ -70,7 +70,7 @@ namespace GraphApplication.ModelViews
         public void CloseAndSave()
         {
             //ask about saving
-            IEnumerable<GraphProjectModelView> graphViewsToClose = OpenedGraphModelViewsManager.GraphEditorViews.ToList();
+            IEnumerable<GraphProjectModelView> graphViewsToClose = OpenedGraphModelViewsManager.OpenedProjects.ToList();
 
             foreach (GraphProjectModelView view in graphViewsToClose)
             {

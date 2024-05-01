@@ -39,7 +39,7 @@ namespace GraphApplication.Commands.CommandList
                     }
                 }
 
-                _mainWindowsViewModel.OpenedGraphModelViewsManager.RemoveModelView(modelView);
+                _mainWindowsViewModel.OpenedGraphModelViewsManager.RemoveProject(modelView);
             }
         }
     }

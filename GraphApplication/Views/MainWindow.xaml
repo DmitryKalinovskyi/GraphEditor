@@ -191,8 +191,8 @@
         <!--Editor-->
         <Grid Grid.Row="1">
             <!--Opened graphs-->
-            <TabControl ItemsSource="{Binding OpenedGraphModelViewsManager.GraphEditorViews}"
-                        SelectedItem="{Binding OpenedGraphModelViewsManager.SelectedView}"
+            <TabControl ItemsSource="{Binding OpenedGraphModelViewsManager.OpenedProjects}"
+                        SelectedItem="{Binding OpenedGraphModelViewsManager.SelectedProject}"
                         Name="ProjectsTab">
                 <TabControl.ItemTemplate>
                     <DataTemplate>

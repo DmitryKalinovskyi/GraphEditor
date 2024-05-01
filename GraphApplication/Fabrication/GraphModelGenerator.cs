@@ -32,7 +32,9 @@ namespace GraphApplication.Fabrication
                     int next = random.Next(i + 1, args.VerticlesCount - 1);
 
 
-                    graph.AddEdge(new WeightedEdgeModel<double>(verticles[i], verticles[next]));
+                    double weight = Math.Floor(random.NextDouble() * 10000) / 100;
+
+                    graph.AddEdge(new WeightedEdgeModel<double>(verticles[i], verticles[next], weight));
                 }
                 catch { }
             }

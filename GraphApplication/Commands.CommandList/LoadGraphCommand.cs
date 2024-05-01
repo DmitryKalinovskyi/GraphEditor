@@ -48,9 +48,9 @@ namespace GraphApplication.Commands.CommandList
                     throw new Exception();
 
                 GraphProjectModelView graphEditorModelView = new GraphProjectModelView(modelView, name, true);
-                _mainWindowsViewModel.OpenedGraphModelViewsManager.AssignModelView(graphEditorModelView, path);
-                _mainWindowsViewModel.OpenedGraphModelViewsManager.GraphEditorViews.Add(graphEditorModelView);
-                _mainWindowsViewModel.OpenedGraphModelViewsManager.SelectedView = graphEditorModelView;
+                _mainWindowsViewModel.OpenedGraphModelViewsManager.AssignProject(graphEditorModelView, path);
+                _mainWindowsViewModel.OpenedGraphModelViewsManager.OpenedProjects.Add(graphEditorModelView);
+                _mainWindowsViewModel.OpenedGraphModelViewsManager.SelectedProject = graphEditorModelView;
             }
         }
     }

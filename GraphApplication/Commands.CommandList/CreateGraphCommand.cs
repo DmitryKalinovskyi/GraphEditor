@@ -31,8 +31,8 @@ namespace GraphApplication.Commands.CommandList
             }
 
 
-            _mainWindowModelView.OpenedGraphModelViewsManager.SelectedView = modelView;
-            _mainWindowModelView.OpenedGraphModelViewsManager.GraphEditorViews.Add(modelView);
+            _mainWindowModelView.OpenedGraphModelViewsManager.SelectedProject = modelView;
+            _mainWindowModelView.OpenedGraphModelViewsManager.OpenedProjects.Add(modelView);
         }
     }
 }
