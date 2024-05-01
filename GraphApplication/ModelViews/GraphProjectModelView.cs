@@ -62,6 +62,8 @@ namespace GraphApplication.ModelViews
             }
         }
 
+        #region ProjectOptions
+
         public double OffsetX
         {
             get { return Model.OffsetX; }
@@ -102,25 +104,17 @@ namespace GraphApplication.ModelViews
             }
         }
 
-        public double ActiveStrokeThickness
+        public bool ShowEdgeLabels
         {
-            get => Model.ActiveStrokeThickness;
+            get => Model.ShowEdgeLabels;
             set
             {
-                Model.ActiveStrokeThickness = value;
-                OnPropertyChanged(nameof(ActiveStrokeThickness));
+                Model.ShowEdgeLabels = value;
+                OnPropertyChanged(nameof(ShowEdgeLabels));
             }
         }
 
-        public double DefaultStrokeThickness
-        {
-            get => Model.DefaultStrokeThickness;
-            set
-            {
-                Model.DefaultStrokeThickness = value;
-                OnPropertyChanged(nameof(DefaultStrokeThickness));
-            }
-        }
+        #endregion
 
         private GraphEditorMode _editorMode;
 
@@ -152,16 +146,19 @@ namespace GraphApplication.ModelViews
             SelectionManager = new();
             AnimationManager = new();
 
-            PropertyChanged += (sender, args) => {
-                if(args.PropertyName != nameof(IsSaved) && args.PropertyName != nameof(GraphNameFormat))
-                    IsSaved = false;
-                };
-
-            GraphModelView.PropertyChanged += (sender, args) => IsSaved = false;
-
-
+            ConfigureSaving();
             InitializeCommands();
             InitializeEvents();
+        }
+
+        private void ConfigureSaving()
+        {
+            PropertyChanged += (sender, args) => {
+                if (args.PropertyName != nameof(IsSaved) && args.PropertyName != nameof(GraphNameFormat))
+                    IsSaved = false;
+            };
+
+            GraphModelView.PropertyChanged += (sender, args) => IsSaved = false;
         }
 
         private void InitializeCommands()

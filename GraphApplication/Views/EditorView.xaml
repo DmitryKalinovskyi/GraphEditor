@@ -178,6 +178,7 @@
                                     EndX="{Binding End.X}"
                                     EndY="{Binding End.Y}"
                                     Caption="{Binding Weight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                    ShowCaption="{Binding DataContext.ShowEdgeLabels, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
                                     MouseDown="Line_MouseDown"
                                     MouseUp="Line_MouseUp"
                                     MouseMove="Line_MouseMove"/>
@@ -272,7 +273,7 @@
                                     Value="{Binding CachingScale, Mode=TwoWay}"
                                     />
 
-                                <TextBlock Text="Default stroke thickness"/>
+                                <!--<TextBlock Text="Default stroke thickness"/>
                                 <Slider 
                                     Width="100"
                                     Height="10" 
@@ -280,7 +281,13 @@
                                     Minimum="0.05" Maximum="1"
                                     HorizontalAlignment="Left"
                                     Value="{Binding DefaultStrokeThickness, Mode=TwoWay}"
-                                    />
+                                    />-->
+                                
+                                <TextBlock Text="Show edge labels"/>
+                                <CheckBox IsChecked="{Binding ShowEdgeLabels, Mode=TwoWay}"/>
+
+
+
                             </StackPanel>
                                        
 

@@ -48,6 +48,8 @@ namespace GraphApplication.CustomControls
     {
         #region DependencyProperties
 
+        public static readonly DependencyProperty ShowCaptionProperty =
+            DependencyProperty.Register("ShowCaption", typeof(bool), typeof(Arrow), new PropertyMetadata(true));
 
         public static readonly DependencyProperty StartXProperty =
             DependencyProperty.Register("StartX", typeof(double), typeof(Arrow), new PropertyMetadata(.0d, UpdateCenterX));
@@ -74,6 +76,12 @@ namespace GraphApplication.CustomControls
             DependencyProperty.Register("StrokeThickness", typeof(double), typeof(Arrow), new PropertyMetadata(.1d));
 
         #endregion
+
+        public bool ShowCaption
+        {
+            get { return (bool)GetValue(ShowCaptionProperty); }
+            set { SetValue(ShowCaptionProperty, value); }
+        }
 
         public double StartX
         {

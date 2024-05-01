@@ -18,6 +18,7 @@ namespace GraphApplication.Models
         public static double DefaultScale = 1;
         public static double DefaultCachingScale = 0.8;
 
+        #region ProjectOptions
         [DataMember]
         public double ScaleValue { get; set; } = DefaultScale;
 
@@ -31,10 +32,8 @@ namespace GraphApplication.Models
         public double CachingScale { get; set; } = DefaultCachingScale;
 
         [DataMember]
-        public double DefaultStrokeThickness { get; set; } = 4;
-
-        [DataMember]
-        public double ActiveStrokeThickness { get; set; } = 6;
+        public bool ShowEdgeLabels { get; set; } = true;
+        #endregion
 
         [DataMember]
         public IGraphModel? GraphModel { get; set; }

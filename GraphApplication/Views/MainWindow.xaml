@@ -65,7 +65,7 @@
                     Modifiers="Shift"
                     />-->
         <KeyBinding Key="I"
-                    Command="{Binding OpenedGraphModelViewsManager.SelectedView.StartAlgorithmCommand}"
+                    Command="{Binding OpenedGraphModelViewsManager.SelectedProject.StartAlgorithmCommand}"
                     Modifiers="Shift"
                     />
         

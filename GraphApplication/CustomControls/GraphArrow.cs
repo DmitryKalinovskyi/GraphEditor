@@ -47,69 +47,7 @@ namespace GraphApplication.CustomControls
     /// </summary>
     public class GraphArrow : Arrow
     {
-
-
-        public double HiddenStrokeThickness
-        {
-            get { return (double)GetValue(HiddenStrokeThicknessProperty); }
-            set { SetValue(HiddenStrokeThicknessProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for HiddenStrokeThickness.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty HiddenStrokeThicknessProperty =
-            DependencyProperty.Register("HiddenStrokeThickness", typeof(double), typeof(GraphArrow), new PropertyMetadata(2d));
-
-
-
-        public double HiddenOpacity
-        {
-            get { return (double)GetValue(HiddenOpacityProperty); }
-            set { SetValue(HiddenOpacityProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for HiddenOpacity.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty HiddenOpacityProperty =
-            DependencyProperty.Register("HiddenOpacity", typeof(double), typeof(GraphArrow), new PropertyMetadata(.2d));
-
-
-
-        public static readonly DependencyProperty DefaultStrokeThicknessProperty =
-            DependencyProperty.Register("DefaultStrokeThickness", typeof(double), typeof(GraphArrow), new PropertyMetadata(3d));
-
-        public static readonly DependencyProperty ActiveStrokeThicknessProperty =
-            DependencyProperty.Register("ActiveStrokeThickness", typeof(double), typeof(GraphArrow), new PropertyMetadata(5d));
-
-        public static readonly DependencyProperty DefaultOpacityProperty =
-            DependencyProperty.Register("DefaultOpacity", typeof(double), typeof(GraphArrow), new PropertyMetadata(.7d));
-
-        public static readonly DependencyProperty ActiveOpacityProperty =
-            DependencyProperty.Register("ActiveOpacity", typeof(double), typeof(GraphArrow), new PropertyMetadata(.9d));
-
-
-        public double DefaultStrokeThickness
-        {
-            get { return (double)GetValue(DefaultStrokeThicknessProperty); }
-            set { SetValue(DefaultStrokeThicknessProperty, value); }
-        }
-
-        public double ActiveStrokeThickness
-        {
-            get { return (double)GetValue(ActiveStrokeThicknessProperty); }
-            set { SetValue(ActiveStrokeThicknessProperty, value); }
-        }
-
-        public double DefaultOpacity
-        {
-            get { return (double)GetValue(DefaultOpacityProperty); }
-            set { SetValue(DefaultOpacityProperty, value); }
-        }
-
-        public double ActiveOpacity
-        {
-            get { return (double)GetValue(ActiveOpacityProperty); }
-            set { SetValue(ActiveOpacityProperty, value); }
-        }
-
+       
         static GraphArrow()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(GraphArrow), new FrameworkPropertyMetadata(typeof(GraphArrow)));

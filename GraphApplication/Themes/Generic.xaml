@@ -1,7 +1,10 @@
 <ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:controls="clr-namespace:GraphApplication.CustomControls">
+    xmlns:controls="clr-namespace:GraphApplication.CustomControls"
+    xmlns:converters="clr-namespace:GraphApplication.Converters">
+
+    <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
 
 
     <Style TargetType="{x:Type controls:GraphArrow}">
@@ -12,11 +15,6 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type controls:GraphArrow}">
                     <Canvas>
-                        
-                    <!--<Border Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">-->
-
                         <Line Stroke="{TemplateBinding Foreground}"
                               Opacity="{TemplateBinding Opacity}"
                               FocusVisualStyle="{x:Null}"
@@ -26,57 +24,33 @@
         X2="{TemplateBinding EndX}"
         Y2="{TemplateBinding EndY}"
                               
-        >
-    <!--Style="{StaticResource Edge}"-->
-                        </Line>
-                            <!--Style="{StaticResource Edge}">-->
+        />
 
-                        <!--<Path Stretch="Fill" Fill="Black"
-                              Canvas.Top="{TemplateBinding EndY}"
-                              Canvas.Left="{TemplateBinding EndX}"
-          Data="M 0,110 70,110 45,90 75,90 120,120 75,150 45,150 70,130 0,130 Z"
-            Width="30" Height="24"
-                              >
-                            <Path.RenderTransform>
-                                <RotateTransform Angle="180" />
-                                --><!--<TranslateTransform X="{TemplateBinding EndX}"
-                                                    Y="{TemplateBinding EndY}"/>--><!--
-                            </Path.RenderTransform>
-                        </Path>-->
-                        <!--<controls:EditableTextBox Width="100"
-                                                  Canvas.Left="{TemplateBinding CenterX}"
-                                                  Canvas.Right="{TemplateBinding CenterY}"
-                                                  HorizontalAlignment="Center"
-                                                  VerticalAlignment="Center"/>-->
-                        <controls:EditableTextBlock Text="{Binding Path=Caption, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+
+                        <controls:EditableTextBlock Text="{Binding Path=Caption, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
                                                     Canvas.Left="{TemplateBinding CenterX}"
-                                                    Canvas.Top="{TemplateBinding CenterY}">
+                                                    Canvas.Top="{TemplateBinding CenterY}"
+                                                    Visibility="{TemplateBinding ShowCaption,
+                            Converter={StaticResource BoolToVisibilityConverter}}"/>
 
-                        </controls:EditableTextBlock>
 
 
-                        <!--<TextBlock Text="{TemplateBinding Caption}"
-                               Canvas.Left="{TemplateBinding CenterX}"
-                               Canvas.Top="{TemplateBinding CenterY}"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center"/>-->
-                        
                     </Canvas>
                     <!--</Border>-->
                     <ControlTemplate.Triggers>
                         <DataTrigger Binding="{Binding IsMarked}" Value="True">
                             <Setter Property="Foreground" Value="Red"/>
-                            <Setter Property="StrokeThickness" Value="{Binding ActiveStrokeThickness, RelativeSource={RelativeSource Self}}"/>
-                            <Setter Property="Opacity" Value="{Binding ActiveOpacity, RelativeSource={RelativeSource Self}}"/>
+                            <Setter Property="StrokeThickness" Value="{DynamicResource ActiveEdgeThickness}"/>
+                            <Setter Property="Opacity" Value="{DynamicResource ActiveEdgeOpacitry}"/>
                         </DataTrigger>
                         <MultiDataTrigger>
                             <MultiDataTrigger.Conditions>
-                                <Condition Binding="{Binding Start.IsActive}" Value="True"></Condition>
-                                <Condition Binding="{Binding End.IsActive}" Value="True"></Condition>
+                                <Condition Binding="{Binding Start.IsActive}" Value="True"/>
+                                <Condition Binding="{Binding End.IsActive}" Value="True"/>
                             </MultiDataTrigger.Conditions>
 
-                            <Setter Property="StrokeThickness" Value="{Binding DefaultStrokeThickness, RelativeSource={RelativeSource Self}}"/>
-                            <Setter Property="Opacity" Value="{Binding DefaultOpacity, RelativeSource={RelativeSource Self}}"/>
+                            <Setter Property="StrokeThickness" Value="{DynamicResource EdgeThickness}"/>
+                            <Setter Property="Opacity" Value="{DynamicResource EdgeOpacitry}"/>
                         </MultiDataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

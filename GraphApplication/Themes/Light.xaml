@@ -53,6 +53,14 @@
     <System:String x:Key="PathIconUri">/ArtWork/Light/icons8-path-100.png</System:String>
     <System:String x:Key="BoneIconUri">/ArtWork/Light/icons8-bone-96.png</System:String>
     
-    
+    <!--Graph-->
+    <System:Double x:Key="HiddenEdgeOpacity">0.3</System:Double>
+    <System:Double x:Key="EdgeOpacitry">0.7</System:Double>
+    <System:Double x:Key="ActiveEdgeOpacitry">1</System:Double>
+
+    <System:Double x:Key="HiddenEdgeThickness">4</System:Double>
+    <System:Double x:Key="EdgeThickness">4</System:Double>
+    <System:Double x:Key="ActiveEdgeThickness">6</System:Double>
+
 
 </ResourceDictionary>
