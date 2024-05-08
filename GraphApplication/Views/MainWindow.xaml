@@ -65,7 +65,7 @@
                     Modifiers="Shift"
                     />-->
         <KeyBinding Key="I"
-                    Command="{Binding OpenedGraphModelViewsManager.SelectedProject.StartAlgorithmCommand}"
+                    Command="{Binding OpenedProjectsService.SelectedProject.StartAlgorithmCommand}"
                     Modifiers="Shift"
                     />
         
@@ -191,8 +191,8 @@
         <!--Editor-->
         <Grid Grid.Row="1">
             <!--Opened graphs-->
-            <TabControl ItemsSource="{Binding OpenedGraphModelViewsManager.OpenedProjects}"
-                        SelectedItem="{Binding OpenedGraphModelViewsManager.SelectedProject}"
+            <TabControl ItemsSource="{Binding OpenedProjectsService.OpenedProjects}"
+                        SelectedItem="{Binding OpenedProjectsService.SelectedProject}"
                         Name="ProjectsTab">
                 <TabControl.ItemTemplate>
                     <DataTemplate>

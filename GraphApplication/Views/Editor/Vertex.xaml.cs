@@ -33,7 +33,7 @@ namespace GraphApplication.Views.Editor
             var ServiceProvider = (Application.Current as App).ServiceProvider;
 
             var mainWindowModelView = ServiceProvider.GetRequiredService<MainWindowModelView>();
-            var manager = mainWindowModelView.OpenedGraphModelViewsManager;
+            var manager = mainWindowModelView.OpenedProjectsService;
 
             return manager.SelectedProject;
         }

@@ -137,10 +137,9 @@
                         </control:VertexButton>-->
                 <!--Click="VertexButton_Click"-->
                             <editor:Vertex DataContext="{Binding}"
-                Panel.ZIndex="10"
-                                           >
-                            </editor:Vertex>
-                <!--MouseDown="VertexButton_MouseDown"
+                Panel.ZIndex="10"/>
+
+                            <!--MouseDown="VertexButton_MouseDown"
                 MouseMove="VertexButton_MouseMove"
                                            MouseDown="VertexButton_MouseDown"
                 MouseUp="VertexButton_MouseUp"

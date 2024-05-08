@@ -34,7 +34,7 @@ namespace GraphApplication.Commands.CommandList
             if (openFileDialog.ShowDialog() == true)
             {
                 string path = openFileDialog.FileName;
-                if (_mainWindowsViewModel.OpenedGraphModelViewsManager.IsOpened(path))
+                if (_mainWindowsViewModel.OpenedProjectsService.IsOpenedWithPath(path))
                 {
                     MessageBox.Show("Такий граф вже відкритий!", "Попередження", MessageBoxButton.OK, MessageBoxImage.Information);
                     return;
@@ -48,9 +48,8 @@ namespace GraphApplication.Commands.CommandList
                     throw new Exception();
 
                 GraphProjectModelView graphEditorModelView = new GraphProjectModelView(modelView, name, true);
-                _mainWindowsViewModel.OpenedGraphModelViewsManager.AssignProject(graphEditorModelView, path);
-                _mainWindowsViewModel.OpenedGraphModelViewsManager.OpenedProjects.Add(graphEditorModelView);
-                _mainWindowsViewModel.OpenedGraphModelViewsManager.SelectedProject = graphEditorModelView;
+
+                _mainWindowsViewModel.OpenedProjectsService.AddProjectAndSelect(graphEditorModelView, path);
             }
         }
     }
