@@ -77,6 +77,12 @@ namespace GraphApplication.ModelViews
             }
         }
 
+
+        public VertexModelView()
+        {
+            Model = new VertexModel(-1, 0, 0);
+        }
+
         public VertexModelView(VertexModel model)
         {
             Model = model;

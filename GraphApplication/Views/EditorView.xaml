@@ -7,6 +7,7 @@
              xmlns:modelViews="clr-namespace:GraphApplication.ModelViews"
              xmlns:converters="clr-namespace:GraphApplication.Converters"
              xmlns:control="clr-namespace:GraphApplication.CustomControls"
+             xmlns:editor="clr-namespace:GraphApplication.Views.Editor"
              mc:Ignorable="d" 
              d:DesignHeight="650" d:DesignWidth="1000">
     <UserControl.Resources>
@@ -123,7 +124,7 @@
                     </ItemsControl.ItemContainerStyle>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                        <control:VertexButton DataContext="{Binding}"
+                        <!--<control:VertexButton DataContext="{Binding}"
                                         Click="VertexButton_Click"
                                         MouseMove="VertexButton_MouseMove"
                                         MouseDown="VertexButton_MouseDown"
@@ -131,9 +132,19 @@
                                         PreviewMouseUp="VertexButton_PreviewMouseUp"
                                         PreviewMouseDown="VertexButton_PreviewMouseDown"
                                         MouseDoubleClick="VertexButton_MouseDoubleClick"
-                                        Panel.ZIndex="10">
-                        </control:VertexButton>
-                            
+                                        Panel.ZIndex="10"
+                                              Caption="{Binding Caption}">
+                        </control:VertexButton>-->
+                <!--Click="VertexButton_Click"-->
+                            <editor:Vertex DataContext="{Binding}"
+                MouseMove="VertexButton_MouseMove"
+                MouseDown="VertexButton_MouseDown"
+                MouseUp="VertexButton_MouseUp"
+                PreviewMouseUp="VertexButton_PreviewMouseUp"
+                PreviewMouseDown="VertexButton_PreviewMouseDown"
+                MouseDoubleClick="VertexButton_MouseDoubleClick"
+                Panel.ZIndex="10">
+                            </editor:Vertex>
 
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>

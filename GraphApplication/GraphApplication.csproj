@@ -197,8 +197,4 @@
     </Resource>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\Editor\" />
-  </ItemGroup>
-
 </Project>
