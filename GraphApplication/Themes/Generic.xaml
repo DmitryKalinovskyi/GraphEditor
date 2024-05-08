@@ -27,13 +27,19 @@
         />
 
 
-                        <controls:EditableTextBlock Text="{Binding Path=Caption, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                        <!--<controls:EditableTextBlock Text="{Binding Path=Caption, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
                                                     Canvas.Left="{TemplateBinding CenterX}"
                                                     Canvas.Top="{TemplateBinding CenterY}"
+                                                    Foreground="Black"
                                                     Visibility="{TemplateBinding ShowCaption,
-                            Converter={StaticResource BoolToVisibilityConverter}}"/>
+                            Converter={StaticResource BoolToVisibilityConverter}}"/>-->
 
-
+                        <TextBox Text="{Binding Path=Caption, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                            Canvas.Left="{TemplateBinding CenterX}"
+                            Canvas.Top="{TemplateBinding CenterY}"
+                            Foreground="Black"
+                            Visibility="{TemplateBinding ShowCaption,
+    Converter={StaticResource BoolToVisibilityConverter}}"/>
 
                     </Canvas>
                     <!--</Border>-->
@@ -78,16 +84,89 @@
         </MultiDataTrigger>
     </Style.Triggers>
 </Style>-->
-    <Style TargetType="{x:Type controls:EditableTextBlock}">
+    <!--<Style TargetType="{x:Type controls:EditableTextBlock}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type controls:EditableTextBlock}">
                     <Grid>
-                        <!--<TextBlock Text="{TemplateBinding Text}" />-->
+                        --><!--<TextBlock Text="{TemplateBinding Text}" />--><!--
                         <TextBox Text="{Binding Path=Text, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}" />
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>-->
+
+    <Style x:Key="EditableTextBlockBaseStyle"
+       TargetType="{x:Type controls:EditableTextBlock}">
+        <Setter Property="Background"
+            Value="Transparent" />
+        <Setter Property="BorderThickness"
+            Value="1" />
+        <Setter Property="BorderBrush"
+            Value="DodgerBlue" />
+        <Setter Property="MinHeight"
+            Value="{Binding FontSize, RelativeSource={RelativeSource Self}}" />
+        <Setter Property="Padding"
+            Value="0" />
+        <Setter Property="Foreground"
+            Value="White" />
+        <Setter Property="VerticalContentAlignment"
+            Value="Center" />
+        <Setter Property="HorizontalContentAlignment"
+            Value="Stretch" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:EditableTextBlock}">
+                    <Grid VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                      HorizontalAlignment="{TemplateBinding HorizontalAlignment}">
+                        <TextBlock Text="{Binding Text, ElementName=PART_TextBox}"
+                               Background="{TemplateBinding Background}"
+                               Foreground="{TemplateBinding Foreground}"
+                               TextWrapping="{TemplateBinding TextWrapping}"
+                               Padding="{TemplateBinding Padding}"
+                               TextTrimming="{TemplateBinding TextTrimming}"
+                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                               x:Name="PART_Text" />
+
+                        <TextBox Text="{Binding Text, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                             MinWidth="{TemplateBinding MinWidth}"
+                             MinHeight="{TemplateBinding MinHeight}"
+                             Background="{TemplateBinding Background}"
+                             Foreground="{TemplateBinding Foreground}"
+                             TextWrapping="{TemplateBinding TextWrapping}"
+                             BorderBrush="{TemplateBinding BorderBrush}"
+                             BorderThickness="{TemplateBinding BorderThickness}"
+                             AcceptsReturn="{TemplateBinding AcceptsReturn}"
+                             FontSize="{TemplateBinding FontSize}"
+                             Padding="{TemplateBinding Padding}"
+                             MaxLength="{TemplateBinding MaxLength}"
+                             MinLines="{TemplateBinding MinLines}"
+                             MaxLines="{TemplateBinding MinLines}"
+                             VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                             HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                             AcceptsTab="True"
+                             Visibility="Collapsed"
+                             Margin="-1"
+                             x:Name="PART_TextBox" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEditing"
+                             Value="True">
+                            <Setter TargetName="PART_TextBox"
+                                Property="Visibility"
+                                Value="Visible" />
+                            <Setter TargetName="PART_Text"
+                                Property="Visibility"
+                                Value="Collapsed" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
+
+    <Style TargetType="{x:Type controls:EditableTextBlock}"
+       BasedOn="{StaticResource EditableTextBlockBaseStyle}" />
 </ResourceDictionary>

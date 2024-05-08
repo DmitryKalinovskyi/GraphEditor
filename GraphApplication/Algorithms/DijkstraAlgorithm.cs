@@ -32,7 +32,6 @@ namespace GraphApplication.Algorithms
                 var vertex = pq.Dequeue();
                 if (seen.Contains(vertex)) continue;
                 
-                // at this point 
                 seen.Add(vertex);
 
                 foreach(var neighbor in graph.GetNeighbors(vertex))
@@ -63,6 +62,9 @@ namespace GraphApplication.Algorithms
             var target = (VertexModel)args[1];
 
             var undirectedGraph = (UndirectedGraphModel)graph;
+            if (undirectedGraph == null)
+                throw new ArgumentException("Algorithm can be implemented only with undirected graph.");
+
 
             var previous = new Dictionary<VertexModel, VertexModel?>();
 
