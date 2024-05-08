@@ -137,14 +137,16 @@
                         </control:VertexButton>-->
                 <!--Click="VertexButton_Click"-->
                             <editor:Vertex DataContext="{Binding}"
+                Panel.ZIndex="10"
+                                           >
+                            </editor:Vertex>
+                <!--MouseDown="VertexButton_MouseDown"
                 MouseMove="VertexButton_MouseMove"
-                MouseDown="VertexButton_MouseDown"
+                                           MouseDown="VertexButton_MouseDown"
                 MouseUp="VertexButton_MouseUp"
                 PreviewMouseUp="VertexButton_PreviewMouseUp"
                 PreviewMouseDown="VertexButton_PreviewMouseDown"
-                MouseDoubleClick="VertexButton_MouseDoubleClick"
-                Panel.ZIndex="10">
-                            </editor:Vertex>
+                MouseDoubleClick="VertexButton_MouseDoubleClick"-->
 
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>

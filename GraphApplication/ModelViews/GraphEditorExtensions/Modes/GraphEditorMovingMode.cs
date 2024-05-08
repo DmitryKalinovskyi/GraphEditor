@@ -25,7 +25,6 @@ namespace GraphApplication.ModelViews.GraphEditorExtensions.Modes
         public override void VertexMouseDown(object sender, MouseButtonEventArgs e)
         {
 
-            Trace.WriteLine("Draggion start");
             if (sender is VertexButton vertexView && vertexView.DataContext is VertexModelView vertexModelView)
             {
 
@@ -40,7 +39,6 @@ namespace GraphApplication.ModelViews.GraphEditorExtensions.Modes
         public override void VertexMouseMove(object sender, MouseEventArgs e)
         {
             if (isDragging == false) return;
-
             if (sender is VertexButton vertexView && vertexView.DataContext is VertexModelView vertexModelView)
             {
                 _modelView.IsSaved = false;
@@ -56,7 +54,6 @@ namespace GraphApplication.ModelViews.GraphEditorExtensions.Modes
 
         public override void VertexMouseUp(object sender, MouseButtonEventArgs e)
         {
-            Trace.WriteLine("Draggion end");
             if (isDragging == false) return;
 
             if (sender is VertexButton vertexView && vertexView.DataContext is VertexModelView vertexModelView)

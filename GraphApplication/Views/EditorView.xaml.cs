@@ -30,41 +30,6 @@ namespace GraphApplication.Views
             (DataContext as GraphProjectModelView)?.OnEditorMouseMove(sender, e);
         }
 
-        private void VertexButton_Click(object sender, RoutedEventArgs e)
-        {
-            (DataContext as GraphProjectModelView)?.OnVertexClicked(sender, e);
-        }
-
-        private void VertexButton_MouseMove(object sender, MouseEventArgs e)
-        {
-            (DataContext as GraphProjectModelView)?.OnVertexMouseMove(sender, e);
-        }
-
-        private void VertexButton_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            (DataContext as GraphProjectModelView)?.OnVertexMouseUp(sender, e);
-        }
-
-        private void VertexButton_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            (DataContext as GraphProjectModelView)?.OnVertexMouseDown(sender, e);
-        }
-
-        private void VertexButton_PreviewMouseUp(object sender, MouseButtonEventArgs e)
-        {
-            // (DataContext as GraphEditorModelView)?.(sender, e);
-        }
-
-        private void VertexButton_PreviewMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            //   (DataContext as GraphEditorModelView)?.OnVertexClicked(sender, e);
-        }
-
-        private void VertexButton_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
         private void Line_MouseDown(object sender, MouseButtonEventArgs e)
         {
             (DataContext as GraphProjectModelView)?.OnEdgeMouseDown(sender, e);

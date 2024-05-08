@@ -30,7 +30,6 @@ namespace GraphApplication.Commands.CommandList
                 modelView = new GraphProjectModelView(editorModel, "");
             }
 
-
             _mainWindowModelView.OpenedGraphModelViewsManager.SelectedProject = modelView;
             _mainWindowModelView.OpenedGraphModelViewsManager.OpenedProjects.Add(modelView);
         }

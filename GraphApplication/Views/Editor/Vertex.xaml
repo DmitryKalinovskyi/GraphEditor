@@ -11,10 +11,14 @@
         <converters:CenterTranslateConverter x:Key="CenterTranslateConverter"/>
     </UserControl.Resources>
     <controls:VertexButton Caption="{Binding Caption}" 
-                           x:Name="vertex_button">
+                           x:Name="VertexButton"
+                           Click="VertexButton_Click"
+                           MouseDown="VertexButton_MouseDown"
+                           MouseUp="VertexButton_MouseUp"
+                           MouseMove="VertexButton_MouseMove">
         <controls:VertexButton.RenderTransform>
-            <TranslateTransform X="{Binding ActualWidth, ElementName=vertex_button, Converter={StaticResource CenterTranslateConverter}}"
-                                Y="{Binding ActualHeight, ElementName=vertex_button, Converter={StaticResource CenterTranslateConverter}}">
+            <TranslateTransform X="{Binding ActualWidth, ElementName=VertexButton, Converter={StaticResource CenterTranslateConverter}}"
+                                Y="{Binding ActualHeight, ElementName=VertexButton, Converter={StaticResource CenterTranslateConverter}}">
             </TranslateTransform>
         </controls:VertexButton.RenderTransform>
         <controls:VertexButton.Style>

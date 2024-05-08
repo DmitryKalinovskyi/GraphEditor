@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GraphApplication.ModelViews;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,37 @@ namespace GraphApplication.Views.Editor
         public Vertex()
         {
             InitializeComponent();
+        }
+
+        private GraphProjectModelView GetProject()
+        {
+            // get from di container current project
+            var ServiceProvider = (Application.Current as App).ServiceProvider;
+
+            var mainWindowModelView = ServiceProvider.GetRequiredService<MainWindowModelView>();
+            var manager = mainWindowModelView.OpenedGraphModelViewsManager;
+
+            return manager.SelectedProject;
+        }
+
+        private void VertexButton_Click(object sender, RoutedEventArgs e)
+        {
+            GetProject().OnVertexClicked(sender, e);
+        }
+
+        private void VertexButton_MouseMove(object sender, MouseEventArgs e)
+        {
+            GetProject().OnVertexMouseMove(sender, e);
+        }
+
+        private void VertexButton_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            GetProject().OnVertexMouseUp(sender, e);
+        }
+
+        private void VertexButton_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            GetProject().OnVertexMouseDown(sender, e);
         }
     }
 }
