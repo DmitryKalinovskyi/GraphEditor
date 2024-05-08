@@ -62,5 +62,11 @@
     <System:Double x:Key="EdgeThickness">4</System:Double>
     <System:Double x:Key="ActiveEdgeThickness">6</System:Double>
 
+    <System:String x:Key="VertexThickness">4</System:String>
+    <SolidColorBrush Color="White" x:Key="VertexColor"/>
+    <Color x:Key="VertexShadowColor">CadetBlue</Color>
+    <System:Double x:Key="VertexShadowDepth">1</System:Double>
+    
+    
 
 </ResourceDictionary>

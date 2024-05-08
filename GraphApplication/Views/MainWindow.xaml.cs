@@ -8,10 +8,10 @@ namespace GraphApplication.Views
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        public MainWindow(MainWindowModelView mainWindowModelView)
         {
             InitializeComponent();
-            DataContext = new MainWindowModelView();
+            DataContext = mainWindowModelView;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

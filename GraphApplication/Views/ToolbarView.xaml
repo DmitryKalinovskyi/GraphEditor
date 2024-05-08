@@ -18,7 +18,6 @@
                 <Setter Property="CornerRadius" Value="8, 8, 8, 8"/>
             </Style>
         </Grid.Resources>
-        
         <!--ToolBar-->
             
         <WrapPanel Orientation="Vertical" >

@@ -40,6 +40,7 @@ namespace GraphApplication.Algorithms
             var resultingEdges = new List<EdgeModel>();
 
             resultingVertices.Add(vertex);
+            seen.Add(vertex);
             AddEdgesToPriorityQueue(undirectedGraph, vertex, pq);
 
             while(pq.Count > 0)
