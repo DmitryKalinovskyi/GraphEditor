@@ -15,7 +15,8 @@
                            Click="VertexButton_Click"
                            MouseDown="VertexButton_MouseDown"
                            MouseUp="VertexButton_MouseUp"
-                           MouseMove="VertexButton_MouseMove">
+                           MouseMove="VertexButton_MouseMove"
+                           Radius="40">
         <controls:VertexButton.RenderTransform>
             <TranslateTransform X="{Binding ActualWidth, ElementName=VertexButton, Converter={StaticResource CenterTranslateConverter}}"
                                 Y="{Binding ActualHeight, ElementName=VertexButton, Converter={StaticResource CenterTranslateConverter}}">

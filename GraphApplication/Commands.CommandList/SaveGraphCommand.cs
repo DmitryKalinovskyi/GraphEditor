@@ -20,14 +20,15 @@ namespace GraphApplication.Commands.CommandList
 
         public override void Execute(object? parameter)
         {
-            var viewModel = parameter != null ? parameter as GraphProjectModelView : _mainWindowsViewModel.OpenedGraphModelViewsManager.SelectedProject;
+            var viewModel = parameter != null ? parameter as GraphProjectModelView : _mainWindowsViewModel.OpenedProjectsService.SelectedProject;
             if (viewModel == null)
                 return;
 
-            if (_mainWindowsViewModel.OpenedGraphModelViewsManager.IsOpened(viewModel))
+            var projectsService = _mainWindowsViewModel.OpenedProjectsService;
+            if (projectsService.IsOpened(viewModel) && projectsService.GetOpenedPath(viewModel) != null)
             {
                 viewModel.IsSaved = true;
-                _fileService.Save(_mainWindowsViewModel.OpenedGraphModelViewsManager.GetOpenedPath(viewModel), viewModel.Model);
+                _fileService.Save(projectsService.GetOpenedPath(viewModel), viewModel.Model);
             }
             else // create as new file
             {
@@ -40,7 +41,7 @@ namespace GraphApplication.Commands.CommandList
 
                     viewModel.IsSaved = true;
                     _fileService.Save(path, viewModel.Model);
-                    _mainWindowsViewModel.OpenedGraphModelViewsManager.AssignProject(viewModel, path);
+                    _mainWindowsViewModel.OpenedProjectsService.AssignPath(viewModel, path);
                     viewModel.Name = System.IO.Path.GetFileName(path);
                 }
             }

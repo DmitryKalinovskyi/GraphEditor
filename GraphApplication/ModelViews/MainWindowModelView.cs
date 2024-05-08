@@ -4,6 +4,7 @@ using GraphApplication.Fabrication;
 using GraphApplication.Models;
 using GraphApplication.ModelViews.GraphEditorExtensions;
 using GraphApplication.Services;
+using GraphApplication.Services.Editor;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -27,33 +28,7 @@ namespace GraphApplication.ModelViews
         public Command? LoadGraphCommand { get; set; }
         #endregion
 
-        public OpenedProjectsManager OpenedGraphModelViewsManager { get; set; }
-
-        public GraphEditorMode? ActiveMode
-        {
-            get
-            {
-                if (OpenedGraphModelViewsManager.SelectedProject == null)
-                    return null;
-
-                return OpenedGraphModelViewsManager.SelectedProject.EditorMode;
-            }
-            set
-            {
-                if (OpenedGraphModelViewsManager.SelectedProject == null || value == null)
-                    return;
-
-                OpenedGraphModelViewsManager.SelectedProject.EditorMode = value;
-                OnPropertyChanged(nameof(ActiveMode));
-            }
-        }
-
-        public MainWindowModelView(ObservableCollection<GraphProjectModelView> graphViews)
-        {
-            OpenedGraphModelViewsManager = new(graphViews, new());
-
-            InitializeCommands();
-        }
+        public IOpenedProjectsService OpenedProjectsService { get; set; }
 
         private void InitializeCommands()
         {
@@ -65,12 +40,16 @@ namespace GraphApplication.ModelViews
         }
 
         // Default constructor with basic services
-        public MainWindowModelView() : this(new ObservableCollection<GraphProjectModelView>()) { }
+        public MainWindowModelView()
+        {
+            OpenedProjectsService = new OpenedProjectsService();
+            InitializeCommands();
+        }
 
         public void CloseAndSave()
         {
             //ask about saving
-            IEnumerable<GraphProjectModelView> graphViewsToClose = OpenedGraphModelViewsManager.OpenedProjects.ToList();
+            IEnumerable<GraphProjectModelView> graphViewsToClose = OpenedProjectsService.OpenedProjects.ToList();
 
             foreach (GraphProjectModelView view in graphViewsToClose)
             {
