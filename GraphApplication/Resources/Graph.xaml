@@ -44,11 +44,11 @@
                         FontSize="16"
                         Panel.ZIndex="6"
                         HorizontalAlignment="Center"
-                        Foreground="Black"
                         VerticalAlignment="Center"
                         Width="100"
                         IsHitTestVisible="True"
                         FocusVisualStyle="{x:Null}"
+                        Foreground="{DynamicResource VertexForeground}"
                         Text="{TemplateBinding Caption}"/>
                     </Grid>
 
@@ -182,8 +182,7 @@
     </Style>-->
 
     <Style TargetType="{x:Type controls:GraphArrow}">
-        <Setter Property="Foreground" Value="Black"/>
-
+        <Setter Property="Foreground" Value="{DynamicResource EdgeForeground}"/>
 
         <Setter Property="Template">
             <Setter.Value>
@@ -211,7 +210,8 @@ X1="{TemplateBinding StartX}"
                         <TextBox Text="{Binding Path=Caption, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
                         Canvas.Left="{TemplateBinding CenterX}"
                         Canvas.Top="{TemplateBinding CenterY}"
-                        Foreground="Black"
+                        Foreground="{DynamicResource EdgeLabelForeground}"
+                                 Background="{DynamicResource EdgeLabelBackground}"
                         Visibility="{TemplateBinding ShowCaption,
 Converter={StaticResource BoolToVisibilityConverter}}"/>
 
@@ -220,7 +220,7 @@ Converter={StaticResource BoolToVisibilityConverter}}"/>
                     <!--</Border>-->
                     <ControlTemplate.Triggers>
                         <DataTrigger Binding="{Binding IsMarked}" Value="True">
-                            <Setter Property="Foreground" Value="Red"/>
+                            <Setter Property="Foreground" Value="{DynamicResource ActiveEdgeForeground}"/>
                             <Setter Property="StrokeThickness" Value="{DynamicResource ActiveEdgeThickness}"/>
                             <Setter Property="Opacity" Value="{DynamicResource ActiveEdgeOpacitry}"/>
                         </DataTrigger>

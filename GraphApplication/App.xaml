@@ -7,6 +7,8 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Resources/CustomComponents.xaml"/>
                 <ResourceDictionary Source="/Resources/Graph.xaml"/>
+                
+                <!--<ResourceDictionary Source="/Themes/Dark.xaml"/>-->
                 <ResourceDictionary Source="/Themes/Light.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:System="clr-namespace:System;assembly=mscorlib">
-    
+
     <!--Main window-->
     <SolidColorBrush Color="White" x:Key="WindowBackground"/>
 
@@ -16,12 +16,12 @@
     <SolidColorBrush Color="Red" x:Key="MenuHeaderBorderHover"/>
 
     <!--<SolidColorBrush Color="White" x:Key="MenuNestedFont"/>
-    <SolidColorBrush Color="White" x:Key="MenuNestedBackground"/>
-    <SolidColorBrush Color="White" x:Key="MenuNestedBackgroundHover"/>
-    <SolidColorBrush Color="White" x:Key="MenuNestedBorder"/>
-    <SolidColorBrush Color="White" x:Key="MenuNestedBorderHover"/>-->
-    
-    
+<SolidColorBrush Color="White" x:Key="MenuNestedBackground"/>
+<SolidColorBrush Color="White" x:Key="MenuNestedBackgroundHover"/>
+<SolidColorBrush Color="White" x:Key="MenuNestedBorder"/>
+<SolidColorBrush Color="White" x:Key="MenuNestedBorderHover"/>-->
+
+
 
 
     <!--Toolbar-->
@@ -35,12 +35,12 @@
     <SolidColorBrush Color="Gray" x:Key="ToolbarButtonForegroundActive"/>
 
     <!--Editor-->
-    <SolidColorBrush Color="#f2f3f5" x:Key="EditorBackground"/>
-    <SolidColorBrush Color="#a2a3a5" x:Key="EditorBottomBackground"/>
-    <SolidColorBrush Color="White" x:Key="EditorBottomForeground"/>
-    
+    <SolidColorBrush Color="#1c1e24" x:Key="EditorBackground"/>
+    <SolidColorBrush Color="#1c1e24" x:Key="EditorBottomBackground"/>
+    <SolidColorBrush Color="#858992" x:Key="EditorBottomForeground"/>
+
     <SolidColorBrush Color="Black" Opacity="0.5" x:Key="GridLinesBrush"/>
-    
+
     <!--Icons Uri-->
     <System:String x:Key="CursorIconUri">/ArtWork/Light/icons8-cursor.png</System:String>
     <System:String x:Key="HandIconUri">/ArtWork/Light/icons8-hand-96.png</System:String>
@@ -52,30 +52,31 @@
     <System:String x:Key="CircleIconUri">/ArtWork/Light/icons8-26-circle-96.png</System:String>
     <System:String x:Key="PathIconUri">/ArtWork/Light/icons8-path-100.png</System:String>
     <System:String x:Key="BoneIconUri">/ArtWork/Light/icons8-bone-96.png</System:String>
-    
+
     <!--Graph-->
-    <System:Double x:Key="HiddenEdgeOpacity">0.3</System:Double>
-    <System:Double x:Key="EdgeOpacitry">0.7</System:Double>
-    <System:Double x:Key="ActiveEdgeOpacitry">1</System:Double>
-
-    <System:Double x:Key="HiddenEdgeThickness">4</System:Double>
-    <System:Double x:Key="EdgeThickness">4</System:Double>
-    <System:Double x:Key="ActiveEdgeThickness">6</System:Double>
-
-    <System:String x:Key="VertexThickness">4</System:String>
-    <SolidColorBrush Color="White" x:Key="VertexColor"/>
-    <Color x:Key="VertexShadowColor">CadetBlue</Color>
-    <System:Double x:Key="VertexShadowDepth">1</System:Double>
     
-    <SolidColorBrush Color="Black" x:Key="VertexForeground"/>
+        <!--Edge-->
+        <System:Double x:Key="HiddenEdgeOpacity">0.3</System:Double>
+        <System:Double x:Key="EdgeOpacitry">0.7</System:Double>
+        <System:Double x:Key="ActiveEdgeOpacitry">1</System:Double>
 
-    <!--Edge-->
-    <SolidColorBrush Color="Black" x:Key="EdgeForeground"/>
-    <SolidColorBrush Color="Red" x:Key="ActiveEdgeForeground"/>
-    <SolidColorBrush Color="Black" x:Key="EdgeLabelForeground"/>
+        <System:Double x:Key="HiddenEdgeThickness">4</System:Double>
+        <System:Double x:Key="EdgeThickness">4</System:Double>
+        <System:Double x:Key="ActiveEdgeThickness">6</System:Double>
+
+        <SolidColorBrush Color="White" x:Key="EdgeForeground"/>
+        <SolidColorBrush Color="Red" x:Key="ActiveEdgeForeground"/>
+        <SolidColorBrush Color="White" x:Key="EdgeLabelForeground"/>
+        <!--<Color x:Key="EdgeColor">White</Color>-->
+
+       <!--Vertex-->
+        <System:String x:Key="VertexThickness">4</System:String>
+        <SolidColorBrush Color="#24262d" x:Key="VertexColor"/>
+        <Color x:Key="VertexShadowColor">White</Color>
+        <System:Double x:Key="VertexShadowDepth">1</System:Double>
+
+        <SolidColorBrush Color="White" x:Key="VertexForeground"/>
     <SolidColorBrush Color="White" x:Key="EdgeLabelBackground"/>
-
-
 
 
 </ResourceDictionary>
