@@ -1,4 +1,4 @@
-﻿using GraphApplication.Fabrication;
+﻿using GraphApplication.Factories.Graph;
 using GraphApplication.ModelViews;
 
 namespace GraphApplication.Commands.CommandList
@@ -14,17 +14,33 @@ namespace GraphApplication.Commands.CommandList
 
         public override void Execute(object? parameter)
         {
-            GraphModelArgs args = new GraphModelArgs();
-            args.MaxTop = 2000;
-            args.MaxLeft = 2000;
-            args.Deegre = 3;
-            args.VerticlesCount = 100;
+            //var factory = new RandomizedGraphFactory();
 
-            GraphModelGenerator generator = new GraphModelGenerator();
+            //// set up parameters for factory
+            //factory.MaxX = 1000;
+            //factory.MaxY = 1000;
 
-            object generated = generator.Generate(args);
 
-            _mainWindowsViewModel.CreateGraphCommand?.Execute(generated);
+            //_mainWindowsViewModel.CreateGraphCommand?.Execute(factory.CreateUndirectedGraph());
+
+            //var factory = new SnowflakeGraphFactory();
+
+            ////// set up parameters for factory
+            //factory.Depth = 3;
+            //factory.K = 5;
+            //factory.Radius = 300;
+
+            //_mainWindowsViewModel.CreateGraphCommand?.Execute(factory.CreateUndirectedGraph());
+
+            var factory = new GridGraphFactory();
+
+            //// set up parameters for factory
+            factory.Rows = 5;
+            factory.Columns = 6;
+            factory.ColumnGap = 100;
+            factory.RowGap= 100;
+
+            _mainWindowsViewModel.CreateGraphCommand?.Execute(factory.CreateUndirectedGraph());
         }
     }
 }
