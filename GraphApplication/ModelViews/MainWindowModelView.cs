@@ -1,6 +1,5 @@
 ﻿using GraphApplication.Commands;
 using GraphApplication.Commands.CommandList;
-using GraphApplication.Fabrication;
 using GraphApplication.Models;
 using GraphApplication.ModelViews.GraphEditorExtensions;
 using GraphApplication.Services;
