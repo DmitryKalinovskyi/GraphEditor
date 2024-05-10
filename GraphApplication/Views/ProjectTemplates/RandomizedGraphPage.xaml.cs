@@ -15,12 +15,9 @@ using System.Windows.Shapes;
 
 namespace GraphApplication.Views.ProjectTemplates
 {
-    /// <summary>
-    /// Interaction logic for RandomizedGraph.xaml
-    /// </summary>
-    public partial class RandomizedGraph : Page
+    public partial class RandomizedGraphPage : Page
     {
-        public RandomizedGraph()
+        public RandomizedGraphPage()
         {
             InitializeComponent();
         }

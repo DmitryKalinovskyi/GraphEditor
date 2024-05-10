@@ -12,9 +12,20 @@
     <Grid ButtonBase.Click="Grid_Click">
         <ScrollViewer>
             <WrapPanel>
-                <controls:NavButton Text="Randomized Graph" PageUri="/Views/ProjectTemplates/RandomizedGraph.xaml"/>
-                <controls:NavButton Text="Grid Graph" PageUri="/Views/ProjectTemplates/GridPage.xaml"/>
-                <controls:NavButton Text="Snowflake Graph" PageUri="/Views/ProjectTemplates/SnowflakePage.xaml"/>
+                <controls:NavButton Text="Randomized Graph"
+                                    PageUri="/Views/ProjectTemplates/RandomizedGraphPage.xaml"
+                                    ImageSource="/ArtWork/Templates/Randomized.png"
+                                    />
+                <controls:NavButton Text="Grid Graph"
+                                    PageUri="/Views/ProjectTemplates/GridPage.xaml"
+                                    ImageSource="/ArtWork/Templates/Grid.png"
+                                    
+                                    />
+                <controls:NavButton Text="Snowflake Graph" 
+                                    PageUri="/Views/ProjectTemplates/SnowflakePage.xaml"
+                                    ImageSource="/ArtWork/Templates/Snowflake.png"
+                                    
+                                    />
             </WrapPanel>
         </ScrollViewer>
     </Grid>
