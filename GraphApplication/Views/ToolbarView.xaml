@@ -25,7 +25,7 @@
             <Border>
                 <WrapPanel Orientation="Vertical">
                 <controls:ToolButton Style="{StaticResource ToolButtonPrefab}"
-                 UriImage="{DynamicResource CursorIconUri}"
+                 ImageSource="{DynamicResource CursorIconUri}"
                  TipContent="Виділення"
                               
                  Command="{Binding ChangeEditorModeCommand}"
@@ -38,7 +38,7 @@
                 </controls:ToolButton>
 
                 <controls:ToolButton Style="{StaticResource ToolButtonPrefab}"
-                 UriImage="{DynamicResource HandIconUri}"
+                 ImageSource="{DynamicResource HandIconUri}"
                  TipContent="Переміщення редактора"
                               
                  Command="{Binding ChangeEditorModeCommand}"
@@ -50,7 +50,7 @@
                 ConverterParameter=GraphEditorMovingMode}">
                 </controls:ToolButton>
                 <controls:ToolButton Style="{StaticResource ToolButtonPrefab}"
-                 UriImage="{DynamicResource MoveIconUri}"
+                 ImageSource="{DynamicResource MoveIconUri}"
                  TipContent="Переміщення вершин"
                               
                  Command="{Binding ChangeEditorModeCommand}"
@@ -62,7 +62,7 @@
                 ConverterParameter=GraphEditorCanvasMovingMode}">
                 </controls:ToolButton>
                 <controls:ToolButton Style="{StaticResource ToolButtonPrefab}"
-                 UriImage="{DynamicResource VisibilityIconUri}"
+                 ImageSource="{DynamicResource VisibilityIconUri}"
                  TipContent="Приховання вершин"
                               
                  Command="{Binding ChangeEditorModeCommand}"
@@ -93,7 +93,7 @@
             <WrapPanel Orientation="Vertical">
                 <controls:ToolButton Style="{StaticResource ToolButtonPrefab}"
                               
-                 UriImage="{DynamicResource CircleIconUri}"
+                 ImageSource="{DynamicResource CircleIconUri}"
                  TipContent="Створення вершини графа"
                  Command="{Binding ChangeEditorModeCommand}"
                  CommandParameter="GraphEditorVertexCreationMode"
@@ -105,7 +105,7 @@
                 ConverterParameter=GraphEditorVertexCreationMode}">
                 </controls:ToolButton>
                 <controls:ToolButton Style="{StaticResource ToolButtonPrefab}"
-                 UriImage="{DynamicResource ArrowIconUri}"
+                 ImageSource="{DynamicResource ArrowIconUri}"
                  TipContent="Створення ребра графа"
                               
                  Command="{Binding ChangeEditorModeCommand}"
@@ -124,7 +124,7 @@
                 
             <WrapPanel Orientation="Vertical">
                 <controls:ToolButton Style="{StaticResource ToolButtonPrefab}"
-                 UriImage="{DynamicResource CrossIconUri}"
+                 ImageSource="{DynamicResource CrossIconUri}"
                  TipContent="Видалення"
                               
                  Command="{Binding ChangeEditorModeCommand}"
@@ -146,8 +146,6 @@
                  Content="BFS"
                  TipContent="Пошук в ширину"
                               
-                 UriImage="None"
-                              
                  Command="{Binding ChangeEditorModeCommand}"
                  CommandParameter="GraphEditorBFSMode"
 
@@ -159,7 +157,6 @@
                 </controls:ToolButton>
                 <controls:ToolButton Style="{StaticResource ToolButtonPrefab}"
                  Content="DFS"   
-                 UriImage="None"
                  TipContent="Пошук в глубину"
                               
                               
@@ -173,7 +170,7 @@
                 </controls:ToolButton>
                 
                 <controls:ToolButton Style="{StaticResource ToolButtonPrefab}"
-                 UriImage="{DynamicResource PathIconUri}"
+                 ImageSource="{DynamicResource PathIconUri}"
                  TipContent="Пошук найкоротшого шляху"
                               
                  Command="{Binding ChangeEditorModeCommand}"
@@ -186,7 +183,7 @@
                 </controls:ToolButton>
 
                     <controls:ToolButton Style="{StaticResource ToolButtonPrefab}"
-                     UriImage="{DynamicResource BoneIconUri}"
+                     ImageSource="{DynamicResource BoneIconUri}"
                      TipContent="Minimum spanning tree in the graph"
               
                      Command="{Binding ChangeEditorModeCommand}"

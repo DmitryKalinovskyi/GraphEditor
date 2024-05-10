@@ -42,16 +42,16 @@
     <SolidColorBrush Color="Black" Opacity="0.5" x:Key="GridLinesBrush"/>
     
     <!--Icons Uri-->
-    <System:String x:Key="CursorIconUri">/ArtWork/Light/icons8-cursor.png</System:String>
-    <System:String x:Key="HandIconUri">/ArtWork/Light/icons8-hand-96.png</System:String>
-    <System:String x:Key="MoveIconUri">/ArtWork/Light/icons8-move-96.png</System:String>
-    <System:String x:Key="VisibilityIconUri">/ArtWork/Light/icons8-visibility-64.png</System:String>
+    <ImageSource x:Key="CursorIconUri">/ArtWork/Light/icons8-cursor.png</ImageSource>
+    <ImageSource x:Key="HandIconUri">/ArtWork/Light/icons8-hand-96.png</ImageSource>
+    <ImageSource x:Key="MoveIconUri">/ArtWork/Light/icons8-move-96.png</ImageSource>
+    <ImageSource x:Key="VisibilityIconUri">/ArtWork/Light/icons8-visibility-64.png</ImageSource>
 
-    <System:String x:Key="ArrowIconUri">/ArtWork/Light/icons8-arrow-96.png</System:String>
-    <System:String x:Key="CrossIconUri">/ArtWork/Light/icons8-cross-100.png</System:String>
-    <System:String x:Key="CircleIconUri">/ArtWork/Light/icons8-26-circle-96.png</System:String>
-    <System:String x:Key="PathIconUri">/ArtWork/Light/icons8-path-100.png</System:String>
-    <System:String x:Key="BoneIconUri">/ArtWork/Light/icons8-bone-96.png</System:String>
+    <ImageSource x:Key="ArrowIconUri">/ArtWork/Light/icons8-arrow-96.png</ImageSource>
+    <ImageSource x:Key="CrossIconUri">/ArtWork/Light/icons8-cross-100.png</ImageSource>
+    <ImageSource x:Key="CircleIconUri">/ArtWork/Light/icons8-26-circle-96.png</ImageSource>
+    <ImageSource x:Key="PathIconUri">/ArtWork/Light/icons8-path-100.png</ImageSource>
+    <ImageSource x:Key="BoneIconUri">/ArtWork/Light/icons8-bone-96.png</ImageSource>
     
     <!--Graph-->
     <System:Double x:Key="HiddenEdgeOpacity">0.3</System:Double>

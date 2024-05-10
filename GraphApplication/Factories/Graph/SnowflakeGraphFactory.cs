@@ -5,6 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Windows;
 
+namespace GraphApplication.Factories.Graph
+{
+
 public class SnowflakeGraphFactory : IGraphFactory
 {
     public int Depth { get; set; } = 2;
@@ -69,4 +72,5 @@ public class SnowflakeGraphFactory : IGraphFactory
             CreateNeighborsRecursively(vertices, edges, newVertex, currentDepth + 1, maxDepth, k);
         }
     }
+}
 }

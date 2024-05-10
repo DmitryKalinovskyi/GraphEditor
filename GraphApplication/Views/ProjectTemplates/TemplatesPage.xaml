@@ -1,0 +1,32 @@
+﻿<Page x:Class="GraphApplication.Views.ProjectTemplates.TemplatesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:GraphApplication.Views.ProjectTemplates"
+      xmlns:controls="clr-namespace:GraphApplication.CustomControls"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="TemplatesPage">
+
+    <Grid ButtonBase.Click="Grid_Click">
+        <ScrollViewer>
+            <WrapPanel>
+                <controls:NavButton Text="Randomized Graph"
+                                    PageUri="/Views/ProjectTemplates/RandomizedGraphPage.xaml"
+                                    ImageSource="/ArtWork/Templates/Randomized.png"
+                                    />
+                <controls:NavButton Text="Grid Graph"
+                                    PageUri="/Views/ProjectTemplates/GridPage.xaml"
+                                    ImageSource="/ArtWork/Templates/Grid.png"
+                                    
+                                    />
+                <controls:NavButton Text="Snowflake Graph" 
+                                    PageUri="/Views/ProjectTemplates/SnowflakePage.xaml"
+                                    ImageSource="/ArtWork/Templates/Snowflake.png"
+                                    
+                                    />
+            </WrapPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

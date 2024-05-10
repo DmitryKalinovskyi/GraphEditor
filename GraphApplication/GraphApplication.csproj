@@ -19,7 +19,6 @@
     <None Remove="ArtWork\cursor-48.png" />
     <None Remove="ArtWork\cursor-96.png" />
     <None Remove="ArtWork\eye-90.png" />
-    <None Remove="ArtWork\favicon.ico" />
     <None Remove="ArtWork\hand-32.png" />
     <None Remove="ArtWork\hand-64.png" />
     <None Remove="ArtWork\hand-96.png" />
@@ -47,6 +46,9 @@
     <None Remove="ArtWork\square-24.png" />
     <None Remove="ArtWork\square-48.png" />
     <None Remove="ArtWork\square-96.png" />
+    <None Remove="ArtWork\Templates\Grid.png" />
+    <None Remove="ArtWork\Templates\Randomized.png" />
+    <None Remove="ArtWork\Templates\Snowflake.png" />
     <None Remove="ArtWork\white-close-512.png" />
     <None Remove="ArtWork\white-close-thin-100.png" />
     <None Remove="ArtWork\white-path-32.png" />
@@ -60,70 +62,70 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="ArtWork\arrow-100.png">
+    <Resource Include="ArtWork\OldIcons\arrow-100.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="ArtWork\arrow-50.png">
+    <Resource Include="ArtWork\OldIcons\arrow-50.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="ArtWork\circled-5-100.png">
+    <Resource Include="ArtWork\OldIcons\circled-5-100.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="ArtWork\circled-5-50.png">
+    <Resource Include="ArtWork\OldIcons\circled-5-50.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="ArtWork\close-100.png">
+    <Resource Include="ArtWork\OldIcons\close-100.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="ArtWork\close-50.png">
+    <Resource Include="ArtWork\OldIcons\close-50.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="ArtWork\close-512.png">
+    <Resource Include="ArtWork\OldIcons\close-512.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="ArtWork\cursor-24.png">
+    <Resource Include="ArtWork\OldIcons\cursor-24.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="ArtWork\cursor-48.png">
+    <Resource Include="ArtWork\OldIcons\cursor-48.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="ArtWork\cursor-96.png">
+    <Resource Include="ArtWork\OldIcons\cursor-96.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="ArtWork\eye-90.png">
+    <Resource Include="ArtWork\OldIcons\eye-90.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="ArtWork\favicon.ico">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="ArtWork\hand-32.png">
+    <Resource Include="ArtWork\OldIcons\hand-32.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="ArtWork\hand-64.png">
+    <Resource Include="ArtWork\OldIcons\hand-64.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="ArtWork\hand-96.png">
+    <Resource Include="ArtWork\OldIcons\hand-96.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="ArtWork\icons8-pause-100.png">
+    <Resource Include="ArtWork\OldIcons\icons8-pause-100.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="ArtWork\icons8-pause-50.png">
+    <Resource Include="ArtWork\OldIcons\icons8-pause-50.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="ArtWork\icons8-speed-100.png">
+    <Resource Include="ArtWork\OldIcons\icons8-speed-100.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="ArtWork\icons8-speed-50.png">
+    <Resource Include="ArtWork\OldIcons\icons8-speed-50.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="ArtWork\icons8-start-90.png">
+    <Resource Include="ArtWork\OldIcons\icons8-start-90.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="ArtWork\icons8-stop-100.png">
+    <Resource Include="ArtWork\OldIcons\icons8-stop-100.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="ArtWork\icons8-stop-50.png">
+    <Resource Include="ArtWork\OldIcons\icons8-stop-50.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="ArtWork\Light\icons8-26-circle-96.png">
@@ -153,44 +155,53 @@
     <Resource Include="ArtWork\Light\icons8-visibility-64.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="ArtWork\move-100.png">
+    <Resource Include="ArtWork\OldIcons\move-100.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="ArtWork\move-50.png">
+    <Resource Include="ArtWork\OldIcons\move-50.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="ArtWork\path-32.png">
+    <Resource Include="ArtWork\OldIcons\path-32.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="ArtWork\path-64.png">
+    <Resource Include="ArtWork\OldIcons\path-64.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="ArtWork\path-96.png">
+    <Resource Include="ArtWork\OldIcons\path-96.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="ArtWork\square-24.png">
+    <Resource Include="ArtWork\OldIcons\square-24.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="ArtWork\square-48.png">
+    <Resource Include="ArtWork\OldIcons\square-48.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="ArtWork\square-96.png">
+    <Resource Include="ArtWork\OldIcons\square-96.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="ArtWork\white-close-512.png">
+    <Resource Include="ArtWork\OldIcons\white-close-512.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="ArtWork\white-close-thin-100.png">
+    <Resource Include="ArtWork\OldIcons\white-close-thin-100.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="ArtWork\white-path-32.png">
+    <Resource Include="ArtWork\OldIcons\white-path-32.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="ArtWork\white-path-64.png">
+    <Resource Include="ArtWork\OldIcons\white-path-64.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="ArtWork\white-path-96.png">
+    <Resource Include="ArtWork\OldIcons\white-path-96.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ArtWork\Templates\Randomized.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ArtWork\Templates\Grid.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ArtWork\Templates\Snowflake.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="ArtWork\windowIcon.ico">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
