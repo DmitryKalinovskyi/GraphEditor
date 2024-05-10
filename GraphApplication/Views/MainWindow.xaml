@@ -207,7 +207,7 @@
                                     BorderBrush="Transparent"
                                     Background="Transparent"
                                 >
-                                <Image Source="../Artwork/close-512.png"
+                                <Image Source="{DynamicResource CrossIconUri}"
                                        Width="12"></Image>
                             </Button>
 
@@ -220,14 +220,8 @@
                 </TabControl.ItemTemplate>
                 <TabControl.ContentTemplate>
                     <DataTemplate>
-                        <ContentControl Content="{Binding}">
-                            <ContentControl.Resources>
-                                <DataTemplate DataType="{x:Type modelViews:GraphProjectModelView}">
-                                    <local:GraphEditorView
-                                        Margin="-2, -2, -2, -2"/>
-                                </DataTemplate>
-                            </ContentControl.Resources>
-                        </ContentControl>
+                            <local:GraphEditorView
+                                Margin="-2, -2, -2, -2"/>
                     </DataTemplate>
                 </TabControl.ContentTemplate>
             </TabControl>
