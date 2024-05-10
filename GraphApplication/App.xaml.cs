@@ -3,6 +3,7 @@ using GraphApplication.Algorithms.Contracts;
 using GraphApplication.ModelViews;
 using GraphApplication.Views;
 using Microsoft.Extensions.DependencyInjection;
+using System.Runtime.CompilerServices;
 using System.Windows;
 
 namespace GraphApplication
@@ -16,12 +17,6 @@ namespace GraphApplication
 
         public App()
         {
-            RegisterServices();
-            MainWindow = ServiceProvider.GetService<MainWindow>();
-        }
-
-        protected void RegisterServices()
-        {
             IServiceCollection services = new ServiceCollection();
 
             services.AddSingleton<MainWindowModelView>();
@@ -32,6 +27,8 @@ namespace GraphApplication
             services.AddScoped<IMinSpanningTreeAlgorithm, PrimAlgorithm>();
 
             ServiceProvider = services.BuildServiceProvider();
+
+            MainWindow = ServiceProvider.GetService<MainWindow>();
         }
 
         protected override void OnStartup(StartupEventArgs e)

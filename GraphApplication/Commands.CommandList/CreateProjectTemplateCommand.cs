@@ -1,19 +1,25 @@
 ﻿using GraphApplication.Factories.Graph;
 using GraphApplication.ModelViews;
+using GraphApplication.Views;
 
 namespace GraphApplication.Commands.CommandList
 {
-    public class GenerateGraphCommand: Command
+    public class CreateProjectTemplateCommand: Command
     {
         private MainWindowModelView _mainWindowsViewModel;
 
-        public GenerateGraphCommand(MainWindowModelView mainWindowModelView)
+        public CreateProjectTemplateCommand(MainWindowModelView mainWindowModelView)
         {
             _mainWindowsViewModel = mainWindowModelView;
         }
 
         public override void Execute(object? parameter)
         {
+            var projectTemplateWindow = new ProjectTemplateWindow(_mainWindowsViewModel);
+
+            projectTemplateWindow.Owner = App.Current.MainWindow;
+            projectTemplateWindow.Show();
+
             //var factory = new RandomizedGraphFactory();
 
             //// set up parameters for factory
@@ -32,15 +38,15 @@ namespace GraphApplication.Commands.CommandList
 
             //_mainWindowsViewModel.CreateGraphCommand?.Execute(factory.CreateUndirectedGraph());
 
-            var factory = new GridGraphFactory();
+            //var factory = new GridGraphFactory();
 
-            //// set up parameters for factory
-            factory.Rows = 5;
-            factory.Columns = 6;
-            factory.ColumnGap = 100;
-            factory.RowGap= 100;
+            ////// set up parameters for factory
+            //factory.Rows = 5;
+            //factory.Columns = 6;
+            //factory.ColumnGap = 100;
+            //factory.RowGap= 100;
 
-            _mainWindowsViewModel.CreateGraphCommand?.Execute(factory.CreateUndirectedGraph());
+            //_mainWindowsViewModel.CreateGraphCommand?.Execute(factory.CreateUndirectedGraph());
         }
     }
 }

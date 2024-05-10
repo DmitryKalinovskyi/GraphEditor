@@ -66,7 +66,7 @@
                     />-->
         <KeyBinding Key="I"
                     Command="{Binding OpenedProjectsService.SelectedProject.StartAlgorithmCommand}"
-                    Modifiers="Shift"
+                    Modifiers="Ctrl"
                     />
         
     </Window.InputBindings>
@@ -232,7 +232,10 @@
                 Converter={StaticResource InvertBoolToVisibilityConverter},
                 UpdateSourceTrigger=PropertyChanged
                 }">
-                Press Ctr + N to create new Graph project.
+                Press Ctr + N to create new empty Graph project. <LineBreak/>
+                Press Ctr + G to generate Graph project.<LineBreak/>
+                Press Ctr + O to Open Graph project.
+                
             </TextBlock>
         </Grid>
     </Grid>

@@ -4,6 +4,7 @@ using GraphApplication.Models;
 using GraphApplication.ModelViews.GraphEditorExtensions;
 using GraphApplication.Services;
 using GraphApplication.Services.Editor;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -32,7 +33,8 @@ namespace GraphApplication.ModelViews
         private void InitializeCommands()
         {
             CreateGraphCommand = new CreateGraphCommand(this);
-            GenerateGraphCommand = new GenerateGraphCommand(this);
+            //GenerateGraphCommand = new GenerateGraphCommand(this);
+            GenerateGraphCommand = new CreateProjectTemplateCommand(this);
             SaveGraphCommand = new SaveGraphCommand(this);
             RemoveGraphCommand = new RemoveGraphCommand(this);
             LoadGraphCommand = new LoadGraphCommand(this);
