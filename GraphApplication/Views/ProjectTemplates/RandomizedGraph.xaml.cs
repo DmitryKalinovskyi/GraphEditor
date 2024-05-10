@@ -16,15 +16,14 @@ using System.Windows.Shapes;
 namespace GraphApplication.Views.ProjectTemplates
 {
     /// <summary>
-    /// Interaction logic for SnowflakePage.xaml
+    /// Interaction logic for RandomizedGraph.xaml
     /// </summary>
-    public partial class SnowflakePage : Page
+    public partial class RandomizedGraph : Page
     {
-        public SnowflakePage()
+        public RandomizedGraph()
         {
             InitializeComponent();
         }
-
         private void CloseWindow(object sender, RoutedEventArgs e)
         {
             // Find the parent window

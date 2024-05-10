@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace GraphApplication.Views.ProjectTemplates
 {
     /// <summary>
-    /// Interaction logic for SnowflakePage.xaml
+    /// Interaction logic for GridPage.xaml
     /// </summary>
-    public partial class SnowflakePage : Page
+    public partial class GridPage : Page
     {
-        public SnowflakePage()
+        public GridPage()
         {
             InitializeComponent();
         }

@@ -1,36 +1,36 @@
-﻿<Page x:Class="GraphApplication.Views.ProjectTemplates.SnowflakePage"
+﻿<Page x:Class="GraphApplication.Views.ProjectTemplates.RandomizedGraph"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:GraphApplication.Views.ProjectTemplates"
-      xmlns:modelViews="clr-namespace:GraphApplication.ModelViews.ProjectTemplate"
-      xmlns:factories="clr-namespace:GraphApplication.Factories.Graph"
+        xmlns:modelViews="clr-namespace:GraphApplication.ModelViews.ProjectTemplate"
+  xmlns:factories="clr-namespace:GraphApplication.Factories.Graph"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="SnowflakePage">
+      Title="RandomizedGraph">
 
     <Page.DataContext>
         <modelViews:ProjectTemplateModelView>
             <modelViews:ProjectTemplateModelView.GraphFactory>
-                <factories:SnowflakeGraphFactory/>
+                <factories:RandomizedGraphFactory/>
             </modelViews:ProjectTemplateModelView.GraphFactory>
         </modelViews:ProjectTemplateModelView>
     </Page.DataContext>
     <StackPanel>
         <StackPanel Orientation="Horizontal">
-            <TextBlock>Enter depth =</TextBlock>
-            <TextBox Text="{Binding GraphFactory.Depth}"/>
+            <TextBlock>Enter Vertices Count =</TextBlock>
+            <TextBox Text="{Binding GraphFactory.VerticesCount}"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <TextBlock>Enter K =</TextBlock>
-            <TextBox Text="{Binding GraphFactory.K}"/>
+            <TextBlock>Enter MaxX =</TextBlock>
+            <TextBox Text="{Binding GraphFactory.MaxX}"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal">
-            <TextBlock>Enter Radius =</TextBlock>
-            <TextBox Text="{Binding GraphFactory.Radius}"/>
+            <TextBlock>Enter MaxY =</TextBlock>
+            <TextBox Text="{Binding GraphFactory.MaxY}"/>
         </StackPanel>
-        
-        <Button Command="{Binding ConfirmCommand}" Click="CloseWindow">Create snowflake graph</Button>
+
+        <Button Command="{Binding ConfirmCommand}" Click="CloseWindow">Create randomized graph</Button>
     </StackPanel>
 </Page>

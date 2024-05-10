@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GraphApplication.CustomControls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,23 +17,21 @@ using System.Windows.Shapes;
 namespace GraphApplication.Views.ProjectTemplates
 {
     /// <summary>
-    /// Interaction logic for SnowflakePage.xaml
+    /// Interaction logic for TemplatesPage.xaml
     /// </summary>
-    public partial class SnowflakePage : Page
+    public partial class TemplatesPage : Page
     {
-        public SnowflakePage()
+        public TemplatesPage()
         {
             InitializeComponent();
         }
 
-        private void CloseWindow(object sender, RoutedEventArgs e)
+        private void Grid_Click(object sender, RoutedEventArgs e)
         {
-            // Find the parent window
-            Window parentWindow = Window.GetWindow(this);
-            if (parentWindow != null)
+            var navButton = e.Source as NavButton;
+            if(navButton != null )
             {
-                // Close the parent window
-                parentWindow.Close();
+                NavigationService.Navigate(navButton.PageUri);
             }
         }
     }

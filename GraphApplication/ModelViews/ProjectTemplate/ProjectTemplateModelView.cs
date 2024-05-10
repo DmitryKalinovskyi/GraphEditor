@@ -1,17 +1,16 @@
 ﻿using GraphApplication.Commands;
 using GraphApplication.Factories.Graph;
-using GraphApplication.Services.Editor;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
-namespace GraphApplication.ModelViews
+namespace GraphApplication.ModelViews.ProjectTemplate
 {
-    public class ProjectTemplateViewModel
+    public class ProjectTemplateModelView: NotifyModelView
     {
         public IGraphFactory? GraphFactory { get; set; }
 
@@ -23,5 +22,6 @@ namespace GraphApplication.ModelViews
             var mainWindow = (App.Current as App).ServiceProvider.GetRequiredService<MainWindowModelView>();
             mainWindow.CreateGraphCommand?.Execute(graph);
         });
+
     }
 }
