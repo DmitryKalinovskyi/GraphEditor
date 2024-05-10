@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace GraphApplication.CustomControls
 {
@@ -34,15 +35,15 @@ namespace GraphApplication.CustomControls
     /// </summary>
     public class ToolButton : RadioButton
     {
-        public string UriImage
+        public ImageSource ImageSource
         {
-            get { return (string)GetValue(UriImageProperty); }
-            set { SetValue(UriImageProperty, value); }
+            get { return (ImageSource)GetValue(ImageSourceProperty); }
+            set { SetValue(ImageSourceProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for UriImage.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty UriImageProperty =
-            DependencyProperty.Register("UriImage", typeof(string), typeof(ToolButton), new PropertyMetadata(""));
+        public static readonly DependencyProperty ImageSourceProperty =
+            DependencyProperty.Register("ImageSource", typeof(ImageSource), typeof(ToolButton), new PropertyMetadata(null));
+
 
         public string TipContent
         {

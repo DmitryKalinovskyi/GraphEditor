@@ -23,11 +23,11 @@
                         Padding="{TemplateBinding Padding}">
 
                         <Border.ToolTip >
-                            <TextBlock Text="{Binding TipContent, RelativeSource={RelativeSource TemplatedParent}}"/>
+                            <TextBlock Text="{TemplateBinding TipContent}"/>
                         </Border.ToolTip>
                         
                         <Grid>
-                            <Image Source="{Binding UriImage, RelativeSource={RelativeSource TemplatedParent}}"
+                            <Image Source="{TemplateBinding ImageSource}"
                                    
                                    />
                             <TextBlock Text="{TemplateBinding Content}"
