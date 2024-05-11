@@ -31,16 +31,16 @@ namespace GraphApplication.Views.Editor.State
                 return false;
             }
 
-            IterativeAlgorithmResult routeBuildResult = _algorithm.BuildRoute(_modelView.GraphModelView.Model, selected[0].Model);
+            var result = _algorithm.Traverse(_modelView.GraphModelView.Model, selected[0].Model);
 
-            if (routeBuildResult.EdgeModels == null)
+            if (result.EdgeModels == null)
                 throw new ArgumentNullException("Edge models are null.");
 
-            if (routeBuildResult.VertexModels == null)
+            if (result.VertexModels == null)
                 throw new ArgumentNullException("Vertex models are null.");
 
-            List<VertexModelView> vertexModelViews = _modelView.GraphModelView.GetVertexModelViews_By_VertexModels(routeBuildResult.VertexModels);
-            List<EdgeModelView> edgesModelViews = _modelView.GraphModelView.GetEdgeModelViews_By_EdgeModels(routeBuildResult.EdgeModels);
+            List<VertexModelView> vertexModelViews = _modelView.GraphModelView.GetVertexModelViews_By_VertexModels(result.VertexModels);
+            List<EdgeModelView> edgesModelViews = _modelView.GraphModelView.GetEdgeModelViews_By_EdgeModels(result.EdgeModels);
 
             DFSDisplayer _displayer = new(_modelView.GraphModelView, (vertexModelViews, edgesModelViews));
 

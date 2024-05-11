@@ -35,24 +35,24 @@ namespace GraphApplication.Views.Editor.State
             VertexModelView start = selected[0];
             VertexModelView end = selected[1];
 
-            IterativeAlgorithmResult routeBuildResult = _algorithm.BuildRoute(_modelView.GraphModelView.Model, start.Model, end.Model);
+            var result = _algorithm.FindShortestPath(_modelView.GraphModelView.Model, start.Model, end.Model);
 
-            if (routeBuildResult == IterativeAlgorithmResult.FailedToBuildRouteResult)
+            if (result == ShortestPathResult.FailedToFindShortestPathResult)
             {
                 MessageBox.Show("Шляху між вершинами не існує!", "Інформація",
                     MessageBoxButton.OK, MessageBoxImage.Information);
                 return false;
             }
 
-            if (routeBuildResult.VertexModels == null)
+            if (result.VertexModels == null)
                 throw new ArgumentNullException("Edge models are null.");
 
 
-            if (routeBuildResult.EdgeModels == null)
+            if (result.EdgeModels == null)
                 throw new ArgumentNullException("Edge models are null.");
 
-            List<VertexModelView> vertexModelViews = _modelView.GraphModelView.GetVertexModelViews_By_VertexModels(routeBuildResult.VertexModels);
-            List<EdgeModelView> edgesModelViews = _modelView.GraphModelView.GetEdgeModelViews_By_EdgeModels(routeBuildResult.EdgeModels);
+            List<VertexModelView> vertexModelViews = _modelView.GraphModelView.GetVertexModelViews_By_VertexModels(result.VertexModels);
+            List<EdgeModelView> edgesModelViews = _modelView.GraphModelView.GetEdgeModelViews_By_EdgeModels(result.EdgeModels);
 
             _modelView.AnimationManager.SetAnimation(new BFSShortestPathDisplayer(_modelView.GraphModelView, (vertexModelViews, edgesModelViews)));
             return true;

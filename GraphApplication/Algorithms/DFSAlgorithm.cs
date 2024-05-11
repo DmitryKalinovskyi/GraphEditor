@@ -9,12 +9,8 @@ namespace GraphApplication.Algorithms
 {
     public class DFSAlgorithm : IDFSAlgorithm
     {
-        public IterativeAlgorithmResult BuildRoute(IGraphModel graph, params object[] args)
+        public TraversalAlgorithmResult Traverse(IGraphModel graph, VertexModel source, params object[] args)
         {
-            VertexModel startPoint = args[0] as VertexModel ?? throw new ArgumentException("Starting point is not seted.");
-
-            var workingGraph = (IGraphModel<VertexModel, EdgeModel>) graph ?? throw new ArgumentException("Invalid graph type.");
-
             HashSet<VertexModel> visited = new();
 
             List<VertexModel> ans = new();
@@ -23,7 +19,7 @@ namespace GraphApplication.Algorithms
             Stack<VertexModel> stack = new();
             Stack<EdgeModel> edgesStack = new();
 
-            stack.Push(startPoint);
+            stack.Push(source);
 
             while (stack.Count > 0)
             {
@@ -46,13 +42,13 @@ namespace GraphApplication.Algorithms
 
                 visited.Add(topElement);
 
-                foreach (VertexModel neighbor in workingGraph.GetNeighbors(topElement))
+                foreach (VertexModel neighbor in graph.GetNeighbors(topElement))
                 {
                     if (visited.Contains(neighbor) == false && neighbor.IsActive)
                     {
                         stack.Push(neighbor);
 
-                        edgesStack.Push(workingGraph.GetEdgeBetween(topElement, neighbor));
+                        edgesStack.Push(graph.GetEdgeBetween(topElement, neighbor));
                     }
                 }
 
@@ -61,64 +57,4 @@ namespace GraphApplication.Algorithms
             return new(ans, edges);
         }
     }
-
-    //public class DFSAlgorithm : IDFSAlgorithm
-    //{
-    //    /// <summary>
-    //    /// Build dfs path in graph, as first argument you should pass VertexModel
-    //    /// </summary>
-    //    /// <param name="graph"></param>
-    //    /// <param name="args"></param>
-    //    /// <returns></returns>
-    //    /// <exception cref="ArgumentException"></exception>
-    //    public IterativeAlgorithmResult BuildRoute(GraphModel graph, params object[] args)
-    //    {
-    //        VertexModel startPoint = args[0] as VertexModel ?? throw new ArgumentException("Початкова точка не вказана! ");
-
-    //        HashSet<VertexModel> visited = new();
-
-    //        List<VertexModel> ans = new();
-    //        List<EdgeModel> edges = new();
-
-    //        Stack<VertexModel> stack = new();
-    //        Stack<EdgeModel> edgesStack = new();
-
-    //        stack.Push(startPoint);
-
-    //        while (stack.Count > 0)
-    //        {
-    //            VertexModel topElement = stack.Pop();
-    //            EdgeModel? edge = null;
-
-    //            if (edgesStack.Count > 0)
-    //                edge = edgesStack.Pop();
-
-    //            if (visited.Contains(topElement))
-    //            {
-    //                continue;
-    //            }
-
-    //            ans.Add(topElement);
-    //            if (edge != null)
-    //            {
-    //                edges.Add(edge);
-    //            }
-
-    //            visited.Add(topElement);
-
-    //            foreach (VertexModel neighbor in graph.AdjancencyDictionary[topElement])
-    //            {
-    //                if (visited.Contains(neighbor) == false && neighbor.IsActive)
-    //                {
-    //                    stack.Push(neighbor);
-
-    //                    edgesStack.Push(graph.EdgeDictionary[(topElement, neighbor)]);
-    //                }
-    //            }
-
-    //        }
-
-    //        return new(ans, edges);
-    //    }
-    //}
 }

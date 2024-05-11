@@ -31,7 +31,7 @@ namespace GraphApplication.Views.Editor.State
                 return false;
             }
 
-            IterativeAlgorithmResult routeBuildResult = _algorithm.BuildRoute(_modelView.GraphModelView.Model, selected[0].Model);
+            TraversalAlgorithmResult routeBuildResult = _algorithm.Traverse(_modelView.GraphModelView.Model, selected[0].Model);
 
             if (routeBuildResult.EdgeModels == null)
                 throw new ArgumentNullException("Edge models are null.");
