@@ -1,13 +1,13 @@
 ﻿using System.Windows;
 using System.Windows.Input;
+using GraphApplication.ModelViews;
 
-namespace GraphApplication.ModelViews.GraphEditorExtensions
+namespace GraphApplication.Views.Editor.State.Base
 {
-    public abstract class GraphEditorMode
+    public abstract class EditorState
     {
-
         protected readonly GraphProjectModelView _modelView;
-        public GraphEditorMode(GraphProjectModelView modelView)
+        public EditorState(GraphProjectModelView modelView)
         {
             _modelView = modelView;
         }

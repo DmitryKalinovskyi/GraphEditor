@@ -1,13 +1,15 @@
 ﻿using GraphApplication.CustomControls;
+using GraphApplication.ModelViews;
+using GraphApplication.Views.Editor.State.Base;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace GraphApplication.ModelViews.GraphEditorExtensions.Modes
+namespace GraphApplication.Views.Editor.State
 {
-    public class GraphEditorSelectionMode : GraphEditorMode
+    public class SelectionState : EditorState
     {
-        public GraphEditorSelectionMode(GraphProjectModelView modelView) : base(modelView)
+        public SelectionState(GraphProjectModelView modelView) : base(modelView)
         {
         }
 

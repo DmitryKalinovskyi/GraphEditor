@@ -1,13 +1,15 @@
 ﻿using GraphApplication.CustomControls;
+using GraphApplication.ModelViews;
+using GraphApplication.Views.Editor.State.Base;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 
-namespace GraphApplication.ModelViews.GraphEditorExtensions.Modes
+namespace GraphApplication.Views.Editor.State
 {
-    public class GraphEditorMovingMode : GraphEditorMode, IBuildingMode
+    public class VertexMovingState : EditorState, IBuildingMode
     {
-        public GraphEditorMovingMode(GraphProjectModelView modelView) : base(modelView)
+        public VertexMovingState(GraphProjectModelView modelView) : base(modelView)
         {
 
         }

@@ -1,23 +1,25 @@
 ﻿using GraphApplication.Algorithms.Contracts;
 using GraphApplication.Algorithms.Results;
 using GraphApplication.Algorithms;
-using GraphApplication.ModelViews.GraphEditorExtensions.Displaying;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using GraphApplication.ModelViews;
+using GraphApplication.Views.Editor.Animations;
+using GraphApplication.Views.Editor.State.Base;
 
-namespace GraphApplication.ModelViews.GraphEditorExtensions.Modes
+namespace GraphApplication.Views.Editor.State
 {
-    public class GraphEditorSpanningTreeMode : GraphEditorSelectionMode, IAlgorithmImplementer
+    public class SpanningTreeState : SelectionState, IAlgorithmImplementer
     {
         private IMinSpanningTreeAlgorithm _algorithm;
 
-        public GraphEditorSpanningTreeMode(GraphProjectModelView modelView) : this(modelView, new PrimAlgorithm()) { }
+        public SpanningTreeState(GraphProjectModelView modelView) : this(modelView, new PrimAlgorithm()) { }
 
-        public GraphEditorSpanningTreeMode(GraphProjectModelView modelView, IMinSpanningTreeAlgorithm algorithm) : base(modelView)
+        public SpanningTreeState(GraphProjectModelView modelView, IMinSpanningTreeAlgorithm algorithm) : base(modelView)
         {
             _algorithm = algorithm;
         }

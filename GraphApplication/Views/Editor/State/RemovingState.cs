@@ -1,13 +1,15 @@
 ﻿using GraphApplication.Models;
+using GraphApplication.ModelViews;
+using GraphApplication.Views.Editor.State.Base;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 
-namespace GraphApplication.ModelViews.GraphEditorExtensions.Modes
+namespace GraphApplication.Views.Editor.State
 {
-    public class GraphEditorRemovingMode : GraphEditorMode, IBuildingMode
+    public class RemovingState : EditorState, IBuildingMode
     {
-        public GraphEditorRemovingMode(GraphProjectModelView modelView) : base(modelView)
+        public RemovingState(GraphProjectModelView modelView) : base(modelView)
         {
         }
 

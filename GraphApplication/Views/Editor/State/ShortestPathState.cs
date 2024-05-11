@@ -1,20 +1,22 @@
 ﻿using GraphApplication.Algorithms;
 using GraphApplication.Algorithms.Contracts;
 using GraphApplication.Algorithms.Results;
-using GraphApplication.ModelViews.GraphEditorExtensions.Displaying;
+using GraphApplication.ModelViews;
+using GraphApplication.Views.Editor.Animations;
+using GraphApplication.Views.Editor.State.Base;
 using System;
 using System.Collections.Generic;
 using System.Windows;
 
-namespace GraphApplication.ModelViews.GraphEditorExtensions.Modes
+namespace GraphApplication.Views.Editor.State
 {
-    public class GraphEditorShortestPathMode : GraphEditorSelectionMode, IAlgorithmImplementer
+    public class ShortestPathState : SelectionState, IAlgorithmImplementer
     {
         private IShortestPathAlgorithm _algorithm;
 
-        public GraphEditorShortestPathMode(GraphProjectModelView modelView) : this(modelView, new DijkstraAlgorithm()) { }
+        public ShortestPathState(GraphProjectModelView modelView) : this(modelView, new DijkstraAlgorithm()) { }
 
-        public GraphEditorShortestPathMode(GraphProjectModelView modelView, IShortestPathAlgorithm algorithm) : base(modelView)
+        public ShortestPathState(GraphProjectModelView modelView, IShortestPathAlgorithm algorithm) : base(modelView)
         {
             _algorithm = algorithm;
         }
@@ -42,7 +44,7 @@ namespace GraphApplication.ModelViews.GraphEditorExtensions.Modes
                 return false;
             }
 
-            if(routeBuildResult.VertexModels == null)
+            if (routeBuildResult.VertexModels == null)
                 throw new ArgumentNullException("Edge models are null.");
 
 

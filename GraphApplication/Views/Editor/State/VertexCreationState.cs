@@ -1,13 +1,15 @@
 ﻿using GraphApplication.Models;
+using GraphApplication.ModelViews;
+using GraphApplication.Views.Editor.State.Base;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 
-namespace GraphApplication.ModelViews.GraphEditorExtensions.Modes
+namespace GraphApplication.Views.Editor.State
 {
-    class GraphEditorVertexCreationMode : GraphEditorMode, IBuildingMode
+    class VertexCreationState : EditorState, IBuildingMode
     {
-        public GraphEditorVertexCreationMode(GraphProjectModelView modelView) : base(modelView)
+        public VertexCreationState(GraphProjectModelView modelView) : base(modelView)
         {
             _modelView.SelectionManager.DiselectAll();
         }

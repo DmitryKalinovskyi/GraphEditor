@@ -1,10 +1,12 @@
 ﻿using System.Windows;
+using GraphApplication.ModelViews;
+using GraphApplication.Views.Editor.State.Base;
 
-namespace GraphApplication.ModelViews.GraphEditorExtensions.Modes
+namespace GraphApplication.Views.Editor.State
 {
-    public class GraphEditorHideMode : GraphEditorMode, IBuildingMode
+    public class VertexHideState : EditorState, IBuildingMode
     {
-        public GraphEditorHideMode(GraphProjectModelView modelView) : base(modelView)
+        public VertexHideState(GraphProjectModelView modelView) : base(modelView)
         {
         }
 

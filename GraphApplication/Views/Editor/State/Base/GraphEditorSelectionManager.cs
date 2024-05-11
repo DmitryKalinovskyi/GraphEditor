@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using GraphApplication.ModelViews;
 
-namespace GraphApplication.ModelViews.GraphEditorExtensions
+namespace GraphApplication.Views.Editor.State.Base
 {
     public class GraphEditorSelectionManager
     {

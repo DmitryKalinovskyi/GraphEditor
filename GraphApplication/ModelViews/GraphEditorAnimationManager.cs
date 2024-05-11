@@ -1,20 +1,20 @@
-﻿using GraphApplication.ModelViews.GraphEditorExtensions.Displaying;
+﻿using GraphApplication.Views.Editor.Animations;
 
 namespace GraphApplication.ModelViews
 {
     public class GraphEditorAnimationManager : NotifyModelView
     {
-        private IDisplayAnimation? _animation { get; set; }
+        private IAnimation? _animation { get; set; }
 
         public void StartAnimation()
         {
             _animation?.StartAnimation();
         }
 
-        public void SetAnimation(IDisplayAnimation anim)
+        public void SetAnimation(IAnimation anim)
         {
             _animation = anim;
-            anim.UpdateKeyFrameDelay(_animationKeyFrameDelay);
+            anim.AnimationKeyFrameDelay = _animationKeyFrameDelay;
             OnPropertyChanged(nameof(IsAnimationActive));
         }
 
@@ -43,7 +43,7 @@ namespace GraphApplication.ModelViews
                 _animationKeyFrameDelay = value;
                 if (_animation != null)
                 {
-                    _animation.UpdateKeyFrameDelay(value);
+                    _animation.AnimationKeyFrameDelay = value;
                 }
 
                 OnPropertyChanged(nameof(AnimationSpeed));

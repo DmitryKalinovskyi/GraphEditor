@@ -1,5 +1,6 @@
-﻿using GraphApplication.ModelViews;
-using GraphApplication.ModelViews.GraphEditorExtensions;
+﻿using GraphApplication.Binders;
+using GraphApplication.ModelViews;
+using GraphApplication.Views.Editor.State.Base;
 using System;
 using System.Windows;
 
@@ -19,7 +20,7 @@ namespace GraphApplication.Commands.CommandList
             string typename = parameter as string ?? throw new Exception("Argument to change editor mode was empty");
 
             //convert selected mode from obj
-            var mode = EditorModeConverter.Convert(typename, _project) ?? 
+            var mode = EditorStateBinder.Convert(typename, _project) ?? 
                 throw new Exception("Failed to get new mode instance");
 
             if (_project.AnimationManager.IsAnimationActive == true
@@ -29,7 +30,7 @@ namespace GraphApplication.Commands.CommandList
                 return;
             }
 
-            _project.EditorMode = mode;
+            _project.EditorState = mode;
         }
     }
 }
