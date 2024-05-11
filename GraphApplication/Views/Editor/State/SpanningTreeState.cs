@@ -35,16 +35,16 @@ namespace GraphApplication.Views.Editor.State
                 return false;
             }
 
-            IterativeAlgorithmResult routeBuildResult = _algorithm.BuildRoute(_modelView.GraphModelView.Model, selected[0].Model);
+            var result = _algorithm.FindMinSpanningTree(_modelView.GraphModelView.Model, selected[0].Model);
 
-            if (routeBuildResult.VertexModels == null)
-                throw new ArgumentNullException(nameof(routeBuildResult.VertexModels));
+            if (result.VertexModels == null)
+                throw new ArgumentNullException(nameof(result.VertexModels));
 
-            if (routeBuildResult.EdgeModels == null)
-                throw new ArgumentNullException(nameof(routeBuildResult.EdgeModels));
+            if (result.EdgeModels == null)
+                throw new ArgumentNullException(nameof(result.EdgeModels));
 
-            List<VertexModelView> vertexModelViews = _modelView.GraphModelView.GetVertexModelViews_By_VertexModels(routeBuildResult.VertexModels);
-            List<EdgeModelView> edgesModelViews = _modelView.GraphModelView.GetEdgeModelViews_By_EdgeModels(routeBuildResult.EdgeModels);
+            List<VertexModelView> vertexModelViews = _modelView.GraphModelView.GetVertexModelViews_By_VertexModels(result.VertexModels);
+            List<EdgeModelView> edgesModelViews = _modelView.GraphModelView.GetEdgeModelViews_By_EdgeModels(result.EdgeModels);
 
             _modelView.AnimationManager.SetAnimation(new BFSShortestPathDisplayer(_modelView.GraphModelView, (vertexModelViews, edgesModelViews)));
             return true;

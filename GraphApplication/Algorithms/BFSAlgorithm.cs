@@ -4,54 +4,55 @@ using GraphApplication.Models;
 using GraphApplication.Models.Graph;
 using System;
 using System.Collections.Generic;
+using System.Windows.Media;
 
 namespace GraphApplication.Algorithms
 {
     public class BFSAlgorithm : IBFSAlgorithm
     {
-        public IterativeAlgorithmResult BuildRoute(IGraphModel graph, params object[] args)
+        public TraversalAlgorithmResult Traverse(IGraphModel graph, VertexModel source, params object[] args)
         {
-            VertexModel startPoint = args[0] as VertexModel ?? throw new ArgumentException("Starting pos is not defined.");
+            // idea of algorithm, we add first vertex to the queue, then for each vertice in queue:
+            // add their neighbors and edge that direct to that vertex (if they don't visited before)
+            // do that while queue is not empty.
 
-            // cast to required model, if it is not castable, then 
-            var workingGraph = (IGraphModel<VertexModel, EdgeModel>)graph ?? throw new InvalidOperationException("Algorithm requires another type of graph");
             var visited = new HashSet<VertexModel>();
 
-            var ans = new List<VertexModel>();
-            var edges = new List<EdgeModel>();
+            var resultVertices = new List<VertexModel>();
+            var resultEdges = new List<EdgeModel>();
 
-            var queue = new Queue<VertexModel>();
-            var edgesQueue = new Queue<EdgeModel>();
 
-            queue.Enqueue(startPoint);
+            // vertex and edge that points to that edge
+            var queue = new Queue<(VertexModel, EdgeModel?)>();
 
-            visited.Add(startPoint);
+            // to the first vertex we don't have pointing edges, so we add null and later ingore it.
+            queue.Enqueue((source, null));
+
+            visited.Add(source);
 
             while (queue.Count > 0)
             {
-                VertexModel topElement = queue.Dequeue();
+                (VertexModel frontVertex, EdgeModel? frontEdge) = queue.Dequeue();
 
-                ans.Add(topElement);
-                if (edgesQueue.Count > 0)
-                    edges.Add(edgesQueue.Dequeue());
-
-                visited.Add(topElement);
-
-
-                foreach (VertexModel neighbor in workingGraph.GetNeighbors(topElement))
+                resultVertices.Add(frontVertex);
+                if (frontEdge != null)
                 {
-                    if (visited.Contains(neighbor) == false && neighbor.IsActive)
+                    resultEdges.Add(frontEdge);
+                }
+
+                visited.Add(frontVertex);
+
+                foreach (VertexModel neighbor in graph.GetNeighbors(frontVertex))
+                {
+                    if (visited.Contains(neighbor) == false)
                     {
                         visited.Add(neighbor);
-                        queue.Enqueue(neighbor);
-
-
-                        edgesQueue.Enqueue(workingGraph.GetEdgeBetween(topElement, neighbor));
+                        queue.Enqueue((neighbor, graph.GetEdgeBetween(frontVertex, neighbor)));
                     }
                 }
             }
 
-            return new IterativeAlgorithmResult(ans, edges);
+            return new TraversalAlgorithmResult(resultVertices, resultEdges);
         }
     }
 }

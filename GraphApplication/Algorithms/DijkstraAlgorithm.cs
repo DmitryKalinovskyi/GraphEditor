@@ -12,7 +12,7 @@ namespace GraphApplication.Algorithms
 {
     public class DijkstraAlgorithm : IShortestPathAlgorithm
     {
-        public void Dijkstra(Dictionary<VertexModel, VertexModel?> previous, UndirectedGraphModel graph, VertexModel source, VertexModel target)
+        private void Dijkstra(Dictionary<VertexModel, VertexModel?> previous, IGraphModel graph, VertexModel source, VertexModel target)
         {
             var pq = new PriorityQueue<VertexModel, double>();
 
@@ -56,26 +56,26 @@ namespace GraphApplication.Algorithms
             }
         }
 
-        public IterativeAlgorithmResult BuildRoute(IGraphModel graph, params object[] args)
+        //private ShortestPathResult BuildPath(IGraphModel graph, VertexModel source, VertexModel target)
+        //{
+           
+        //}
+
+
+        public ShortestPathResult FindShortestPath(IGraphModel graph, VertexModel source, VertexModel target, params object[] args)
         {
-            var source = (VertexModel)args[0];
-            var target = (VertexModel)args[1];
-
-            var undirectedGraph = (UndirectedGraphModel)graph;
-            if (undirectedGraph == null)
-                throw new ArgumentException("Algorithm can be implemented only with undirected graph.");
-
-
+            // finding shortest path consist of two things, use dijkstra algorithm, and then build route using shortest distance to each vertex.
+            
+            
             var previous = new Dictionary<VertexModel, VertexModel?>();
 
-            Dijkstra(previous, undirectedGraph, source, target);
+            Dijkstra(previous, graph, source, target);
 
             if (previous.ContainsKey(target) == false)
             {
-                return IterativeAlgorithmResult.FailedToBuildRouteResult;
+                return ShortestPathResult.FailedToFindShortestPathResult;
             }
 
-            
             // build route
             var edges = new List<EdgeModel>();
             var vertices = new List<VertexModel>();
@@ -83,14 +83,14 @@ namespace GraphApplication.Algorithms
             var tempVertex = target;
             vertices.Add(target);
 
-            while(tempVertex != source)
+            while (tempVertex != source)
             {
                 var prev = previous[tempVertex];
                 if (prev == null)
                     throw new InvalidOperationException("Unexpected behaviour of the algorihtm.");
 
-                var edge = undirectedGraph.GetEdgeBetween(prev, tempVertex);
-                if(edge == null)
+                var edge = graph.GetEdgeBetween(prev, tempVertex);
+                if (edge == null)
                     throw new InvalidOperationException("Unexpected behaviour of the algorihtm.");
 
                 vertices.Add(prev);

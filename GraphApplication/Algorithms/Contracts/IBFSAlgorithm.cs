@@ -1,6 +1,6 @@
 ﻿namespace GraphApplication.Algorithms.Contracts
 {
-    public interface IBFSAlgorithm : IIterativeAlgorithm
+    public interface IBFSAlgorithm : ITraversalAlgorithm
     {
     }
 }
