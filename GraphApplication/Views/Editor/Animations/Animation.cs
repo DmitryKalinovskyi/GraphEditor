@@ -1,8 +1,8 @@
 ﻿using System.Threading;
 
-namespace GraphApplication.ModelViews.GraphEditorExtensions.Displaying
+namespace GraphApplication.Views.Editor.Animations
 {
-    public abstract class Animation : IDisplayAnimation
+    public abstract class Animation : IAnimation
     {
         public int AnimationKeyFrameDelay { get; set; }
 

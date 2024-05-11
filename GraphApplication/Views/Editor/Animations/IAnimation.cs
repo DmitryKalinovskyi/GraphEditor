@@ -1,8 +1,9 @@
-﻿namespace GraphApplication.ModelViews.GraphEditorExtensions.Displaying
+﻿namespace GraphApplication.Views.Editor.Animations
 {
-    public interface IDisplayAnimation
+    public interface IAnimation
     {
-        public void UpdateKeyFrameDelay(int delay);
+        public int AnimationKeyFrameDelay { get; set; }
+
         public void StartAnimation();
         public void PauseAnimation();
         public void StopAnimation();

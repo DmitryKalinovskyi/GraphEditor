@@ -1,13 +1,14 @@
 ﻿using System;
+using GraphApplication.Views.Editor.State.Base;
 
-namespace GraphApplication.ModelViews.GraphEditorExtensions
+namespace GraphApplication.Binders
 {
-    public static class EditorModeConverter
+    public static class EditorStateBinder
     {
-        public static GraphEditorMode Convert(string modeName, params object[] args)
+        public static EditorState Convert(string stateName, params object[] args)
         {
             // TODO: bind string to namespace
-            string fullName = $"GraphApplication.ModelViews.GraphEditorExtensions.Modes.{modeName}";
+            string fullName = $"GraphApplication.Views.Editor.State.{stateName}";
 
             Type type = Type.GetType(fullName) ??
                 throw new Exception("Failed to convert modeName to the modeType! Possible incorrect name of mode.");
@@ -15,7 +16,7 @@ namespace GraphApplication.ModelViews.GraphEditorExtensions
             object instance = Activator.CreateInstance(type, args) ??
                 throw new Exception($"Failed to create instance of type {type.Name}.");
 
-            return (GraphEditorMode)instance ?? throw new ArgumentException($"Class with name {modeName} is not GraphEditorMode.");
+            return (EditorState)instance ?? throw new ArgumentException($"{nameof(instance)} is not {nameof(EditorState)}.");
         }
     }
 }

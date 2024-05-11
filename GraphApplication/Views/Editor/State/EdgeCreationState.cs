@@ -1,14 +1,16 @@
 ﻿using GraphApplication.CustomControls;
 using GraphApplication.Models;
+using GraphApplication.ModelViews;
+using GraphApplication.Views.Editor.State.Base;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 
-namespace GraphApplication.ModelViews.GraphEditorExtensions.Modes
+namespace GraphApplication.Views.Editor.State
 {
-    public class GraphEditorEdgeCreationMode : GraphEditorMode, IBuildingMode
+    public class EdgeCreationState : EditorState, IBuildingMode
     {
-        public GraphEditorEdgeCreationMode(GraphProjectModelView modelView) : base(modelView)
+        public EdgeCreationState(GraphProjectModelView modelView) : base(modelView)
         {
             _modelView.SelectionManager.DiselectAll();
         }

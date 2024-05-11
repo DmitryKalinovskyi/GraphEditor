@@ -1,5 +1,5 @@
 ﻿using GraphApplication.ModelViews;
-using GraphApplication.ModelViews.GraphEditorExtensions;
+using GraphApplication.Views.Editor.State.Base;
 using System.Windows;
 
 namespace GraphApplication.Commands.CommandList
@@ -14,7 +14,7 @@ namespace GraphApplication.Commands.CommandList
 
         public override void Execute(object? parameter)
         {
-            if (_graphEditorModelView.EditorMode is IAlgorithmImplementer implementer)
+            if (_graphEditorModelView.EditorState is IAlgorithmImplementer implementer)
             {
                 bool result = implementer.ImplementAlgorithm();
 

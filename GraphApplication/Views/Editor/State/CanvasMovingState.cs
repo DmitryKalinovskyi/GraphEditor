@@ -1,12 +1,14 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using GraphApplication.ModelViews;
+using GraphApplication.Views.Editor.State.Base;
 
-namespace GraphApplication.ModelViews.GraphEditorExtensions.Modes
+namespace GraphApplication.Views.Editor.State
 {
-    public class GraphEditorCanvasMovingMode : GraphEditorMode
+    public class CanvasMovingState : EditorState
     {
-        public GraphEditorCanvasMovingMode(GraphProjectModelView modelView) : base(modelView) { }
+        public CanvasMovingState(GraphProjectModelView modelView) : base(modelView) { }
 
         bool isDragging = false;
         Point dragPoint;

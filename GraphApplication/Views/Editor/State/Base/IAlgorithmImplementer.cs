@@ -1,4 +1,4 @@
-﻿namespace GraphApplication.ModelViews.GraphEditorExtensions
+﻿namespace GraphApplication.Views.Editor.State.Base
 {
     public interface IAlgorithmImplementer
     {

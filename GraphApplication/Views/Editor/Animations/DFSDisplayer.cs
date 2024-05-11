@@ -1,26 +1,27 @@
 ﻿using GraphApplication.Models;
+using GraphApplication.ModelViews;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 
-namespace GraphApplication.ModelViews.GraphEditorExtensions.Displaying
+namespace GraphApplication.Views.Editor.Animations
 {
-    public class BFSShortestPathDisplayer : Animation
+    public class DFSDisplayer : Animation
     {
         private (IList<VertexModelView>, IList<EdgeModelView>) _path;
 
         private GraphModelView _graphModelView;
 
-        public BFSShortestPathDisplayer(GraphModelView graphModelView, (IList<VertexModelView>, IList<EdgeModelView>) path)
+        public DFSDisplayer(GraphModelView graphModelView, (IList<VertexModelView>, IList<EdgeModelView>) path)
         {
             _path = path;
             _graphModelView = graphModelView;
             _animationThread = new(Animation);
         }
 
-        private void Animation()
+        public void Animation()
         {
             _path.Item1[0].IsMarked = true;
 

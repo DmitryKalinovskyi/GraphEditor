@@ -1,20 +1,22 @@
 ﻿using GraphApplication.Algorithms;
 using GraphApplication.Algorithms.Contracts;
 using GraphApplication.Algorithms.Results;
-using GraphApplication.ModelViews.GraphEditorExtensions.Displaying;
+using GraphApplication.ModelViews;
+using GraphApplication.Views.Editor.Animations;
+using GraphApplication.Views.Editor.State.Base;
 using System;
 using System.Collections.Generic;
 using System.Windows;
 
-namespace GraphApplication.ModelViews.GraphEditorExtensions.Modes
+namespace GraphApplication.Views.Editor.State
 {
-    public class GraphEditorDFSMode : GraphEditorSelectionMode, IAlgorithmImplementer
+    public class BFSState : SelectionState, IAlgorithmImplementer
     {
-        private IDFSAlgorithm _algorithm;
+        private IBFSAlgorithm _algorithm;
 
-        public GraphEditorDFSMode(GraphProjectModelView modelView) : this(modelView, new DFSAlgorithm()) { }
+        public BFSState(GraphProjectModelView modelView) : this(modelView, new BFSAlgorithm()) { }
 
-        public GraphEditorDFSMode(GraphProjectModelView modelView, IDFSAlgorithm algorithm) : base(modelView)
+        public BFSState(GraphProjectModelView modelView, IBFSAlgorithm algorithm) : base(modelView)
         {
             _algorithm = algorithm;
         }
@@ -24,7 +26,7 @@ namespace GraphApplication.ModelViews.GraphEditorExtensions.Modes
             List<VertexModelView> selected = _modelView.SelectionManager.SelectedVerticles;
             if (selected.Count != 1)
             {
-                MessageBox.Show("Алгоритм пошуку в глибину реалізувати не можливо, поки не обрано тільки одну вершину!",
+                MessageBox.Show("Алгоритм пошуку в ширину реалізувати не можливо, поки не обрано тільки одну вершину!",
                     "Попередження", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
@@ -40,9 +42,11 @@ namespace GraphApplication.ModelViews.GraphEditorExtensions.Modes
             List<VertexModelView> vertexModelViews = _modelView.GraphModelView.GetVertexModelViews_By_VertexModels(routeBuildResult.VertexModels);
             List<EdgeModelView> edgesModelViews = _modelView.GraphModelView.GetEdgeModelViews_By_EdgeModels(routeBuildResult.EdgeModels);
 
-            DFSDisplayer _displayer = new(_modelView.GraphModelView, (vertexModelViews, edgesModelViews));
+            BFSDisplayer _displayer = new(_modelView.GraphModelView, (vertexModelViews, edgesModelViews));
 
             _modelView.AnimationManager.SetAnimation(_displayer);
+
+            _displayer.StartAnimation();
             return true;
         }
     }

@@ -2,8 +2,8 @@
 using GraphApplication.Commands.CommandList;
 using GraphApplication.Models;
 using GraphApplication.Models.Graph;
-using GraphApplication.ModelViews.GraphEditorExtensions;
-using GraphApplication.ModelViews.GraphEditorExtensions.Modes;
+using GraphApplication.Views.Editor.State;
+using GraphApplication.Views.Editor.State.Base;
 using System;
 using System.Diagnostics;
 using System.Windows;
@@ -116,18 +116,18 @@ namespace GraphApplication.ModelViews
 
         #endregion
 
-        private GraphEditorMode _editorMode;
+        private EditorState _editorState;
 
-        public GraphEditorMode EditorMode
+        public EditorState EditorState
         {
-            get { return _editorMode; }
+            get { return _editorState; }
             set
             {
-                if (_editorMode != null)
-                    _editorMode.OnModeSwitch();
+                if (_editorState != null)
+                    _editorState.OnModeSwitch();
 
-                _editorMode = value;
-                OnPropertyChanged(nameof(EditorMode));
+                _editorState = value;
+                OnPropertyChanged(nameof(EditorState));
             }
         }
 
@@ -140,7 +140,7 @@ namespace GraphApplication.ModelViews
             Name = name;
             IsSaved = isSaved;
 
-            EditorMode = new GraphEditorSelectionMode(this);
+            EditorState = new SelectionState(this);
             
             GraphModelView = new GraphModelView(model.GraphModel);
             SelectionManager = new();
@@ -148,7 +148,6 @@ namespace GraphApplication.ModelViews
 
             ConfigureSaving();
             InitializeCommands();
-            InitializeEvents();
         }
 
         private void ConfigureSaving()
