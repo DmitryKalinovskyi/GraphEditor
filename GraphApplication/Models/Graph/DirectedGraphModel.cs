@@ -8,24 +8,18 @@ using System.Threading.Tasks;
 
 namespace GraphApplication.Models.Graph
 {
-    public class DirectedGraphModel: DirectedGraphModel<VertexModel, EdgeModel> { }
-
-    public class DirectedWeightedGraphModel: DirectedGraphModel<VertexModel, WeightedEdgeModel<double>> { }
-
-    public class DirectedGraphModel<TVertex, TEdge> : IGraphModel<TVertex, TEdge>
-        where TVertex : VertexModel
-        where TEdge : EdgeModel
+    public class DirectedGraphModel: IGraphModel
     {
-        public event EventHandler<TVertex>? OnVertexAdded;
-        public event EventHandler<TEdge>? OnEdgeAdded;
-        public event EventHandler<TVertex>? OnVertexRemoved;
-        public event EventHandler<TEdge>? OnEdgeRemoved;
+        public event EventHandler<VertexModel>? OnVertexAdded;
+        public event EventHandler<EdgeModel>? OnEdgeAdded;
+        public event EventHandler<VertexModel>? OnVertexRemoved;
+        public event EventHandler<EdgeModel>? OnEdgeRemoved;
 
-        private HashSet<TVertex> _vertices;
+        private HashSet<VertexModel> _vertices;
         //private HashSet<TEdge> _edges;  
 
-        private Dictionary<(TVertex, TVertex), TEdge> _edgeBinding;
-        private Dictionary<TVertex, HashSet<TVertex>> _neighbors;
+        private Dictionary<(VertexModel, VertexModel), EdgeModel> _edgeBinding;
+        private Dictionary<VertexModel, HashSet<VertexModel>> _neighbors;
 
         //private HashSet<TEdge> _edges;
 
@@ -36,7 +30,7 @@ namespace GraphApplication.Models.Graph
             _neighbors = new();
         }
 
-        public DirectedGraphModel(IEnumerable<TVertex> vertices, IEnumerable<TEdge> edges)
+        public DirectedGraphModel(IEnumerable<VertexModel> vertices, IEnumerable<EdgeModel> edges)
         {
             _edgeBinding = new();
             _neighbors = new();
@@ -46,24 +40,24 @@ namespace GraphApplication.Models.Graph
             foreach (var edge in edges) BindEdge(edge);
         }
 
-        private void BindEdge(TEdge edge)
+        private void BindEdge(EdgeModel edge)
         {
-            if (IsConnectionBetween((TVertex)edge.Start, (TVertex)edge.End))
+            if (IsConnectionBetween((VertexModel)edge.Start, (VertexModel)edge.End))
                 throw new InvalidOperationException("Vertices already connected, there are not multigraph supporting.");
 
-            _neighbors[(TVertex)edge.Start].Add((TVertex)edge.End);
+            _neighbors[(VertexModel)edge.Start].Add((VertexModel)edge.End);
             //_neighbors[(TVertex)edge.End].Add((TVertex)edge.Start);
-            _edgeBinding[((TVertex)edge.Start, (TVertex)edge.End)] = edge;
+            _edgeBinding[((VertexModel)edge.Start, (VertexModel)edge.End)] = edge;
         }
 
-        private void UnbindEdge(TEdge edge)
+        private void UnbindEdge(EdgeModel edge)
         {
-            _neighbors[(TVertex)edge.Start].Remove((TVertex)edge.End);
+            _neighbors[(VertexModel)edge.Start].Remove((VertexModel)edge.End);
 
-            _edgeBinding.Remove(((TVertex)edge.Start, (TVertex)edge.End));
+            _edgeBinding.Remove(((VertexModel)edge.Start, (VertexModel)edge.End));
         }
 
-        public void AddEdge(TEdge edge)
+        public void AddEdge(EdgeModel edge)
         {
             if (edge.Start == null || edge.End == null)
                 throw new ArgumentException("You can't add edge, that have start or end vertex null.");
@@ -73,42 +67,42 @@ namespace GraphApplication.Models.Graph
             OnEdgeAdded?.Invoke(this, edge);
         }
 
-        public void AddVertex(TVertex vertex)
+        public void AddVertex(VertexModel vertex)
         {
             _vertices.Add(vertex);
             _neighbors[vertex] = new();
             OnVertexAdded?.Invoke(this, vertex);
         }
 
-        public TEdge? GetEdgeBetween(TVertex source, TVertex destination)
+        public EdgeModel? GetEdgeBetween(VertexModel source, VertexModel destination)
         {
             var key = (source, destination);
             return _edgeBinding.ContainsKey(key) ? _edgeBinding[key] : null;
         }
 
-        public IEnumerable<TEdge> GetEdges()
+        public IEnumerable<EdgeModel> GetEdges()
         {
             return _edgeBinding.Values;
         }
 
-        public IEnumerable<TVertex> GetVertices()
+        public IEnumerable<VertexModel> GetVertices()
         {
             return _vertices;
         }
 
-        public bool IsConnectionBetween(TVertex source, TVertex destination)
+        public bool IsConnectionBetween(VertexModel source, VertexModel destination)
         {
             return GetEdgeBetween(source, destination) != null;
         }
 
-        public void RemoveEdge(TEdge edge)
+        public void RemoveEdge(EdgeModel edge)
         {
             UnbindEdge(edge);
             //_edges.Remove(edge);
             OnEdgeRemoved?.Invoke(this, edge);  
         }
 
-        public void RemoveVertex(TVertex vertex)
+        public void RemoveVertex(VertexModel vertex)
         {
             // remove related edges
             //var edges = GetEdges(vertex);
@@ -133,21 +127,21 @@ namespace GraphApplication.Models.Graph
             return _edgeBinding.Count;
         }
 
-        public IEnumerable<TVertex> GetNeighbors(TVertex source)
+        public IEnumerable<VertexModel> GetNeighbors(VertexModel source)
         {
             if (_neighbors.ContainsKey(source) == false)
             {
-                return Enumerable.Empty<TVertex>();
+                return Enumerable.Empty<VertexModel>();
             }
 
             return _neighbors[source];
         }
 
-        public IEnumerable<TEdge> GetEdges(TVertex source)
+        public IEnumerable<EdgeModel> GetEdges(VertexModel source)
         {
             var neighbors = GetNeighbors(source);
 
-            List<TEdge> edges = new();
+            List<EdgeModel> edges = new();
             // get edge between source and each neighbor
             foreach(var neighbor in neighbors)
             {

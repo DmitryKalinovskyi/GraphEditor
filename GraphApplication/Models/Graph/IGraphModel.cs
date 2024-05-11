@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 
 namespace GraphApplication.Models.Graph
 {
-    // don't use this inteface with inheritance, use it just for graph notatioin
-    public interface IGraphModel { }
+    public interface IGraphModel: IGraphModel<VertexModel, EdgeModel> { }
 
-    public interface IGraphModel<TVertex, TEdge>: IGraphModel
+    public interface IGraphModel<TVertex, TEdge>
         where TVertex : VertexModel
         where TEdge : EdgeModel
     {
