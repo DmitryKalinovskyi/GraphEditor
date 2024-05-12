@@ -340,23 +340,20 @@
                     CornerRadius="8, 8, 8, 8"
                     Margin="5, 5, 5, 5"
                         Padding="5,5,5,5">
-                <Expander>
+                <Expander IsExpanded="True">
                     
 
-                <StackPanel Orientation="Horizontal" Height="35"
+                <StackPanel Orientation="Horizontal"
                                 HorizontalAlignment="Center"
                                     
                                    >
                             <control:AnimationButton
-                            UriImage="../ArtWork/icons8-start-90.png"
+                                ImageSource="{DynamicResource PlayIconUri}"
                                 Command="{Binding StartAlgorithmCommand}">
                             </control:AnimationButton>
-                            <!--<control:AnimationButton
-                            UriImage="../ArtWork/icons8-pause-100.png">
-                            </control:AnimationButton>-->
-
+                            
                             <control:AnimationButton
-                            UriImage="../ArtWork/icons8-stop-100.png"
+                                ImageSource="{DynamicResource StopIconUri}"
                                 Command="{Binding EndAlgorithmCommand}"
                                  IsEnabled="{Binding AnimationManager.IsAnimationActive}">
                             </control:AnimationButton>

@@ -25,7 +25,7 @@
                         <Border.ToolTip >
                             <TextBlock Text="{TemplateBinding TipContent}"/>
                         </Border.ToolTip>
-                        
+
                         <Grid>
                             <Image Source="{TemplateBinding ImageSource}"
                                    
@@ -35,7 +35,7 @@
                                        VerticalAlignment="Center"
                                        Foreground="{TemplateBinding Foreground}"></TextBlock>
                         </Grid>
-                        
+
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -53,59 +53,54 @@
         </Style.Triggers>
     </Style>
 
-
-    
-
-    <!--<ControlTemplate x:Key="VertexTemplate">
-        <Grid>
-            <Ellipse
-                    MouseMove="VertexButton_MouseMove"
-                    MouseDown="VertexButton_MouseDown"
-                    MouseUp="VertexButton_MouseUp"
-                    PreviewMouseUp="VertexButton_PreviewMouseUp"
-                    PreviewMouseDown="VertexButton_PreviewMouseDown"
-                    Panel.ZIndex="0"
-                    Width="40"
-                    Height="40"
-                    Fill="White" Stroke="Black" 
-                    StrokeThickness="2">
-            </Ellipse>
-            <Border
-                    MouseMove="VertexButton_MouseMove"
-                    MouseDown="VertexButton_MouseDown"
-                    MouseUp="VertexButton_MouseUp"
-                    PreviewMouseUp="VertexButton_PreviewMouseUp"
-                    PreviewMouseDown="VertexButton_PreviewMouseDown"
-                    Panel.ZIndex="10"
-                    Width="40"
-                    Height="40"
-                    Background="White" 
-                BorderBrush="Black" 
-                    BorderThickness="2"
-                CornerRadius="20"
-                >
-
-            </Border>
-            <Label 
-                Panel.ZIndex="10"
-                Content="{Binding Caption}"
-                        Width="100"
-                    VerticalAlignment="Center"
-                    HorizontalContentAlignment="Center"
-                                       
-                    FontSize="16">
-            </Label>
-
-                <Grid.RenderTransform>
-                <TranslateTransform X="-50" Y="-20"/>
-            </Grid.RenderTransform>
-        </Grid>
-    </ControlTemplate>-->
-
     <Style
         TargetType="{x:Type custom:AnimationButton}"
          >
+
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+        <Setter Property="Background" Value="{DynamicResource ToolbarButton}"/>
+        <Setter Property="Foreground" Value="{DynamicResource ToolbarButtonForeground}"/>
+        <Setter Property="Width" Value="40"/>
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="BorderThickness" Value="2"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="Border.CornerRadius" Value="6"/>
+        <Setter Property="Padding" Value="5,5,5,5"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type custom:AnimationButton}">
+                    <Border BorderThickness="{TemplateBinding BorderThickness}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                CornerRadius="{TemplateBinding Border.CornerRadius}"
+                Background="{TemplateBinding Background}"
+                Padding="{TemplateBinding Padding}">
+
+                        <!--<Border.ToolTip >
+                            <TextBlock Text="{TemplateBinding TipContent}"/>
+                        </Border.ToolTip>-->
+
+                        <Grid>
+                            <Image Source="{TemplateBinding ImageSource}"
+                           />
+                            <TextBlock Text="{TemplateBinding Content}"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Foreground="{TemplateBinding Foreground}"/>
+                        </Grid>
+
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="{DynamicResource ToolbarButtonForegroundHovered}"/>
+                <Setter Property="Background" Value="{DynamicResource ToolbarButtonHovered}"/>
+                <!--<Setter Property="BorderBrush" Value="Black"></Setter>-->
+            </Trigger>
+        </Style.Triggers>
+        
+        <!--<Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="Background" Value="Transparent"></Setter>
         <Setter Property="BorderThickness" Value="1"></Setter>
         <Setter Property="BorderBrush" Value="Transparent"></Setter>
@@ -122,7 +117,7 @@
                         Padding="{TemplateBinding Padding}">
 
                         <Grid>
-                            <Image Source="{Binding UriImage, RelativeSource={RelativeSource TemplatedParent}}"></Image>
+                            <Image Source="{TemplateBinding ImageSource}"/>
                             <TextBlock Text="{TemplateBinding Content}"
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center"
@@ -138,6 +133,6 @@
                 <Setter Property="Background" Value="White"></Setter>
                 <Setter Property="BorderBrush" Value="gray"></Setter>
             </Trigger>
-        </Style.Triggers>
+        </Style.Triggers>-->
     </Style>
 </ResourceDictionary>

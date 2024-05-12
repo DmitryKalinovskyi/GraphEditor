@@ -22,7 +22,6 @@ namespace GraphApplication.CustomControls
             set { SetValue(TipContentProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for TipContent.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty TipContentProperty =
             DependencyProperty.Register("TipContent", typeof(string), typeof(ToolButton), new PropertyMetadata(""));
 

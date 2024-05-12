@@ -28,7 +28,6 @@
     <None Remove="ArtWork\icons8-speed-50.png" />
     <None Remove="ArtWork\icons8-start-90.png" />
     <None Remove="ArtWork\icons8-stop-100.png" />
-    <None Remove="ArtWork\icons8-stop-50.png" />
     <None Remove="ArtWork\Light\icons8-26-circle-96.png" />
     <None Remove="ArtWork\Light\icons8-arrow-96.png" />
     <None Remove="ArtWork\Light\icons8-bone-96.png" />
@@ -37,6 +36,8 @@
     <None Remove="ArtWork\Light\icons8-hand-96.png" />
     <None Remove="ArtWork\Light\icons8-move-96.png" />
     <None Remove="ArtWork\Light\icons8-path-100.png" />
+    <None Remove="ArtWork\Light\icons8-play-48.png" />
+    <None Remove="ArtWork\Light\icons8-stop-48.png" />
     <None Remove="ArtWork\Light\icons8-visibility-64.png" />
     <None Remove="ArtWork\move-100.png" />
     <None Remove="ArtWork\move-50.png" />
@@ -62,6 +63,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="ArtWork\Light\icons8-play-48.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ArtWork\Light\icons8-stop-48.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="ArtWork\OldIcons\arrow-100.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
