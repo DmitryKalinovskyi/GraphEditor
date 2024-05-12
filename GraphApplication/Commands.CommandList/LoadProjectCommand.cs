@@ -12,14 +12,14 @@ using System.Windows;
 
 namespace GraphApplication.Commands.CommandList
 {
-    public class LoadGraphCommand: Command
+    public class LoadProjectCommand: Command
     {
         private MainWindowModelView _mainWindowsViewModel;
         private IFileService<GraphProjectModel> _fileService;
 
-        public LoadGraphCommand(MainWindowModelView mainWindowModelView) : this(mainWindowModelView, new XMLFileService<GraphProjectModel>()) { }
+        public LoadProjectCommand(MainWindowModelView mainWindowModelView) : this(mainWindowModelView, new XMLFileService<GraphProjectModel>()) { }
 
-        public LoadGraphCommand(MainWindowModelView mainWindowModelView, IFileService<GraphProjectModel> fileService)
+        public LoadProjectCommand(MainWindowModelView mainWindowModelView, IFileService<GraphProjectModel> fileService)
         {
             _mainWindowsViewModel = mainWindowModelView;
             _fileService = fileService;
@@ -48,6 +48,13 @@ namespace GraphApplication.Commands.CommandList
                     throw new Exception();
 
                 GraphProjectModelView graphEditorModelView = new GraphProjectModelView(modelView, name, true);
+
+                //if (parameter is IGraphModel graphModel)
+                //{
+                //    GraphProjectModel editorModel = new GraphProjectModel(graphModel);
+
+                //    modelView = new GraphProjectModelView(editorModel, "");
+                //}
 
                 _mainWindowsViewModel.OpenedProjectsService.AddProjectAndSelect(graphEditorModelView, path);
             }

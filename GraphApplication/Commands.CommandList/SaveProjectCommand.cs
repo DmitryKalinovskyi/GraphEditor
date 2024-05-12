@@ -5,14 +5,14 @@ using Microsoft.Win32;
 
 namespace GraphApplication.Commands.CommandList
 {
-    public class SaveGraphCommand: Command
+    public class SaveProjectCommand: Command
     {
         private MainWindowModelView _mainWindowsViewModel;
         private IFileService<GraphProjectModel> _fileService;
 
-        public SaveGraphCommand(MainWindowModelView mainWindowModelView) : this(mainWindowModelView, new XMLFileService<GraphProjectModel>()) { }
+        public SaveProjectCommand(MainWindowModelView mainWindowModelView) : this(mainWindowModelView, new XMLFileService<GraphProjectModel>()) { }
 
-        public SaveGraphCommand(MainWindowModelView mainWindowModelView, IFileService<GraphProjectModel> fileService)
+        public SaveProjectCommand(MainWindowModelView mainWindowModelView, IFileService<GraphProjectModel> fileService)
         {
             _mainWindowsViewModel = mainWindowModelView;
             _fileService = fileService;

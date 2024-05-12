@@ -29,19 +29,19 @@
     <!--Command shortcurs-->
     <Window.InputBindings>
         <KeyBinding Key="N"
-                    Command="{Binding CreateGraphCommand}"
+                    Command="{Binding CreateEmptyProjectCommand}"
                     Modifiers="Ctrl"
                     />
         <KeyBinding Key="S"
-                    Command="{Binding SaveGraphCommand}"
+                    Command="{Binding SaveProjectCommand}"
                     Modifiers="Ctrl"
                     />
         <KeyBinding Key="O"
-                    Command="{Binding LoadGraphCommand}"
+                    Command="{Binding LoadProjectCommand}"
                     Modifiers="Ctrl"
                     />
         <KeyBinding Key="G"
-                    Command="{Binding GenerateGraphCommand}"
+                    Command="{Binding CreateProjectTemplateCommand}"
                     Modifiers="Ctrl"/>
 
         <!--<KeyBinding Key="W"
@@ -120,17 +120,17 @@
                       Style="{DynamicResource MenuHeader}">
                 <MenuItem Header="New"
                           Style="{DynamicResource MenuHeader}"
-                          Command="{Binding CreateGraphCommand}"
+                          Command="{Binding CreateEmptyProjectCommand}"
                           InputGestureText="Ctrl+N"/>
 
                 <MenuItem Header="Open.."
                           Style="{DynamicResource MenuHeader}"
-                          Command="{Binding LoadGraphCommand}"
+                          Command="{Binding LoadProjectCommand}"
                           InputGestureText="Ctrl+O"/>
 
                 <MenuItem Header="Save.."
                           Style="{DynamicResource MenuHeader}"
-                          Command="{Binding SaveGraphCommand}"
+                          Command="{Binding SaveProjectCommand}"
                           InputGestureText="Ctrl+S"/>
             </MenuItem>
             
@@ -140,7 +140,7 @@
 
                 <MenuItem Header="Selection"
                           Style="{DynamicResource MenuHeader}"
-                          InputGestureText="Shift+W"></MenuItem>
+                          InputGestureText="Shift+W"/>
                 <MenuItem Header="Canvas move"
                           Style="{DynamicResource MenuHeader}"
                           ></MenuItem>
@@ -157,7 +157,7 @@
                       Style="{DynamicResource MenuHeader}">
                 <MenuItem Header="Generate.." 
                           Style="{DynamicResource MenuHeader}"
-                          Command="{Binding GenerateGraphCommand}"
+                          Command="{Binding CreateProjectTemplateCommand}"
                           InputGestureText="Ctrl+G">
                 </MenuItem>
             </MenuItem>
@@ -201,7 +201,7 @@
                             <TextBlock Text="{Binding GraphNameFormat}"
                                        Width="100"/>
 
-                            <Button Command="{Binding DataContext.RemoveGraphCommand, ElementName=ProjectsTab}"
+                            <Button Command="{Binding DataContext.CloseProjectCommand, ElementName=ProjectsTab}"
                                     
                                     CommandParameter="{Binding}"
                                     BorderBrush="Transparent"
