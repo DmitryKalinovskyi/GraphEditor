@@ -4,7 +4,7 @@ This is my project related to graphs, algorithm and development in c#.
 
 # For Developers
 If you want to contribute please follow by one of the prepared guides or make it by your own.
-- Making own project template guide - 
+- Making own [Project Template Guide](https://github.com/DmitryKalinovskyi/GraphEditor/blob/main/GraphApplication/Views/ProjectTemplates/README.md)
 
 # Features
 - Developing your own graph using comfort UI
@@ -14,11 +14,23 @@ If you want to contribute please follow by one of the prepared guides or make it
 - Project templates - speed up your graph building process
 
 ## Patterns inside
-- MVVM (Model-View-ViewModel) - main architecture pattern
-- Command - to describe action related to the model and modelView.
-- State - editor have several states (modes), that you can use to edit your graph and implement algorithms. 
-- Strategy - you can use or develop custom algorithm for given purpose (shortest path algorithm can be implemented in several ways).
-- Observer - MVVM pattern based in observer pattern. Look at the INotifyPropertyChanged interface. 
+### MVVM (Model-View-ViewModel)
+Main architecture pattern from the MVC family. Used to separate business logic and UI development. 
+
+### Command
+To describe action related to the model and modelView.
+
+### State
+Editor have several states (modes), that you can use to edit your graph and implement algorithms. 
+
+### Strategy
+You can use or develop custom algorithm for given purpose (shortest path algorithm can be implemented in several ways).
+
+### Observer 
+MVVM pattern based in observer pattern. Look at the INotifyPropertyChanged interface. 
+
+### Abstract Factory
+Abstract factory pattern used for GraphModel generation.
 
 ## Future plans
 - history for your commands, ctr+z (implement via Memento pattern)
