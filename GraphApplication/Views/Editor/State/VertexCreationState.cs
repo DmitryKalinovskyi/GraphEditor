@@ -28,12 +28,34 @@ namespace GraphApplication.Views.Editor.State
                 createPoint.X /= _modelView.ScaleValue;
                 createPoint.Y /= _modelView.ScaleValue;
 
-                var vertexModel = new VertexModel(_modelView.GraphModelView.GetFreeIndex(), createPoint.X, createPoint.Y);
+                var vertexModel = new VertexModel(GetFreeIndex(), createPoint.X, createPoint.Y);
 
                 _modelView.GraphModelView.AddVertexCommand.Execute(vertexModel);
-
-                Trace.WriteLine("Vertex created at point: " + createPoint.X + " " + createPoint.Y);
             }
+        }
+
+
+        public int GetFreeIndex()
+        {
+            bool[] used = new bool[_modelView.GraphModelView.VertexModelViews.Count];
+
+            foreach (var view in _modelView.GraphModelView.VertexModelViews)
+            {
+                int index = view.Model.Id;
+                if (index >= used.Length)
+                    continue;
+
+                used[index] = true;
+            }
+
+            int i = 0;
+            for (; i < used.Length; i++)
+            {
+                if (used[i] == false)
+                    break;
+            }
+
+            return i;
         }
     }
 }

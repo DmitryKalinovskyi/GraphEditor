@@ -3,6 +3,7 @@ using GraphApplication.Models.Graph;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -22,13 +23,18 @@ namespace GraphApplication.Factories.Graph
 
         public DirectedGraphModel CreateDirectedGraph()
         {
-            throw new NotImplementedException();
+            return (DirectedGraphModel)CreateRandomizedGraph(new DirectedGraphModel());
         }
 
         public UndirectedGraphModel CreateUndirectedGraph()
         {
-            var random = new Random();
+            return (UndirectedGraphModel)CreateRandomizedGraph(new UndirectedGraphModel());
+        }
+           
 
+        private IGraphModel CreateRandomizedGraph(IGraphModel graph)
+        {
+            var random = new Random();
 
             //Generate Verticles 
             var vertices = new List<VertexModel>();
@@ -39,8 +45,6 @@ namespace GraphApplication.Factories.Graph
 
                 vertices.Add(new VertexModel(i, x, y));
             }
-
-            var graph = new UndirectedGraphModel(vertices, new List<EdgeModel>());
 
             for (int i = 0; i < VerticesCount - 1; i++)
             {

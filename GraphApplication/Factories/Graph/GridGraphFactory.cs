@@ -9,22 +9,25 @@ namespace GraphApplication.Factories.Graph
     public class GridGraphFactory : IGraphFactory
     {
         public int Rows { get; set; } = 1;
+        
         public int Columns { get; set; } = 1;
 
         public double RowGap { get; set; } = 50;
 
         public double ColumnGap { get; set; } = 50;
 
-        //public double MinWeight { get; set; } = 1;
-
-        //public double MaxWeight { get; set; } = 1;
-
         public DirectedGraphModel CreateDirectedGraph()
         {
-            throw new NotImplementedException();
+            return (DirectedGraphModel)CreateGridGraph(new DirectedGraphModel());
         }
 
-        public UndirectedGraphModel CreateGridGraph()
+        public UndirectedGraphModel CreateUndirectedGraph()
+        {
+            return (UndirectedGraphModel)CreateGridGraph(new UndirectedGraphModel());
+        }
+
+
+        public IGraphModel CreateGridGraph(IGraphModel graphModel)
         {
             if (Rows < 1 || Columns < 1)
             {
@@ -62,12 +65,14 @@ namespace GraphApplication.Factories.Graph
                 }
             }
 
-            return new UndirectedGraphModel(vertices, edges);
+            foreach (var vertex in vertices)
+                graphModel.AddVertex(vertex);
+
+            foreach (var edge in edges)
+                graphModel.AddEdge(edge);
+
+            return graphModel;
         }
 
-        public UndirectedGraphModel CreateUndirectedGraph()
-        {
-            return CreateGridGraph();
-        }
     }
 }

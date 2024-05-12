@@ -15,7 +15,6 @@ namespace GraphApplication.Commands.CommandList
 
         public override void Execute(object? parameter)
         {
-
             // load from application settings default graph model.
             GraphProjectModel editorModel = new(new UndirectedGraphModel());
 

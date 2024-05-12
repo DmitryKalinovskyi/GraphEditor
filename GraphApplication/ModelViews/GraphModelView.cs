@@ -75,11 +75,11 @@ namespace GraphApplication.ModelViews
 
         #endregion
 
-        public UndirectedGraphModel Model { get; private set; }
+        public IGraphModel Model { get; private set; }
 
         public GraphModelView(IGraphModel model)
         {
-            Model = (UndirectedGraphModel) model;
+            Model = model;
             VertexModelViews = new();
             EdgeModelViews = new();
             _edgeBinding = new();
@@ -149,11 +149,6 @@ namespace GraphApplication.ModelViews
             _vertexBinding.Remove(vertex);
 
             VertexModelViews.Remove(vertexModelView);
-
-            //// also you need to remove related to vertex edges.
-            //var relatedEdges = Model.GetEdges(vertex);
-
-            //foreach()
         }
 
         private void CreateModelViews()
@@ -209,53 +204,6 @@ namespace GraphApplication.ModelViews
             }
 
             return vertexModelViews;
-        }
-
-        // TODO: add methods to create edge between two verticles, add verticle
-        // when edge or vertex is added view should be updated
-        // better to implement comamnds, this allow client to manage command history if needed.
-
-        // TODO: add methods to remove verticle and edges
-        // when removing verticles you should remove edge that connected to verticle also.
-        // you can add warning when removing verticle that have connected edges.
-        // this warning can be offed in settings.
-
-        // Sounds challenging with c# oop ;?
-
-        // problems:
-
-        // #1
-        // we have graph model, graph model contains edgeModels, and vertexModels,
-        // and you need to create ModelViews for each model, to keep mvvm interaction.
-
-        // how we can get modelView based by model?
-
-        // - list searching (too slow)
-        // - using hashing (binding model to the modelView)
-        // - assign special id, and use special service :O
-
-        public int GetFreeIndex()
-        {
-
-            bool[] used = new bool[VertexModelViews.Count];
-
-            foreach (var view in VertexModelViews)
-            {
-                int index = view.Model.Id;
-                if (index >= used.Length)
-                    continue;
-
-                used[index] = true;
-            }
-
-            int i = 0;
-            for (; i < used.Length; i++)
-            {
-                if (used[i] == false)
-                    break;
-            }
-
-            return i;
         }
     }
 }

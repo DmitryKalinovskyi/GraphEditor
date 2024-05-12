@@ -29,6 +29,12 @@ namespace GraphApplication.ModelViews
 
         public IOpenedProjectsService OpenedProjectsService { get; set; }
 
+        public MainWindowModelView()
+        {
+            OpenedProjectsService = new OpenedProjectsService();
+            InitializeCommands();
+        }
+
         private void InitializeCommands()
         {
             CreateEmptyProjectCommand = new CreateEmptyProjectCommand(this);
@@ -38,16 +44,8 @@ namespace GraphApplication.ModelViews
             LoadProjectCommand = new LoadProjectCommand(this);
         }
 
-        // Default constructor with basic services
-        public MainWindowModelView()
-        {
-            OpenedProjectsService = new OpenedProjectsService();
-            InitializeCommands();
-        }
-
         public void CloseAndSave()
         {
-            //ask about saving
             IEnumerable<GraphProjectModelView> graphViewsToClose = OpenedProjectsService.OpenedProjects.ToList();
 
             foreach (GraphProjectModelView view in graphViewsToClose)

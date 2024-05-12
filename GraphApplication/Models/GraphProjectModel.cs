@@ -42,10 +42,5 @@ namespace GraphApplication.Models
         {
             GraphModel = graphModel;
         }
-
-        public GraphProjectModel()
-        {
-            GraphModel = null;
-        }
     }
 }

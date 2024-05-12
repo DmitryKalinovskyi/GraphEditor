@@ -5,8 +5,10 @@ using GraphApplication.Models.Graph;
 using GraphApplication.Views.Editor.State;
 using GraphApplication.Views.Editor.State.Base;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows;
+using System.Windows.Documents;
 
 namespace GraphApplication.ModelViews
 {
@@ -133,11 +135,8 @@ namespace GraphApplication.ModelViews
             }
         }
 
-        public GraphProjectModelView(GraphProjectModel model, string name, bool isSaved = false)
+        public GraphProjectModelView(GraphProjectModel model, string name = "", bool isSaved = false)
         {
-            if (model.GraphModel == null)
-                throw new ArgumentNullException(nameof(model.GraphModel));
-
             Model = model;
             Name = name;
             IsSaved = isSaved;
@@ -148,18 +147,26 @@ namespace GraphApplication.ModelViews
             SelectionManager = new();
             AnimationManager = new();
 
-            ConfigureSaving();
+            ConfigureSavingDependency();
             InitializeCommands();
         }
 
-        private void ConfigureSaving()
+        private void ConfigureSavingDependency()
         {
+            // when we should mark that our project is unsaved?
+            // when we edited our graph.
+            GraphModelView.PropertyChanged += (sender, args) => IsSaved = false;
+
+            // when we changed properties of our project.
             PropertyChanged += (sender, args) => {
-                if (args.PropertyName != nameof(IsSaved) && args.PropertyName != nameof(GraphNameFormat))
+                var ignoredProperties = new List<string> { nameof(IsSaved), nameof(GraphNameFormat), nameof(Name)};
+
+                if(ignoredProperties.Contains(args.PropertyName) == false)
+                {
                     IsSaved = false;
+                }
             };
 
-            GraphModelView.PropertyChanged += (sender, args) => IsSaved = false;
         }
 
         private void InitializeCommands()
