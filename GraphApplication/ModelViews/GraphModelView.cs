@@ -5,16 +5,13 @@ using GraphApplication.Models.Graph;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
-using System.Linq;
-using System.Security.RightsManagement;
 
 namespace GraphApplication.ModelViews
 {
     /// <summary>
     /// Manages binding between graph model and view.
     /// </summary>
-    public class GraphModelView: NotifyModelView
+    public class GraphModelView : NotifyModelView
     {
         public int VertexCount { get => Model.GetVerticesCount(); }
         public int EdgeCount { get => Model.GetEdgesCount(); }

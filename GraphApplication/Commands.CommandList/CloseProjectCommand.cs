@@ -1,12 +1,4 @@
-﻿using GraphApplication.Models;
-using GraphApplication.ModelViews;
-using GraphApplication.Services;
-using GraphApplication.Views;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using GraphApplication.ModelViews;
 using System.Windows;
 
 namespace GraphApplication.Commands.CommandList
@@ -31,7 +23,7 @@ namespace GraphApplication.Commands.CommandList
                         "Попередження", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
                     if (result == MessageBoxResult.Yes)
                     {
-                         _mainWindowsViewModel.SaveProjectCommand?.Execute(modelView);
+                        _mainWindowsViewModel.SaveProjectCommand?.Execute(modelView);
                     }
                     else if (result == MessageBoxResult.Cancel)
                     {

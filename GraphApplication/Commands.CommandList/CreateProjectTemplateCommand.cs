@@ -1,10 +1,9 @@
-﻿using GraphApplication.Factories.Graph;
-using GraphApplication.ModelViews;
+﻿using GraphApplication.ModelViews;
 using GraphApplication.Views;
 
 namespace GraphApplication.Commands.CommandList
 {
-    public class CreateProjectTemplateCommand: Command
+    public class CreateProjectTemplateCommand : Command
     {
         private MainWindowModelView _mainWindowsViewModel;
 

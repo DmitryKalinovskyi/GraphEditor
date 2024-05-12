@@ -1,15 +1,8 @@
 ﻿using GraphApplication.Commands;
 using GraphApplication.Commands.CommandList;
-using GraphApplication.Models;
-using GraphApplication.Services;
 using GraphApplication.Services.Editor;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Win32;
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows;
 
 namespace GraphApplication.ModelViews
 {

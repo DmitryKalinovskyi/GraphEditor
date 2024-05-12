@@ -1,5 +1,5 @@
-﻿using System;
-using GraphApplication.Views.Editor.State.Base;
+﻿using GraphApplication.Views.Editor.State.Base;
+using System;
 
 namespace GraphApplication.Binders
 {

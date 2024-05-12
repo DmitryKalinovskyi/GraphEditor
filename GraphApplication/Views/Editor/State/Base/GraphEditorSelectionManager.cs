@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using GraphApplication.ModelViews;
+using System.Collections.Generic;
 using System.Linq;
-using GraphApplication.ModelViews;
 
 namespace GraphApplication.Views.Editor.State.Base
 {

@@ -1,5 +1,5 @@
-﻿using GraphApplication.Models.Graph;
-using GraphApplication.Models;
+﻿using GraphApplication.Models;
+using GraphApplication.Models.Graph;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -9,7 +9,7 @@ namespace GraphApplication.Factories.Graph
     public class GridGraphFactory : IGraphFactory
     {
         public int Rows { get; set; } = 1;
-        
+
         public int Columns { get; set; } = 1;
 
         public double RowGap { get; set; } = 50;

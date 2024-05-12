@@ -3,7 +3,6 @@ using GraphApplication.Algorithms.Contracts;
 using GraphApplication.ModelViews;
 using GraphApplication.Views;
 using Microsoft.Extensions.DependencyInjection;
-using System.Runtime.CompilerServices;
 using System.Windows;
 
 namespace GraphApplication

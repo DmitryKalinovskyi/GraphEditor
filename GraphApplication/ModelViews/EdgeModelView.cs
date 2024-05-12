@@ -6,7 +6,7 @@ namespace GraphApplication.ModelViews
     {
         public readonly WeightedEdgeModel<double> Model;
 
-        public double Weight 
+        public double Weight
         {
             get { return Model.Weight; }
             set

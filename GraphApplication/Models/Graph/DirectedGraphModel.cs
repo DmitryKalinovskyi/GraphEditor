@@ -1,14 +1,10 @@
 ﻿using System;
-using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GraphApplication.Models.Graph
 {
-    public class DirectedGraphModel: IGraphModel
+    public class DirectedGraphModel : IGraphModel
     {
         public event EventHandler<VertexModel>? OnVertexAdded;
         public event EventHandler<EdgeModel>? OnEdgeAdded;
@@ -36,7 +32,7 @@ namespace GraphApplication.Models.Graph
             _neighbors = new();
             _vertices = new();
 
-            foreach(var vertex in vertices) AddVertex(vertex);
+            foreach (var vertex in vertices) AddVertex(vertex);
             foreach (var edge in edges) BindEdge(edge);
         }
 
@@ -99,7 +95,7 @@ namespace GraphApplication.Models.Graph
         {
             UnbindEdge(edge);
             //_edges.Remove(edge);
-            OnEdgeRemoved?.Invoke(this, edge);  
+            OnEdgeRemoved?.Invoke(this, edge);
         }
 
         public void RemoveVertex(VertexModel vertex)
@@ -108,7 +104,7 @@ namespace GraphApplication.Models.Graph
             //var edges = GetEdges(vertex);
 
             // remove each in deegre and out deegre vertex
-            var edges = _edgeBinding.Values.Where(edge => edge.Start == vertex || edge.End  == vertex);
+            var edges = _edgeBinding.Values.Where(edge => edge.Start == vertex || edge.End == vertex);
 
             foreach (var edge in edges) RemoveEdge(edge);
 
@@ -143,10 +139,10 @@ namespace GraphApplication.Models.Graph
 
             List<EdgeModel> edges = new();
             // get edge between source and each neighbor
-            foreach(var neighbor in neighbors)
+            foreach (var neighbor in neighbors)
             {
                 var edge = GetEdgeBetween(source, neighbor);
-                if(edge != null) edges.Add(edge);   
+                if (edge != null) edges.Add(edge);
             }
 
             return edges;

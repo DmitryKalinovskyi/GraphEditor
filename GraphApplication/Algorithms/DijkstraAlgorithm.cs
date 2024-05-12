@@ -4,9 +4,6 @@ using GraphApplication.Models;
 using GraphApplication.Models.Graph;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GraphApplication.Algorithms
 {
@@ -19,7 +16,7 @@ namespace GraphApplication.Algorithms
             var seen = new HashSet<VertexModel>();
 
             var distances = new Dictionary<VertexModel, double>();
-            foreach(var vertex in graph.GetVertices())
+            foreach (var vertex in graph.GetVertices())
                 distances[vertex] = double.MaxValue;
 
             previous[source] = null;
@@ -27,16 +24,16 @@ namespace GraphApplication.Algorithms
             distances[source] = 0;
             pq.Enqueue(source, 0);
 
-            while(pq.Count > 0)
+            while (pq.Count > 0)
             {
                 var vertex = pq.Dequeue();
                 if (seen.Contains(vertex)) continue;
-                
+
                 seen.Add(vertex);
 
-                foreach(var neighbor in graph.GetNeighbors(vertex))
+                foreach (var neighbor in graph.GetNeighbors(vertex))
                 {
-                    if(seen.Contains(neighbor)) continue;
+                    if (seen.Contains(neighbor)) continue;
 
                     var edge = (WeightedEdgeModel<double>?)graph.GetEdgeBetween(vertex, neighbor);
 
@@ -46,7 +43,7 @@ namespace GraphApplication.Algorithms
                     // relax distance.
                     double relaxed = distances[vertex] + edge.Weight;
 
-                    if(relaxed < distances[neighbor])
+                    if (relaxed < distances[neighbor])
                     {
                         previous[neighbor] = vertex;
                         distances[neighbor] = relaxed;
@@ -58,15 +55,15 @@ namespace GraphApplication.Algorithms
 
         //private ShortestPathResult BuildPath(IGraphModel graph, VertexModel source, VertexModel target)
         //{
-           
+
         //}
 
 
         public ShortestPathResult FindShortestPath(IGraphModel graph, VertexModel source, VertexModel target, params object[] args)
         {
             // finding shortest path consist of two things, use dijkstra algorithm, and then build route using shortest distance to each vertex.
-            
-            
+
+
             var previous = new Dictionary<VertexModel, VertexModel?>();
 
             Dijkstra(previous, graph, source, target);

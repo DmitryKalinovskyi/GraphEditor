@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GraphApplication.Models.Graph
 {
-    public interface IGraphModel: IGraphModel<VertexModel, EdgeModel> { }
+    public interface IGraphModel : IGraphModel<VertexModel, EdgeModel> { }
 
     public interface IGraphModel<TVertex, TEdge>
         where TVertex : VertexModel

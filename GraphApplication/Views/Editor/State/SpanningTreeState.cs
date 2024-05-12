@@ -1,15 +1,11 @@
-﻿using GraphApplication.Algorithms.Contracts;
+﻿using GraphApplication.Algorithms;
+using GraphApplication.Algorithms.Contracts;
 using GraphApplication.Algorithms.Results;
-using GraphApplication.Algorithms;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using GraphApplication.ModelViews;
 using GraphApplication.Views.Editor.Animations;
 using GraphApplication.Views.Editor.State.Base;
+using System.Collections.Generic;
+using System.Windows;
 
 namespace GraphApplication.Views.Editor.State
 {
@@ -37,7 +33,7 @@ namespace GraphApplication.Views.Editor.State
 
             var result = _algorithm.FindMinSpanningTree(_modelView.GraphModelView.Model, selected[0].Model);
 
-            if(result == MinSpanningTreeResult.FailedToBuildTreeResult)
+            if (result == MinSpanningTreeResult.FailedToBuildTreeResult)
             {
                 MessageBox.Show("Failed to build min spanning tree.",
                     "Attentiion!", MessageBoxButton.OK, MessageBoxImage.Warning);

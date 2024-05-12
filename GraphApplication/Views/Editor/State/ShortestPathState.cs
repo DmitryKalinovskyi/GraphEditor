@@ -4,7 +4,6 @@ using GraphApplication.Algorithms.Results;
 using GraphApplication.ModelViews;
 using GraphApplication.Views.Editor.Animations;
 using GraphApplication.Views.Editor.State.Base;
-using System;
 using System.Collections.Generic;
 using System.Windows;
 

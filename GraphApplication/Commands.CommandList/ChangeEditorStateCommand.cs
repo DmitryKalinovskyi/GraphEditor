@@ -10,9 +10,9 @@ namespace GraphApplication.Commands.CommandList
     {
         private GraphProjectModelView _project;
 
-        public ChangeEditorStateCommand(GraphProjectModelView project) 
+        public ChangeEditorStateCommand(GraphProjectModelView project)
         {
-            _project = project; 
+            _project = project;
         }
 
         public override void Execute(object? parameter)

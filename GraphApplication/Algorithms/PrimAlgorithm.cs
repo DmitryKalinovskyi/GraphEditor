@@ -4,9 +4,6 @@ using GraphApplication.Models;
 using GraphApplication.Models.Graph;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GraphApplication.Algorithms
 {
@@ -14,7 +11,7 @@ namespace GraphApplication.Algorithms
     {
         private void AddEdgesToPriorityQueue(IGraphModel graph, VertexModel vertex, PriorityQueue<WeightedEdgeModel<double>, double> pq)
         {
-            foreach(var neighbor in graph.GetNeighbors(vertex))
+            foreach (var neighbor in graph.GetNeighbors(vertex))
             {
                 WeightedEdgeModel<double>? edge = (WeightedEdgeModel<double>?)graph.GetEdgeBetween(vertex, neighbor);
 

@@ -1,5 +1,4 @@
 ﻿using GraphApplication.Models;
-using System.Windows;
 
 namespace GraphApplication.ModelViews
 {

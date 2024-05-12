@@ -1,5 +1,4 @@
-﻿using GraphApplication.Models;
-using GraphApplication.ModelViews;
+﻿using GraphApplication.ModelViews;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

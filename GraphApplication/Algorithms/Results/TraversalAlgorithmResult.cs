@@ -21,6 +21,6 @@ namespace GraphApplication.Algorithms.Results
             EdgeModels = new(edgeModels);
         }
 
-        public TraversalAlgorithmResult(): this(Enumerable.Empty<VertexModel>(), Enumerable.Empty<EdgeModel>()) { }
+        public TraversalAlgorithmResult() : this(Enumerable.Empty<VertexModel>(), Enumerable.Empty<EdgeModel>()) { }
     }
 }

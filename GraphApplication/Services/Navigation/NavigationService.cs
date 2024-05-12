@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GraphApplication.Services.Navigation
 {
@@ -13,10 +9,10 @@ namespace GraphApplication.Services.Navigation
         public event EventHandler<EventArgs>? ViewChanged;
 
         public void NavigateTo<TNavigationTarget>(TNavigationTarget target)
-            where TNavigationTarget: TNavigationBase
+            where TNavigationTarget : TNavigationBase
         {
             CurrentView = target;
-            ViewChanged?.Invoke(this, new EventArgs()); 
+            ViewChanged?.Invoke(this, new EventArgs());
         }
     }
 }

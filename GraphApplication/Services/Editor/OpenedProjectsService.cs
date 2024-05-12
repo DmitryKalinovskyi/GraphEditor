@@ -4,9 +4,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GraphApplication.Services.Editor
 {
@@ -16,12 +13,12 @@ namespace GraphApplication.Services.Editor
 
         private GraphProjectModelView? _selectedProject;
 
-        public GraphProjectModelView? SelectedProject 
+        public GraphProjectModelView? SelectedProject
         {
             get
             {
                 return _selectedProject;
-            } 
+            }
             set
             {
                 _selectedProject = value;
@@ -128,10 +125,10 @@ namespace GraphApplication.Services.Editor
 
         public void SelectProject(GraphProjectModelView project)
         {
-            if(IsOpened(project) == false)
+            if (IsOpened(project) == false)
             {
                 throw new InvalidOperationException("You can't select object that is not opened.");
-            }   
+            }
 
             SelectedProject = project;
         }
@@ -168,7 +165,7 @@ namespace GraphApplication.Services.Editor
         {
             if (SelectedProject == project)
             {
-                SelectedProject = OpenedProjects.FirstOrDefault(proj => proj !=  project, null);
+                SelectedProject = OpenedProjects.FirstOrDefault(proj => proj != project, null);
             }
 
             _projectToPathMapping.Remove(project);
@@ -183,7 +180,7 @@ namespace GraphApplication.Services.Editor
 
         public string? GetOpenedPath(GraphProjectModelView project)
         {
-            if(_projectToPathMapping.ContainsKey(project)) 
+            if (_projectToPathMapping.ContainsKey(project))
                 return _projectToPathMapping[project];
             return null;
         }

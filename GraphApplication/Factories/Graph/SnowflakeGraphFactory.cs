@@ -1,6 +1,5 @@
-﻿using GraphApplication.Factories.Graph;
+﻿using GraphApplication.Models;
 using GraphApplication.Models.Graph;
-using GraphApplication.Models;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -46,7 +45,7 @@ namespace GraphApplication.Factories.Graph
             foreach (var vertex in vertices)
                 graph.AddVertex(vertex);
 
-            foreach(var edge in edges)
+            foreach (var edge in edges)
                 graph.AddEdge(edge);
 
             return graph;

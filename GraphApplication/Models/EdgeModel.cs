@@ -5,7 +5,7 @@ namespace GraphApplication.Models
 
     [DataContract(IsReference = true)]
     [KnownType(typeof(WeightedEdgeModel<double>))]
-    public abstract class EdgeModel 
+    public abstract class EdgeModel
     {
         [DataMember]
         public VertexModel Start { get; set; }

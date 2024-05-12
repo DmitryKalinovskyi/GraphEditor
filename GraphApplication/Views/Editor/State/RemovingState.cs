@@ -1,7 +1,6 @@
 ﻿using GraphApplication.Models;
 using GraphApplication.ModelViews;
 using GraphApplication.Views.Editor.State.Base;
-using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 

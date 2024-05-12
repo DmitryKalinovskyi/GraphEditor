@@ -5,7 +5,7 @@ using Microsoft.Win32;
 
 namespace GraphApplication.Commands.CommandList
 {
-    public class SaveProjectCommand: Command
+    public class SaveProjectCommand : Command
     {
         private MainWindowModelView _mainWindowsViewModel;
         private IFileService<GraphProjectModel> _fileService;

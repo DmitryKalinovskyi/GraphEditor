@@ -1,15 +1,10 @@
 ﻿using GraphApplication.ModelViews;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GraphApplication.Services.Editor
 {
-    public interface IOpenedProjectsService: INotifyPropertyChanged
+    public interface IOpenedProjectsService : INotifyPropertyChanged
     {
         public ObservableCollection<GraphProjectModelView> OpenedProjects { get; }
         public GraphProjectModelView? SelectedProject { get; set; }

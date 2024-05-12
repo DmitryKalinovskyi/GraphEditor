@@ -2,16 +2,10 @@
 using GraphApplication.Factories.Graph;
 using GraphApplication.Models;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
 
 namespace GraphApplication.ModelViews.ProjectTemplate
 {
-    public class ProjectTemplateModelView: NotifyModelView
+    public class ProjectTemplateModelView : NotifyModelView
     {
         public IGraphFactory? GraphFactory { get; set; }
 

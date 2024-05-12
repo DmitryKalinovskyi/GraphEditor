@@ -1,7 +1,6 @@
 ﻿using GraphApplication.Models;
 using GraphApplication.Models.Graph;
 using GraphApplication.ModelViews;
-using GraphApplication.Views;
 
 namespace GraphApplication.Commands.CommandList
 {
@@ -9,7 +8,8 @@ namespace GraphApplication.Commands.CommandList
     {
         private MainWindowModelView _mainWindowModelView;
 
-        public CreateEmptyProjectCommand(MainWindowModelView mainWindowModelView) {
+        public CreateEmptyProjectCommand(MainWindowModelView mainWindowModelView)
+        {
             _mainWindowModelView = mainWindowModelView;
         }
 

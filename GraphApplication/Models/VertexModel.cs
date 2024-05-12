@@ -9,7 +9,7 @@ namespace GraphApplication.Models
     {
         [DataMember]
         public int Id { get; set; }
-        
+
         [DataMember]
         public string Caption { get; set; }
 
@@ -28,12 +28,12 @@ namespace GraphApplication.Models
             Caption = id.ToString();
         }
 
-        public VertexModel(int id, string caption): this(id)
+        public VertexModel(int id, string caption) : this(id)
         {
             Caption = caption;
         }
 
-        public VertexModel(int id, Point position): this(id)
+        public VertexModel(int id, Point position) : this(id)
         {
             X = position.X;
             Y = position.Y;

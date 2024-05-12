@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GraphApplication.Models.Graph
 {
@@ -28,10 +26,10 @@ namespace GraphApplication.Models.Graph
 
         [DataMember]
         private HashSet<VertexModel> _vertices;
-        
+
         [DataMember]
         private Dictionary<(VertexModel, VertexModel), EdgeModel> _edgeBinding;
-        
+
         [DataMember]
         private Dictionary<VertexModel, HashSet<VertexModel>> _neighbors;
 

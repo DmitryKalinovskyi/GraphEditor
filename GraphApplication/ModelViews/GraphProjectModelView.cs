@@ -1,14 +1,10 @@
 ﻿using GraphApplication.Commands;
 using GraphApplication.Commands.CommandList;
 using GraphApplication.Models;
-using GraphApplication.Models.Graph;
 using GraphApplication.Views.Editor.State;
 using GraphApplication.Views.Editor.State.Base;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Windows;
-using System.Windows.Documents;
 
 namespace GraphApplication.ModelViews
 {
@@ -19,7 +15,7 @@ namespace GraphApplication.ModelViews
 
         public Command? EndAlgorithmCommand { get; set; }
 
-        public Command? ChangeEditorStateCommand { get; set; } 
+        public Command? ChangeEditorStateCommand { get; set; }
         #endregion
 
         // general data related to the project
@@ -142,7 +138,7 @@ namespace GraphApplication.ModelViews
             IsSaved = isSaved;
 
             EditorState = new SelectionState(this);
-            
+
             GraphModelView = new GraphModelView(model.GraphModel);
             SelectionManager = new();
             AnimationManager = new();
@@ -158,10 +154,11 @@ namespace GraphApplication.ModelViews
             GraphModelView.PropertyChanged += (sender, args) => IsSaved = false;
 
             // when we changed properties of our project.
-            PropertyChanged += (sender, args) => {
-                var ignoredProperties = new List<string> { nameof(IsSaved), nameof(GraphNameFormat), nameof(Name)};
+            PropertyChanged += (sender, args) =>
+            {
+                var ignoredProperties = new List<string> { nameof(IsSaved), nameof(GraphNameFormat), nameof(Name) };
 
-                if(ignoredProperties.Contains(args.PropertyName) == false)
+                if (ignoredProperties.Contains(args.PropertyName) == false)
                 {
                     IsSaved = false;
                 }

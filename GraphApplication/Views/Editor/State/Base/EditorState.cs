@@ -1,6 +1,6 @@
-﻿using System.Windows;
+﻿using GraphApplication.ModelViews;
+using System.Windows;
 using System.Windows.Input;
-using GraphApplication.ModelViews;
 
 namespace GraphApplication.Views.Editor.State.Base
 {

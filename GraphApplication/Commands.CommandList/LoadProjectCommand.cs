@@ -1,18 +1,13 @@
 ﻿using GraphApplication.Models;
 using GraphApplication.ModelViews;
 using GraphApplication.Services;
-using GraphApplication.Views;
 using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace GraphApplication.Commands.CommandList
 {
-    public class LoadProjectCommand: Command
+    public class LoadProjectCommand : Command
     {
         private MainWindowModelView _mainWindowsViewModel;
         private IFileService<GraphProjectModel> _fileService;
