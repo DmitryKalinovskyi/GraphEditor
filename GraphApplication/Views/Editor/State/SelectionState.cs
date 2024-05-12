@@ -9,9 +9,7 @@ namespace GraphApplication.Views.Editor.State
 {
     public class SelectionState : EditorState
     {
-        public SelectionState(GraphProjectModelView modelView) : base(modelView)
-        {
-        }
+        public SelectionState(GraphProjectModelView modelView) : base(modelView) { }
 
         public override void VertexClicked(object sender, RoutedEventArgs e)
         {
@@ -25,11 +23,6 @@ namespace GraphApplication.Views.Editor.State
         {
             if (e.Source is Canvas)
                 _modelView.SelectionManager.DiselectAll();
-        }
-
-
-        public override void OnModeSwitch()
-        {
         }
     }
 }

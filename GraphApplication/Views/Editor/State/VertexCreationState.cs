@@ -35,9 +35,5 @@ namespace GraphApplication.Views.Editor.State
                 Trace.WriteLine("Vertex created at point: " + createPoint.X + " " + createPoint.Y);
             }
         }
-
-        public override void OnModeSwitch()
-        {
-        }
     }
 }

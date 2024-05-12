@@ -44,13 +44,6 @@ namespace GraphApplication.Views.Editor.State
                 return false;
             }
 
-            if (result.VertexModels == null)
-                throw new ArgumentNullException("Edge models are null.");
-
-
-            if (result.EdgeModels == null)
-                throw new ArgumentNullException("Edge models are null.");
-
             List<VertexModelView> vertexModelViews = _modelView.GraphModelView.GetVertexModelViews_By_VertexModels(result.VertexModels);
             List<EdgeModelView> edgesModelViews = _modelView.GraphModelView.GetEdgeModelViews_By_EdgeModels(result.EdgeModels);
 

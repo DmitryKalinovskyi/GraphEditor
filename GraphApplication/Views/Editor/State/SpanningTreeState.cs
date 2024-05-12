@@ -37,11 +37,12 @@ namespace GraphApplication.Views.Editor.State
 
             var result = _algorithm.FindMinSpanningTree(_modelView.GraphModelView.Model, selected[0].Model);
 
-            if (result.VertexModels == null)
-                throw new ArgumentNullException(nameof(result.VertexModels));
-
-            if (result.EdgeModels == null)
-                throw new ArgumentNullException(nameof(result.EdgeModels));
+            if(result == MinSpanningTreeResult.FailedToBuildTreeResult)
+            {
+                MessageBox.Show("Failed to build min spanning tree.",
+                    "Attentiion!", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
 
             List<VertexModelView> vertexModelViews = _modelView.GraphModelView.GetVertexModelViews_By_VertexModels(result.VertexModels);
             List<EdgeModelView> edgesModelViews = _modelView.GraphModelView.GetEdgeModelViews_By_EdgeModels(result.EdgeModels);

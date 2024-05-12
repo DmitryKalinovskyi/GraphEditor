@@ -19,9 +19,5 @@ namespace GraphApplication.Views.Editor.State
             vertexModelView.IsActive = !vertexModelView.IsActive;
             _modelView.SelectionManager.Diselect(vertexModelView);
         }
-
-        public override void OnModeSwitch()
-        {
-        }
     }
 }
