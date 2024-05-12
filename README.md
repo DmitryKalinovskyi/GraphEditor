@@ -13,9 +13,20 @@ If you want to contribute please follow by one of the prepared guides or make it
 - Popular algoritims with animation (DFS, BFS, Single source shortest path, Spanning tree)
 - Project templates - speed up your graph building process
 
+## Programming Priciples
+Single Responsibility - all classes have only one purpose. For example, each model located in corresponing class.
+
+Open/Closed Principle - all classes are open for extending, but closed for changes.
+
+Interface Segregation Principle - in my solution each class do not contains unnecessary methods for child classes.
+
+KISS - solution is well-structurized and class purpose correspondes to their actual names, this allow other user to upbuild the project because it will be remained simple and modular.
+
+DRY - solution do not contains repeating code, classes are well-structurized.
+
 ## Design Patterns
 ### MVVM (Model-View-ViewModel)
-Main architecture pattern from the MVC family. Used to separate business logic and UI development. Also have strong binding system. 
+Main architecture pattern from the MVC family. Used to separate business logic and UI development.
 
 ### Command
 Used for create bindings to the hotkeys in the menu. 
@@ -99,8 +110,6 @@ public class AStar : IShortestPathAlgorithm
 ### Observer 
 MVVM pattern based in observer pattern. Also WPF have strong binding tool that is based in INotifyPropertyChanged interface.
 How that works? We have several viewModels that have properties, when they change, they call PropertyChanged event, which reflects to the UI.
->[!NOTE]
->Commands can be created as properties and used with binding.
 
 ```cs
 public abstract class NotifyModelView : INotifyPropertyChanged
@@ -176,6 +185,9 @@ public class SnowflakeGraphFactory: IGraphFactory
     public UndirectedGraphModel CreateUndirectedGraph(){}
 }
 ```
+
+## Refactoring Techniques
+
 
 ## Future plans
 - history for your commands, ctr+z (implement via Memento pattern)
