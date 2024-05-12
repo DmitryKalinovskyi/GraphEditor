@@ -6,11 +6,11 @@ using System.Windows;
 
 namespace GraphApplication.Commands.CommandList
 {
-    public class ChangeEditorModeCommand : Command
+    public class ChangeEditorStateCommand : Command
     {
         private GraphProjectModelView _project;
 
-        public ChangeEditorModeCommand(GraphProjectModelView project) 
+        public ChangeEditorStateCommand(GraphProjectModelView project) 
         {
             _project = project; 
         }
@@ -20,8 +20,7 @@ namespace GraphApplication.Commands.CommandList
             string typename = parameter as string ?? throw new Exception("Argument to change editor mode was empty");
 
             //convert selected mode from obj
-            var mode = EditorStateBinder.Convert(typename, _project) ?? 
-                throw new Exception("Failed to get new mode instance");
+            var mode = EditorStateBinder.Convert(typename, _project);
 
             if (_project.AnimationManager.IsAnimationActive == true
             && mode is IBuildingMode)

@@ -18,14 +18,10 @@ namespace GraphApplication.Views.Editor.State
 
         public override void VertexClicked(object sender, RoutedEventArgs e)
         {
-            Trace.WriteLine("Edge clicked!");
-
             VertexModelView? clickedVertex = ((VertexButton)sender).DataContext as VertexModelView;
 
             if (clickedVertex == null)
                 return;
-            Trace.WriteLine($"Edge Proceeded! {clickedVertex.Model.Id}");
-
 
             _modelView.IsSaved = false;
 
@@ -41,7 +37,7 @@ namespace GraphApplication.Views.Editor.State
 
         private void CreateEdge(VertexModelView start, VertexModelView end)
         {
-
+            // create if they don't connected. 
             if (_modelView.GraphModelView.Model.IsConnectionBetween(start.Model, end.Model) == false)
             {
                 EdgeModel edgeModel = new WeightedEdgeModel<double>(start.Model, end.Model);

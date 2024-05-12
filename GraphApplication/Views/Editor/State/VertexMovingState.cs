@@ -9,20 +9,16 @@ namespace GraphApplication.Views.Editor.State
 {
     public class VertexMovingState : EditorState, IBuildingMode
     {
-        public VertexMovingState(GraphProjectModelView modelView) : base(modelView)
-        {
+        public VertexMovingState(GraphProjectModelView modelView) : base(modelView) { }
 
-        }
-
-        bool isDragging = false;
-        Point dragPoint;
+        private bool isDragging = false;
+        private Point dragPoint;
 
         private void UpdatePosition(Point delta, VertexModelView modelView)
         {
             modelView.X += delta.X;
             modelView.Y += delta.Y;
         }
-
 
         public override void VertexMouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -69,15 +65,10 @@ namespace GraphApplication.Views.Editor.State
 
                 UpdatePosition(delta, vertexModelView);
 
-
                 isDragging = false;
                 vertexModelView.IsSelected = false;
                 vertexView.ReleaseMouseCapture();
             }
-        }
-
-        public override void OnModeSwitch()
-        {
         }
     }
 }

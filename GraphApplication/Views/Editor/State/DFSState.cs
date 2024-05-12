@@ -33,12 +33,6 @@ namespace GraphApplication.Views.Editor.State
 
             var result = _algorithm.Traverse(_modelView.GraphModelView.Model, selected[0].Model);
 
-            if (result.EdgeModels == null)
-                throw new ArgumentNullException("Edge models are null.");
-
-            if (result.VertexModels == null)
-                throw new ArgumentNullException("Vertex models are null.");
-
             List<VertexModelView> vertexModelViews = _modelView.GraphModelView.GetVertexModelViews_By_VertexModels(result.VertexModels);
             List<EdgeModelView> edgesModelViews = _modelView.GraphModelView.GetEdgeModelViews_By_EdgeModels(result.EdgeModels);
 

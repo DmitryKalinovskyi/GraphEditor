@@ -11,11 +11,11 @@ using System.Windows;
 
 namespace GraphApplication.Commands.CommandList
 {
-    public class RemoveGraphCommand : Command
+    public class CloseProjectCommand : Command
     {
         private MainWindowModelView _mainWindowsViewModel;
 
-        public RemoveGraphCommand(MainWindowModelView mainWindowModelView)
+        public CloseProjectCommand(MainWindowModelView mainWindowModelView)
         {
             _mainWindowsViewModel = mainWindowModelView;
         }
@@ -31,7 +31,7 @@ namespace GraphApplication.Commands.CommandList
                         "Попередження", MessageBoxButton.YesNoCancel, MessageBoxImage.Warning);
                     if (result == MessageBoxResult.Yes)
                     {
-                         _mainWindowsViewModel.SaveGraphCommand?.Execute(modelView);
+                         _mainWindowsViewModel.SaveProjectCommand?.Execute(modelView);
                     }
                     else if (result == MessageBoxResult.Cancel)
                     {

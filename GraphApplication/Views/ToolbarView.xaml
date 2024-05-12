@@ -28,7 +28,7 @@
                  ImageSource="{DynamicResource CursorIconUri}"
                  TipContent="Selection"
                               
-                 Command="{Binding ChangeEditorModeCommand}"
+                 Command="{Binding ChangeEditorStateCommand}"
                  CommandParameter="SelectionState"
                  IsChecked="{Binding DataContext.EditorState,
                 Mode=TwoWay,
@@ -41,7 +41,7 @@
                  ImageSource="{DynamicResource HandIconUri}"
                  TipContent="Move vertex"
                               
-                 Command="{Binding ChangeEditorModeCommand}"
+                 Command="{Binding ChangeEditorStateCommand}"
                  CommandParameter="VertexMovingState"
                  IsChecked="{Binding DataContext.EditorState,
                 Mode=OneWay,
@@ -53,7 +53,7 @@
                  ImageSource="{DynamicResource MoveIconUri}"
                  TipContent="Move editor camera"
                               
-                 Command="{Binding ChangeEditorModeCommand}"
+                 Command="{Binding ChangeEditorStateCommand}"
                  CommandParameter="CanvasMovingState"
                  IsChecked="{Binding DataContext.EditorState,
                 Mode=OneWay,
@@ -65,7 +65,7 @@
                  ImageSource="{DynamicResource VisibilityIconUri}"
                  TipContent="Hide vertex"
                               
-                 Command="{Binding ChangeEditorModeCommand}"
+                 Command="{Binding ChangeEditorStateCommand}"
                  CommandParameter="VertexHideState"
                  IsChecked="{Binding DataContext.EditorState,
                 Mode=OneWay,
@@ -95,7 +95,7 @@
                               
                  ImageSource="{DynamicResource CircleIconUri}"
                  TipContent="Create vertex"
-                 Command="{Binding ChangeEditorModeCommand}"
+                 Command="{Binding ChangeEditorStateCommand}"
                  CommandParameter="VertexCreationState"
                  IsChecked="{Binding DataContext.EditorState,
                    
@@ -108,7 +108,7 @@
                  ImageSource="{DynamicResource ArrowIconUri}"
                  TipContent="Створення ребра графа"
                               
-                 Command="{Binding ChangeEditorModeCommand}"
+                 Command="{Binding ChangeEditorStateCommand}"
                  CommandParameter="EdgeCreationState"
                  IsChecked="{Binding DataContext.EditorState,
                 Mode=OneWay,
@@ -127,7 +127,7 @@
                  ImageSource="{DynamicResource CrossIconUri}"
                  TipContent="Remove vertex or edge"
                               
-                 Command="{Binding ChangeEditorModeCommand}"
+                 Command="{Binding ChangeEditorStateCommand}"
                  CommandParameter="RemovingState"
                  IsChecked="{Binding DataContext.EditorState,
                 Mode=OneWay,
@@ -146,7 +146,7 @@
                  Content="BFS"
                  TipContent="Breath-first search in the graph"
                               
-                 Command="{Binding ChangeEditorModeCommand}"
+                 Command="{Binding ChangeEditorStateCommand}"
                  CommandParameter="BFSState"
 
                  IsChecked="{Binding DataContext.EditorState,
@@ -160,7 +160,7 @@
                  TipContent="Depth-first search in the graph"
                               
                               
-                 Command="{Binding ChangeEditorModeCommand}"
+                 Command="{Binding ChangeEditorStateCommand}"
                  CommandParameter="DFSState"
                  IsChecked="{Binding DataContext.EditorState,
                 Mode=OneWay,
@@ -173,7 +173,7 @@
                  ImageSource="{DynamicResource PathIconUri}"
                  TipContent="Shortest path between 2 verteces"
                               
-                 Command="{Binding ChangeEditorModeCommand}"
+                 Command="{Binding ChangeEditorStateCommand}"
                  CommandParameter="ShortestPathState"
                  IsChecked="{Binding DataContext.EditorState,
                 Mode=OneWay,
@@ -186,7 +186,7 @@
                      ImageSource="{DynamicResource BoneIconUri}"
                      TipContent="Minimum spanning tree in the graph"
               
-                     Command="{Binding ChangeEditorModeCommand}"
+                     Command="{Binding ChangeEditorStateCommand}"
                      CommandParameter="SpanningTreeState"
                      IsChecked="{Binding DataContext.EditorState,
                     Mode=OneWay,

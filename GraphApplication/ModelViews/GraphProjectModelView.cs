@@ -17,11 +17,13 @@ namespace GraphApplication.ModelViews
 
         public Command? EndAlgorithmCommand { get; set; }
 
-        public Command? ChangeEditorModeCommand { get; set; } 
+        public Command? ChangeEditorStateCommand { get; set; } 
         #endregion
 
+        // general data related to the project
         public GraphProjectModel Model { get; private set; }
 
+        // graph data
         public GraphModelView GraphModelView { get; private set; }
 
         public GraphEditorSelectionManager SelectionManager { get; private set; }
@@ -164,7 +166,7 @@ namespace GraphApplication.ModelViews
         {
             StartAlgorithmCommand = new StartAlgorithmCommand(this);
             EndAlgorithmCommand = new EndAlgorithmCommand(AnimationManager);
-            ChangeEditorModeCommand = new ChangeEditorModeCommand(this);
+            ChangeEditorStateCommand = new ChangeEditorStateCommand(this);
         }
     }
 }

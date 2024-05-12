@@ -10,8 +10,8 @@ namespace GraphApplication.Views.Editor.State
     {
         public CanvasMovingState(GraphProjectModelView modelView) : base(modelView) { }
 
-        bool isDragging = false;
-        Point dragPoint;
+        private bool isDragging = false;
+        private Point dragPoint;
 
         private void UpdatePosition(Point delta)
         {
@@ -61,10 +61,6 @@ namespace GraphApplication.Views.Editor.State
                 isDragging = false;
                 canvas.ReleaseMouseCapture();
             }
-        }
-
-        public override void OnModeSwitch()
-        {
         }
     }
 }

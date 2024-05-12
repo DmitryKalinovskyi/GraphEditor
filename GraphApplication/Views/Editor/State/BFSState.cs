@@ -33,12 +33,6 @@ namespace GraphApplication.Views.Editor.State
 
             TraversalAlgorithmResult routeBuildResult = _algorithm.Traverse(_modelView.GraphModelView.Model, selected[0].Model);
 
-            if (routeBuildResult.EdgeModels == null)
-                throw new ArgumentNullException("Edge models are null.");
-
-            if (routeBuildResult.VertexModels == null)
-                throw new ArgumentNullException("Vertex models are null.");
-
             List<VertexModelView> vertexModelViews = _modelView.GraphModelView.GetVertexModelViews_By_VertexModels(routeBuildResult.VertexModels);
             List<EdgeModelView> edgesModelViews = _modelView.GraphModelView.GetEdgeModelViews_By_EdgeModels(routeBuildResult.EdgeModels);
 

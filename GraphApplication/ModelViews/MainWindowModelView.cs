@@ -16,27 +16,26 @@ namespace GraphApplication.ModelViews
     public class MainWindowModelView : NotifyModelView
     {
         #region Commands
-        public Command? CreateGraphCommand { get; set; }
+        public Command? CreateEmptyProjectCommand { get; set; }
 
-        public Command? GenerateGraphCommand { get; set; }
+        public Command? CreateProjectTemplateCommand { get; set; }
 
-        public Command? SaveGraphCommand { get; set; }
+        public Command? SaveProjectCommand { get; set; }
 
-        public Command? RemoveGraphCommand { get; set; }
+        public Command? CloseProjectCommand { get; set; }
 
-        public Command? LoadGraphCommand { get; set; }
+        public Command? LoadProjectCommand { get; set; }
         #endregion
 
         public IOpenedProjectsService OpenedProjectsService { get; set; }
 
         private void InitializeCommands()
         {
-            CreateGraphCommand = new CreateGraphCommand(this);
-            //GenerateGraphCommand = new GenerateGraphCommand(this);
-            GenerateGraphCommand = new CreateProjectTemplateCommand(this);
-            SaveGraphCommand = new SaveGraphCommand(this);
-            RemoveGraphCommand = new RemoveGraphCommand(this);
-            LoadGraphCommand = new LoadGraphCommand(this);
+            CreateEmptyProjectCommand = new CreateEmptyProjectCommand(this);
+            CreateProjectTemplateCommand = new CreateProjectTemplateCommand(this);
+            SaveProjectCommand = new SaveProjectCommand(this);
+            CloseProjectCommand = new CloseProjectCommand(this);
+            LoadProjectCommand = new LoadProjectCommand(this);
         }
 
         // Default constructor with basic services
@@ -53,7 +52,7 @@ namespace GraphApplication.ModelViews
 
             foreach (GraphProjectModelView view in graphViewsToClose)
             {
-                RemoveGraphCommand?.Execute(view);
+                CloseProjectCommand?.Execute(view);
             }
         }
 
