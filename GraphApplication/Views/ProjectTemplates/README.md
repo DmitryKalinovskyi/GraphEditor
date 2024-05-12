@@ -7,7 +7,9 @@ Hello, i glad for you visit to that page, here you can follow step by step guide
 - Knowledge of basic graph theory
 
 ## Result
-In result you can create custom template for graph generation or just project with prepared settings by pressing Ctr+G and selecting it.
+You can use custom template for graph generation or just project with prepared settings by pressing Ctr+G and selecting it.
+<img src="https://github.com/DmitryKalinovskyi/GraphEditor/assets/117343778/52279301-242a-48d7-a9cb-ee492eb196f7" height="400">
+<img src="https://github.com/DmitryKalinovskyi/GraphEditor/assets/117343778/4da22775-c26c-4306-8cf1-dbf096e49b1a" height="400">
 
 ## Guide
 To do minimal project template you need to do this steps:
