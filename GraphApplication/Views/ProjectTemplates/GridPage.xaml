@@ -18,6 +18,19 @@ xmlns:factories="clr-namespace:GraphApplication.Factories.Graph"
         </modelViews:ProjectTemplateModelView>
     </Page.DataContext>
     <StackPanel>
+        <StackPanel.Resources>
+            <Style TargetType="{x:Type TextBlock}" 
+                   BasedOn="{StaticResource MaterialDesignLabelMediumTextBlock}"
+                   >
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+            <Style TargetType="{x:Type TextBox}" 
+       BasedOn="{StaticResource MaterialDesignTextBox}"
+       >
+                <Setter Property="Width" Value="120"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+        </StackPanel.Resources>
         <StackPanel Orientation="Horizontal">
             <TextBlock>Enter Rows =</TextBlock>
             <TextBox Text="{Binding GraphFactory.Rows}"/>
@@ -34,7 +47,12 @@ xmlns:factories="clr-namespace:GraphApplication.Factories.Graph"
             <TextBlock>Enter Column Gap =</TextBlock>
             <TextBox Text="{Binding GraphFactory.ColumnGap}"/>
         </StackPanel>
-
-        <Button Command="{Binding ConfirmCommand}" Click="CloseWindow">Create grid graph</Button>
+        <Button
+  Content="Create Project"
+            Width="200"
+  Style="{StaticResource MaterialDesignFlatMidBgButton}"
+            Command="{Binding ConfirmCommand}"
+            Click="CloseWindow"
+            />
     </StackPanel>
 </Page>
