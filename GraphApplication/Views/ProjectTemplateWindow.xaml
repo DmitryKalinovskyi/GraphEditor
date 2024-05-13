@@ -10,6 +10,8 @@
         WindowStartupLocation="CenterScreen"
         Title="ProjectTemplateWindow" Height="450" Width="800">
     <Grid>
-        <Frame Source="/Views/ProjectTemplates/TemplatesPage.xaml" NavigationUIVisibility="Hidden"/>
+        <Border Padding="10">
+            <Frame Source="/Views/ProjectTemplates/TemplatesPage.xaml" NavigationUIVisibility="Hidden"/>
+        </Border>
     </Grid>
 </Window>

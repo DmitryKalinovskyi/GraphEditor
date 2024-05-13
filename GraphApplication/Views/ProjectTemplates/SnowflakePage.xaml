@@ -18,6 +18,19 @@
         </modelViews:ProjectTemplateModelView>
     </Page.DataContext>
     <StackPanel>
+        <StackPanel.Resources>
+            <Style TargetType="{x:Type TextBlock}" 
+            BasedOn="{StaticResource MaterialDesignLabelMediumTextBlock}"
+            >
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+            <Style TargetType="{x:Type TextBox}" 
+BasedOn="{StaticResource MaterialDesignTextBox}"
+>
+                <Setter Property="Width" Value="120"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+        </StackPanel.Resources>
         <StackPanel Orientation="Horizontal">
             <TextBlock>Enter depth =</TextBlock>
             <TextBox Text="{Binding GraphFactory.Depth}"/>
@@ -30,7 +43,12 @@
             <TextBlock>Enter Radius =</TextBlock>
             <TextBox Text="{Binding GraphFactory.Radius}"/>
         </StackPanel>
-        
-        <Button Command="{Binding ConfirmCommand}" Click="CloseWindow">Create snowflake graph</Button>
+        <Button
+Content="Create Project"
+          Width="200"
+Style="{StaticResource MaterialDesignFlatMidBgButton}"
+          Command="{Binding ConfirmCommand}"
+          Click="CloseWindow"
+          />
     </StackPanel>
 </Page>

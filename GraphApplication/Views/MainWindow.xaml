@@ -7,6 +7,7 @@
         xmlns:modelViews="clr-namespace:GraphApplication.ModelViews"
         xmlns:converters="clr-namespace:GraphApplication.Converters"
         mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         Title="MainWindow" Height="800" Width="1200"
         MinHeight="460" MinWidth="460"
         WindowStartupLocation="CenterScreen"
@@ -190,41 +191,48 @@
 
         <!--Editor-->
         <Grid Grid.Row="1">
-            <!--Opened graphs-->
-            <TabControl ItemsSource="{Binding OpenedProjectsService.OpenedProjects}"
-                        SelectedItem="{Binding OpenedProjectsService.SelectedProject}"
-                        Name="ProjectsTab">
-                <TabControl.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-
-                            <TextBlock Text="{Binding GraphNameFormat}"
-                                       Width="100"/>
-
-                            <Button Command="{Binding DataContext.CloseProjectCommand, ElementName=ProjectsTab}"
-                                    
+            <materialDesign:Card>
+                <TabControl
+                HorizontalContentAlignment="Left"
+                ItemsSource="{Binding OpenedProjectsService.OpenedProjects}"
+                SelectedItem="{Binding OpenedProjectsService.SelectedProject}"
+                    Name="ProjectsTab">
+                    <!--
+          If you use DisplayMemberPath to bind to a simple auto property you can cause a binking leak.
+          See: https://blog.jetbrains.com/dotnet/2014/09/04/fighting-common-wpf-memory-leaks-with-dotmemory/
+        -->
+                    <TabControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel
+          Orientation="Horizontal">
+                                <TextBlock
+            Text="{Binding GraphNameFormat}" />
+                                <Button
+           Command="{Binding DataContext.CloseProjectCommand, ElementName=ProjectsTab}"
                                     CommandParameter="{Binding}"
-                                    BorderBrush="Transparent"
-                                    Background="Transparent"
-                                >
-                                <Image Source="{DynamicResource CrossIconUri}"
-                                       Width="12"></Image>
-                            </Button>
+                                    >
+                                    <Button.Template>
+                                        <ControlTemplate>
+                                            <materialDesign:PackIcon
+                  Kind="Close"
+                                                Background="Transparent"
+                  Foreground="Red" />
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </TabControl.ItemTemplate>
+                    <TabControl.ContentTemplate>
+                        <DataTemplate>
+                           <local:GraphEditorView Margin="-2, -2, -2, -2"/>
+                        </DataTemplate>
+                    </TabControl.ContentTemplate>
+                </TabControl>
+            </materialDesign:Card>
 
-                            <!--<StackPanel.Triggers>
-                                <Trigger Property="{Binding IsSaved}" Value="True">
-                                </Trigger>   
-                            </StackPanel.Triggers>-->
-                        </StackPanel>
-                    </DataTemplate>
-                </TabControl.ItemTemplate>
-                <TabControl.ContentTemplate>
-                    <DataTemplate>
-                            <local:GraphEditorView
-                                Margin="-2, -2, -2, -2"/>
-                    </DataTemplate>
-                </TabControl.ContentTemplate>
-            </TabControl>
+            <!--Opened graphs-->
+           
             <TextBlock HorizontalAlignment="Center"
                        VerticalAlignment="Center"
                        Visibility="{Binding HasItems,
