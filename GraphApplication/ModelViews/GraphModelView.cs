@@ -91,10 +91,10 @@ namespace GraphApplication.ModelViews
         {
             // this private methods depends from graph model, when model changes, view model updates, then it notificate the view.
 
-            Model.OnEdgeAdded += (sender, edge) => AddEdgeView(edge);
-            Model.OnEdgeRemoved += (sender, edge) => RemoveEdgeView(edge);
-            Model.OnVertexAdded += (sender, vertex) => AddVertexView(vertex);
-            Model.OnVertexRemoved += (sender, vertex) => RemoveVertexView(vertex);
+            Model.OnEdgeAdded += (sender, edge) => AddEdgeModelView(edge);
+            Model.OnEdgeRemoved += (sender, edge) => RemoveEdgeModelView(edge);
+            Model.OnVertexAdded += (sender, vertex) => AddVertexModelView(vertex);
+            Model.OnVertexRemoved += (sender, vertex) => RemoveVertexModelView(vertex);
         }
 
         private void AssignPropertyDependency()
@@ -106,7 +106,7 @@ namespace GraphApplication.ModelViews
 
         }
 
-        private void AddEdgeView(EdgeModel edge)
+        private void AddEdgeModelView(EdgeModel edge)
         {
             var start = GetVertexModelView_By_VertexModel(edge.Start);
             var end = GetVertexModelView_By_VertexModel(edge.End);
@@ -118,7 +118,7 @@ namespace GraphApplication.ModelViews
             EdgeModelViews.Add(edgeModelView);
         }
 
-        private void RemoveEdgeView(EdgeModel edge)
+        private void RemoveEdgeModelView(EdgeModel edge)
         {
             var edgeModelView = GetEdgeModelView_By_EdgeModel(edge);
 
@@ -128,7 +128,7 @@ namespace GraphApplication.ModelViews
             EdgeModelViews.Remove(edgeModelView);
         }
 
-        private void AddVertexView(VertexModel vertex)
+        private void AddVertexModelView(VertexModel vertex)
         {
             var vertexModelView = new VertexModelView(vertex);
 
@@ -138,7 +138,7 @@ namespace GraphApplication.ModelViews
             VertexModelViews.Add(vertexModelView);
         }
 
-        private void RemoveVertexView(VertexModel vertex)
+        private void RemoveVertexModelView(VertexModel vertex)
         {
             var vertexModelView = GetVertexModelView_By_VertexModel(vertex);
 
@@ -151,10 +151,10 @@ namespace GraphApplication.ModelViews
         private void CreateModelViews()
         {
             foreach (var vertex in Model.GetVertices())
-                AddVertexView(vertex);
+                AddVertexModelView(vertex);
 
             foreach (var edge in Model.GetEdges())
-                AddEdgeView(edge);
+                AddEdgeModelView(edge);
         }
 
         public ObservableCollection<VertexModelView> VertexModelViews { get; private set; }
