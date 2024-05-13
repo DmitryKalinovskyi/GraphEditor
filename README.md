@@ -187,9 +187,9 @@ public class SnowflakeGraphFactory: IGraphFactory
 ```
 
 ## Refactoring Techniques
-Move method - methods that are not related to class should be moved somewhere.
-Rename method - often my methods have name that not describes actual method at all.
-Replace Array with Object - in my case, when i created IAlgorithm classes, they return tuples (constant arrays) with vertices and edges that are used for route building. Later i changed it to result object with all information related to path.
+- Move method - methods that are not related to class should be moved somewhere.
+- Rename method - often my methods have name that not describes actual method at all.
+- Replace Array with Object - in my case, when i created IAlgorithm classes, they return tuples (constant arrays) with vertices and edges that are used for route building. Later i changed it to result object with all information related to path.
 
 
 ## Future plans
