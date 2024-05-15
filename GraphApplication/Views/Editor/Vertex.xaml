@@ -10,7 +10,7 @@
     <UserControl.Resources>
         <converters:CenterTranslateConverter x:Key="CenterTranslateConverter"/>
     </UserControl.Resources>
-    <controls:VertexButton Caption="{Binding Caption}" 
+    <controls:VertexButton Caption="{Binding Caption, Mode=TwoWay}" 
                            x:Name="VertexButton"
                            Click="VertexButton_Click"
                            MouseDown="VertexButton_MouseDown"

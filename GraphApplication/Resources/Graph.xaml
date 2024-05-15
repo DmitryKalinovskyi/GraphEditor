@@ -49,7 +49,9 @@
                         IsHitTestVisible="True"
                         FocusVisualStyle="{x:Null}"
                         Foreground="{DynamicResource VertexForeground}"
-                        Text="{TemplateBinding Caption}"/>
+                        Text="{Binding Path=Caption,
+                            Mode=TwoWay,
+                            RelativeSource={RelativeSource AncestorType={x:Type controls:VertexButton}}}"/>
                     </Grid>
 
                 </ControlTemplate>
@@ -211,8 +213,10 @@ X1="{TemplateBinding StartX}"
                         Canvas.Left="{TemplateBinding CenterX}"
                         Canvas.Top="{TemplateBinding CenterY}"
                         Foreground="{DynamicResource EdgeLabelForeground}"
+                            Style="{x:Null}"
                                  Background="{DynamicResource EdgeLabelBackground}"
                         Visibility="{TemplateBinding ShowCaption,
+                            
 Converter={StaticResource BoolToVisibilityConverter}}"/>
 
                     </Canvas>

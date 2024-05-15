@@ -240,17 +240,17 @@
                                     Minimum="0.10" Maximum="3"
                                     HorizontalAlignment="Left"
                                     Value="{Binding ScaleValue, Mode=TwoWay}"/>
-                                <TextBlock>
+                                <!--<TextBlock>
                                     Quality
                                 </TextBlock>
-                                    <!--Height="10"--> 
+                                    --><!--Height="10"--><!-- 
                                 <Slider 
                                     Width="100"
                                     Panel.ZIndex="6"
                                     Minimum="0.05" Maximum="1"
                                     HorizontalAlignment="Left"
                                     Value="{Binding CachingScale, Mode=TwoWay}"
-                                    />
+                                    />-->
 
                                 <!--<TextBlock Text="Default stroke thickness"/>
                                 <Slider 
