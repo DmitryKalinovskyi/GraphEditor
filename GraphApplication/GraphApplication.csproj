@@ -47,9 +47,12 @@
     <None Remove="ArtWork\square-24.png" />
     <None Remove="ArtWork\square-48.png" />
     <None Remove="ArtWork\square-96.png" />
+    <None Remove="ArtWork\Templates\Bipartite.png" />
+    <None Remove="ArtWork\Templates\Full.png" />
     <None Remove="ArtWork\Templates\Grid.png" />
     <None Remove="ArtWork\Templates\Randomized.png" />
     <None Remove="ArtWork\Templates\Snowflake.png" />
+    <None Remove="ArtWork\Templates\Tree.png" />
     <None Remove="ArtWork\white-close-512.png" />
     <None Remove="ArtWork\white-close-thin-100.png" />
     <None Remove="ArtWork\white-path-32.png" />
@@ -202,6 +205,8 @@
     <Resource Include="ArtWork\OldIcons\white-path-96.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="ArtWork\Templates\Bipartite.png" />
+    <Resource Include="ArtWork\Templates\Full.png" />
     <Resource Include="ArtWork\Templates\Randomized.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
@@ -211,6 +216,7 @@
     <Resource Include="ArtWork\Templates\Snowflake.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="ArtWork\Templates\Tree.png" />
     <Resource Include="ArtWork\windowIcon.ico">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
