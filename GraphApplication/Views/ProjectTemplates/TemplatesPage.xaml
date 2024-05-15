@@ -26,6 +26,21 @@
                                     ImageSource="/ArtWork/Templates/Snowflake.png"
                                     
                                     />
+                <controls:NavButton Text="Tree Graph" 
+                                    PageUri="/Views/ProjectTemplates/TreePage.xaml"
+                                    ImageSource="/ArtWork/Templates/Tree.png"
+    
+    />
+                <controls:NavButton Text="Full Graph" 
+                                    PageUri="/Views/ProjectTemplates/FullPage.xaml"
+                                    ImageSource="/ArtWork/Templates/Full.png"
+    
+    />
+                <controls:NavButton Text="Bipartite Graph" 
+                                    PageUri="/Views/ProjectTemplates/BipartitePage.xaml"
+                                    ImageSource="/ArtWork/Templates/Bipartite.png"
+    
+    />
             </WrapPanel>
         </ScrollViewer>
     </Grid>

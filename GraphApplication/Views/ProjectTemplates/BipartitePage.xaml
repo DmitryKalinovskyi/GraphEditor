@@ -1,0 +1,54 @@
+﻿<Page x:Class="GraphApplication.Views.ProjectTemplates.BipartitePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:GraphApplication.Views.ProjectTemplates"
+      xmlns:modelViews="clr-namespace:GraphApplication.ModelViews.ProjectTemplate"
+      xmlns:factories="clr-namespace:GraphApplication.Factories.Graph"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="BipartitePage">
+
+    <Page.DataContext>
+        <modelViews:ProjectTemplateModelView>
+            <modelViews:ProjectTemplateModelView.GraphFactory>
+                <factories:BipartiteGraphFactory/>
+            </modelViews:ProjectTemplateModelView.GraphFactory>
+        </modelViews:ProjectTemplateModelView>
+    </Page.DataContext>
+    <StackPanel>
+        <StackPanel.Resources>
+            <Style TargetType="{x:Type TextBlock}" 
+            BasedOn="{StaticResource MaterialDesignLabelMediumTextBlock}"
+            >
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+            <Style TargetType="{x:Type TextBox}" 
+BasedOn="{StaticResource MaterialDesignTextBox}"
+>
+                <Setter Property="Width" Value="120"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+        </StackPanel.Resources>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock>Enter 1 Group Vertexes =</TextBlock>
+            <TextBox Text="{Binding GraphFactory.VertexCountGroup1}"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock>Enter 2 Group Vertexes =</TextBlock>
+            <TextBox Text="{Binding GraphFactory.VertexCountGroup2}"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock>Enter Radius =</TextBlock>
+            <TextBox Text="{Binding GraphFactory.Radius}"/>
+        </StackPanel>
+        <Button
+Content="Create Project"
+          Width="200"
+Style="{StaticResource MaterialDesignFlatMidBgButton}"
+          Command="{Binding ConfirmCommand}"
+          Click="CloseWindow"
+          />
+    </StackPanel>
+</Page>
